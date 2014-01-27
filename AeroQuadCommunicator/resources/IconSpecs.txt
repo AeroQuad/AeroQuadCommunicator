@@ -1,0 +1,2 @@
+iconmonstr.com
+color = 3B5C94

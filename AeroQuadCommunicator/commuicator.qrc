@@ -1,0 +1,48 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>resources/AeroQuadLogo.png</file>
+        <file>resources/AQCal.svg</file>
+        <file>resources/AQConfig.svg</file>
+        <file>resources/AQConnect.svg</file>
+        <file>resources/AQMainMenu.svg</file>
+        <file>resources/AQMap.svg</file>
+        <file>resources/AQState.svg</file>
+        <file>resources/AQTerminal.svg</file>
+        <file>resources/AQPlot.svg</file>
+        <file>resources/background.png</file>
+        <file>resources/AQ.png</file>
+        <file>resources/AQGlobe.svg</file>
+        <file>resources/AQConection.png</file>
+        <file>resources/AQDisconnection.png</file>
+        <file>resources/AQupload.svg</file>
+        <file>resources/connect.png</file>
+        <file>resources/disconnect.png</file>
+        <file>resources/bootloader.png</file>
+        <file>resources/firmware.png</file>
+        <file>resources/AQ32v2.jpg</file>
+        <file>resources/UploadRoute.png</file>
+        <file>resources/ClearAll.png</file>
+        <file>resources/RemoveLast.png</file>
+        <file>resources/EditWaypoints.png</file>
+        <file>resources/save.png</file>
+        <file>resources/load.png</file>
+        <file>resources/autopilot.png</file>
+        <file>resources/rightArrow.png</file>
+        <file>resources/leftArrow.png</file>
+        <file>resources/centerArrow.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>resources/AeroQuadIcon.ico</file>
+        <file>resources/BlackWhiteLogo(100).png</file>
+    </qresource>
+    <qresource prefix="/flightConfigs">
+        <file>resources/Hexa+.png</file>
+        <file>resources/HexaX.png</file>
+        <file>resources/Octo+.png</file>
+        <file>resources/OctoX.png</file>
+        <file>resources/Quad+.png</file>
+        <file>resources/QuadX.png</file>
+        <file>resources/Tri.png</file>
+        <file>resources/Y6.png</file>
+    </qresource>
+</RCC>
