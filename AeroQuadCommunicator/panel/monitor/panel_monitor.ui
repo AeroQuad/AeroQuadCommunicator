@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="configurator.qrc">
+   <iconset resource="../../commuicator.qrc">
     <normaloff>:/icons/resources/AeroQuadIcon.ico</normaloff>:/icons/resources/AeroQuadIcon.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -44,7 +44,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="configurator.qrc"/>
+  <include location="../../commuicator.qrc"/>
  </resources>
  <connections/>
 </ui>

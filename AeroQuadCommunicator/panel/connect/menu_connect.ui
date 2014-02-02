@@ -13,13 +13,16 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QSplitter" name="splitter">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QFrame" name="frame">
+     <widget class="QFrame" name="GlossyFrame">
       <property name="sizePolicy">
        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -165,7 +168,22 @@
        </item>
       </layout>
      </widget>
-     <widget class="QGraphicsView" name="graphicsView"/>
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="styleSheet">
+       <string notr="true">QGraphicsView {
+ border: 1px solid white;
+ border-radius: 3px;
+ background: qradialgradient(
+   cx: 0.5, cy: -1.8,
+   fx: 0.5, fy: 0,
+   radius: 2, 
+   stop: 0 #9aa9be,
+   stop: 1 #293859);
+  font: bold;
+}
+</string>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>

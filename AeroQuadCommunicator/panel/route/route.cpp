@@ -1,5 +1,10 @@
 #include "route.h"
 #include <QDebug>
+#include <QSettings>
+#include <QFile>
+#include <QMessageBox>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
 using namespace Marble;
 
@@ -7,34 +12,88 @@ Route::Route(MarbleModel *dataModel, GeoDataDocument *geoDocument)
 {
     mapModel = dataModel;
     display = geoDocument;
+    path = new GeoDataLineString(Marble::Tessellate);
+    routeManager = mapModel->routingManager();
+    routeRequest = routeManager->routeRequest();
+    connect(routeRequest, SIGNAL(positionChanged(int,GeoDataCoordinates)), this, SLOT(updatePaths()));
 }
 
 void Route::loadRoute()
 {
-    // Change this so we load route externally
-    route.append(GeoDataCoordinates(-121.6152403200,36.4526629061, 1000.0, Marble::GeoDataCoordinates::Degree));
-    route.append(GeoDataCoordinates(-118.2301233342,36.4068540534, 1000.0, Marble::GeoDataCoordinates::Degree));
-    route.append(GeoDataCoordinates(-118.2008367506,33.9709742993, 1000.0, Marble::GeoDataCoordinates::Degree));
-    route.append(GeoDataCoordinates(-117.9707431962,31.6205917851, 10000.0, Marble::GeoDataCoordinates::Degree));
+    QSettings settings;
+    QString routePath = settings.value("lastRouteFile", "InitialRoute.xml").toString();
+    loadRoute(routePath);
 }
 
-void Route::displayRoute()
+void Route::loadRoute(QString routePath)
 {
-    // Define waypoints on map
-    routeManager = mapModel->routingManager();
-    routeRequest = routeManager->routeRequest();
-    foreach(GeoDataCoordinates waypoint, route)
+    QFile routeFile(routePath);
+    if (routeFile.open(QIODevice::ReadOnly))
     {
-        routeRequest->append(waypoint);
+        QXmlStreamReader xml(routeFile.readAll());
+        routeFile.close();
+        route.clear();
+        while(!xml.atEnd())
+        {
+            xml.readNext();
+            if (xml.isStartElement())
+            {
+                if (xml.name() == "waypoint")
+                {
+                    waypointData waypoint;
+                    foreach(const QXmlStreamAttribute &attribute, xml.attributes())
+                    {
+                        if (attribute.name().toString() == "lat")
+                            waypoint.coord.setLatitude(attribute.value().toFloat(),GeoDataCoordinates::Degree);
+                        if (attribute.name().toString() == "lon")
+                            waypoint.coord.setLongitude(attribute.value().toFloat(),GeoDataCoordinates::Degree);
+                        if (attribute.name().toString() == "alt")
+                            waypoint.coord.setAltitude(attribute.value().toFloat());
+                        if (attribute.name().toString() == "speed")
+                            waypoint.speed = attribute.value().toFloat();
+                        if (attribute.name().toString() == "type")
+                            waypoint.type = attribute.value().toString();
+                    }
+                    route.append(waypoint);
+                }
+            }
+        }
+        // Define waypoints on map
+        routeRequest->clear();
+        path->clear();
+        foreach(waypointData waypoint, route)
+        {
+            routeRequest->append(waypoint.coord);
+            path->append(waypoint.coord);
+        }
     }
-    connect(routeRequest, SIGNAL(positionChanged(int,GeoDataCoordinates)), this, SLOT(updatePaths()));
+}
 
-    // Define path between each waypoint
-    path = new GeoDataLineString(Marble::Tessellate);
-    foreach(GeoDataCoordinates waypoint, route)
+void Route::saveRoute(QString routePath)
+{
+    QFile xmlFile(routePath);
+    if (xmlFile.open(QIODevice::WriteOnly))
     {
-        path->append(waypoint);
+        QXmlStreamWriter xml(&xmlFile);
+        xml.setAutoFormatting(true);
+        xml.writeStartElement("route");
+        foreach(waypointData waypoint, route)
+        {
+            xml.writeStartElement("waypoint");
+            xml.writeAttribute(("lat"), QString(QString::number(waypoint.coord.latitude(GeoDataCoordinates::Degree), 'f', 6)));
+            xml.writeAttribute("lon", QString(QString::number(waypoint.coord.longitude(GeoDataCoordinates::Degree), 'f', 6)));
+            xml.writeAttribute("alt", QString(QString::number(waypoint.coord.altitude(), 'f', 1)));
+            xml.writeAttribute("speed", QString(QString::number(waypoint.speed, 'f', 1)));
+            xml.writeAttribute("type", waypoint.type);
+            xml.writeEndElement();
+        }
+        xml.writeEndElement();
     }
+}
+
+void Route::initializeRoute()
+{
+    // Define path between each waypoint
     GeoDataPlacemark *placemarkRoute = new GeoDataPlacemark;
     placemarkRoute->setGeometry(path);
     GeoDataStyle *styleRoute = new GeoDataStyle;
@@ -49,7 +108,7 @@ void Route::displayRoute()
 
 GeoDataCoordinates Route::getWaypoint(int index)
 {
-    return route[index];
+    return route[index].coord;
 }
 
 int Route::getRouteSize()
@@ -60,36 +119,54 @@ int Route::getRouteSize()
 void Route::updatePaths()
 {
     path->clear();
-    for (int index=0; index<routeRequest->size(); index++)
+    for (int index=0; index<route.size(); index++)
     {
-        path->append(routeRequest->at(index));
+        path->append(route[index].coord);
     }
 }
 
 void Route::addWaypoint(qreal lon, qreal lat, Marble::GeoDataCoordinates::Unit unit)
 {
-    routeRequest->append(GeoDataCoordinates(lon, lat, 0, unit));
+    float newAlt;
+    float newSpeed;
+    if (route.size())
+    {
+        newAlt = route.last().coord.altitude();
+        newSpeed = route.last().speed;
+    }
+    else
+    {
+        newAlt = 0.0;
+        newSpeed = 1.0;
+    }
+    GeoDataCoordinates newLocation(lon, lat, newAlt, unit);
+    routeRequest->append(newLocation);
+    waypointData newWaypoint;
+    newWaypoint.coord = newLocation;
+    newWaypoint.speed = newSpeed;
+    newWaypoint.type = "Waypoint";
+    route.append(newWaypoint);
     updatePaths();
 }
 
 void Route::removeLastWaypoint()
 {
-    routeRequest->remove(routeRequest->size()-1);
-    updatePaths();
+    if (route.size())
+    {
+        route.removeLast();
+        routeRequest->remove(routeRequest->size()-1);
+        updatePaths();
+    }
 }
 
 void Route::clearWaypoints()
 {
+    route.clear();
     routeRequest->clear();
     updatePaths();
 }
 
-QList<Marble::GeoDataCoordinates> Route::getRoute()
+QVector<Route::waypointData> Route::getRoute()
 {
-    QList<GeoDataCoordinates> routeList;
-    for (int index=0; index<routeRequest->size(); index++)
-    {
-        routeList.append(routeRequest->at(index));
-    }
-    return routeList;
+    return route;
 }

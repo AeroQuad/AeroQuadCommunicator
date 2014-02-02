@@ -30,6 +30,7 @@
         <file>resources/rightArrow.png</file>
         <file>resources/leftArrow.png</file>
         <file>resources/centerArrow.png</file>
+        <file>resources/AeroQuadLogo3.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

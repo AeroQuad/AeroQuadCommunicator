@@ -57,6 +57,10 @@ private slots:
     void on_rudder_valueChanged(int value);
     //void on_rudder_sliderMoved(int position);
 
+    void on_load_clicked();
+
+    void on_save_clicked();
+
 private:
     Ui::PanelRoute *ui;
     QSettings settings;

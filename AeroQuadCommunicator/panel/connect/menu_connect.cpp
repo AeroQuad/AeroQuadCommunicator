@@ -62,7 +62,7 @@ void MenuConnect::showEvent(QShowEvent *)
     // Load default graphics on screen
     int width = ui->graphicsView->width()-25;
     scene = new QGraphicsScene();
-    QPixmap logo(":/images/resources/AeroQuadLogo.png");
+    QPixmap logo(":/images/resources/AeroQuadLogo3.png");
     QPixmap scaledLogo = logo.scaled(width, width, Qt::KeepAspectRatio);
     scene->addPixmap(scaledLogo);
     ui->graphicsView->setScene(scene);
@@ -75,7 +75,7 @@ void MenuConnect::resizeEvent(QResizeEvent *event)
     int size = (width > height) ? height : width;
     scene = new QGraphicsScene();
     if (configPix.isNull())
-        configPix = QPixmap(":/images/resources/AeroQuadLogo.png");
+        configPix = QPixmap(":/images/resources/AeroQuadLogo3.png");
     QPixmap scaledLogo = configPix.scaled(size, size, Qt::KeepAspectRatio);
     scene->addPixmap(scaledLogo);
     ui->graphicsView->setScene(scene);

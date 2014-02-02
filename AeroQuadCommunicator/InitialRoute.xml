@@ -1,0 +1,7 @@
+<route>
+	<waypoint lat="33.921830" lon="-118.410184" alt="0.0" speed="1" type="Start Route" />
+	<waypoint lat="33.921738" lon="-118.410093" alt="0.0" speed="1" type="Waypoint" />
+	<waypoint lat="33.921661" lon="-118.410184" alt="0.0" speed="1" type="Waypoint" />
+	<waypoint lat="33.921735" lon="-118.410308" alt="0.0" speed="1" type="Waypoint" />
+	<waypoint lat="33.921822" lon="-118.410251" alt="0.0" speed="1" type="End Route" />
+</route>	

@@ -115,7 +115,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="configurator.qrc">:/images/resources/AQ.png</pixmap>
+      <pixmap resource="../../commuicator.qrc">:/images/resources/AQ.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>false</bool>
@@ -141,7 +141,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="configurator.qrc"/>
+  <include location="../../commuicator.qrc"/>
  </resources>
  <connections/>
 </ui>
