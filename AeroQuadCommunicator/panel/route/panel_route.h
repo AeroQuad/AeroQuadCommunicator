@@ -11,9 +11,9 @@
 #include <marble/GeoDataCoordinates.h>
 
 #define CHANNEL_COUNT 9
-#define ROLL          1
-#define PITCH         0
-#define THROTTLE      2
+#define ROLL          2
+#define PITCH         1
+#define THROTTLE      0
 #define RUDDER        3
 #define GEAR          4
 #define AUX1          5
@@ -61,6 +61,8 @@ private slots:
 
     void on_save_clicked();
 
+    void on_upload_clicked();
+
 private:
     Ui::PanelRoute *ui;
     QSettings settings;
@@ -71,6 +73,7 @@ private:
     GeoDataDocument *display;
     QTimer *timer;
     QByteArray positionMessage;
+    QVector<QString> routeVerify;
     //PositionSimulator *positionSim;
     bool trailEnable;
     bool centerOnVehicle;

@@ -22,36 +22,15 @@
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <widget class="QSplitter" name="splitter">
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="opaqueResize">
-      <bool>true</bool>
-     </property>
-     <widget class="Marble::MarbleWidget" name="map" native="true">
+     <widget class="Marble::MarbleWidget" name="map">
       <property name="toolTip">
        <string>The Earth</string>
       </property>
       <property name="whatsThis">
        <string>The Marble widget displays a virtual globe.</string>
-      </property>
-      <property name="mapThemeId" stdset="0">
-       <string/>
-      </property>
-      <property name="projection" stdset="0">
-       <number>0</number>
-      </property>
-      <property name="longitude" stdset="0">
-       <double>0.000000000000000</double>
-      </property>
-      <property name="showCompass" stdset="0">
-       <bool>true</bool>
-      </property>
-      <property name="showAtmosphere" stdset="0">
-       <bool>false</bool>
       </property>
      </widget>
      <widget class="QFrame" name="frame">
@@ -633,7 +612,7 @@ Off</string>
   <customwidget>
    <class>Marble::MarbleWidget</class>
    <extends>QWidget</extends>
-   <header>marble/MarbleWidget.h</header>
+   <header>MarbleWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

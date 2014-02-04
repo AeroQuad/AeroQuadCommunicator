@@ -6,6 +6,7 @@
 #include <QXmlStreamReader>
 #include <QStringList>
 #include <QDebug>
+#include <QThread>
 #include <marble/MarbleWidget.h>
 #include <marble/GeoDataTreeModel.h>
 #include <marble/MarbleDirs.h>
@@ -15,16 +16,6 @@ PanelRoute::PanelRoute(QWidget *parent) :
     ui(new Ui::PanelRoute)
 {
     ui->setupUi(this);
-//    QString testMessage = ("******\n");
-//    testMessage += "Marble Data Path: " + Marble::MarbleDirs::marbleDataPath();
-//    testMessage += "\nMarble System Path: " + Marble::MarbleDirs::systemPath();
-//    testMessage += "\nMarble PlugIn Path: " + Marble::MarbleDirs::pluginSystemPath();
-//    testMessage += "\nMarble Local Path: " + Marble::MarbleDirs::localPath();
-//    testMessage += "\nMarble Plugin Local Path: " + Marble::MarbleDirs::pluginLocalPath();
-//    testMessage += "\nMarble Plugin Path: " + Marble::MarbleDirs::marblePluginPath();
-//    testMessage += "\n******\n";
-//    QMessageBox::critical(this, "Stupid Message", testMessage, QMessageBox::Ok);
-
     initialize("panel_route.xml");
     ui->map->setProjection(Marble::Mercator);
     //ui->map->setProjection(Marble::Spherical);
@@ -124,9 +115,9 @@ void PanelRoute::updateRouteTable()
     {
         QTableWidgetItem *ID = new QTableWidgetItem(QString(char(label+index)));
         ui->routeList->setItem(index, 0, ID);
-        QTableWidgetItem *lat = new QTableWidgetItem(QString(QString::number(routeValues[index].coord.latitude(GeoDataCoordinates::Degree), 'f', 6)));
+        QTableWidgetItem *lat = new QTableWidgetItem(QString(QString::number(routeValues[index].coord.latitude(GeoDataCoordinates::Degree), 'f', 7)));
         ui->routeList->setItem(index, 1, lat);
-        QTableWidgetItem *lon = new QTableWidgetItem(QString(QString::number(routeValues[index].coord.longitude(GeoDataCoordinates::Degree), 'f', 6)));
+        QTableWidgetItem *lon = new QTableWidgetItem(QString(QString::number(routeValues[index].coord.longitude(GeoDataCoordinates::Degree), 'f', 7)));
         ui->routeList->setItem(index, 2, lon);
         QTableWidgetItem *alt = new QTableWidgetItem(QString(QString::number(routeValues[index].coord.altitude(), 'f', 1)));
         ui->routeList->setItem(index, 3, alt);
@@ -220,19 +211,19 @@ void PanelRoute::on_right_clicked()
 void PanelRoute::on_throttleOff_clicked()
 {
     ui->throttle->setValue(1500);
-    sendCommand(THROTTLE, 1500);
+    sendCommand(PITCH, 1500);
 }
 
 void PanelRoute::on_throttleCruise_clicked()
 {
     ui->throttle->setValue(1650);
-    sendCommand(THROTTLE, 1650);
+    sendCommand(PITCH, 1650);
 }
 
 void PanelRoute::on_throttleMax_clicked()
 {
     ui->throttle->setValue(2000);
-    sendCommand(THROTTLE, 2000);
+    sendCommand(PITCH, 2000);
 }
 
 void PanelRoute::parsePositionData(QByteArray data)
@@ -287,7 +278,7 @@ void PanelRoute::sendCommand(int channel, int commandValue)
 
 void PanelRoute::on_throttle_valueChanged(int value)
 {
-    sendCommand(THROTTLE, value);
+    sendCommand(PITCH, value);
 }
 
 void PanelRoute::on_rudder_valueChanged(int value)
@@ -316,4 +307,26 @@ void PanelRoute::on_save_clicked()
         route->saveRoute(routePath);
         settings.setValue("lastRouteFile", routePath);
     }
+}
+
+void PanelRoute::on_upload_clicked()
+{
+    QThread wait;
+    routeVerify.clear();
+    int count = ui->routeList->rowCount();
+    for (int index=0; index < count; index++)
+    {
+        QTableWidgetItem *rawLat = ui->routeList->item(index, 1);
+        int lat = rawLat->text().toFloat() * 1.0E7;
+        QTableWidgetItem *rawLon = ui->routeList->item(index, 2);
+        int lon = rawLon->text().toFloat() * 1.0E7;
+        QTableWidgetItem *rawAlt = ui->routeList->item(index, 3);
+        //QTableWidgetItem *rawSpeed = ui->routeList->item(index, 4);
+        routeVerify.append(QString::number(index) + "," + rawLat->text() + "," + rawLon->text() + "," + rawAlt->text());
+        QString command = "O" + QString::number(index) + ";" + QString::number(lat) + ";" + QString::number(lon) + ";" + rawAlt->text() + ";";
+        emit messageOut(command.toUtf8());
+        //qDebug() << command;
+        wait.msleep(100);
+    }
+    emit messageOut(QString("W").toUtf8());
 }

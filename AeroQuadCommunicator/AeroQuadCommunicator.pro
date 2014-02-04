@@ -67,8 +67,8 @@ win32 {
     ## Windows common build here
     !contains(QMAKE_HOST.arch, x86_64) {
         message("x86 build")
-        LIBS += $$PWD/marble/libmarblewidget.dll \
-                $$PWD/marble/libastro.dll
+        LIBS += $$PWD/marble/libmarblewidget.dll
+                #$$PWD/marble/libastro.dll
         #LIBS = $$quote(C:\Qt\Qt5.2.0\5.2.0\mingw48_32\lib\libmarblewidget.dll)
     }
     else {
