@@ -3,13 +3,10 @@
 
 CommunicationSerial::CommunicationSerial()
 {
-    serial = new QSerialPort;
-    serial->setDataBits(QSerialPort::Data8);
-    serial->setParity(QSerialPort::NoParity);
-    serial->setStopBits(QSerialPort::OneStop);
-    serial->setFlowControl(QSerialPort::NoFlowControl);
 
+    serial = new QSerialPort;
     isConnected = false;
+    dataBuffer.clear();
 
     connect(this,   SIGNAL(openConnection(QString)),        this, SLOT(open(QString)));
     connect(this,   SIGNAL(writeConnection(QByteArray)),    this, SLOT(write(QByteArray)));
@@ -19,6 +16,7 @@ CommunicationSerial::CommunicationSerial()
 
 CommunicationSerial::~CommunicationSerial()
 {
+    serial->close();
     delete serial;
 }
 
@@ -29,10 +27,15 @@ void CommunicationSerial::open(QString connectionSettings)
 
     serial->close();
     serial->setPortName(settings.at(0));
-    serial->setBaudRate(settings.at(1).toInt());
     if (serial->open(QIODevice::ReadWrite))
     {
         isConnected = true;
+        serial->setBaudRate(settings.at(1).toInt());
+        serial->setDataBits(QSerialPort::Data8);
+        serial->setParity(QSerialPort::NoParity);
+        serial->setStopBits(QSerialPort::OneStop);
+        serial->setFlowControl(QSerialPort::NoFlowControl);
+        serial->setTextModeEnabled(true);
     }
     else
     {
@@ -58,22 +61,31 @@ void CommunicationSerial::write(const QByteArray &data)
 
 QByteArray CommunicationSerial::read()
 {
-    QByteArray data;
     if (isConnected)
     {
+        bool overflow = dataBuffer.size()>64;
         if (serial->canReadLine())
         {
-            data = serial->readAll();
+            while (serial->canReadLine())
+                dataBuffer.append(serial->readLine());
+            emit readConnection(dataBuffer);
+            emit dataAvailable(dataBuffer);
+            QByteArray data = dataBuffer;
+            dataBuffer.clear();
+            return data;
+        }
+        if (overflow)
+        {
+//            dataBuffer.append(serial->readAll());
+//            dataBuffer.append("\n");
+//            emit readConnection(dataBuffer);
+//            emit dataAvailable(dataBuffer);
+            QByteArray data = dataBuffer;
+            dataBuffer.clear();
+            return data;
         }
         else
-        {
-            data = serial->readAll();
-            data.append(serial->readAll());
-        }
-        emit readConnection(data);
-        emit dataAvailable(data);
-        //qDebug() << data;
-        return data;
+            dataBuffer.append(serial->readAll());
     }
 }
 

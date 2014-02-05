@@ -33,7 +33,7 @@ signals:
 
 private:
     QSerialPort *serial;
-    QByteArray localData;
+    QByteArray dataBuffer;
     QList<QSerialPortInfo> getAvailablePorts();
 };
 

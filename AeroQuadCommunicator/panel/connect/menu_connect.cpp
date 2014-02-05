@@ -212,6 +212,7 @@ void MenuConnect::connectionResponse(QByteArray dataIn)
             //comm->write(configuration);
             messageSent = configuration;
             retry++;
+            qDebug() << retry;
         }
     }
 }

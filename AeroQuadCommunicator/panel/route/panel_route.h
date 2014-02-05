@@ -21,7 +21,7 @@
 #define AUX3          7
 
 #define POSITION_UPDATE_RATE 500
-#define MAX_ROUTE_RETRY 5
+#define MAX_ROUTE_RETRY 10
 #define WAYPOINT_ROUNDING_ERROR 0.100000
 
 #define POSITION 0

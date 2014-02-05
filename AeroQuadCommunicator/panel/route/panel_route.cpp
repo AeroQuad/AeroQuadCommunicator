@@ -149,9 +149,13 @@ void PanelRoute::createWaypoint(qreal lon, qreal lat, GeoDataCoordinates::Unit u
 
 void PanelRoute::parseIncomingMessage(QByteArray data)
 {
+
+    QThread wait;
     QString message = data;
-    //qDebug() << "New incoming message: " << message;
-    //qDebug() << "Message Type: " << incomingMessageType;
+    qDebug() << "Message Type: " << incomingMessageType;
+    //QString debugMsg = message;
+    //debugMsg.chop(2);
+    qDebug() << "New incoming message: " << message; //debugMsg;
     if (message == "initialize")
     {
         for (int index=0; index<CHANNEL_COUNT; index++)
@@ -160,7 +164,6 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
         incomingMessageType = CHECK_ONBOARD_ROUTE;
         QString command("o-1;");
         emit messageOut(command.toUtf8());
-        qDebug() << command;
         return;
     }
 
@@ -168,34 +171,47 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
     {
     case POSITION:
         positionMessage.append(data);
-        if (message.contains("\r\n"))
+        //if (message.contains("\r\n"))
         {
             QString positionString(positionMessage);
             QStringList positionList = positionString.split(',');
-            float lat = positionList.at(0).toFloat() / 1.0E7;
-            float lon = positionList.at(1).toFloat() / 1.0E7;
-            if ((lat == 0.0) && (lon == 0.0))
+            if (positionList.size() == 4)
             {
+                float lat = positionList.at(0).toFloat() / 1.0E7;
+                float lon = positionList.at(1).toFloat() / 1.0E7;
+                if ((lat == 0.0) && (lon == 0.0))
+                {
+                    positionMessage.clear();
+                    return;
+                }
+                heading = positionList.at(2).toFloat() * 57.2957795;
+                float speed = positionList.at(3).toFloat();
+                vehicle->updatePosition(GeoDataCoordinates(lon, lat, 1000, GeoDataCoordinates::Degree));
+                vehicle->updateHeading(heading);
+                refreshMap(GeoDataCoordinates(lon, lat, 1000, GeoDataCoordinates::Degree));
                 positionMessage.clear();
-                return;
             }
-            heading = positionList.at(2).toFloat() * 57.2957795;
-            float speed = positionList.at(3).toFloat();
-            vehicle->updatePosition(GeoDataCoordinates(lon, lat, 1000, GeoDataCoordinates::Degree));
-            vehicle->updateHeading(heading);
-            refreshMap(GeoDataCoordinates(lon, lat, 1000, GeoDataCoordinates::Degree));
-            positionMessage.clear();
         }
         break;
 
     case ROUTE:
         {
-            bool dataMatch;
+            bool dataMatch = false;
             GeoDataCoordinates waypoint;
             QString command;
+            qDebug() << "waypointIndex: " << waypointIndex;
 
+            // Check if waypoint count uploaded correctly
             if (waypointIndex == -1)
+            {
                 dataMatch = (message.toInt() == route->getRouteSize());
+                if (!dataMatch)
+                {
+                    emit messageOut("o-1;");
+                    return;
+                }
+
+            }
             else
             {
                 QStringList waypointResponse = message.split(',');
@@ -203,9 +219,11 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
                 {
                     // There will be a little rouding error so calculate the difference for verification
                     waypoint = route->getWaypoint(waypointIndex);
-                    //qDebug() << "check lat index[" + QString::number(waypointIndex) +"]" << fabs(waypoint.latitude(GeoDataCoordinates::Degree) - waypointResponse[1].toDouble());
+                    qDebug() << "check lat index[" + QString::number(waypointIndex) +"]" << fabs(waypoint.latitude(GeoDataCoordinates::Degree) - waypointResponse[1].toDouble()/1.0E7);
                     dataMatch = fabs(waypoint.latitude(GeoDataCoordinates::Degree) - (waypointResponse[1].toDouble()/1.0E7)) < WAYPOINT_ROUNDING_ERROR;
+                    qDebug() << "check lon index[" + QString::number(waypointIndex) +"]" << fabs(waypoint.longitude(GeoDataCoordinates::Degree) - waypointResponse[2].toDouble()/1.0E7);
                     dataMatch &= fabs(waypoint.longitude(GeoDataCoordinates::Degree) - (waypointResponse[2].toDouble()/1.0E7)) < WAYPOINT_ROUNDING_ERROR;
+                    qDebug() << "check alt index[" + QString::number(waypointIndex) +"]" << fabs(waypoint.altitude() - waypointResponse[3].toDouble()/1.0E7);
                     dataMatch &= fabs(waypoint.altitude() - waypointResponse[3].toDouble()) < WAYPOINT_ROUNDING_ERROR;
                 }
             }
@@ -229,6 +247,7 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
                     command = "o" + QString::number(waypointIndex) + ";";
                     //qDebug() << "Response request[" + QString::number(waypointIndex) + "]: " << command;
                     emit messageOut(command.toUtf8());
+                    waypointRetry = 0;
                 }
                 else
                 {
@@ -245,15 +264,17 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
                 waypointRetry++;
                 if (waypointRetry < MAX_ROUTE_RETRY)
                 {
-                    if (waypointIndex)
+                    if (waypointIndex >= 0)
                     {
                         waypoint = route->getWaypoint(waypointIndex);
                         command = "O" + QString::number(waypointIndex) + ";";
-                        command += QString::number(waypoint.latitude(GeoDataCoordinates::Degree), 'f', 7) + ";";
-                        command += QString::number(waypoint.longitude(GeoDataCoordinates::Degree), 'f', 7) + ";";
+                        int coordinate = waypoint.latitude(GeoDataCoordinates::Degree)*1E7;
+                        command += QString::number(coordinate) + ";";
+                        coordinate = waypoint.longitude(GeoDataCoordinates::Degree)*1E7;
+                        command += QString::number(coordinate) + ";";
                         command += QString::number(waypoint.altitude()) + ";";
                         emit messageOut(command.toUtf8());
-                        //qDebug() << "Retry: " << command;
+                        qDebug() << "Retry: " << command;
                         command = "o" + QString::number(waypointIndex) + ";";
                         emit messageOut(command.toUtf8());
                     }
@@ -293,27 +314,39 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
         {
             incomingMessageType = POSITION;
             timer->start(POSITION_UPDATE_RATE);
+            emit panelStatus("Route not detected on flight control board, loading last loaded route from file.");
         }
         break;
 
     case LOAD_ONBOARD_ROUTE:
         {
             QStringList waypoint = message.split(',');
-            qreal lat = waypoint[1].toDouble()/1.0E7;
-            qreal lon = waypoint[2].toDouble()/1.0E7;
-            qreal alt = waypoint[3].toDouble();
-            route->addWaypoint(lon, lat, alt, 0.0);
-            waypointIndex++;
-            if (waypointIndex < waypointCount)
+            if (waypoint.size() == 4)
             {
+                qreal lat = waypoint[1].toDouble()/1.0E7;
+                qreal lon = waypoint[2].toDouble()/1.0E7;
+                qreal alt = waypoint[3].toDouble();
+                route->addWaypoint(lon, lat, alt, 0.0);
+                waypointIndex++;
+                if (waypointIndex < waypointCount)
+                {
+                    QString command = "o" + QString::number(waypointIndex) + ";";
+                    emit messageOut(command.toUtf8());
+                }
+                else // route retrieved from flight control board, update route table
+                {
+                    incomingMessageType = POSITION;
+                    timer->start(POSITION_UPDATE_RATE);
+                    updateRouteTable();
+                    emit panelStatus("Loaded route from flight control board successfully!");
+                }
+            }
+            else
+            {
+                wait.msleep(500);
                 QString command = "o" + QString::number(waypointIndex) + ";";
                 emit messageOut(command.toUtf8());
-            }
-            else // route retrieved from flight control board, update route table
-            {
-                incomingMessageType = POSITION;
-                timer->start(POSITION_UPDATE_RATE);
-                updateRouteTable();
+                qDebug() << "Message out: " + command;
             }
         }
     }
