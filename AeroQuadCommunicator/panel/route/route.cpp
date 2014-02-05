@@ -125,25 +125,13 @@ void Route::updatePaths()
     }
 }
 
-void Route::addWaypoint(qreal lon, qreal lat, Marble::GeoDataCoordinates::Unit unit)
+void Route::addWaypoint(qreal lon, qreal lat, qreal alt, qreal speed)
 {
-    float newAlt;
-    float newSpeed;
-    if (route.size())
-    {
-        newAlt = route.last().coord.altitude();
-        newSpeed = route.last().speed;
-    }
-    else
-    {
-        newAlt = 0.0;
-        newSpeed = 1.0;
-    }
-    GeoDataCoordinates newLocation(lon, lat, newAlt, unit);
+    GeoDataCoordinates newLocation(lon, lat, alt, GeoDataCoordinates::Degree);
     routeRequest->append(newLocation);
     waypointData newWaypoint;
     newWaypoint.coord = newLocation;
-    newWaypoint.speed = newSpeed;
+    newWaypoint.speed = speed;
     newWaypoint.type = "Waypoint";
     route.append(newWaypoint);
     updatePaths();

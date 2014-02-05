@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1245</width>
+    <width>1306</width>
     <height>600</height>
    </rect>
   </property>
@@ -25,7 +25,7 @@
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <widget class="Marble::MarbleWidget" name="map">
+     <widget class="Marble::MarbleWidget" name="map" native="true">
       <property name="toolTip">
        <string>The Earth</string>
       </property>
@@ -49,7 +49,7 @@
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>170</height>
+        <height>163</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -78,6 +78,132 @@
        <number>10</number>
       </property>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="3" column="4">
+        <widget class="QToolButton" name="throttleCruise">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Cruise</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="12" rowspan="2">
+        <widget class="QToolButton" name="autopilot">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Autopilot</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../commuicator.qrc">
+           <normaloff>:/images/resources/autopilot.png</normaloff>:/images/resources/autopilot.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>45</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="15">
+        <widget class="QToolButton" name="center">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Center</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../commuicator.qrc">
+           <normaloff>:/images/resources/centerArrow.png</normaloff>:/images/resources/centerArrow.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="11" rowspan="2">
+        <widget class="QToolButton" name="clear">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Clear Route</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../commuicator.qrc">
+           <normaloff>:/images/resources/ClearAll.png</normaloff>:/images/resources/ClearAll.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>45</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="16">
+        <widget class="QToolButton" name="right">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>+5 Right</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../commuicator.qrc">
+           <normaloff>:/images/resources/rightArrow.png</normaloff>:/images/resources/rightArrow.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+         <property name="arrowType">
+          <enum>Qt::NoArrow</enum>
+         </property>
+        </widget>
+       </item>
        <item row="3" column="8" rowspan="2">
         <widget class="QToolButton" name="save">
          <property name="minimumSize">
@@ -96,71 +222,7 @@
          <property name="iconSize">
           <size>
            <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="7" rowspan="2">
-        <widget class="QToolButton" name="upload">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::RightToLeft</enum>
-         </property>
-         <property name="text">
-          <string>Upload Route</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../commuicator.qrc">
-           <normaloff>:/images/resources/UploadRoute.png</normaloff>:/images/resources/UploadRoute.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>45</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-         <property name="autoRaise">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="8" rowspan="2">
-        <widget class="QToolButton" name="load">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Load</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../commuicator.qrc">
-           <normaloff>:/images/resources/load.png</normaloff>:/images/resources/load.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
+           <height>45</height>
           </size>
          </property>
          <property name="toolButtonStyle">
@@ -171,10 +233,22 @@
        <item row="1" column="10" rowspan="4">
         <widget class="QTableWidget" name="routeList">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
          </property>
          <attribute name="horizontalHeaderStretchLastSection">
           <bool>true</bool>
@@ -232,6 +306,148 @@
          </column>
         </widget>
        </item>
+       <item row="3" column="12" rowspan="2">
+        <widget class="QLabel" name="autopilotState">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>72</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="text">
+          <string>Autopilot
+Disabled</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="8" rowspan="2">
+        <widget class="QToolButton" name="load">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Load</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../commuicator.qrc">
+           <normaloff>:/images/resources/load.png</normaloff>:/images/resources/load.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="6">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="14">
+        <widget class="QToolButton" name="left">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>+5 Left</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../commuicator.qrc">
+           <normaloff>:/images/resources/leftArrow.png</normaloff>:/images/resources/leftArrow.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="shortcut">
+          <string>3, 0, Return</string>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="QToolButton" name="throttleMax">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Max
+Throttle</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3" colspan="3">
+        <widget class="QSlider" name="throttle">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>75</height>
+          </size>
+         </property>
+         <property name="minimum">
+          <number>1000</number>
+         </property>
+         <property name="maximum">
+          <number>2000</number>
+         </property>
+         <property name="value">
+          <number>1500</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TicksAbove</enum>
+         </property>
+         <property name="tickInterval">
+          <number>100</number>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="11" rowspan="2">
         <widget class="QToolButton" name="removeLast">
          <property name="sizePolicy">
@@ -252,38 +468,6 @@
          <property name="icon">
           <iconset resource="../../commuicator.qrc">
            <normaloff>:/images/resources/RemoveLast.png</normaloff>:/images/resources/RemoveLast.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>45</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="11" rowspan="2">
-        <widget class="QToolButton" name="clear">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Clear Route</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../commuicator.qrc">
-           <normaloff>:/images/resources/ClearAll.png</normaloff>:/images/resources/ClearAll.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -334,20 +518,43 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="12" rowspan="2">
-        <widget class="QToolButton" name="autopilot">
+       <item row="3" column="3">
+        <widget class="QToolButton" name="throttleOff">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Throttle
+Off</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="7" rowspan="2">
+        <widget class="QToolButton" name="upload">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>90</width>
            <height>0</height>
           </size>
          </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="text">
-          <string>Autopilot</string>
+          <string>Upload Route</string>
          </property>
          <property name="icon">
           <iconset resource="../../commuicator.qrc">
-           <normaloff>:/images/resources/autopilot.png</normaloff>:/images/resources/autopilot.png</iconset>
+           <normaloff>:/images/resources/UploadRoute.png</normaloff>:/images/resources/UploadRoute.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -358,216 +565,8 @@
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
          </property>
-        </widget>
-       </item>
-       <item row="3" column="12" rowspan="2">
-        <widget class="QLabel" name="autopilotState">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>72</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <property name="lineWidth">
-          <number>1</number>
-         </property>
-         <property name="text">
-          <string>Autopilot
-Disabled</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="4">
-        <widget class="QToolButton" name="throttleCruise">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>75</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Cruise</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="5">
-        <widget class="QToolButton" name="throttleMax">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>75</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Max
-Throttle</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="14">
-        <widget class="QToolButton" name="left">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>75</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>+5 Left</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../commuicator.qrc">
-           <normaloff>:/images/resources/leftArrow.png</normaloff>:/images/resources/leftArrow.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="shortcut">
-          <string>3, 0, Return</string>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonIconOnly</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="15">
-        <widget class="QToolButton" name="center">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>75</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Center</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../commuicator.qrc">
-           <normaloff>:/images/resources/centerArrow.png</normaloff>:/images/resources/centerArrow.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonIconOnly</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="16">
-        <widget class="QToolButton" name="right">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>75</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>+5 Right</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../commuicator.qrc">
-           <normaloff>:/images/resources/rightArrow.png</normaloff>:/images/resources/rightArrow.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonIconOnly</enum>
-         </property>
-         <property name="arrowType">
-          <enum>Qt::NoArrow</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="13">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="3" column="3">
-        <widget class="QToolButton" name="throttleOff">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>75</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Throttle
-Off</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="6">
-        <spacer name="horizontalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="3" colspan="3">
-        <widget class="QSlider" name="throttle">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>75</height>
-          </size>
-         </property>
-         <property name="minimum">
-          <number>1000</number>
-         </property>
-         <property name="maximum">
-          <number>2000</number>
-         </property>
-         <property name="value">
-          <number>1500</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="tickPosition">
-          <enum>QSlider::TicksAbove</enum>
-         </property>
-         <property name="tickInterval">
-          <number>100</number>
+         <property name="autoRaise">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -602,6 +601,45 @@ Off</string>
          </property>
         </widget>
        </item>
+       <item row="3" column="13">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="6">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="13">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
       </layout>
      </widget>
     </widget>
@@ -612,7 +650,7 @@ Off</string>
   <customwidget>
    <class>Marble::MarbleWidget</class>
    <extends>QWidget</extends>
-   <header>MarbleWidget.h</header>
+   <header>marble/MarbleWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

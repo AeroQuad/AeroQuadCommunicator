@@ -20,6 +20,15 @@
 #define AUX2          6
 #define AUX3          7
 
+#define POSITION_UPDATE_RATE 500
+#define MAX_ROUTE_RETRY 5
+#define WAYPOINT_ROUNDING_ERROR 0.100000
+
+#define POSITION 0
+#define ROUTE 1
+#define CHECK_ONBOARD_ROUTE 2
+#define LOAD_ONBOARD_ROUTE 3
+
 using namespace Marble;
 
 namespace Ui {
@@ -51,16 +60,13 @@ private slots:
     void on_throttleOff_clicked();
     void on_throttleCruise_clicked();
     void on_throttleMax_clicked();
-    void parsePositionData(QByteArray);
+    void parseIncomingMessage(QByteArray);
     void requestPosition();
     void on_throttle_valueChanged(int value);
     void on_rudder_valueChanged(int value);
     //void on_rudder_sliderMoved(int position);
-
     void on_load_clicked();
-
     void on_save_clicked();
-
     void on_upload_clicked();
 
 private:
@@ -73,13 +79,17 @@ private:
     GeoDataDocument *display;
     QTimer *timer;
     QByteArray positionMessage;
-    QVector<QString> routeVerify;
+    //QVector<QString> routeVerify;
     //PositionSimulator *positionSim;
     bool trailEnable;
     bool centerOnVehicle;
     bool waypointEditor;
     bool autoPilotState;
     int control[CHANNEL_COUNT];
+    int incomingMessageType;
+    int waypointIndex;
+    int waypointRetry;
+    int waypointCount;
 
     void initialize(QString filename);
     void createVehicle();

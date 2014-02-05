@@ -34,7 +34,7 @@ public:
     void initializeRoute();
     Marble::GeoDataCoordinates getWaypoint(int index);
     int getRouteSize();
-    void addWaypoint(qreal lon, qreal lat, Marble::GeoDataCoordinates::Unit unit);
+    void addWaypoint(qreal lon, qreal lat, qreal alt, qreal speed);
     void removeLastWaypoint();
     void clearWaypoints();
     QVector<waypointData> getRoute();
