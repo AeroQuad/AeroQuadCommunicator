@@ -1,0 +1,7 @@
+<PanelRoute>
+    <MapConfig>earth/mapquest-osm/mapquest-osm.dgml</MapConfig>
+    <MapConfig>earth/openstreetmap/openstreetmap.dgml</MapConfig>
+    <MapConfig>earth/mapquest-open-aerial/mapquest-open-aerial.dgml</MapConfig>  
+    <MapConfig>earth/googlesat/googlesat.dgml</MapConfig>
+	<PositionImageWidth>200</PositionImageWidth>
+</PanelRoute>

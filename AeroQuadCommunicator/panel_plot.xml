@@ -1,0 +1,44 @@
+<PanelPlot>
+    <Plot Name="Sensor Data">
+        <Requirement type="and">Gyroscope: Detected</Requirement>
+        <Requirement type="and">Accelerometer: Detected</Requirement>
+        <Requirement type="and">Magnetometer: Detected</Requirement>
+        <Telemetry>i</Telemetry>
+        <PlotName>Gyro X Axis</PlotName>
+        <PlotName>Gyro Y Axis</PlotName>
+        <PlotName>Gyro Z Axis</PlotName>
+        <PlotName>Accel X Axis</PlotName>
+        <PlotName>Accel Y Axis</PlotName>
+        <PlotName>Accel Z Axis</PlotName>
+        <PlotName>Mag X Axis</PlotName>
+        <PlotName>Mag Y Axis</PlotName>
+        <PlotName>Mag Z Axis</PlotName>
+    </Plot>
+    <Plot Name="Attitude Data">
+        <Requirement type="and">Gyroscope: Detected</Requirement>
+        <Requirement type="and">Accelerometer: Detected</Requirement>
+        <Requirement type="and">Magnetometer: Detected</Requirement>
+        <Telemetry>r</Telemetry>
+        <PlotName>Roll</PlotName>
+        <PlotName>Pitch</PlotName>
+        <PlotName>Yaw</PlotName>
+    </Plot>
+    <Plot Name="Transmitter Data">
+        <Telemetry>t</Telemetry>
+        <PlotName>Roll</PlotName>
+        <PlotName>Pitch</PlotName>
+        <PlotName>Yaw</PlotName>
+        <PlotName>Throttle</PlotName>
+        <PlotName>Mode</PlotName>
+        <PlotName>Aux1</PlotName>
+        <PlotName>Aux2</PlotName>
+        <PlotName>Aux3</PlotName>
+    </Plot>
+    <Plot Name="Altitude Data">
+        <Requirement type="or">Range Detection: Enabled</Requirement>
+        <Requirement type="or">Barometer: Detected</Requirement>
+        <Telemetry>z</Telemetry>S
+        <PlotName>Barometer</PlotName>
+        <PlotName>Range Finder</PlotName>
+    </Plot>
+</PanelPlot>
