@@ -31,6 +31,8 @@
         <file>resources/leftArrow.png</file>
         <file>resources/centerArrow.png</file>
         <file>resources/AeroQuadLogo3.png</file>
+        <file>resources/waypointCursor.png</file>
+        <file>resources/positionF.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

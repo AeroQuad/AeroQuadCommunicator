@@ -13,11 +13,18 @@ namespace Ui {
 class MenuConnect;
 }
 
+/**
+ * @brief Defines a panel that establishes communication to the AQ board.
+ */
 class MenuConnect : public QWidget
 {
     Q_OBJECT
     
 public:
+    /**
+     * @brief Constructor that initializes communication to AQ board.
+     * @param commIn - Class used for communication to AQ board.
+     */
     explicit MenuConnect(Communication *commIn);
     ~MenuConnect();
     QStringList getCommPorts();

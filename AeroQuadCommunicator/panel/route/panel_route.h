@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QSettings>
 #include <QTimer>
+#include <QPixmap>
 #include "panel/route/vehicle.h"
 #include "panel/route/route.h"
 #include <marble/GeoDataDocument.h>
@@ -20,14 +21,17 @@
 #define AUX2          6
 #define AUX3          7
 
+#define MAX_MSG_RETRY 10
 #define POSITION_UPDATE_RATE 500
-#define MAX_ROUTE_RETRY 10
 #define WAYPOINT_ROUNDING_ERROR 0.100000
 
-#define POSITION 0
-#define ROUTE 1
-#define CHECK_ONBOARD_ROUTE 2
-#define LOAD_ONBOARD_ROUTE 3
+#define ONBOARD_QUERY_ROUTE         0
+#define ONBOARD_REQUEST_WAYPOINT    1
+#define POSITION_PARSE_DATA         2
+#define UPLOAD_WAYPOINT_COUNT       3
+#define UPLOAD_WAYPOINT             4
+#define ERROR_REPORT                5
+#define DEBUG_MSG                   6
 
 using namespace Marble;
 
@@ -64,7 +68,6 @@ private slots:
     void requestPosition();
     void on_throttle_valueChanged(int value);
     void on_rudder_valueChanged(int value);
-    //void on_rudder_sliderMoved(int position);
     void on_load_clicked();
     void on_save_clicked();
     void on_upload_clicked();
@@ -78,24 +81,25 @@ private:
     float heading;
     GeoDataDocument *display;
     QTimer *timer;
-    QByteArray positionMessage;
-    //QVector<QString> routeVerify;
-    //PositionSimulator *positionSim;
     bool trailEnable;
     bool centerOnVehicle;
     bool waypointEditor;
     bool autoPilotState;
     int control[CHANNEL_COUNT];
-    int incomingMessageType;
     int waypointIndex;
-    int waypointRetry;
     int waypointCount;
+    int nextParseState;
+    int retryMessage;
+    float imageWidth;
+    QPixmap waypointCursor;
 
     void initialize(QString filename);
     void createVehicle();
     void updateRouteTable();
     void refreshMap(GeoDataCoordinates position);
-    void sendCommand(int channel, int commandValue);
+    void sendTransmitterCommand(int channel, int commandValue);
+    void sendMessage(QString message);
+    void uploadWaypoint(int waypointIndex);
 };
 
 #endif // PANEL_ROUTE_H

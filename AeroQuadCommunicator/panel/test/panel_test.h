@@ -16,6 +16,7 @@ public:
     explicit PanelTest(QWidget *parent = 0);
     ~PanelTest();
     void initPanel(QStandardItemModel dataModel);
+    void parseMessage(QByteArray message);
     
 private:
     Ui::PanelTest *ui;

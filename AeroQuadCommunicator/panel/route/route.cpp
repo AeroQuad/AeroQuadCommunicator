@@ -125,9 +125,9 @@ void Route::updatePaths()
     }
 }
 
-void Route::addWaypoint(qreal lon, qreal lat, qreal alt, qreal speed)
+void Route::addWaypoint(qreal lon, qreal lat, qreal alt, qreal speed, GeoDataCoordinates::Unit units)
 {
-    GeoDataCoordinates newLocation(lon, lat, alt, GeoDataCoordinates::Degree);
+    GeoDataCoordinates newLocation(lon, lat, alt, units);
     routeRequest->append(newLocation);
     waypointData newWaypoint;
     newWaypoint.coord = newLocation;

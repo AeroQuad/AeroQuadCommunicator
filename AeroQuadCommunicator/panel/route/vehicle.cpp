@@ -30,9 +30,6 @@ Vehicle::Vehicle(QString vehicleName, QString filename, Marble::GeoDataDocument 
 void Vehicle::updatePosition(Marble::GeoDataCoordinates position)
 {
     vehicle->setCoordinate(position);
-//    qDebug() << position.latitude(GeoDataCoordinates::Degree)
-//             << position.longitude(GeoDataCoordinates::Degree);
-
     if (trailState)
     {
         trailData->append(position);

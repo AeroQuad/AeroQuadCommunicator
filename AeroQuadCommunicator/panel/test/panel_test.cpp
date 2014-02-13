@@ -18,3 +18,8 @@ void PanelTest::initPanel(QStandardItemModel dataModel)
 //    ui->tableView->setModel(dataModel);
 //    ui->tableView->show();
 }
+
+void PanelTest::parseMessage(QByteArray message)
+{
+    return;
+}
