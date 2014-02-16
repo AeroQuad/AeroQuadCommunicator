@@ -33,6 +33,8 @@
         <file>resources/AeroQuadLogo3.png</file>
         <file>resources/waypointCursor.png</file>
         <file>resources/positionF.png</file>
+        <file>resources/RTM.png</file>
+        <file>resources/pause.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

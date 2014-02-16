@@ -11,6 +11,25 @@
 #include <marble/GeoDataTreeModel.h>
 #include <marble/MarbleDirs.h>
 
+// State names for parseIncomingMessage()
+#define ONBOARD_QUERY_ROUTE         0
+#define ONBOARD_REQUEST_WAYPOINT    1
+#define POSITION_PARSE_DATA1        2
+#define POSITION_PARSE_DATA2        3
+#define POSITION_PARSE_SAT          4
+#define UPLOAD_WAYPOINT_COUNT       5
+#define UPLOAD_WAYPOINT             6
+#define UPDATE_AUTOPILOT_STATE      7
+#define UPDATE_HOME_POSITION        8
+#define ERROR_REPORT                9
+#define DEBUG_MSG                   10
+
+#define OFF                 0
+#define AUTO_NAVIGATION     1
+#define POSITION_HOLD       2
+#define RETURN_TO_HOME      3
+#define SET_HOME_POSITION   4
+
 PanelRoute::PanelRoute(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::PanelRoute)
@@ -51,9 +70,13 @@ PanelRoute::PanelRoute(QWidget *parent) :
     waypointCursor = waypointCursor.scaledToWidth(50);
     connect(ui->map, SIGNAL(mouseClickGeoPosition(qreal,qreal,GeoDataCoordinates::Unit)), this, SLOT(createWaypoint(qreal,qreal,GeoDataCoordinates::Unit)));
 
-    ui->autopilotState->setStyleSheet("background-color: rgba(255, 0, 0, 100);");
-    ui->autopilotState->setText("Autopilot\nNot Enabled");
     autoPilotState = false;
+    updateIndicatorStatus(ui->autopilotState, autoPilotState, "Autopilot\nDisabled");
+    positionHoldState = false;
+    updateIndicatorStatus(ui->positionHoldState, positionHoldState, "Position Hold\nDisabled");
+    rtmState = false;
+    updateIndicatorStatus(ui->rtmState, rtmState, "Return\nTo Home\nDisabled");
+    positionState = 0;
 
     timer = new QTimer(this);
     timer->stop();
@@ -72,6 +95,12 @@ PanelRoute::~PanelRoute()
     timer->stop();
     delete timer;
     delete ui;
+}
+
+void PanelRoute::sendMessage(QString message)
+{
+    emit messageOut(message.toUtf8());
+    //qDebug() << message;
 }
 
 void PanelRoute::initialize(QString filename)
@@ -97,7 +126,6 @@ void PanelRoute::initialize(QString filename)
             if(xml.name() == "PositionImageWidth")
                 imageWidth = xml.readElementText().toInt();
         }
-
     }
     if (xml.hasError())
         QMessageBox::warning(NULL,"Error",xml.errorString(),QMessageBox::Ok);
@@ -119,11 +147,6 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
     if (incomingMessage == "initialize")
     {
         retryMessage = 0;
-
-        // Setup default transmitter command states
-        for (int index=0; index<CHANNEL_COUNT; index++)
-            control[index] = 1500;
-        sendTransmitterCommand(AUX1, 1000);
 
         // Request number of stored waypoints
         sendMessage("o-1;");
@@ -148,9 +171,8 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
         }
         else // no route onboard flight control board, request position data
         {
-            timer->start(POSITION_UPDATE_RATE);
             emit panelStatus("Route not detected on flight control board, loading last loaded route from file.");
-            nextParseState = POSITION_PARSE_DATA;
+            startPositionRequest();
         }
         break;
     // *********************************************************************
@@ -178,9 +200,8 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
                 else // finished route retrieveal from flight control board, update route table
                 {
                     updateRouteTable();
-                    timer->start(POSITION_UPDATE_RATE); // This starts periodic run of requestPosition()
                     emit panelStatus("Loaded route from flight control board successfully!");
-                    nextParseState = POSITION_PARSE_DATA;
+                    startPositionRequest();
                 }
             }
             else // Incorrect number of parameters received, retry waypoint request
@@ -201,24 +222,49 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
         }
         break;
     // *********************************************************************
-    // Parse position data from periodic run of requestPosition()
+    // Parse lat, lon and heading from periodic run of requestPosition()
     // *********************************************************************
-    case POSITION_PARSE_DATA:
+    case POSITION_PARSE_DATA1:
         {
             QStringList positionList = incomingMessage.split(',');
-            if (positionList.size() == 4)
+            if (positionList.size() == 3)
             {
                 float lat = positionList.at(0).toFloat() / 1.0E7;
                 float lon = positionList.at(1).toFloat() / 1.0E7;
                 if ((lat == 0.0) && (lon == 0.0))
                     return;
                 heading = positionList.at(2).toFloat() * 57.2957795;
-                // TODO: Look at how to implement speed
-                // float speed = positionList.at(3).toFloat();
                 vehicle->updatePosition(GeoDataCoordinates(lon, lat, 1000, GeoDataCoordinates::Degree));
                 vehicle->updateHeading(heading);
                 refreshMap(GeoDataCoordinates(lon, lat, 1000, GeoDataCoordinates::Degree));
-                nextParseState = POSITION_PARSE_DATA;
+            }
+        }
+        break;
+    // *********************************************************************
+    // Parse altitude, course and speed from periodic run of requestPosition()
+    // *********************************************************************
+    case POSITION_PARSE_DATA2:
+        {
+            QStringList positionList = incomingMessage.split(',');
+            positionList[2].chop(1);
+            if (positionList.size() == 3)
+            {
+                qDebug() << "Alt/Course/Speed: " << positionList[0] << positionList[1] << positionList [2];
+            }
+        }
+        break;
+    // *********************************************************************
+    // Parse # sats, accuracy, GPS state from periodic run of requestPosition()
+    // *********************************************************************
+    case POSITION_PARSE_SAT:
+        {
+            QStringList positionList = incomingMessage.split(',');
+            positionList[2].chop(1);
+            if (positionList.size() == 3)
+            {
+                //qDebug() << "Sats/Accuracy/State: " << positionList[0] << positionList[1] << positionList [2];
+                ui->sats->setText(positionList[0]);
+                ui->dop->setText(positionList[1]);
             }
         }
         break;
@@ -238,8 +284,17 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
         }
         else
         {
-            errorMessage = "Error uploading route, please try again";
-            nextParseState = ERROR_REPORT;
+            retryMessage++;
+            if (retryMessage < MAX_MSG_RETRY)
+            {
+                sendMessage("o-1;");
+                nextParseState = UPLOAD_WAYPOINT_COUNT;
+            }
+            else
+            {
+                errorMessage = "Error uploading route, please try again";
+                nextParseState = ERROR_REPORT;
+            }
         }
         break;
     // *********************************************************************
@@ -267,6 +322,9 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
                 qDebug() << "check alt index[" + QString::number(waypointIndex) +"]" << waypointTolerance;
                 verifyWaypoint &= waypointTolerance < WAYPOINT_ROUNDING_ERROR;
             }
+            char label = 'A';
+            emit panelStatus("Uploading waypoint " + QString(char(label+waypointIndex)) + "...");
+
 
             // If current waypoint matches waypoint on flight control board, load next waypoint
             if (verifyWaypoint)
@@ -283,8 +341,8 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
                 {
                     sendMessage("W"); // store route in EEPROM
                     QMessageBox::critical(this, "Route Upload", "Route uploaded successfully!", QMessageBox::Ok);
-                    timer->start(POSITION_UPDATE_RATE);
-                    nextParseState = POSITION_PARSE_DATA;
+                    panelStatus("Waypoint upload successful.");
+                    startPositionRequest();
                 }
             }
             // Current waypoint values does not match value on flight control board, resend current waypoint
@@ -307,6 +365,7 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
                 else
                 {
                     errorMessage = "Unable to upload route.\nPlease try again.";
+                    panelStatus("Waypoint upload failed.");
                     nextParseState = ERROR_REPORT;
                 }
             }
@@ -318,17 +377,60 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
             qDebug() << "\nmessage size: " << data.size();
             qDebug() << data.toHex();
 //            QByteArray floatData = data.mid(4, 4);
-////            //QByteArray longData = parseData.mid(4, 4);
-////            QDataStream convertFloat(data.mid(0, 4));
-////            convertFloat.setByteOrder(QDataStream::LittleEndian);
+//            QByteArray longData = parseData.mid(4, 4);
+//            QDataStream convertFloat(data.mid(0, 4));
+//            convertFloat.setByteOrder(QDataStream::LittleEndian);
 //            float floatNumber;
-////            convertFloat >> floatNumber;
+//            convertFloat >> floatNumber;
 //            floatNumber = *reinterpret_cast<const float*>(floatData.data());
 //            qDebug() << "raw values: " << floatData << "converted float: " << floatNumber << "\n";
-            timer->start(POSITION_UPDATE_RATE);
-            nextParseState = POSITION_PARSE_DATA;
+            startPositionRequest();
         }
         break;
+    case UPDATE_AUTOPILOT_STATE:
+        {
+            QStringList state = incomingMessage.split(',');
+            if (state.size() == 1)
+            {
+                autoPilotStateChanged = false;
+                int type = incomingMessage.toInt();
+                qDebug() << "Autopilot state response: " << type;
+                QString state;
+
+                autoPilotState = false;
+                positionHoldState = false;
+                rtmState = false;
+
+                if (type == AUTO_NAVIGATION)
+                    autoPilotState = true;
+                if (autoPilotState)
+                    state = "Autopilot\nEnabled";
+                else
+                    state = "Autopilot\nDisabled";
+                updateIndicatorStatus(ui->autopilotState, autoPilotState, state);
+
+                if (type == POSITION_HOLD)
+                    positionHoldState = true;
+                if (positionHoldState)
+                    state = "Position Hold\nEnabled";
+                else
+                    state = "Position Hold\nDisabled";
+                updateIndicatorStatus(ui->positionHoldState, positionHoldState, state);
+
+                if (type == RETURN_TO_HOME)
+                    rtmState = true;
+                if (rtmState)
+                    state = "Return\nTo Home\nEnabled";
+                else
+                    state = "Return\nTo Home\nDisabled";
+                updateIndicatorStatus(ui->rtmState, rtmState, state);
+            }
+
+            if (autoPilotStateChanged)
+                sendMessage("<");
+            else
+                startPositionRequest();
+        }
     }
     // *********************************************************************
     // This state displays a dialog box indicating an error and begins
@@ -337,15 +439,51 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
     if (nextParseState == ERROR_REPORT)
     {
          QMessageBox::critical(this, "Communicator", errorMessage, QMessageBox::Ok);
-         timer->start(POSITION_UPDATE_RATE);
-         nextParseState = POSITION_PARSE_DATA;
+         startPositionRequest();
     }
+}
+
+void PanelRoute::startPositionRequest()
+{
+    positionState = 0;
+    nextParseState = POSITION_PARSE_DATA1;
+    timer->start(POSITION_UPDATE_RATE);
 }
 
 void PanelRoute::requestPosition()
 {
-    QString command = "*";
-    emit messageOut(command.toUtf8());
+    // This is designed so that every other position request is lat/lon/heading
+    qDebug() << "\n\nPosition request: " << positionState;
+    if (positionState == 0)
+    {
+        sendMessage("^0;");
+        nextParseState = POSITION_PARSE_DATA1;
+    }
+    if (positionState == 1)
+    {
+        sendMessage("^1;");
+        nextParseState = POSITION_PARSE_DATA2;
+    }
+    if (positionState == 2)
+    {
+        sendMessage("^0;");
+        nextParseState = POSITION_PARSE_DATA1;
+    }
+    if (positionState == 3)
+    {
+        sendMessage("^2;");
+        nextParseState = POSITION_PARSE_SAT;
+    }
+
+    if (positionState < 3)
+        positionState++;
+    else
+        positionState = 0;
+}
+
+void PanelRoute::stopPositionRequest()
+{
+    timer->stop();
 }
 
 void PanelRoute::createWaypoint(qreal lon, qreal lat, GeoDataCoordinates::Unit unit)
@@ -377,14 +515,8 @@ void PanelRoute::uploadWaypoint(int waypointIndex)
     coordinate = waypoint.longitude(GeoDataCoordinates::Degree)*1E7;
     command += QString::number(coordinate) + ";";
     command += QString::number(waypoint.altitude()) + ";";
-    emit messageOut(command.toUtf8());
+    sendMessage(command);
     qDebug() << command;
-}
-
-void PanelRoute::sendMessage(QString message)
-{
-    emit messageOut(message.toUtf8());
-    qDebug() << message;
 }
 
 void PanelRoute::updateRouteTable()
@@ -419,19 +551,6 @@ void PanelRoute::refreshMap(Marble::GeoDataCoordinates position)
     ui->map->update();
 }
 
-void PanelRoute::sendTransmitterCommand(int channel, int commandValue)
-{
-    QString command = ">";
-    control[channel] = commandValue;
-    for (int index=0; index<CHANNEL_COUNT; index++)
-    {
-        command += QString::number(control[index]) +";";
-    }
-    command += "\n";
-    emit messageOut(command.toUtf8());
-    qDebug() << command;
-}
-
 // **********************************************************************
 // Panel button slots
 // **********************************************************************
@@ -441,13 +560,11 @@ void PanelRoute::on_upload_clicked() // Starts uploading route to flight control
     if (route->getRouteSize())
     {
         retryMessage = 0;
-        timer->stop();
+        stopPositionRequest();
 
         // Load waypoint count first
-        QString command = "O-1;" + QString::number(route->getRouteSize()) +";";
-        emit messageOut(command.toUtf8());
-        command = "o-1;";
-        emit messageOut(command.toUtf8());
+        sendMessage("O-1;" + QString::number(route->getRouteSize()) +";");
+        sendMessage("o-1;");
         waypointIndex = -1;
         nextParseState = UPLOAD_WAYPOINT_COUNT;
     }
@@ -481,78 +598,7 @@ void PanelRoute::on_editWaypoints_clicked()
     {
         waypointEditor = true;
         QApplication::setOverrideCursor(QCursor(waypointCursor));
-        //QApplication::setOverrideCursor(Qt::CrossCursor);
-        //this->setCursor(QCursor(waypointCursor));
     }
-}
-
-void PanelRoute::on_autopilot_clicked()
-{
-    if (autoPilotState)
-    {
-        autoPilotState = false;
-        ui->autopilotState->setStyleSheet("background-color:rgba(255, 0, 0, 100);");
-        ui->autopilotState->setText("Autopilot\nNot Enabled");
-        sendTransmitterCommand(AUX1, 1000);
-    }
-    else
-    {
-        autoPilotState = true;
-        ui->autopilotState->setStyleSheet("background-color: rgb(116, 232, 0);");
-        ui->autopilotState->setText("Autopilot\nEnabled");
-        sendTransmitterCommand(AUX1, 2000);
-    }
-}
-
-void PanelRoute::on_left_clicked()
-{
-    ui->rudder->setValue(ui->rudder->value() - 100);
-    sendTransmitterCommand(ROLL, ui->rudder->value());
-}
-
-void PanelRoute::on_center_clicked()
-{
-    ui->rudder->setValue(1500);
-    sendTransmitterCommand(ROLL, ui->rudder->value());
-
-    //DEBUG ONLY
-//    timer->stop();
-//    sendMessage("=");
-//    nextParseState = DEBUG_MSG;
-}
-
-void PanelRoute::on_right_clicked()
-{
-    ui->rudder->setValue(ui->rudder->value() + 100);
-    sendTransmitterCommand(ROLL, ui->rudder->value());
-}
-
-void PanelRoute::on_throttleOff_clicked()
-{
-    ui->throttle->setValue(1500);
-    sendTransmitterCommand(PITCH, 1500);
-}
-
-void PanelRoute::on_throttleCruise_clicked()
-{
-    ui->throttle->setValue(1650);
-    sendTransmitterCommand(PITCH, 1650);
-}
-
-void PanelRoute::on_throttleMax_clicked()
-{
-    ui->throttle->setValue(2000);
-    sendTransmitterCommand(PITCH, 2000);
-}
-
-void PanelRoute::on_throttle_valueChanged(int value)
-{
-    sendTransmitterCommand(PITCH, value);
-}
-
-void PanelRoute::on_rudder_valueChanged(int value)
-{
-    sendTransmitterCommand(ROLL, value);
 }
 
 void PanelRoute::on_load_clicked()
@@ -575,5 +621,82 @@ void PanelRoute::on_save_clicked()
     {
         route->saveRoute(routePath);
         settings.setValue("lastRouteFile", routePath);
+    }
+}
+
+void PanelRoute::updateIndicatorStatus(QLabel *indicator, bool state, QString status)
+{
+    if (state)
+        indicator->setStyleSheet("background-color: rgb(116, 232, 0);");
+    else
+        indicator->setStyleSheet("background-color:rgba(255, 0, 0, 100);");
+    indicator->setText(status);
+}
+
+void PanelRoute::on_autopilot_clicked()
+{
+   qDebug() << "----------------";
+   stopPositionRequest();
+   if (autoPilotState)
+    {
+        autoPilotState = false;
+        sendMessage(">" + QString::number(OFF) + ";");
+    }
+    else
+    {
+        autoPilotState = true;
+        sendMessage(">" + QString::number(AUTO_NAVIGATION) + ";");
+    }
+    sendMessage("<");
+    autoPilotStateChanged = true;
+    nextParseState = UPDATE_AUTOPILOT_STATE;
+}
+
+void PanelRoute::on_positionHold_clicked()
+{
+    stopPositionRequest();
+    if (positionHoldState)
+    {
+        positionHoldState = false;
+        sendMessage(">" + QString::number(OFF) + ";");
+    }
+    else
+    {
+        positionHoldState = true;
+        sendMessage(">" + QString::number(POSITION_HOLD) + ";");
+    }
+    sendMessage("<");
+    autoPilotStateChanged = true;
+    nextParseState = UPDATE_AUTOPILOT_STATE;
+}
+
+void PanelRoute::on_returnToHome_clicked()
+{
+    stopPositionRequest();
+    if (rtmState)
+    {
+        rtmState = false;
+        sendMessage(">" + QString::number(OFF) + ";");
+    }
+    else
+    {
+        rtmState = true;
+        sendMessage(">" + QString::number(RETURN_TO_HOME) + ";");
+    }
+    sendMessage("<");
+    autoPilotStateChanged = true;
+    nextParseState = UPDATE_AUTOPILOT_STATE;
+}
+
+void PanelRoute::on_setHome_clicked()
+{
+    QMessageBox::StandardButton response;
+    response = QMessageBox::question(this, "Set Home Posiiton", "Are you sure you want to update the Return To Home position?");
+    if (response == QMessageBox::Yes)
+    {
+        stopPositionRequest();
+        sendMessage(">" + QString::number(SET_HOME_POSITION) + ";");
+        sendMessage("^3;");
+        nextParseState = UPDATE_HOME_POSITION;
     }
 }
