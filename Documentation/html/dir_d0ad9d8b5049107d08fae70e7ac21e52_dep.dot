@@ -1,0 +1,22 @@
+digraph "Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_ead29842ed5e7583567412f9bbf2108f {
+    graph [ bgcolor="#ddddee", pencolor="black", label="AeroQuadCommunicator" fontname="Helvetica", fontsize="10", URL="dir_ead29842ed5e7583567412f9bbf2108f.html"]
+  subgraph clusterdir_d0ad9d8b5049107d08fae70e7ac21e52 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_d0ad9d8b5049107d08fae70e7ac21e52.html"];
+    dir_d0ad9d8b5049107d08fae70e7ac21e52 [shape=plaintext label="panel"];
+    dir_c9b98a0162145e7fdcf95be4883ade78 [shape=box label="config" color="black" fillcolor="white" style="filled" URL="dir_c9b98a0162145e7fdcf95be4883ade78.html"];
+    dir_224bff72a7289af8024f53c198086b60 [shape=box label="connect" color="black" fillcolor="white" style="filled" URL="dir_224bff72a7289af8024f53c198086b60.html"];
+    dir_69b7f6063b074a50a9acceee779c7050 [shape=box label="firmware" color="black" fillcolor="white" style="filled" URL="dir_69b7f6063b074a50a9acceee779c7050.html"];
+    dir_18b68ff9a7c7760e4fb45886d4dbd084 [shape=box label="main" color="black" fillcolor="white" style="filled" URL="dir_18b68ff9a7c7760e4fb45886d4dbd084.html"];
+    dir_b3928167845ecdad06ad5c7140a0f771 [shape=box label="monitor" color="black" fillcolor="white" style="filled" URL="dir_b3928167845ecdad06ad5c7140a0f771.html"];
+    dir_ba6a8f6a0d3740e385b04d0fcfc9b9b0 [shape=box label="plot" color="black" fillcolor="white" style="filled" URL="dir_ba6a8f6a0d3740e385b04d0fcfc9b9b0.html"];
+    dir_ea3f63349c7ef6ee2f2afc89ac486770 [shape=box label="route" color="black" fillcolor="white" style="filled" URL="dir_ea3f63349c7ef6ee2f2afc89ac486770.html"];
+    dir_35595451474541dae71ba61a84e4b020 [shape=box label="test" color="black" fillcolor="white" style="filled" URL="dir_35595451474541dae71ba61a84e4b020.html"];
+  }
+  }
+  dir_b12ed95bc742d5eac96cb4002c12eead [shape=box label="marble" URL="dir_b12ed95bc742d5eac96cb4002c12eead.html"];
+  dir_ea3f63349c7ef6ee2f2afc89ac486770->dir_b12ed95bc742d5eac96cb4002c12eead [headlabel="3", labeldistance=1.5 headhref="dir_000005_000003.html"];
+}

@@ -1,14 +1,15 @@
 #include "communicator.h"
 #include "ui_communicator.h"
 #include <QSignalMapper>
-#include "panel/main/menu_main.h"
 #include "panel/connect/menu_connect.h"
 #include "panel/monitor/panel_monitor.h"
 #include "panel/plot/panel_plot.h"
-#include "panel/test/panel_test.h"
 #include "panel/config/panel_config.h"
 #include "panel/firmware/panel_firmware.h"
 #include "panel/route/panel_route.h"
+
+/// Add custom panel headers here
+#include "panel/example/panel_example.h"
 
 Communicator::Communicator(QWidget *parent) :
     QMainWindow(parent),
@@ -17,21 +18,22 @@ Communicator::Communicator(QWidget *parent) :
     ui->setupUi(this);
     QMainWindow::addToolBar(Qt::LeftToolBarArea, ui->mainToolBar);
 
-    // Initialize comms, update in the future to choose comm type
+    // Initialize comms, update in the future to choose custom comm type
     comm = new CommunicationSerial;
     connect(comm, SIGNAL(errorMessage(QString)), this, SLOT(getConnectionError(QString)));
     connect(this, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
 
     // Initialize connection menu
-    panel = new MenuConnect(comm);
+    //panel = new MenuConnect(comm);
+    panel = new PanelExample;
     connectionStop = "X";
     setCentralWidget(panel);
     initToolBar();
-    connect(this, SIGNAL(autoConnect()), panel, SLOT(autoConnect()));
-    connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
-    connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-    connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
-    emit(autoConnect());
+//    connect(this, SIGNAL(autoConnect()), panel, SLOT(autoConnect()));
+//    connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
+//    connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+//    connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+//    emit autoConnect();
 
     ui->statusBar->showMessage("Ready to connect to the AeroQuad...", 10000);
     restoreGeometry(settings.value("windowGeometry").toByteArray());
@@ -50,15 +52,15 @@ void Communicator::initToolBar()
 
     connect(ui->actionConnect,      SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionStatus,       SIGNAL(triggered()), signalMapper, SLOT(map()));
-    connect(ui->actionHome,         SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionCalibrate,    SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionSetup,        SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionRoute,        SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionTerminal,     SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionPlots,        SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionFirmware,     SIGNAL(triggered()), signalMapper, SLOT(map()));
+    connect(ui->actionTest,         SIGNAL(triggered()), signalMapper, SLOT(map()));
 
-    signalMapper->setMapping(ui->actionHome,        "Home");
+    signalMapper->setMapping(ui->actionTest,        "Test");
     signalMapper->setMapping(ui->actionConnect,     "Connect");
     signalMapper->setMapping(ui->actionStatus,      "Status");
     signalMapper->setMapping(ui->actionRoute,       "Route");
@@ -79,9 +81,14 @@ void Communicator::loadPanel(QString panelName)
     delete panel;
 
     // Load new panel
-    if (panelName == "Home")
+    if (panelName == "Test")
     {
-        panel = new MenuMain;
+        panel = new PanelExample;
+        connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
+        connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+        connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), panel, SIGNAL(initializePanel(QMap<QString,QString>)));
+        emit initializePanel(config);
     }
     else if (panelName == "Connect")
     {
@@ -130,10 +137,7 @@ void Communicator::loadPanel(QString panelName)
         connect(this, SIGNAL(panelMessage(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
         emit panelMessage("initialize");
     }
-    else
-    {
-        panel = new MenuMain;
-    }
+
     setCentralWidget(panel);
 }
 

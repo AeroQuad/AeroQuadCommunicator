@@ -56,7 +56,6 @@ PanelRoute::PanelRoute(QWidget *parent) :
     vehicle->enableTrail(trailEnable);
     //ui->trail->setChecked(trailEnable);
     centerOnVehicle = true;
-    //ui->center->setChecked(centerOnVehicle);
 
     route = new Route(ui->map->model(), display);
     route->loadRoute();
@@ -148,9 +147,11 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
     {
         retryMessage = 0;
 
-        // Request number of stored waypoints
-        sendMessage("o-1;");
-        nextParseState = ONBOARD_QUERY_ROUTE;
+        // Check GPS State
+        sendMessage("^2;");
+        positionState = 3;
+        nextParseState = POSITION_PARSE_SAT;
+        timer->start(POSITION_UPDATE_RATE);
         return;
     }
 
@@ -227,8 +228,9 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
     case POSITION_PARSE_DATA1:
         {
             QStringList positionList = incomingMessage.split(',');
-            if (positionList.size() == 3)
+            if ((positionList.size() == 3) && (gpsState > 1))
             {
+                qDebug() << gpsState;
                 float lat = positionList.at(0).toFloat() / 1.0E7;
                 float lon = positionList.at(1).toFloat() / 1.0E7;
                 if ((lat == 0.0) && (lon == 0.0))
@@ -264,8 +266,13 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
             {
                 //qDebug() << "Sats/Accuracy/State: " << positionList[0] << positionList[1] << positionList [2];
                 ui->sats->setText(positionList[0]);
-                ui->dop->setText(positionList[1]);
-            }
+                gpsState = positionList[2].toInt();
+                if (gpsState == 0) ui->gpsState->setText("Detecting GPS");
+                if (gpsState == 1) ui->gpsState->setText("Waiting GPS Fix");
+                if (gpsState == 2) ui->gpsState->setText("2D GPS Fix");
+                if (gpsState == 3) ui->gpsState->setText("3D GPS Fix");
+                if (gpsState == 4) ui->gpsState->setText("3D Diff GPS Fix");
+            };
         }
         break;
     // *********************************************************************
@@ -593,11 +600,13 @@ void PanelRoute::on_editWaypoints_clicked()
     {
         waypointEditor = false;
         QApplication::restoreOverrideCursor();
+        emit panelStatus("Waypoint edit mode is off.");
     }
     else
     {
         waypointEditor = true;
         QApplication::setOverrideCursor(QCursor(waypointCursor));
+        emit panelStatus("Waypoint edit mode is on.");
     }
 }
 
@@ -635,7 +644,6 @@ void PanelRoute::updateIndicatorStatus(QLabel *indicator, bool state, QString st
 
 void PanelRoute::on_autopilot_clicked()
 {
-   qDebug() << "----------------";
    stopPositionRequest();
    if (autoPilotState)
     {
@@ -699,4 +707,25 @@ void PanelRoute::on_setHome_clicked()
         sendMessage("^3;");
         nextParseState = UPDATE_HOME_POSITION;
     }
+}
+
+void PanelRoute::on_centerVehicle_clicked()
+{
+    if (centerOnVehicle)
+    {
+        centerOnVehicle = false;
+        emit panelStatus("Center on vehicle is off.");
+    }
+    else
+    {
+        centerOnVehicle = true;
+        emit panelStatus(("Center on vehicle is on."));
+    }
+}
+
+void PanelRoute::on_recallRoute_clicked()
+{
+    stopPositionRequest();
+    sendMessage("o-1;");
+    nextParseState = ONBOARD_QUERY_ROUTE;
 }

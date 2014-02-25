@@ -17,43 +17,40 @@ SOURCES += main.cpp\
     panel/config/panel_config.cpp \
     panel/connect/menu_connect.cpp \
     panel/firmware/panel_firmware.cpp \
-    panel/main/menu_main.cpp \
     panel/monitor/panel_monitor.cpp \
     panel/plot/panel_plot.cpp \
     panel/plot/qcustomplot.cpp \
     panel/route/panel_route.cpp \
-    panel/test/panel_test.cpp \
     communication/communication.cpp \
     communication/communication_serial.cpp \
     #panel/route/positionsimulator.cpp \
     panel/route/route.cpp \
-    panel/route/vehicle.cpp
+    panel/route/vehicle.cpp \
+    panel/example/panel_example.cpp
 
 HEADERS  += communicator.h \
     panel/config/panel_config.h \
     panel/connect/menu_connect.h \
     panel/firmware/panel_firmware.h \
-    panel/main/menu_main.h \
     panel/monitor/panel_monitor.h \
     panel/plot/panel_plot.h \
     panel/plot/qcustomplot.h \
     panel/route/panel_route.h \
-    panel/test/panel_test.h \
     communication/communication.h \
     communication/communication_serial.h \
     #panel/route/positionsimulator.h \
     panel/route/route.h \
-    panel/route/vehicle.h
+    panel/route/vehicle.h \
+    panel/example/panel_example.h
 
 FORMS    += communicator.ui \
     panel/config/panel_config.ui \
     panel/connect/menu_connect.ui \
     panel/firmware/panel_firmware.ui \
-    panel/main/menu_main.ui \
     panel/monitor/panel_monitor.ui \
     panel/plot/panel_plot.ui \
     panel/route/panel_route.ui \
-    panel/test/panel_test.ui
+    panel/example/panel_example.ui
 
 RESOURCES += \
     commuicator.qrc \

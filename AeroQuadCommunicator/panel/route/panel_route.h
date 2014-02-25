@@ -59,6 +59,8 @@ private slots:
     void on_positionHold_clicked();
     void on_returnToHome_clicked();
     void on_setHome_clicked();
+    void on_centerVehicle_clicked();
+    void on_recallRoute_clicked();
 
 private:
     Ui::PanelRoute *ui;
@@ -83,6 +85,7 @@ private:
     int retryMessage;
     float imageWidth;
     int positionState;
+    int gpsState;
     QPixmap waypointCursor;
 
     void initialize(QString filename);

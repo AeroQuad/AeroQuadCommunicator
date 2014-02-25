@@ -27,6 +27,7 @@ signals:
     void closeConnection();
     void errorMessage(QString);
     void connectionState(bool);
+    //void getConnectionState();
     void dataAvailable(QByteArray);
 };
 

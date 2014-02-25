@@ -35,6 +35,10 @@
         <file>resources/positionF.png</file>
         <file>resources/RTM.png</file>
         <file>resources/pause.png</file>
+        <file>resources/center.png</file>
+        <file>resources/download.png</file>
+        <file>resources/debug.png</file>
+        <file>resources/motor.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

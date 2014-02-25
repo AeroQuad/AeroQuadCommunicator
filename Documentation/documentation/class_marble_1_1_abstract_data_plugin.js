@@ -1,0 +1,27 @@
+var class_marble_1_1_abstract_data_plugin =
+[
+    [ "AbstractDataPlugin", "class_marble_1_1_abstract_data_plugin.html#ad2cce0ff188affccd2b0af8fc887547c", null ],
+    [ "~AbstractDataPlugin", "class_marble_1_1_abstract_data_plugin.html#a8acedb4d857fc93f39b87c79ae3ba612", null ],
+    [ "backendTypes", "class_marble_1_1_abstract_data_plugin.html#a5b9a1e5c204de5828701fb99f0d3f8a2", null ],
+    [ "changedNumberOfItems", "class_marble_1_1_abstract_data_plugin.html#a03f4a7bcc5dbd404fdecd2e0347a4045", null ],
+    [ "favoriteItemsOnlyChanged", "class_marble_1_1_abstract_data_plugin.html#a91560020dfb7c468a128d8be35a32b38", null ],
+    [ "favoritesModel", "class_marble_1_1_abstract_data_plugin.html#a3362f57e42dd2a8c37d05e643c21a238", null ],
+    [ "favoritesModelChanged", "class_marble_1_1_abstract_data_plugin.html#aa075d0f9769a6a38eb94a4b58edc3bb4", null ],
+    [ "handleViewportChange", "class_marble_1_1_abstract_data_plugin.html#aa8917bd979adb883dd82c8f444b00a17", null ],
+    [ "isFavoriteItemsOnly", "class_marble_1_1_abstract_data_plugin.html#a52cfe54d10ebbe5b9c6b6d28203d5264", null ],
+    [ "isInitialized", "class_marble_1_1_abstract_data_plugin.html#a98ec1b148ed2a70d6049b12f9871d51a", null ],
+    [ "model", "class_marble_1_1_abstract_data_plugin.html#aaea9a94f5429483ce5be5f5b8e757e2d", null ],
+    [ "numberOfItems", "class_marble_1_1_abstract_data_plugin.html#a7f388d34a46398c3961b7fdf2bea34e5", null ],
+    [ "render", "class_marble_1_1_abstract_data_plugin.html#a080924a0d76be75ef23e39a51a0e7005", null ],
+    [ "renderPolicy", "class_marble_1_1_abstract_data_plugin.html#acada30a8e04394f29fcf7639012b5fdd", null ],
+    [ "renderPosition", "class_marble_1_1_abstract_data_plugin.html#abe5d5e50902e82e129221e6c4a8a661a", null ],
+    [ "renderType", "class_marble_1_1_abstract_data_plugin.html#aa5e449a145ec3ee839296485a2e90a23", null ],
+    [ "setDelegate", "class_marble_1_1_abstract_data_plugin.html#a6fced33c5d1ba01f6ce68c8c7fcd7b63", null ],
+    [ "setFavoriteItemsOnly", "class_marble_1_1_abstract_data_plugin.html#a0e220215827636a01ef8b7f873e01db5", null ],
+    [ "setModel", "class_marble_1_1_abstract_data_plugin.html#ae784955bdf13fa1ded49e70ee36d8592", null ],
+    [ "setNumberOfItems", "class_marble_1_1_abstract_data_plugin.html#a39fb963935d3190a770ab890b0556f3e", null ],
+    [ "whichItemAt", "class_marble_1_1_abstract_data_plugin.html#aaa819cc74ac1c9758d029af0f2ca163d", null ],
+    [ "favoriteItemsOnly", "class_marble_1_1_abstract_data_plugin.html#aa0e7c4c34709f0df2a0a7ca664820003", null ],
+    [ "favoritesModel", "class_marble_1_1_abstract_data_plugin.html#a45672ea5e2f07d9cec17a14c7ae75126", null ],
+    [ "numberOfItems", "class_marble_1_1_abstract_data_plugin.html#aa0b88d8968f94cb980e32b3214ceec00", null ]
+];

@@ -55,8 +55,8 @@ void CommunicationSerial::write(const QByteArray &data)
         isConnected = false;
         emit connectionState(isConnected);
     }
-//    else
-//        qDebug() << data;
+    else
+        qDebug() << data;
 }
 
 QByteArray CommunicationSerial::read()
@@ -76,10 +76,6 @@ QByteArray CommunicationSerial::read()
         }
         if (overflow)
         {
-//            dataBuffer.append(serial->readAll());
-//            dataBuffer.append("\n");
-//            emit readConnection(dataBuffer);
-//            emit dataAvailable(dataBuffer);
             QByteArray data = dataBuffer;
             dataBuffer.clear();
             return data;

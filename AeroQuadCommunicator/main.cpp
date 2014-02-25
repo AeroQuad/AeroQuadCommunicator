@@ -1,6 +1,14 @@
 /*! \mainpage Developer's Documentation
  *
- * \section requirements_sec Requirements
+ * \section installation_sec Installation
+ * 1. Download the source code from GitHub: insert link here
+ * 2. Install Qt 5.2 version that includes mingw
+ * 3. Verify shadow build is selected
+ * 4. Move the following files into the shadow build directory
+ *  1. File 1
+ *  2. File 2
+ *
+ * \section requirements_sec Software Requirements
  * Communicator Requirements:
  * 1. The Communicator shall display flight board configuration.
  * 2. The Communicator shall modify and store user configurable options.
@@ -12,16 +20,41 @@
  * 8. The Communicator shall provide an autopilot configuration tool.
  *
  * \section design_sec Design
- * * Show design diagram
- * *
+ * \subsection architecture High Level Architecture Diagram
+ * This describes at a high level how each of the main components of the Communicator interact with each other.
+ * @image html HighLevelArchitecture.png
+ *
+ * \subsection panelClass Panel Class Diagram
+ * These are the main slots and signals of a Panel class.
+ * @image html PanelArchitecture.png
+ *
+ * \subsection communicationClass Communication Class Diagram
+ * These are the main slots and signals of the Communication class
+ * @image html CommunicationArchitecture.png
+ *
+ * \subsection communicationSequence Communication Sequence Diagram
+ * Insert block diagram here.
  *
  * \section addPanel_sec How to Add New Panels
  * 1. Use Qt Designer to create a new widget
- * 2. Update communicator.cpp to use new widget
+ *  1. In the Projects pane, right click on the AeroQuadCommunicator project and select "Add new.."
+ *  2. In the Add New dialog box, select Qt->Qt Designer Form Class and press "Choose.."
+ *  3. Under templates/forms select widget and press "Next"
+ *  4. Enter a name for the class you wish to create.  The naming convention is to call it PanelName (replace Name with the unique name you want to call your class).
+ *  5. The name of the .cpp, .h and .ui file will be auto generated as panelname.x.  For our naming convention, place an underscore between panel and the name (panel_name.cpp).
+ *  6. For the path, create a new subfolder under the panel folder and select "Next"
+ *  7. The new files will now appear under Headers, Sources and Forms in the Projects pane.
+ * 2. Update the newly created .h and .cpp files with required class properties and methods
+ *  1. Add the following to the header file:
+ *   1. Addition 1
+ *   2. Addition 2
+ *  2. Add the following to the source file:
+ *   1. Addition 1
+ *   2. Addition 2
+ * 3. Update communicator.cpp to use new widget
  *  1. Add header file
  *  2. Update Communicator::initToolBar()
  *  3. Update Communicator::loadPanel()
- *
  */
 
 #include <QApplication>

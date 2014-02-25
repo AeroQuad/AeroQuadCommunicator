@@ -5,8 +5,8 @@
 #include <QSettings>
 #include <QCloseEvent>
 #include <QResizeEvent>
+#include <QMap>
 #include "communication\communication_serial.h"
-
 
 namespace Ui {
 class Communicator;
@@ -28,7 +28,7 @@ public slots:
 signals:
     void panelMessage(QByteArray);
     void panelStatus(QString);
-    void initializePanel(QString);
+    void initializePanel(QMap<QString, QString>);
     void messageOut(QByteArray);
     void autoConnect();
 
@@ -42,6 +42,7 @@ private:
     QWidget *panel;
     Communication *comm;
     QByteArray connectionStop;
+    QMap<QString, QString> config;
 
     void initToolBar();
 };

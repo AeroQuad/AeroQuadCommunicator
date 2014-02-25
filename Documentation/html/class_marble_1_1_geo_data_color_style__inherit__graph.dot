@@ -1,0 +1,23 @@
+digraph "Marble::GeoDataColorStyle"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Marble::GeoDataColorStyle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Marble::GeoDataObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_marble_1_1_geo_data_object.html",tooltip="A base class for all geodata objects. "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Marble::GeoNode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_marble_1_1_geo_node.html",tooltip="A shared base class for all classes that are mapped to a specific tag (ie. GeoFolder) ..."];
+  Node4 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Marble::Serializable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_marble_1_1_serializable.html"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Marble::GeoDataBalloonStyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_marble_1_1_geo_data_balloon_style.html"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Marble::GeoDataIconStyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_marble_1_1_geo_data_icon_style.html"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Marble::GeoDataLabelStyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_marble_1_1_geo_data_label_style.html",tooltip="specifies how the name of a GeoDataFeature is drawn "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Marble::GeoDataLineStyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_marble_1_1_geo_data_line_style.html",tooltip="specifies the style how lines are drawn "];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Marble::GeoDataPolyStyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_marble_1_1_geo_data_poly_style.html",tooltip="specifies the style how polygons are drawn "];
+}

@@ -1,0 +1,17 @@
+digraph "Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_ead29842ed5e7583567412f9bbf2108f {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_ead29842ed5e7583567412f9bbf2108f.html"];
+    dir_ead29842ed5e7583567412f9bbf2108f [shape=plaintext label="AeroQuadCommunicator"];
+    dir_f1aabe6d253c514296a521af37cea296 [shape=box label="Archive" color="black" fillcolor="white" style="filled" URL="dir_f1aabe6d253c514296a521af37cea296.html"];
+    dir_e2c630acbb0f1df128cc628d12395f0a [shape=box label="communication" color="black" fillcolor="white" style="filled" URL="dir_e2c630acbb0f1df128cc628d12395f0a.html"];
+    dir_b12ed95bc742d5eac96cb4002c12eead [shape=box label="marble" color="black" fillcolor="white" style="filled" URL="dir_b12ed95bc742d5eac96cb4002c12eead.html"];
+    dir_d0ad9d8b5049107d08fae70e7ac21e52 [shape=box label="panel" color="red" fillcolor="white" style="filled" URL="dir_d0ad9d8b5049107d08fae70e7ac21e52.html"];
+    dir_f5156d6c93b61df656d89cd6cadf0148 [shape=box label="utilities" color="black" fillcolor="white" style="filled" URL="dir_f5156d6c93b61df656d89cd6cadf0148.html"];
+  }
+  dir_ead29842ed5e7583567412f9bbf2108f->dir_d0ad9d8b5049107d08fae70e7ac21e52 [headlabel="1", labeldistance=1.5 headhref="dir_000000_000004.html"];
+  dir_d0ad9d8b5049107d08fae70e7ac21e52->dir_b12ed95bc742d5eac96cb4002c12eead [headlabel="3", labeldistance=1.5 headhref="dir_000004_000003.html"];
+  dir_f1aabe6d253c514296a521af37cea296->dir_b12ed95bc742d5eac96cb4002c12eead [headlabel="1", labeldistance=1.5 headhref="dir_000001_000003.html"];
+}

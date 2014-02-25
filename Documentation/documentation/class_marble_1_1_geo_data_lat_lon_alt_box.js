@@ -1,0 +1,28 @@
+var class_marble_1_1_geo_data_lat_lon_alt_box =
+[
+    [ "GeoDataLatLonAltBox", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a032659ab475c2fc4c8ed7f8c41401eb4", null ],
+    [ "GeoDataLatLonAltBox", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a5c46c63b26707aba45312d8fc658468b", null ],
+    [ "GeoDataLatLonAltBox", "class_marble_1_1_geo_data_lat_lon_alt_box.html#aa30344442b1d65c35bc13fdd29e28212", null ],
+    [ "GeoDataLatLonAltBox", "class_marble_1_1_geo_data_lat_lon_alt_box.html#aa8623d08713d7f00906a72266f88f3dc", null ],
+    [ "~GeoDataLatLonAltBox", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a34abcc06703f17eb0e2360f28d13fca5", null ],
+    [ "altitudeMode", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a3c3d76cc74d562d478c4045788d20088", null ],
+    [ "center", "class_marble_1_1_geo_data_lat_lon_alt_box.html#ac5e2ed6bb2391d44e5dd73b7a72ccf93", null ],
+    [ "clear", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a9db1044d7d5e612fd8c9891ac5ef4ee0", null ],
+    [ "contains", "class_marble_1_1_geo_data_lat_lon_alt_box.html#ad9fc0b81225645fd522d59cd9bed466a", null ],
+    [ "contains", "class_marble_1_1_geo_data_lat_lon_alt_box.html#ae9e114baac0bb5e6cd17f013d929702b", null ],
+    [ "intersects", "class_marble_1_1_geo_data_lat_lon_alt_box.html#af2994244ebc437eacffc0d397f92fbe7", null ],
+    [ "isNull", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a5226f5d92438448ebedae0fda296211e", null ],
+    [ "maxAltitude", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a0bf45e07374435bf927619bd027cff93", null ],
+    [ "minAltitude", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a8a8ab09de6e093d4f28acb23169ae241", null ],
+    [ "nodeType", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a8f2d2df34d176513fdcfdaa9ffe3e037", null ],
+    [ "operator=", "class_marble_1_1_geo_data_lat_lon_alt_box.html#ac854e99d39cae54ba70b065765361692", null ],
+    [ "operator=", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a7c4f70d1d783db468ae950c02714a174", null ],
+    [ "pack", "class_marble_1_1_geo_data_lat_lon_alt_box.html#ac7320f543c0a8d5f64d53b6a399ed950", null ],
+    [ "qHash", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a8c2d6d04a85427fd0eb6546da480a142", null ],
+    [ "setAltitudeMode", "class_marble_1_1_geo_data_lat_lon_alt_box.html#acf765e1a58b59139c0d5ce71dbfe5935", null ],
+    [ "setMaxAltitude", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a8e27f8108b95fb76cc4e4fe6aa56d040", null ],
+    [ "setMinAltitude", "class_marble_1_1_geo_data_lat_lon_alt_box.html#abe02cb0f1433c4dd49a23fd155e2d1ea", null ],
+    [ "toString", "class_marble_1_1_geo_data_lat_lon_alt_box.html#af57c0d79a9457d2c48ce801d939de61a", null ],
+    [ "unpack", "class_marble_1_1_geo_data_lat_lon_alt_box.html#a1f102d4009a5d810cdbe35459a07d14c", null ],
+    [ "operator==", "class_marble_1_1_geo_data_lat_lon_alt_box.html#af8d40f22c203e6adb6d7cbee7767e807", null ]
+];

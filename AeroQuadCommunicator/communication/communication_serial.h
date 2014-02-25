@@ -10,6 +10,7 @@
 class CommunicationSerial : public Communication
 {
     Q_OBJECT
+
 public:
     CommunicationSerial();
     ~CommunicationSerial();

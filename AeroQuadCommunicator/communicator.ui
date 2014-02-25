@@ -54,7 +54,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
    <addaction name="actionConnect"/>
    <addaction name="separator"/>
@@ -64,6 +64,7 @@
    <addaction name="separator"/>
    <addaction name="actionFirmware"/>
    <addaction name="actionTerminal"/>
+   <addaction name="actionTest"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="autoFillBackground">
@@ -92,6 +93,9 @@
    </property>
   </action>
   <action name="actionHome">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="commuicator.qrc">
      <normaloff>:/images/resources/AQMainMenu.svg</normaloff>:/images/resources/AQMainMenu.svg</iconset>
@@ -100,7 +104,7 @@
     <string>Home</string>
    </property>
    <property name="visible">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionCalibrate">
@@ -139,15 +143,6 @@
     <string>Plots</string>
    </property>
   </action>
-  <action name="actionNavigation">
-   <property name="icon">
-    <iconset resource="commuicator.qrc">
-     <normaloff>:/images/resources/AQGlobe.svg</normaloff>:/images/resources/AQGlobe.svg</iconset>
-   </property>
-   <property name="text">
-    <string>Navigation</string>
-   </property>
-  </action>
   <action name="actionFirmware">
    <property name="icon">
     <iconset resource="commuicator.qrc">
@@ -171,6 +166,30 @@
    </property>
    <property name="toolTip">
     <string>Upload navigation routes</string>
+   </property>
+  </action>
+  <action name="actionTest">
+   <property name="icon">
+    <iconset resource="commuicator.qrc">
+     <normaloff>:/images/resources/debug.png</normaloff>:/images/resources/debug.png</iconset>
+   </property>
+   <property name="text">
+    <string>Test</string>
+   </property>
+   <property name="toolTip">
+    <string>Test Panel</string>
+   </property>
+  </action>
+  <action name="actionMotors">
+   <property name="icon">
+    <iconset resource="commuicator.qrc">
+     <normaloff>:/images/resources/motor.png</normaloff>:/images/resources/motor.png</iconset>
+   </property>
+   <property name="text">
+    <string>Motors</string>
+   </property>
+   <property name="toolTip">
+    <string>Test Motors</string>
    </property>
   </action>
  </widget>
