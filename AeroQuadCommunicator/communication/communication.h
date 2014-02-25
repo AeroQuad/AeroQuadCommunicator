@@ -18,17 +18,17 @@ public slots:
     virtual void write(const QByteArray &data) = 0;
     virtual QByteArray read() = 0;
     virtual void close() = 0;
-    virtual bool getConnectionState() = 0;
+    virtual bool getConnectState() = 0;
 
 signals:
     void openConnection(QString);
-    void readConnection(QByteArray);
-    void writeConnection(QByteArray);
+    void readData(QByteArray);
+    void writeData(QByteArray);
     void closeConnection();
     void errorMessage(QString);
     void connectionState(bool);
-    //void getConnectionState();
-    void dataAvailable(QByteArray);
+    void getConnectionState();
+   // void dataAvailable(QByteArray);
 };
 
 #endif // COMMUNICATION_H

@@ -21,19 +21,23 @@ Communicator::Communicator(QWidget *parent) :
     // Initialize comms, update in the future to choose custom comm type
     comm = new CommunicationSerial;
     connect(comm, SIGNAL(errorMessage(QString)), this, SLOT(getConnectionError(QString)));
-    connect(this, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+    connect(this, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
 
     // Initialize connection menu
-    //panel = new MenuConnect(comm);
-    panel = new PanelExample;
+    panel = new MenuConnect;
+    //panel = new PanelExample;
     connectionStop = "X";
     setCentralWidget(panel);
     initToolBar();
-//    connect(this, SIGNAL(autoConnect()), panel, SLOT(autoConnect()));
-//    connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
-//    connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-//    connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
-//    emit autoConnect();
+    connect(this, SIGNAL(autoConnect()), panel, SLOT(autoConnect()));
+    connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
+    connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+    connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
+    connect(panel, SIGNAL(getConnectionState()), comm, SIGNAL(getConnectionState()));
+    connect(comm, SIGNAL(connectionState(bool)), panel, SIGNAL(connectionState(bool)));
+    connect(panel, SIGNAL(openConnection(QString)), comm, SIGNAL(openConnection(QString)));
+    connect(panel, SIGNAL(closeConnection()), comm, SIGNAL(closeConnection()));
+    emit autoConnect();
 
     ui->statusBar->showMessage("Ready to connect to the AeroQuad...", 10000);
     restoreGeometry(settings.value("windowGeometry").toByteArray());
@@ -85,38 +89,38 @@ void Communicator::loadPanel(QString panelName)
     {
         panel = new PanelExample;
         connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
-        connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+        connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
         connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), panel, SIGNAL(initializePanel(QMap<QString,QString>)));
         emit initializePanel(config);
     }
     else if (panelName == "Connect")
     {
-        panel = new MenuConnect(comm);
+        panel = new MenuConnect;
         connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
-        connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+        connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
     }
     else if (panelName == "Terminal")
     {
         panel = new PanelMonitor;
-        connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+        connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
     }
     else if (panelName == "Plots")
     {
         panel = new PanelPlot;
         connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
-        connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+        connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
         connect(this, SIGNAL(panelMessage(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
         emit panelMessage("initialize");
     }
     else if (panelName == "Setup")
     {
         panel = new PanelConfig;
-        connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+        connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
         connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
         connect(this, SIGNAL(panelMessage(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
         emit panelMessage("initialize");
@@ -124,15 +128,15 @@ void Communicator::loadPanel(QString panelName)
     else if (panelName == "Firmware")
     {
         panel = new PanelFirmware(comm);
-        connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+        connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
         connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
     }
     else if (panelName == "Route")
     {
         panel = new PanelRoute;
-        connect(comm, SIGNAL(dataAvailable(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeConnection(QByteArray)));
+        connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
+        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
         connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
         connect(this, SIGNAL(panelMessage(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
         emit panelMessage("initialize");

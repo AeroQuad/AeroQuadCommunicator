@@ -21,16 +21,17 @@ public slots:
     void write(const QByteArray &data);
     QByteArray read();
     void close();
-    bool getConnectionState();
+    bool getConnectState();
 
 signals:
     void openConnection(QString);
-    void readConnection(QByteArray);
-    void writeConnection(QByteArray);
+    void readData(QByteArray);
+    void writeData(QByteArray);
     void closeConnection();
     void errorMessage(QString);
     void connectionState(bool);
-    void dataAvailable(QByteArray);
+    void getConnectionState();
+    //void dataAvailable(QByteArray);
 
 private:
     QSerialPort *serial;

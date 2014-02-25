@@ -7,7 +7,8 @@
 #include <QThread>
 #include <QGraphicsView>
 #include <QGraphicsScene>
-#include "communication\communication.h"
+//#include "communication\communication.h"
+#include <QMap>
 
 namespace Ui {
 class MenuConnect;
@@ -25,8 +26,13 @@ public:
      * @brief Constructor that initializes communication to AQ board.
      * @param commIn - Class used for communication to AQ board.
      */
-    explicit MenuConnect(Communication *commIn);
+    explicit MenuConnect(QWidget *parent = 0);
     ~MenuConnect();
+    /// ********************************************************
+    bool connectState;
+    QMap<QString, QString> configuration;
+    void sendMessage(QString message) {emit messageOut(message.toUtf8());}
+    /// ********************************************************
     QStringList getCommPorts();
     QStringList getBaudRates();
     QSettings settings;
@@ -35,20 +41,26 @@ public:
     // Should read these in from file
     QByteArray connectionTest;
     QByteArray connectionStop;
-    QByteArray configuration;
+    QByteArray configRequest;
     double compatibleVersion;
 
 public slots:
     void autoConnect();
-    void connectionResponse(QByteArray);
+    void initialize(QMap<QString, QString> config);
+    void updateConnectionState(bool state);
+    void parseMessage(QByteArray);
 
 signals:
+    void setConnection(QString);
+    void openConnection(QString);
+    void closeConnection();
+    void initializePanel(QMap<QString, QString>);
     void messageIn(QByteArray);
     void messageOut(QByteArray);
-    void setConnection(QString);
-    void open(QString);
-    void close(QString);
     void panelStatus(QString);
+    void connectionState(bool);
+    void getConnectionState();
+    void writeConfig(QMap<QString, QString>);
 
 private slots:
     void on_connectPushButton_clicked();
@@ -57,17 +69,14 @@ private slots:
 
 private:
     Ui::MenuConnect *ui;
-    bool connectState;
-    Communication *comm;
-    QByteArray messageSent;
+    QByteArray messageType;
     int retry;
-    QMap<QString, QString> flightConfigs;
     QPixmap configPix;
+    QMap<QString, QString> flightConfigs;
     QString flightConfig;
     QGraphicsScene *scene;
     void showEvent(QShowEvent *);
     void resizeEvent(QResizeEvent *);
-
     void setConnectionState(bool state);
 };
 

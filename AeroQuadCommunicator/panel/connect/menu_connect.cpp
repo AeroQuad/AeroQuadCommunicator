@@ -2,17 +2,19 @@
 #include "ui_menu_connect.h"
 #include <QDebug>
 
-MenuConnect::MenuConnect(Communication *commIn) :
+MenuConnect::MenuConnect(QWidget *parent) :
+    QWidget (parent),
     ui(new Ui::MenuConnect)
 {
     ui->setupUi(this);
+
+    connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), this, SLOT(initialize(QMap<QString,QString>)));
+    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(parseMessage(QByteArray)));
+    connect(this, SIGNAL(connectionState(bool)), this, SLOT(updateConnectionState(bool)));
+
     ui->portComboBox->addItems(getCommPorts());
     ui->portComboBox->insertSeparator(2);
     ui->baudComboBox->addItems(getBaudRates());
-
-    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(connectionResponse(QByteArray)));
-
-    comm = commIn;
     storedPort = settings.value("SerialCom/port", "Select com port...").toString();
     int indexPort = ui->portComboBox->findText(storedPort);
     indexPort = (indexPort < 0) ? 0 : indexPort;
@@ -29,11 +31,12 @@ MenuConnect::MenuConnect(Communication *commIn) :
         ui->baudComboBox->setCurrentIndex(1);
     }
     ui->baudComboBox->insertSeparator(1);
+    scene = new QGraphicsScene();
 
     // Should read these in from file
     connectionTest = "!";
     connectionStop = "X";
-    configuration = "#";
+    configRequest = "#";
     compatibleVersion = 3.2;
     flightConfigs["Quad +"] =   ":/flightConfigs/resources/Quad+.png";
     flightConfigs["Quad X"] =   ":/flightConfigs/resources/QuadX.png";
@@ -46,15 +49,12 @@ MenuConnect::MenuConnect(Communication *commIn) :
     flightConfigs["Octo X"] =   ":/flightConfigs/resources/OctoX.png";
     flightConfigs["Octo +"] =   ":/flightConfigs/resources/Octo+.png";
     flightConfigs["Rover"] =    ":/flightConfigs/resources/QuadX.png";
+}
 
-    // Update front panel state
-    setConnectionState(comm->getConnectionState());
-    scene = new QGraphicsScene();
-    if (comm->getConnectionState())
-    {
-        comm->write(configuration);
-        messageSent = configuration;
-    }
+void MenuConnect::initialize(QMap<QString, QString> config)
+{
+    configuration = config;
+    emit getConnectionState();
 }
 
 void MenuConnect::showEvent(QShowEvent *)
@@ -142,9 +142,9 @@ void MenuConnect::on_connectPushButton_clicked()
     settings.setValue("SerialCom/baud", ui->baudComboBox->currentText());
     QString connectString = ui->portComboBox->currentText() + ";" + ui->baudComboBox->currentText();
 
-    comm->open(connectString);
-    comm->write(connectionTest);
-    messageSent = connectionTest;
+    emit openConnection(connectString);
+    sendMessage(connectionTest);
+    messageType = connectionTest;
     setConnectionState(false);
     // Now wait for connectionResponse() signal
 }
@@ -169,23 +169,30 @@ void MenuConnect::setConnectionState(bool state)
     }
 }
 
-void MenuConnect::connectionResponse(QByteArray dataIn)
+void MenuConnect::updateConnectionState(bool state)
 {
-    if (messageSent == connectionTest)
+    connectState = state;
+    setConnectionState(connectState);
+    qDebug() << connectState;
+}
+
+void MenuConnect::parseMessage(QByteArray dataIn)
+{
+    if (messageType == connectionTest)
     {
         QString version = dataIn;
         if (version.toDouble() >= compatibleVersion)
         {
-            setConnectionState(comm->getConnectionState());
+            setConnectionState(true);
             emit panelStatus("Connected to AeroQuad Flight Software v" + version);
-            comm->write(configuration);
-            messageSent = configuration;
+            sendMessage(configRequest);
+            messageType = configRequest;
             retry = 0;
         }
         else
             on_disconnectPushButton_clicked();
     }
-    if (messageSent == configuration)
+    if (messageType == configRequest)
     {
         ui->configList->clear();
         QString configData = dataIn;
@@ -210,7 +217,7 @@ void MenuConnect::connectionResponse(QByteArray dataIn)
         {
             ui->configList->clear();
             //comm->write(configuration);
-            messageSent = configuration;
+            messageType = configRequest;
             retry++;
             qDebug() << retry;
         }
@@ -219,7 +226,7 @@ void MenuConnect::connectionResponse(QByteArray dataIn)
 
 void MenuConnect::on_disconnectPushButton_clicked()
 {
-    comm->close();
-    setConnectionState(comm->getConnectionState());
+    emit closeConnection();
+    emit getConnectionState();
     ui->configList->clear();
 }

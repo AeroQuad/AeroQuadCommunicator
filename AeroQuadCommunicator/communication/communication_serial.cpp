@@ -9,8 +9,9 @@ CommunicationSerial::CommunicationSerial()
     dataBuffer.clear();
 
     connect(this,   SIGNAL(openConnection(QString)),        this, SLOT(open(QString)));
-    connect(this,   SIGNAL(writeConnection(QByteArray)),    this, SLOT(write(QByteArray)));
+    connect(this,   SIGNAL(writeData(QByteArray)),          this, SLOT(write(QByteArray)));
     connect(serial, SIGNAL(readyRead()),                    this, SLOT(read()));
+    connect(this,   SIGNAL(getConnectionState()),           this, SLOT(getConnectState()));
     connect(this,   SIGNAL(closeConnection()),              this, SLOT(close()));
 }
 
@@ -68,8 +69,7 @@ QByteArray CommunicationSerial::read()
         {
             while (serial->canReadLine())
                 dataBuffer.append(serial->readLine());
-            emit readConnection(dataBuffer);
-            emit dataAvailable(dataBuffer);
+            emit readData(dataBuffer);
             QByteArray data = dataBuffer;
             dataBuffer.clear();
             return data;
@@ -90,6 +90,7 @@ void CommunicationSerial::close()
     serial->close();
     isConnected = false;
     emit connectionState(isConnected);
+    qDebug() << "close port";
 }
 
 QString CommunicationSerial::checkError()
@@ -102,7 +103,7 @@ QList<QSerialPortInfo> getAvailablePorts()
     return QSerialPortInfo::availablePorts();
 }
 
-bool CommunicationSerial::getConnectionState()
+bool CommunicationSerial::getConnectState()
 {
     emit connectionState(isConnected);
     return isConnected;

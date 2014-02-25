@@ -34,7 +34,6 @@ void PanelExample::initialize(QMap<QString, QString> config)
 void PanelExample::parseMessage(QByteArray data)
 {
     QString incomingMessage = data;
-    qDebug() << incomingMessage;
 
     // Replace the following line as required in your custom panel
     ui->exampleResponse->setText(incomingMessage);
