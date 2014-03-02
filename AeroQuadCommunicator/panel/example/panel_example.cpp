@@ -13,7 +13,6 @@ PanelExample::PanelExample(QWidget *parent) :
     connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(parseMessage(QByteArray)));
     connect(this, SIGNAL(connectionState(bool)), this, SLOT(updateConnectionState(bool)));
     /// **********************************************************************
-
 }
 
 PanelExample::~PanelExample()
@@ -23,12 +22,26 @@ PanelExample::~PanelExample()
 
 /// **********************************************************************
 /// Add the following lines below to your custom panel class
-/// Make sure to chane PanelExample to the class name of your custom panel
+/// Make sure to change PanelExample to the class name of your custom panel
 void PanelExample::initialize(QMap<QString, QString> config)
 {
     configuration = config;
     emit getConnectionState();
+
     // Add any additional initialization steps to perform here.
+    // Remove these lines when copying to another custom panel
+    int rowCount = configuration.size();
+    ui->config->setRowCount(rowCount);
+    ui->config->setColumnCount(2);
+    ui->config->setHorizontalHeaderItem(0, new QTableWidgetItem("Config Type"));
+    ui->config->setHorizontalHeaderItem(1, new QTableWidgetItem("Value"));
+    QStringList type = configuration.keys();
+    QStringList value = configuration.values();
+    for (int row=0; row<rowCount; row++)
+    {
+        ui->config->setItem(row, 0, new QTableWidgetItem(type.at(row)));
+        ui->config->setItem(row, 1, new QTableWidgetItem(value.at(row)));
+    }
 }
 
 void PanelExample::parseMessage(QByteArray data)

@@ -9,8 +9,10 @@ PanelMonitor::PanelMonitor(QWidget *parent) :
     ui->console->setReadOnly(true);
     ui->console->setMaximumBlockCount(1024);
     ui->console->setWordWrapMode(QTextOption::NoWrap);
-    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(displayCommData(QByteArray)));
     connect(ui->commandLine, SIGNAL(returnPressed()), this, SLOT(on_sendButton_clicked()));
+    connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), this, SLOT(initialize(QMap<QString,QString>)));
+    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(parseMessage(QByteArray)));
+    connect(this, SIGNAL(connectionState(bool)), this, SLOT(updateConnectionState(bool)));
 }
 
 PanelMonitor::~PanelMonitor()
@@ -18,7 +20,13 @@ PanelMonitor::~PanelMonitor()
     delete ui;
 }
 
-void PanelMonitor::displayCommData(QByteArray data)
+void PanelMonitor::initialize(QMap<QString, QString> config)
+{
+    configuration = config;
+    emit getConnectionState();
+}
+
+void PanelMonitor::parseMessage(QByteArray data)
 {
     ui->console->insertPlainText(data);
     ui->console->ensureCursorVisible();
@@ -36,4 +44,11 @@ void PanelMonitor::on_sendButton_clicked()
 void PanelMonitor::on_clearButton_clicked()
 {
     ui->console->clear();
+}
+
+void PanelMonitor::updateConnectionState(bool state)
+{
+    connectState = state;
+    ui->sendButton->setEnabled(connectState);
+    ui->clearButton->setEnabled(connectState);
 }

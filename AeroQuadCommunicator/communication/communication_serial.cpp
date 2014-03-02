@@ -56,8 +56,8 @@ void CommunicationSerial::write(const QByteArray &data)
         isConnected = false;
         emit connectionState(isConnected);
     }
-    else
-        qDebug() << data;
+//    else
+//        qDebug() << data;
 }
 
 QByteArray CommunicationSerial::read()
@@ -90,7 +90,6 @@ void CommunicationSerial::close()
     serial->close();
     isConnected = false;
     emit connectionState(isConnected);
-    qDebug() << "close port";
 }
 
 QString CommunicationSerial::checkError()

@@ -1,15 +1,16 @@
 #include "panel_firmware.h"
 #include "ui_panel_firmware.h"
 
-PanelFirmware::PanelFirmware(Communication *commIn) :
+PanelFirmware::PanelFirmware(QWidget *parent) :
+    QWidget(parent),
     ui(new Ui::PanelFirmware)
 {
     ui->setupUi(this);
-    //ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    //ui->webView->page()->setForwardUnsupportedContent(true);
-    comm = commIn;
     scroll = false;
     upload = new QProcess(this);
+    connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), this, SLOT(initialize(QMap<QString,QString>)));
+    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(parseMessage(QByteArray)));
+    connect(this, SIGNAL(connectionState(bool)), this, SLOT(updateConnectionState(bool)));
     connect(upload, SIGNAL(readyReadStandardOutput()), this, SLOT(printConsole()));
     connect(upload, SIGNAL(readyReadStandardError()), this, SLOT(printErrors()));
     connect(ui->webView->page(), SIGNAL(loadStarted()), this, SLOT(startFirmwareUpload()));
@@ -20,13 +21,24 @@ PanelFirmware::PanelFirmware(Communication *commIn) :
     QFont consoleFont = ui->console->font();
     consoleFont.setPointSize(12);
     ui->console->setFont(consoleFont);
-
     ui->console->append("To return the board it's default factory configuration, select the Bootloader button.  To upload existing firmware, select the Firmware button.\n\nTo create and upload new firmware, complete the selections below.  You will need to be connected to the internet for this feature.");
 }
 
 PanelFirmware::~PanelFirmware()
 {
     delete ui;
+}
+
+void PanelFirmware::initialize(QMap<QString, QString> config)
+{
+    configuration = config;
+    emit getConnectionState();
+}
+
+void PanelFirmware::parseMessage(QByteArray data)
+{
+    QString incomingMessage = data;
+    // Add any code to process incoming message
 }
 
 void PanelFirmware::waitForConsole(QString message)
@@ -65,7 +77,7 @@ void PanelFirmware::on_bootloader_clicked()
     int response = message.exec();
     if (response==QMessageBox::Ok)
     {
-        comm->close();
+        emit closeConnection();
         ui->console->clear();
 
         upload->start("dfu-util.exe -l --reset --device 0483:df11 --alt 0 --dfuse-address 0x08000000 --download prod_image_256k.bin");
@@ -145,7 +157,7 @@ void PanelFirmware::firmwareDownloaded(QNetworkReply *reply)
         emit panelStatus("Firmware downloaded...");
         settings.setValue("firmwarePath", fileName);
         settings.sync();
-        comm->close();
+        emit closeConnection();
         programmingMode("Com3");
         upload->start("dfu-util.exe -l --reset --device 0483:df11 --alt 0 --dfuse-address 0x08010000 --download " + fileName);
         waitForConsole("Uploading flight software");
@@ -179,7 +191,7 @@ void PanelFirmware::on_firmware_clicked()
         emit panelStatus("Uploading firmware...");
         settings.setValue("firmwarePath", fileName);
         settings.sync();
-        comm->close();
+        emit closeConnection();
         programmingMode("Com3");
         upload->start("dfu-util.exe -l --reset --device 0483:df11 --alt 0 --dfuse-address 0x08010000 --download \"" + fileName + "\"");
         waitForConsole("Uploading flight software");

@@ -5,6 +5,10 @@ PanelPlot::PanelPlot(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::PanelPlot)
 {
+    connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), this, SLOT(initialize(QMap<QString,QString>)));
+    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(parseMessage(QByteArray)));
+    connect(this, SIGNAL(connectionState(bool)), this, SLOT(updateConnectionState(bool)));
+
     timeAxisLength = 15; // seconds
     ui->setupUi(this);
     ui->plotWindow->xAxis->setTickLabelType(QCPAxis::ltDateTime);
@@ -29,12 +33,9 @@ PanelPlot::PanelPlot(QWidget *parent) :
     colorNames.append("lime");
     colorNames.append("violet");
 
-    initialize("panel_plot.xml");
-    setupPlotList();
     //setupPlotNames(0);
     connect(ui->plotWindow->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->plotWindow->xAxis2, SLOT(setRange(QCPRange)));
     connect(ui->plotWindow->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->plotWindow->yAxis2, SLOT(setRange(QCPRange)));
-    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(displayCommData(QByteArray)));
     connect(ui->plotTypes, SIGNAL(currentRowChanged(int)), this, SLOT(initializePlot(int)));
     connect(ui->plotTypes, SIGNAL(currentRowChanged(int)), this, SLOT(setupPlotNames(int)));
     connect(ui->plotNames, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(selectPlot(QListWidgetItem*)));
@@ -45,7 +46,17 @@ PanelPlot::~PanelPlot()
     delete ui;
 }
 
-void PanelPlot::initialize(QString filename)
+void PanelPlot::initialize(QMap<QString, QString> config)
+{
+    configuration = config;
+    emit getConnectionState();
+    readXML("panel_plot.xml");
+    setupPlotList();
+    initializePlot(0);
+    setupPlotNames(0);
+}
+
+void PanelPlot::readXML(QString filename)
 {
     // Open XML configuration file
     QFile* file = new QFile(filename);
@@ -135,19 +146,14 @@ void PanelPlot::initializePlot(int index)
         ui->plotWindow->graph(plotIndex)->setPen(pen[plotIndex]);
     }
     emit messageOut(plots[index].telemetry.toUtf8());
+    qDebug() << plots[index].telemetry.toUtf8();
 }
 
-void PanelPlot::displayCommData(QByteArray data)
+void PanelPlot::parseMessage(QByteArray data)
 {
     double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
     QString messages = data;
-    if (messages == "initialize")
-    {
-        initializePlot(0);
-        setupPlotNames(0);
-        return;
-    }
-    messages.chop(2); // remove CR/LF
+    messages.chop(1); // remove LF
     QList<QString> message = messages.split(',');
     if (message.last() == "")
         message.removeLast();

@@ -67,6 +67,8 @@ private slots:
     void on_disconnectPushButton_clicked();
     void on_portComboBox_currentIndexChanged(const QString &arg1);
 
+    void on_refresh_clicked();
+
 private:
     Ui::MenuConnect *ui;
     QByteArray messageType;

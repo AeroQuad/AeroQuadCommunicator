@@ -55,6 +55,7 @@ void MenuConnect::initialize(QMap<QString, QString> config)
 {
     configuration = config;
     emit getConnectionState();
+    on_refresh_clicked();
 }
 
 void MenuConnect::showEvent(QShowEvent *)
@@ -173,7 +174,6 @@ void MenuConnect::updateConnectionState(bool state)
 {
     connectState = state;
     setConnectionState(connectState);
-    qDebug() << connectState;
 }
 
 void MenuConnect::parseMessage(QByteArray dataIn)
@@ -199,27 +199,18 @@ void MenuConnect::parseMessage(QByteArray dataIn)
         QStringList configItems = configData.split("\n");
         int count = configItems[0].toInt() + 1;
         configItems.removeFirst();
-        if ((count == configItems.size()) || (retry > 3))
+        if ((count == configItems.size()))
         {
             ui->configList->addItems(configItems);
             for (int index=0; index<configItems.size()-1; index++)
             {
-                QStringList config = configItems[index].split(":");
-                if (config[0] == "Flight Config")
-                    flightConfig = flightConfigs[config[1].trimmed()];
+                QStringList configItem = configItems[index].split(":");
+                configuration[configItem[0]] = configItem[1].trimmed();
             }
-            configPix = QPixmap(flightConfig);
+            configPix = QPixmap(configuration["Flight Config"]);
             QResizeEvent *event;
             resizeEvent(event);
-            retry = 0;
-        }
-        else
-        {
-            ui->configList->clear();
-            //comm->write(configuration);
-            messageType = configRequest;
-            retry++;
-            qDebug() << retry;
+            emit writeConfig(configuration);
         }
     }
 }
@@ -229,4 +220,10 @@ void MenuConnect::on_disconnectPushButton_clicked()
     emit closeConnection();
     emit getConnectionState();
     ui->configList->clear();
+}
+
+void MenuConnect::on_refresh_clicked()
+{
+    sendMessage(configRequest);
+    messageType = configRequest;
 }

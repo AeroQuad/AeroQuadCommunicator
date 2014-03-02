@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QXmlStreamReader>
 #include <QListWidgetItem>
+#include <QMap>
 
 namespace Ui {
 class PanelPlot;
@@ -17,18 +18,27 @@ class PanelPlot : public QWidget
 public:
     explicit PanelPlot(QWidget *parent = 0);
     ~PanelPlot();
+    bool connectState;
+    QMap<QString, QString> configuration;
+    void sendMessage(QString message) {emit messageOut(message.toUtf8());}
 
 
 public slots:
-    void displayCommData(QByteArray data);
     void initializePlot(int index);
     void setupPlotNames(int index);
     void selectPlot(QListWidgetItem* item);
 
-signals:
+    void initialize(QMap<QString, QString> config);
+    void updateConnectionState(bool state) {connectState = state;}
+    void parseMessage(QByteArray);
+
+signals:    
+    void initializePanel(QMap<QString, QString>);
     void messageIn(QByteArray);
     void messageOut(QByteArray);
     void panelStatus(QString);
+    void connectionState(bool);
+    void getConnectionState();
 
 private:
     Ui::PanelPlot *ui;
@@ -48,7 +58,7 @@ private:
     int timeAxisLength;
     QVector<QString> colorNames;
 
-    void initialize(QString filename);
+    void readXML(QString filename);
     void setupPlotList();
 };
 

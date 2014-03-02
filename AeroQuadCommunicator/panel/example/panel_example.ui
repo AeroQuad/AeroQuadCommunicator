@@ -14,35 +14,12 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="1" colspan="2">
-    <widget class="QLabel" name="description">
-     <property name="text">
-      <string>This example panel will request the flight software version.</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="1">
     <widget class="QPushButton" name="exampleCommand">
      <property name="text">
       <string>Example Command</string>
      </property>
     </widget>
-   </item>
-   <item row="3" column="1" colspan="2">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>101</height>
-      </size>
-     </property>
-    </spacer>
    </item>
    <item row="0" column="1" colspan="2">
     <spacer name="verticalSpacer">
@@ -70,6 +47,39 @@
      </property>
     </spacer>
    </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="exampleResponse">
+     <property name="text">
+      <string>Example Response</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="2">
+    <widget class="QLabel" name="description">
+     <property name="text">
+      <string>This example panel will request the flight software version.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1" colspan="2">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>101</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item row="2" column="3">
     <spacer name="horizontalSpacer_2">
      <property name="orientation">
@@ -83,14 +93,11 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="2">
-    <widget class="QLabel" name="exampleResponse">
-     <property name="text">
-      <string>Example Response</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
+   <item row="3" column="1" colspan="2">
+    <widget class="QTableWidget" name="config">
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
     </widget>
    </item>
   </layout>

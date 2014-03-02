@@ -5,6 +5,7 @@
 #include <QSettings>
 #include <QCloseEvent>
 #include <QResizeEvent>
+#include <QDebug>
 #include <QMap>
 #include "communication\communication_serial.h"
 
@@ -24,6 +25,7 @@ public slots:
     void updateStatusBar(QString message);
     void loadPanel(QString panelName);
     void getConnectionError(QString error);
+    void updateConfig(QMap<QString, QString> configuration) {config = configuration;}
 
 signals:
     void panelMessage(QByteArray);

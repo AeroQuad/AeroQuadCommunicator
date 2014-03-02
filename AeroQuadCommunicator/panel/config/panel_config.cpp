@@ -6,14 +6,12 @@ PanelConfig::PanelConfig(QWidget *parent) :
     ui(new Ui::PanelConfig)
 {
     ui->setupUi(this);
-    initialize("panel_config.xml");
-    setupConfigList();
-    setupTableHeader();
-    selectConfig(0);
 
     connect(ui->configList, SIGNAL(currentRowChanged(int)), this, SLOT(selectConfig(int)));
     connect(ui->configTable, SIGNAL(cellClicked(int,int)), this, SLOT(selectDescription(int,int)));
-    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(updateConfig(QByteArray)));
+    connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), this, SLOT(initialize(QMap<QString,QString>)));
+    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(parseMessage(QByteArray)));
+    connect(this, SIGNAL(connectionState(bool)), this, SLOT(updateConnectionState(bool)));
 }
 
 PanelConfig::~PanelConfig()
@@ -21,7 +19,17 @@ PanelConfig::~PanelConfig()
     delete ui;
 }
 
-void PanelConfig::initialize(QString filename)
+void PanelConfig::initialize(QMap<QString, QString> config)
+{
+    configuration = config;
+    emit getConnectionState();
+    readXML("panel_config.xml");
+    setupConfigList();
+    setupTableHeader();
+    selectConfig(0);
+}
+
+void PanelConfig::readXML(QString filename)
 {
     // Open XML configuration file
     QFile* file = new QFile(filename);
@@ -40,7 +48,7 @@ void PanelConfig::initialize(QString filename)
         xml.readNext();
         if (xml.isStartElement() && (xml.name() == "ConfigType"))
         {
-            configuration configItem;
+            cfg configItem;
             configItem.configName = xml.attributes().value("Name").toString();
             xml.readNextStartElement();
             while(!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "ConfigType"))
@@ -120,15 +128,9 @@ void PanelConfig::selectDescription(int row, int col)
     ui->configDescription->append(panelConfig[currentPanel].parameters[row].description);
 }
 
-void PanelConfig::updateConfig(QByteArray incoming)
+void PanelConfig::parseMessage(QByteArray incoming)
 {
     QString message = incoming;
-    // This init needs to be done because needed SLOTS/SIGNALS are connected after new panel is instantiated
-    if (message == "initialize")
-    {
-        selectConfig(0);
-        return;
-    }
     message.chop(2); // remove CR/LF
     QStringList parameters = message.split(",");
     if (parameters[parameters.size()-1] == "")

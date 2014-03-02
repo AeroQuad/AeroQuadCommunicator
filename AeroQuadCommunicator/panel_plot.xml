@@ -37,7 +37,7 @@
     <Plot Name="Altitude Data">
         <Requirement type="or">Range Detection: Enabled</Requirement>
         <Requirement type="or">Barometer: Detected</Requirement>
-        <Telemetry>z</Telemetry>S
+        <Telemetry>z</Telemetry>
         <PlotName>Barometer</PlotName>
         <PlotName>Range Finder</PlotName>
     </Plot>
