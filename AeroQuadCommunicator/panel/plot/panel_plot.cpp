@@ -145,8 +145,7 @@ void PanelPlot::initializePlot(int index)
         ui->plotWindow->graph(plotIndex)->setName(plotName[plotIndex]);
         ui->plotWindow->graph(plotIndex)->setPen(pen[plotIndex]);
     }
-    emit messageOut(plots[index].telemetry.toUtf8());
-    qDebug() << plots[index].telemetry.toUtf8();
+    sendMessage(plots[index].telemetry.toUtf8());
 }
 
 void PanelPlot::parseMessage(QByteArray data)

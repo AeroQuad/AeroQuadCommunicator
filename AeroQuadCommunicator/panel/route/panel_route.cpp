@@ -35,10 +35,14 @@ PanelRoute::PanelRoute(QWidget *parent) :
     ui(new Ui::PanelRoute)
 {
     ui->setupUi(this);
-    initialize("panel_route.xml");
+    connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), this, SLOT(initialize(QMap<QString,QString>)));
+    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(parseMessage(QByteArray)));
+    connect(this, SIGNAL(connectionState(bool)), this, SLOT(updateConnectionState(bool)));
+
+    readXML("panel_route.xml");
+    ui->map->setMapThemeId(mapConfig);
     ui->map->setProjection(Marble::Mercator);
     //ui->map->setProjection(Marble::Spherical);
-    qDebug() << mapConfig;
     ui->map->setMapThemeId(mapConfig);
 
     float startLat = settings.value("startLat").toFloat();
@@ -82,7 +86,6 @@ PanelRoute::PanelRoute(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(requestPosition()));
 
     nextParseState = ONBOARD_QUERY_ROUTE;
-    connect(this, SIGNAL(messageIn(QByteArray)), this, SLOT(parseIncomingMessage(QByteArray)));
 }
 
 PanelRoute::~PanelRoute()
@@ -96,13 +99,23 @@ PanelRoute::~PanelRoute()
     delete ui;
 }
 
-void PanelRoute::sendMessage(QString message)
+void PanelRoute::initialize(QMap<QString, QString> config)
 {
-    emit messageOut(message.toUtf8());
-    //qDebug() << message;
+    configuration = config;
+    emit getConnectionState();
+    readXML("panel_route.xml");
+    ui->map->setMapThemeId(mapConfig);
+
+    retryMessage = 0;
+
+    // Check GPS State
+    sendMessage("^2;");
+    positionState = 3;
+    nextParseState = POSITION_PARSE_SAT;
+    timer->start(POSITION_UPDATE_RATE);
 }
 
-void PanelRoute::initialize(QString filename)
+void PanelRoute::readXML(QString filename)
 {
     // Open XML configuration file
     QFile* file = new QFile(filename);
@@ -132,28 +145,16 @@ void PanelRoute::initialize(QString filename)
 }
 
 // *********************************************************************************************
-// parseIncomingMessage() is setup as a state machine to parse either position or route messages
+// parseMessage() is setup as a state machine to parse either position or route messages
 // It traverses from state to state based on the nextParseState variable.
 // *********************************************************************************************
-void PanelRoute::parseIncomingMessage(QByteArray data)
+void PanelRoute::parseMessage(QByteArray data)
 {
     QString incomingMessage = data;
     QString errorMessage;
     QThread wait;
-    qDebug() << "Message Type: " << nextParseState;
-    qDebug() << "New incoming message: " << incomingMessage << " Message size: " << data.size();
-
-    if (incomingMessage == "initialize")
-    {
-        retryMessage = 0;
-
-        // Check GPS State
-        sendMessage("^2;");
-        positionState = 3;
-        nextParseState = POSITION_PARSE_SAT;
-        timer->start(POSITION_UPDATE_RATE);
-        return;
-    }
+//    qDebug() << "Message Type: " << nextParseState;
+//    qDebug() << "New incoming message: " << incomingMessage << " Message size: " << data.size();
 
     switch(nextParseState)
     {
@@ -230,7 +231,6 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
             QStringList positionList = incomingMessage.split(',');
             if ((positionList.size() == 3) && (gpsState > 1))
             {
-                qDebug() << gpsState;
                 float lat = positionList.at(0).toFloat() / 1.0E7;
                 float lon = positionList.at(1).toFloat() / 1.0E7;
                 if ((lat == 0.0) && (lon == 0.0))
@@ -251,7 +251,7 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
             positionList[2].chop(1);
             if (positionList.size() == 3)
             {
-                qDebug() << "Alt/Course/Speed: " << positionList[0] << positionList[1] << positionList [2];
+                //qDebug() << "Alt/Course/Speed: " << positionList[0] << positionList[1] << positionList [2];
             }
         }
         break;
@@ -401,7 +401,7 @@ void PanelRoute::parseIncomingMessage(QByteArray data)
             {
                 autoPilotStateChanged = false;
                 int type = incomingMessage.toInt();
-                qDebug() << "Autopilot state response: " << type;
+                //qDebug() << "Autopilot state response: " << type;
                 QString state;
 
                 autoPilotState = false;
@@ -460,7 +460,7 @@ void PanelRoute::startPositionRequest()
 void PanelRoute::requestPosition()
 {
     // This is designed so that every other position request is lat/lon/heading
-    qDebug() << "\n\nPosition request: " << positionState;
+    //qDebug() << "\n\nPosition request: " << positionState;
     if (positionState == 0)
     {
         sendMessage("^0;");

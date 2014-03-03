@@ -119,7 +119,7 @@ void PanelConfig::selectConfig(int index)
     ui->configTable->selectRow(0);
     selectDescription(0, 0);
     QByteArray message(panelConfig[index].telemetry.toUtf8());
-    emit messageOut(message);
+    sendMessage(message);
 }
 
 void PanelConfig::selectDescription(int row, int col)
@@ -178,7 +178,7 @@ void PanelConfig::on_uploadButton_clicked()
         cellValue = qobject_cast<QDoubleSpinBox*>(ui->configTable->cellWidget(index, 1));
         command += QString::number(cellValue->value()) + ";"; // convert this way so extra zeros aren't included
     }
-    emit messageOut(command.toUtf8());
-    emit messageOut(panelConfig[currentPanel].telemetry.toUtf8());
-    emit messageOut(panelConfig[currentPanel].updateEEPROM.toUtf8());
+    sendMessage(command.toUtf8());
+    sendMessage(panelConfig[currentPanel].telemetry.toUtf8());
+    sendMessage(panelConfig[currentPanel].updateEEPROM.toUtf8());
 }

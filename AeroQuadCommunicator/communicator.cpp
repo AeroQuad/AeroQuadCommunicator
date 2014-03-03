@@ -91,39 +91,22 @@ void Communicator::loadPanel(QString panelName)
         panel = new MenuConnect;
         connect(panel, SIGNAL(openConnection(QString)), comm, SIGNAL(openConnection(QString)));
         connect(panel, SIGNAL(closeConnection()), comm, SIGNAL(closeConnection()));
-        emit initializePanel(config);
-    }
-    else if (panelName == "Terminal")
-    {
-        panel = new PanelMonitor;
-    }
-    else if (panelName == "Plots")
-    {
-        panel = new PanelPlot;
-    }
-    else if (panelName == "Setup")
-    {
-        panel = new PanelConfig;
     }
     else if (panelName == "Firmware")
     {
         panel = new PanelFirmware;
         connect(panel, SIGNAL(closeConnection()), comm, SIGNAL(closeConnection()));
-        emit initializePanel(config);
     }
+    else if (panelName == "Terminal")
+        panel = new PanelMonitor;
+    else if (panelName == "Plots")
+        panel = new PanelPlot;
+    else if (panelName == "Setup")
+        panel = new PanelConfig;
     else if (panelName == "Route")
-    {
         panel = new PanelRoute;
-        connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-        connect(panel, SIGNAL(messageOut(QByteArray)), comm, SIGNAL(writeData(QByteArray)));
-        connect(panel, SIGNAL(panelStatus(QString)), this, SLOT(updateStatusBar(QString)));
-        connect(this, SIGNAL(panelMessage(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
-        emit panelMessage("initialize");
-    }
     else if (panelName == "Test")
-    {
         panel = new PanelExample;
-    }
 
     connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), panel, SIGNAL(initializePanel(QMap<QString,QString>)));
     connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));

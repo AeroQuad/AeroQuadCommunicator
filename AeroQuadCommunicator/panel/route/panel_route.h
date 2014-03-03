@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QPixmap>
 #include <QLabel>
+#include <QMap>
 #include "panel/route/vehicle.h"
 #include "panel/route/route.h"
 #include <marble/GeoDataDocument.h>
@@ -39,11 +40,22 @@ class PanelRoute : public QWidget
 public:
     explicit PanelRoute(QWidget *parent = 0);
     ~PanelRoute();
+    bool connectState;
+    QMap<QString, QString> configuration;
+    void sendMessage(QString message) {emit messageOut(message.toUtf8());}
+
+public slots:
+    void initialize(QMap<QString, QString> config);
+    void updateConnectionState(bool state) {connectState = state;}
+    void parseMessage(QByteArray);
 
 signals:
+    void initializePanel(QMap<QString, QString>);
     void messageIn(QByteArray);
     void messageOut(QByteArray);
     void panelStatus(QString);
+    void connectionState(bool);
+    void getConnectionState();
 
 private slots:
     void on_removeLast_clicked();
@@ -51,7 +63,6 @@ private slots:
     void on_editWaypoints_clicked(); 
     void createWaypoint(qreal lon, qreal lat, GeoDataCoordinates::Unit unit);
     void on_autopilot_clicked();
-    void parseIncomingMessage(QByteArray);
     void requestPosition();
     void on_load_clicked();
     void on_save_clicked();
@@ -88,11 +99,10 @@ private:
     int gpsState;
     QPixmap waypointCursor;
 
-    void initialize(QString filename);
+    void readXML(QString filename);
     void createVehicle();
     void updateRouteTable();
     void refreshMap(GeoDataCoordinates position);
-    void sendMessage(QString message);
     void uploadWaypoint(int waypointIndex);
     void updateIndicatorStatus(QLabel *indicator, bool state, QString status);
     void startPositionRequest();

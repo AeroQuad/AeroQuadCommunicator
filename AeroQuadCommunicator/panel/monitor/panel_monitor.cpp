@@ -36,7 +36,7 @@ void PanelMonitor::on_sendButton_clicked()
 {
     QByteArray message;
     message.append(ui->commandLine->text());
-    emit messageOut(message);
+    sendMessage(message);
     ui->commandLine->clear();
     ui->commandLine->setFocus();
 }
