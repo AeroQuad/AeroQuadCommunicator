@@ -1,8 +1,8 @@
 var searchData=
 [
   ['panel',['panel',['../class_communicator.html#a41fe4b3bb466f59bb51d262d956ff7a5',1,'Communicator']]],
-  ['panelconfig',['panelConfig',['../class_panel_config.html#aeb88859c1d370a3a59b34a6b619fe628',1,'PanelConfig']]],
-  ['parameters',['parameters',['../struct_panel_config_1_1configuration.html#ae6722f2812f35cf0a350d9dda242dc7f',1,'PanelConfig::configuration']]],
+  ['panelconfig',['panelConfig',['../class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce',1,'PanelConfig']]],
+  ['parameters',['parameters',['../struct_panel_config_1_1cfg.html#ada4b45fa2d2b3dacebddf50e7101ce7d',1,'PanelConfig::cfg']]],
   ['path',['path',['../class_route.html#afaa5fdaaeb27d5cf4f2b2bdb0b8e3d05',1,'Route']]],
   ['plotnames',['plotNames',['../struct_panel_plot_1_1plot.html#ab090d833340fa04208f63c53ba903a36',1,'PanelPlot::plot']]],
   ['plots',['plots',['../class_panel_plot.html#ad1e8d5bfb7f6b6735aaacdac238162ed',1,'PanelPlot']]],

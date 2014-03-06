@@ -1,12 +1,25 @@
 /*! \mainpage Developer's Documentation
  *
  * \section installation_sec Installation
- * 1. Download the source code from GitHub: insert link here
- * 2. Install Qt 5.2 version that includes mingw
- * 3. Verify shadow build is selected
- * 4. Move the following files into the shadow build directory
- *  1. File 1
- *  2. File 2
+ * 1. Download the source code from GitHub: https://github.com/Carancho/AeroQuadCommunicator.git
+ * 2. Install Qt (Source originally compiled with v5.2): http://qt-project.org/downloads
+ *  * Select the Qt version which includes MinGW
+ * 3. Open the AeroQuadCommunicator.pro project file.
+ * 4. Qt will ask you to configure your project.
+ *  * Deselect the Debug checkbox
+ *  * Select Browse for the Release folder and create a new folder called "Release"
+ *  * Select Configure Project
+ * 5. Copy the following files into the new "Release" folder you just created
+ *  * These files are found under ./AeroQuadCommunicator/AeroQuadCommunicator
+ *   * panel_config.xml
+ *   * panel_plot.xml
+ *   * panel_route.xml
+ *   * position.png
+ *   * InitialRoute.xml
+ *  * Extract the data.zip file found under ./AeroQuadCommunicator/marble into ./AeroQuadCommunicator/Release/data
+ *  * Create another folder in ./AeroQuadCommunicator/Release/Release and place libmarblewidget.dll inside
+ *   * libmarblewidget.dll is found inside ./AeroQuadCommunicator/marble
+ * 6. Click the Run button to build and run the Communicator
  *
  * \section requirements_sec Software Requirements
  * Communicator Requirements:

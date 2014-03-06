@@ -107,8 +107,10 @@ $(document).ready(function(){initNavTree('class_panel_route.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pub-slots">Public Slots</a> &#124;
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pri-slots">Private Slots</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
@@ -128,14 +130,29 @@ Inheritance diagram for PanelRoute:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
+Public Slots</h2></td></tr>
+<tr class="memitem:aa04ce975c811f0cbbb85422b0ddb6f6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#aa04ce975c811f0cbbb85422b0ddb6f6c">initialize</a> (QMap&lt; QString, QString &gt; config)</td></tr>
+<tr class="separator:aa04ce975c811f0cbbb85422b0ddb6f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3d01fd60534d39f4d7bf39f584abf72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#ab3d01fd60534d39f4d7bf39f584abf72">updateConnectionState</a> (bool state)</td></tr>
+<tr class="separator:ab3d01fd60534d39f4d7bf39f584abf72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c3a92ce7c223974ed9b9fc6a3f05849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a9c3a92ce7c223974ed9b9fc6a3f05849">parseMessage</a> (QByteArray)</td></tr>
+<tr class="separator:a9c3a92ce7c223974ed9b9fc6a3f05849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
+<tr class="memitem:a581af35573f0a844af29e3a4ad9332bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a581af35573f0a844af29e3a4ad9332bf">initializePanel</a> (QMap&lt; QString, QString &gt;)</td></tr>
+<tr class="separator:a581af35573f0a844af29e3a4ad9332bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79aa88c9ed1de4b52f764e679676d0e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a79aa88c9ed1de4b52f764e679676d0e1">messageIn</a> (QByteArray)</td></tr>
 <tr class="separator:a79aa88c9ed1de4b52f764e679676d0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8449b60a63c44699fd330da9d0a3edc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#ae8449b60a63c44699fd330da9d0a3edc">messageOut</a> (QByteArray)</td></tr>
 <tr class="separator:ae8449b60a63c44699fd330da9d0a3edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0026e963e1d62276610a53328a73439d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a0026e963e1d62276610a53328a73439d">panelStatus</a> (QString)</td></tr>
 <tr class="separator:a0026e963e1d62276610a53328a73439d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcd179ac0294c7a675670fd2c6d659c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#afcd179ac0294c7a675670fd2c6d659c5">connectionState</a> (bool)</td></tr>
+<tr class="separator:afcd179ac0294c7a675670fd2c6d659c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8effdcf6629c7379621cf70984b5c6be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a8effdcf6629c7379621cf70984b5c6be">getConnectionState</a> ()</td></tr>
+<tr class="separator:a8effdcf6629c7379621cf70984b5c6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -143,6 +160,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8d328113dcb6c61bbaa9d661669c038c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e3c7edfc86ad5a04f4279f78b3e9adb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a8e3c7edfc86ad5a04f4279f78b3e9adb">~PanelRoute</a> ()</td></tr>
 <tr class="separator:a8e3c7edfc86ad5a04f4279f78b3e9adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab214932b80e9fd25cea8d0918bd6c596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#ab214932b80e9fd25cea8d0918bd6c596">sendMessage</a> (QString message)</td></tr>
+<tr class="separator:ab214932b80e9fd25cea8d0918bd6c596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ad100f6606620c093158a601b87843e2c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#ad100f6606620c093158a601b87843e2c">connectState</a></td></tr>
+<tr class="separator:ad100f6606620c093158a601b87843e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2856b153162940f20fdbcc11474c914a"><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a2856b153162940f20fdbcc11474c914a">configuration</a></td></tr>
+<tr class="separator:a2856b153162940f20fdbcc11474c914a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-slots"></a>
 Private Slots</h2></td></tr>
@@ -156,8 +182,6 @@ Private Slots</h2></td></tr>
 <tr class="separator:a58b901197494891c9fe064b532ef7017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6998ed82d91f1ccfc87b047be694ac4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#ac6998ed82d91f1ccfc87b047be694ac4">on_autopilot_clicked</a> ()</td></tr>
 <tr class="separator:ac6998ed82d91f1ccfc87b047be694ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58171a898961ea8b7d9917aa25c90f92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a58171a898961ea8b7d9917aa25c90f92">parseIncomingMessage</a> (QByteArray)</td></tr>
-<tr class="separator:a58171a898961ea8b7d9917aa25c90f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a451a343ab7ca81c9d77ae8afa81d845e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a451a343ab7ca81c9d77ae8afa81d845e">requestPosition</a> ()</td></tr>
 <tr class="separator:a451a343ab7ca81c9d77ae8afa81d845e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaaf603ecd1c9d564e0c12bc222dceac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#abaaf603ecd1c9d564e0c12bc222dceac">on_load_clicked</a> ()</td></tr>
@@ -179,16 +203,14 @@ Private Slots</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a89af14e7caa7e4b3114f0f1414d5824e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a89af14e7caa7e4b3114f0f1414d5824e">initialize</a> (QString filename)</td></tr>
-<tr class="separator:a89af14e7caa7e4b3114f0f1414d5824e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e8876f9f673dbfa4d9373a4f116a788"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a9e8876f9f673dbfa4d9373a4f116a788">readXML</a> (QString filename)</td></tr>
+<tr class="separator:a9e8876f9f673dbfa4d9373a4f116a788"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d3034b278ad208797bc5a266b07466"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#ab4d3034b278ad208797bc5a266b07466">createVehicle</a> ()</td></tr>
 <tr class="separator:ab4d3034b278ad208797bc5a266b07466"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d4d1f5faffbd3a26f2c4585d73b0ad0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a7d4d1f5faffbd3a26f2c4585d73b0ad0">updateRouteTable</a> ()</td></tr>
 <tr class="separator:a7d4d1f5faffbd3a26f2c4585d73b0ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5467a779c916f1058ab876b086da11c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a5467a779c916f1058ab876b086da11c9">refreshMap</a> (GeoDataCoordinates position)</td></tr>
 <tr class="separator:a5467a779c916f1058ab876b086da11c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab214932b80e9fd25cea8d0918bd6c596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#ab214932b80e9fd25cea8d0918bd6c596">sendMessage</a> (QString message)</td></tr>
-<tr class="separator:ab214932b80e9fd25cea8d0918bd6c596"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89e5ccbbc7627fc5609d18647afeaeb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#a89e5ccbbc7627fc5609d18647afeaeb5">uploadWaypoint</a> (int <a class="el" href="class_panel_route.html#aeb01b3fafa487bd023635bc01e6587df">waypointIndex</a>)</td></tr>
 <tr class="separator:a89e5ccbbc7627fc5609d18647afeaeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabe4054d500209db5a89a346636c66a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_route.html#aabe4054d500209db5a89a346636c66a2">updateIndicatorStatus</a> (QLabel *indicator, bool state, QString status)</td></tr>
@@ -290,6 +312,30 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="afcd179ac0294c7a675670fd2c6d659c5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelRoute::connectionState </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ab4d3034b278ad208797bc5a266b07466"></a>
 <div class="memitem">
 <div class="memproto">
@@ -353,7 +399,30 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a89af14e7caa7e4b3114f0f1414d5824e"></a>
+<a class="anchor" id="a8effdcf6629c7379621cf70984b5c6be"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelRoute::getConnectionState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa04ce975c811f0cbbb85422b0ddb6f6c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -363,14 +432,38 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void PanelRoute::initialize </td>
           <td>(</td>
-          <td class="paramtype">QString&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td class="paramtype">QMap&lt; QString, QString &gt;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a581af35573f0a844af29e3a4ad9332bf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelRoute::initializePanel </td>
+          <td>(</td>
+          <td class="paramtype">QMap&lt; QString, QString &gt;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -725,7 +818,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a58171a898961ea8b7d9917aa25c90f92"></a>
+<a class="anchor" id="a9c3a92ce7c223974ed9b9fc6a3f05849"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -733,7 +826,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void PanelRoute::parseIncomingMessage </td>
+          <td class="memname">void PanelRoute::parseMessage </td>
           <td>(</td>
           <td class="paramtype">QByteArray&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
@@ -742,7 +835,31 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9e8876f9f673dbfa4d9373a4f116a788"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelRoute::readXML </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -813,7 +930,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -860,6 +977,30 @@ Private Attributes</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab3d01fd60534d39f4d7bf39f584abf72"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelRoute::updateConnectionState </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">slot</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1010,6 +1151,30 @@ Private Attributes</h2></td></tr>
 <span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2856b153162940f20fdbcc11474c914a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMap&lt;QString, QString&gt; PanelRoute::configuration</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad100f6606620c093158a601b87843e2c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PanelRoute::connectState</td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -1444,7 +1609,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_panel_route.html">PanelRoute</a></li>
-    <li class="footer">Generated on Mon Feb 17 2014 23:34:30 for AeroQuad Communicator by
+    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

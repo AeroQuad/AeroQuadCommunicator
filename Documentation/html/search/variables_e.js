@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['telemetry',['telemetry',['../struct_panel_config_1_1configuration.html#a164860fcd4fc0c65463d6e0ce3576939',1,'PanelConfig::configuration::telemetry()'],['../struct_panel_plot_1_1plot.html#aae882c78417f324c7cbf95dd84f96a69',1,'PanelPlot::plot::telemetry()']]],
+  ['telemetry',['telemetry',['../struct_panel_config_1_1cfg.html#a90200bb905663cdcd3003401555bb202',1,'PanelConfig::cfg::telemetry()'],['../struct_panel_plot_1_1plot.html#aae882c78417f324c7cbf95dd84f96a69',1,'PanelPlot::plot::telemetry()']]],
   ['timeaxislength',['timeAxisLength',['../class_panel_plot.html#a3fbdbe8259192ecbd5e6bd721bcaf5e6',1,'PanelPlot']]],
   ['timer',['timer',['../class_panel_route.html#aac63c8f5aab0c3619273a3abc80be3a4',1,'PanelRoute::timer()'],['../class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38',1,'PositionSimulator::timer()']]],
   ['trail',['trail',['../class_vehicle.html#a00320fd0c9a951bb6ee0a814a03e0b03',1,'Vehicle']]],

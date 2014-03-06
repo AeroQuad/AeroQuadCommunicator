@@ -105,14 +105,35 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="textblock"><h1><a class="anchor" id="installation_sec"></a>
 Installation</h1>
 <ol type="1">
-<li>Download the source code from GitHub: insert link here</li>
-<li>Install Qt 5.2 version that includes mingw</li>
-<li>Verify shadow build is selected</li>
-<li>Move the following files into the shadow build directory<ol type="a">
-<li>File 1</li>
-<li>File 2</li>
-</ol>
+<li>Download the source code from GitHub: <a href="https://github.com/Carancho/AeroQuadCommunicator.git">https://github.com/Carancho/AeroQuadCommunicator.git</a></li>
+<li>Install Qt (Source originally compiled with v5.2): <a href="http://qt-project.org/downloads">http://qt-project.org/downloads</a><ul>
+<li>Select the Qt version which includes MinGW</li>
+</ul>
 </li>
+<li>Open the AeroQuadCommunicator.pro project file.</li>
+<li>Qt will ask you to configure your project.<ul>
+<li>Deselect the Debug checkbox</li>
+<li>Select Browse for the Release folder and create a new folder called "Release"</li>
+<li>Select Configure Project</li>
+</ul>
+</li>
+<li>Copy the following files into the new "Release" folder you just created<ul>
+<li>These files are found under ./AeroQuadCommunicator/AeroQuadCommunicator<ul>
+<li>panel_config.xml</li>
+<li>panel_plot.xml</li>
+<li>panel_route.xml</li>
+<li>position.png</li>
+<li>InitialRoute.xml</li>
+</ul>
+</li>
+<li>Extract the data.zip file found under ./AeroQuadCommunicator/marble into the ./AeroQuadCommunicator/Release/data</li>
+<li>Create another folder in ./AeroQuadCommunicator/Release/Release and place libmarblewidget.dll inside<ul>
+<li>libmarblewidget.dll is found inside ./AeroQuadCommunicator/marble</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Click the Run button to build and run the <a class="el" href="class_communicator.html">Communicator</a></li>
 </ol>
 <h1><a class="anchor" id="requirements_sec"></a>
 Software Requirements</h1>
@@ -188,7 +209,7 @@ How to Add New Panels</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 17 2014 23:34:30 for AeroQuad Communicator by
+    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

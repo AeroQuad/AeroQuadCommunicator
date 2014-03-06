@@ -112,51 +112,70 @@ $(document).ready(function(){initNavTree('panel__monitor_8h_source.html','');});
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PANEL_MONITOR_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>Ui {</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">class </span><a class="code" href="class_panel_monitor.html">PanelMonitor</a>;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;}</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_panel_monitor.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_panel_monitor.html">PanelMonitor</a> : <span class="keyword">public</span> QWidget</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_panel_monitor.html#ac12337de5cf116205aa92b789aaa1be7">PanelMonitor</a>(QWidget *parent = 0);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_panel_monitor.html#aaf573a704cf7225707ac3900c7918bfe">~PanelMonitor</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a9b13a4f1e9c387d927def5308fb8e4b0">displayCommData</a>(QByteArray data);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;signals:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a7b6b57cd32c9172dc32629a23fb81a1c">messageIn</a>(QByteArray);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#ad2dc388e9c043a8310e7a8221a431ee5">messageOut</a>(QByteArray);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">private</span> slots:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">on_sendButton_clicked</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a9b7c7046dc81259340a3ef9ac339e756">on_clearButton_clicked</a>();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">   30</a></span>&#160;    Ui::PanelMonitor *<a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif // PANEL_MONITOR_H</span></div>
-<div class="ttc" id="class_panel_monitor_html"><div class="ttname"><a href="class_panel_monitor.html">PanelMonitor</a></div><div class="ttdef"><b>Definition:</b> panel_monitor.h:10</div></div>
-<div class="ttc" id="class_panel_monitor_html_acce1c1f033b6ab6c0568aea8463d51ab"><div class="ttname"><a href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">PanelMonitor::ui</a></div><div class="ttdeci">Ui::PanelMonitor * ui</div><div class="ttdef"><b>Definition:</b> panel_monitor.h:30</div></div>
-<div class="ttc" id="class_panel_monitor_html_aaf573a704cf7225707ac3900c7918bfe"><div class="ttname"><a href="class_panel_monitor.html#aaf573a704cf7225707ac3900c7918bfe">PanelMonitor::~PanelMonitor</a></div><div class="ttdeci">~PanelMonitor()</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:16</div></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QMap&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>Ui {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">class </span><a class="code" href="class_panel_monitor.html">PanelMonitor</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_panel_monitor.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_panel_monitor.html">PanelMonitor</a> : <span class="keyword">public</span> QWidget</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_panel_monitor.html#ac12337de5cf116205aa92b789aaa1be7">PanelMonitor</a>(QWidget *parent = 0);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_panel_monitor.html#aaf573a704cf7225707ac3900c7918bfe">~PanelMonitor</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">   18</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">connectState</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#ac80041809c2708810bd269dd947295dd">   19</a></span>&#160;    QMap&lt;QString, QString&gt; <a class="code" href="class_panel_monitor.html#ac80041809c2708810bd269dd947295dd">configuration</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#a27ca34feded6db78aaef2d639bdd5513">   20</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a27ca34feded6db78aaef2d639bdd5513">sendMessage</a>(QString message) {emit <a class="code" href="class_panel_monitor.html#ad2dc388e9c043a8310e7a8221a431ee5">messageOut</a>(message.toUtf8());}</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a1f82d5d273fdf74d6cdf349c4e5c99b4">initialize</a>(QMap&lt;QString, QString&gt; config);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#ab554d3cb0b46b168dcce0ef1d977cc2f">updateConnectionState</a>(<span class="keywordtype">bool</span> state);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a4112ef5eb2356daa4a8987dcca7da7ef">parseMessage</a>(QByteArray);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;signals:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a707aa4e2e9065f020c544e013775cb57">initializePanel</a>(QMap&lt;QString, QString&gt;);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a7b6b57cd32c9172dc32629a23fb81a1c">messageIn</a>(QByteArray);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#ad2dc388e9c043a8310e7a8221a431ee5">messageOut</a>(QByteArray);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a72bb2d2323099d0e43d8c97d531c9dc0">panelStatus</a>(QString);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#ab1b9eef3d45f70736b38020e667f404d">connectionState</a>(<span class="keywordtype">bool</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a1fe4e855f0376cee5806eeab43980c07">getConnectionState</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">on_sendButton_clicked</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a9b7c7046dc81259340a3ef9ac339e756">on_clearButton_clicked</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">   40</a></span>&#160;    Ui::PanelMonitor *<a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif // PANEL_MONITOR_H</span></div>
+<div class="ttc" id="class_panel_monitor_html_ab554d3cb0b46b168dcce0ef1d977cc2f"><div class="ttname"><a href="class_panel_monitor.html#ab554d3cb0b46b168dcce0ef1d977cc2f">PanelMonitor::updateConnectionState</a></div><div class="ttdeci">void updateConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:49</div></div>
+<div class="ttc" id="class_panel_monitor_html"><div class="ttname"><a href="class_panel_monitor.html">PanelMonitor</a></div><div class="ttdef"><b>Definition:</b> panel_monitor.h:11</div></div>
+<div class="ttc" id="class_panel_monitor_html_acce1c1f033b6ab6c0568aea8463d51ab"><div class="ttname"><a href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">PanelMonitor::ui</a></div><div class="ttdeci">Ui::PanelMonitor * ui</div><div class="ttdef"><b>Definition:</b> panel_monitor.h:40</div></div>
+<div class="ttc" id="class_panel_monitor_html_a89bcec786d708417dddf6bb4d2315099"><div class="ttname"><a href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">PanelMonitor::connectState</a></div><div class="ttdeci">bool connectState</div><div class="ttdef"><b>Definition:</b> panel_monitor.h:18</div></div>
+<div class="ttc" id="class_panel_monitor_html_ab1b9eef3d45f70736b38020e667f404d"><div class="ttname"><a href="class_panel_monitor.html#ab1b9eef3d45f70736b38020e667f404d">PanelMonitor::connectionState</a></div><div class="ttdeci">void connectionState(bool)</div></div>
+<div class="ttc" id="class_panel_monitor_html_aaf573a704cf7225707ac3900c7918bfe"><div class="ttname"><a href="class_panel_monitor.html#aaf573a704cf7225707ac3900c7918bfe">PanelMonitor::~PanelMonitor</a></div><div class="ttdeci">~PanelMonitor()</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:18</div></div>
+<div class="ttc" id="class_panel_monitor_html_a707aa4e2e9065f020c544e013775cb57"><div class="ttname"><a href="class_panel_monitor.html#a707aa4e2e9065f020c544e013775cb57">PanelMonitor::initializePanel</a></div><div class="ttdeci">void initializePanel(QMap&lt; QString, QString &gt;)</div></div>
 <div class="ttc" id="class_panel_monitor_html_ad2dc388e9c043a8310e7a8221a431ee5"><div class="ttname"><a href="class_panel_monitor.html#ad2dc388e9c043a8310e7a8221a431ee5">PanelMonitor::messageOut</a></div><div class="ttdeci">void messageOut(QByteArray)</div></div>
-<div class="ttc" id="class_panel_monitor_html_a9b13a4f1e9c387d927def5308fb8e4b0"><div class="ttname"><a href="class_panel_monitor.html#a9b13a4f1e9c387d927def5308fb8e4b0">PanelMonitor::displayCommData</a></div><div class="ttdeci">void displayCommData(QByteArray data)</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:21</div></div>
-<div class="ttc" id="class_panel_monitor_html_a9b7c7046dc81259340a3ef9ac339e756"><div class="ttname"><a href="class_panel_monitor.html#a9b7c7046dc81259340a3ef9ac339e756">PanelMonitor::on_clearButton_clicked</a></div><div class="ttdeci">void on_clearButton_clicked()</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:36</div></div>
+<div class="ttc" id="class_panel_monitor_html_a1fe4e855f0376cee5806eeab43980c07"><div class="ttname"><a href="class_panel_monitor.html#a1fe4e855f0376cee5806eeab43980c07">PanelMonitor::getConnectionState</a></div><div class="ttdeci">void getConnectionState()</div></div>
+<div class="ttc" id="class_panel_monitor_html_a72bb2d2323099d0e43d8c97d531c9dc0"><div class="ttname"><a href="class_panel_monitor.html#a72bb2d2323099d0e43d8c97d531c9dc0">PanelMonitor::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+<div class="ttc" id="class_panel_monitor_html_a4112ef5eb2356daa4a8987dcca7da7ef"><div class="ttname"><a href="class_panel_monitor.html#a4112ef5eb2356daa4a8987dcca7da7ef">PanelMonitor::parseMessage</a></div><div class="ttdeci">void parseMessage(QByteArray)</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:29</div></div>
+<div class="ttc" id="class_panel_monitor_html_a9b7c7046dc81259340a3ef9ac339e756"><div class="ttname"><a href="class_panel_monitor.html#a9b7c7046dc81259340a3ef9ac339e756">PanelMonitor::on_clearButton_clicked</a></div><div class="ttdeci">void on_clearButton_clicked()</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:44</div></div>
 <div class="ttc" id="class_panel_monitor_html_a7b6b57cd32c9172dc32629a23fb81a1c"><div class="ttname"><a href="class_panel_monitor.html#a7b6b57cd32c9172dc32629a23fb81a1c">PanelMonitor::messageIn</a></div><div class="ttdeci">void messageIn(QByteArray)</div></div>
+<div class="ttc" id="class_panel_monitor_html_a27ca34feded6db78aaef2d639bdd5513"><div class="ttname"><a href="class_panel_monitor.html#a27ca34feded6db78aaef2d639bdd5513">PanelMonitor::sendMessage</a></div><div class="ttdeci">void sendMessage(QString message)</div><div class="ttdef"><b>Definition:</b> panel_monitor.h:20</div></div>
+<div class="ttc" id="class_panel_monitor_html_ac80041809c2708810bd269dd947295dd"><div class="ttname"><a href="class_panel_monitor.html#ac80041809c2708810bd269dd947295dd">PanelMonitor::configuration</a></div><div class="ttdeci">QMap&lt; QString, QString &gt; configuration</div><div class="ttdef"><b>Definition:</b> panel_monitor.h:19</div></div>
+<div class="ttc" id="class_panel_monitor_html_a1f82d5d273fdf74d6cdf349c4e5c99b4"><div class="ttname"><a href="class_panel_monitor.html#a1f82d5d273fdf74d6cdf349c4e5c99b4">PanelMonitor::initialize</a></div><div class="ttdeci">void initialize(QMap&lt; QString, QString &gt; config)</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:23</div></div>
 <div class="ttc" id="class_panel_monitor_html_ac12337de5cf116205aa92b789aaa1be7"><div class="ttname"><a href="class_panel_monitor.html#ac12337de5cf116205aa92b789aaa1be7">PanelMonitor::PanelMonitor</a></div><div class="ttdeci">PanelMonitor(QWidget *parent=0)</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:4</div></div>
-<div class="ttc" id="class_panel_monitor_html_a9a6a7e6187d2f9e261c99f2667e0ae31"><div class="ttname"><a href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">PanelMonitor::on_sendButton_clicked</a></div><div class="ttdeci">void on_sendButton_clicked()</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:27</div></div>
+<div class="ttc" id="class_panel_monitor_html_a9a6a7e6187d2f9e261c99f2667e0ae31"><div class="ttname"><a href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">PanelMonitor::on_sendButton_clicked</a></div><div class="ttdeci">void on_sendButton_clicked()</div><div class="ttdef"><b>Definition:</b> panel_monitor.cpp:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_ead29842ed5e7583567412f9bbf2108f.html">AeroQuadCommunicator</a></li><li class="navelem"><a class="el" href="dir_d0ad9d8b5049107d08fae70e7ac21e52.html">panel</a></li><li class="navelem"><a class="el" href="dir_b3928167845ecdad06ad5c7140a0f771.html">monitor</a></li><li class="navelem"><a class="el" href="panel__monitor_8h.html">panel_monitor.h</a></li>
-    <li class="footer">Generated on Mon Feb 17 2014 23:34:30 for AeroQuad Communicator by
+    <li class="footer">Generated on Thu Mar 6 2014 01:00:54 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

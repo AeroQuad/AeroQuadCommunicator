@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['updateconfig',['updateConfig',['../class_panel_config.html#a53c8c72f93192b0fbade4f7d8cba45eb',1,'PanelConfig']]],
+  ['updateconfig',['updateConfig',['../class_communicator.html#ab188061288a7af8055fb91f95c5046d0',1,'Communicator']]],
+  ['updateconnectionstate',['updateConnectionState',['../class_panel_config.html#a004e9a32d3698d9209b636e4567ccfe9',1,'PanelConfig::updateConnectionState()'],['../class_menu_connect.html#ab1457269f95d79ba7eee0b88b362438f',1,'MenuConnect::updateConnectionState()'],['../class_panel_example.html#a9ca81913b66080c47b7337320466296b',1,'PanelExample::updateConnectionState()'],['../class_panel_firmware.html#abee35eb79c23a75e06426f20d8ffddac',1,'PanelFirmware::updateConnectionState()'],['../class_panel_monitor.html#ab554d3cb0b46b168dcce0ef1d977cc2f',1,'PanelMonitor::updateConnectionState()'],['../class_panel_plot.html#aac8f9dc8c43da1ce7d8fcc6538ab2975',1,'PanelPlot::updateConnectionState()'],['../class_panel_route.html#ab3d01fd60534d39f4d7bf39f584abf72',1,'PanelRoute::updateConnectionState()']]],
   ['updateheading',['updateHeading',['../class_position_simulator.html#a867ec372476b4b70cfe6486e310778b9',1,'PositionSimulator::updateHeading()'],['../class_vehicle.html#a0c3f8fe66c659edc4ef5ab656f49f99e',1,'Vehicle::updateHeading()']]],
   ['updateindicatorstatus',['updateIndicatorStatus',['../class_panel_route.html#aabe4054d500209db5a89a346636c66a2',1,'PanelRoute']]],
   ['updateparametervalues',['updateParameterValues',['../class_panel_config.html#a4461a27d96795253bf09bf0527ed12b4',1,'PanelConfig']]],

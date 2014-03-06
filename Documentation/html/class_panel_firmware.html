@@ -107,8 +107,10 @@ $(document).ready(function(){initNavTree('class_panel_firmware.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pub-slots">Public Slots</a> &#124;
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pri-slots">Private Slots</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
@@ -128,21 +130,47 @@ Inheritance diagram for PanelFirmware:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
+Public Slots</h2></td></tr>
+<tr class="memitem:aa49bea1c0544d754a9ed593df0feac24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#aa49bea1c0544d754a9ed593df0feac24">initialize</a> (QMap&lt; QString, QString &gt; config)</td></tr>
+<tr class="separator:aa49bea1c0544d754a9ed593df0feac24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abee35eb79c23a75e06426f20d8ffddac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#abee35eb79c23a75e06426f20d8ffddac">updateConnectionState</a> (bool state)</td></tr>
+<tr class="separator:abee35eb79c23a75e06426f20d8ffddac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99fd3d614c3145ad2eaf4142244261be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a99fd3d614c3145ad2eaf4142244261be">parseMessage</a> (QByteArray)</td></tr>
+<tr class="separator:a99fd3d614c3145ad2eaf4142244261be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
+<tr class="memitem:ad50df0890d0d1cb38061c8f36482f56c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#ad50df0890d0d1cb38061c8f36482f56c">initializePanel</a> (QMap&lt; QString, QString &gt;)</td></tr>
+<tr class="separator:ad50df0890d0d1cb38061c8f36482f56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a372aa60e16f5a4d1860cce1c26a29567"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a372aa60e16f5a4d1860cce1c26a29567">closeConnection</a> ()</td></tr>
+<tr class="separator:a372aa60e16f5a4d1860cce1c26a29567"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a937cfa1274d72aff538727b0ef8f2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a6a937cfa1274d72aff538727b0ef8f2b">messageIn</a> (QByteArray)</td></tr>
 <tr class="separator:a6a937cfa1274d72aff538727b0ef8f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1543f29e7663661baf7199af7eb4b988"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a1543f29e7663661baf7199af7eb4b988">messageOut</a> (QByteArray)</td></tr>
 <tr class="separator:a1543f29e7663661baf7199af7eb4b988"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af249ca1b2cc12a9c73e3f34c0566efd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a> (QString)</td></tr>
 <tr class="separator:af249ca1b2cc12a9c73e3f34c0566efd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a440a13b242f2337c83d5486adedd317b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a440a13b242f2337c83d5486adedd317b">connectionState</a> (bool)</td></tr>
+<tr class="separator:a440a13b242f2337c83d5486adedd317b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bff56342395dae4d9b4ca028317a0a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a9bff56342395dae4d9b4ca028317a0a5">getConnectionState</a> ()</td></tr>
+<tr class="separator:a9bff56342395dae4d9b4ca028317a0a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4e72f682ccd0a51c9688f1a0f1e1f4dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a4e72f682ccd0a51c9688f1a0f1e1f4dd">PanelFirmware</a> (<a class="el" href="class_communication.html">Communication</a> *commIn)</td></tr>
-<tr class="separator:a4e72f682ccd0a51c9688f1a0f1e1f4dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b5961388eb6277c4ab36e69a057d06"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a17b5961388eb6277c4ab36e69a057d06">PanelFirmware</a> (QWidget *parent=0)</td></tr>
+<tr class="separator:a17b5961388eb6277c4ab36e69a057d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab319b579911abe6bb0731cbafef4c1eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#ab319b579911abe6bb0731cbafef4c1eb">~PanelFirmware</a> ()</td></tr>
 <tr class="separator:ab319b579911abe6bb0731cbafef4c1eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa017d4d802594bf8f4fe599ca90dbe08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#aa017d4d802594bf8f4fe599ca90dbe08">sendMessage</a> (QString message)</td></tr>
+<tr class="separator:aa017d4d802594bf8f4fe599ca90dbe08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a77253c3e3736cf620efad38f7202a2e5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a77253c3e3736cf620efad38f7202a2e5">connectState</a></td></tr>
+<tr class="separator:a77253c3e3736cf620efad38f7202a2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74a693f0b0f21990266c584e0088ff5"><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#aa74a693f0b0f21990266c584e0088ff5">configuration</a></td></tr>
+<tr class="separator:aa74a693f0b0f21990266c584e0088ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-slots"></a>
 Private Slots</h2></td></tr>
@@ -182,11 +210,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aaba3e0d718f0a8fe3c1d1d72a9597d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2acf4ea332b9b2c937b4b884f49f8c39"><td class="memItemLeft" align="right" valign="top">QNetworkAccessManager&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a2acf4ea332b9b2c937b4b884f49f8c39">networkManager</a></td></tr>
 <tr class="separator:a2acf4ea332b9b2c937b4b884f49f8c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa316e761fe063c6db1b91a1da71bc275"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_communication.html">Communication</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#aa316e761fe063c6db1b91a1da71bc275">comm</a></td></tr>
-<tr class="separator:aa316e761fe063c6db1b91a1da71bc275"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a4e72f682ccd0a51c9688f1a0f1e1f4dd"></a>
+<a class="anchor" id="a17b5961388eb6277c4ab36e69a057d06"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -196,8 +222,8 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">PanelFirmware::PanelFirmware </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_communication.html">Communication</a> *&#160;</td>
-          <td class="paramname"><em>commIn</em></td><td>)</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -226,6 +252,53 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a372aa60e16f5a4d1860cce1c26a29567"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelFirmware::closeConnection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a440a13b242f2337c83d5486adedd317b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelFirmware::connectionState </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="afb757b84eaee9cf89b5152e060a3d516"></a>
 <div class="memitem">
 <div class="memproto">
@@ -291,6 +364,77 @@ Private Attributes</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9bff56342395dae4d9b4ca028317a0a5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelFirmware::getConnectionState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa49bea1c0544d754a9ed593df0feac24"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelFirmware::initialize </td>
+          <td>(</td>
+          <td class="paramtype">QMap&lt; QString, QString &gt;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad50df0890d0d1cb38061c8f36482f56c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelFirmware::initializePanel </td>
+          <td>(</td>
+          <td class="paramtype">QMap&lt; QString, QString &gt;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -415,6 +559,30 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a99fd3d614c3145ad2eaf4142244261be"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelFirmware::parseMessage </td>
+          <td>(</td>
+          <td class="paramtype">QByteArray&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ac1f0ec02f5abb700b1fc49d4247c87aa"></a>
 <div class="memitem">
 <div class="memproto">
@@ -509,6 +677,30 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aa017d4d802594bf8f4fe599ca90dbe08"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelFirmware::sendMessage </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a28cfcca4680526537869af350192af75"></a>
 <div class="memitem">
 <div class="memproto">
@@ -526,6 +718,30 @@ Private Attributes</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abee35eb79c23a75e06426f20d8ffddac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PanelFirmware::updateConnectionState </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">slot</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -557,22 +773,26 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="aa316e761fe063c6db1b91a1da71bc275"></a>
+<a class="anchor" id="aa74a693f0b0f21990266c584e0088ff5"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_communication.html">Communication</a>* PanelFirmware::comm</td>
+          <td class="memname">QMap&lt;QString, QString&gt; PanelFirmware::configuration</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a77253c3e3736cf620efad38f7202a2e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PanelFirmware::connectState</td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -667,7 +887,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_panel_firmware.html">PanelFirmware</a></li>
-    <li class="footer">Generated on Mon Feb 17 2014 23:34:30 for AeroQuad Communicator by
+    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

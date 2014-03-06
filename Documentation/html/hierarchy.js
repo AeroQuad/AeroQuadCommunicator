@@ -1,6 +1,6 @@
 var hierarchy =
 [
-    [ "PanelConfig::configuration", "struct_panel_config_1_1configuration.html", null ],
+    [ "PanelConfig::cfg", "struct_panel_config_1_1cfg.html", null ],
     [ "PanelConfig::parameter", "struct_panel_config_1_1parameter.html", null ],
     [ "PanelPlot::plot", "struct_panel_plot_1_1plot.html", null ],
     [ "QMainWindow", null, [
@@ -19,13 +19,12 @@ var hierarchy =
     ] ],
     [ "QWidget", null, [
       [ "MenuConnect", "class_menu_connect.html", null ],
-      [ "MenuMain", "class_menu_main.html", null ],
       [ "PanelConfig", "class_panel_config.html", null ],
+      [ "PanelExample", "class_panel_example.html", null ],
       [ "PanelFirmware", "class_panel_firmware.html", null ],
       [ "PanelMonitor", "class_panel_monitor.html", null ],
       [ "PanelPlot", "class_panel_plot.html", null ],
-      [ "PanelRoute", "class_panel_route.html", null ],
-      [ "PanelTest", "class_panel_test.html", null ]
+      [ "PanelRoute", "class_panel_route.html", null ]
     ] ],
     [ "Route::waypointData", "struct_route_1_1waypoint_data.html", null ]
 ];

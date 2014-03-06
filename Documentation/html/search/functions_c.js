@@ -5,7 +5,7 @@ var searchData=
   ['selectconfig',['selectConfig',['../class_panel_config.html#a150c70890753e6cb676b64bea1d840ad',1,'PanelConfig']]],
   ['selectdescription',['selectDescription',['../class_panel_config.html#a23f5d237d9e7a41304505e5355966e12',1,'PanelConfig']]],
   ['selectplot',['selectPlot',['../class_panel_plot.html#a41a145ccc4044009ae3928a115ece05c',1,'PanelPlot']]],
-  ['sendmessage',['sendMessage',['../class_panel_route.html#ab214932b80e9fd25cea8d0918bd6c596',1,'PanelRoute']]],
+  ['sendmessage',['sendMessage',['../class_panel_config.html#ae9f1915cc4794c6e5c9a661c65ef1532',1,'PanelConfig::sendMessage()'],['../class_menu_connect.html#a4957bac7fb68b58068fee3585ef006dd',1,'MenuConnect::sendMessage()'],['../class_panel_example.html#a3112359e9e31c1559fe4b7ae6478d782',1,'PanelExample::sendMessage()'],['../class_panel_firmware.html#aa017d4d802594bf8f4fe599ca90dbe08',1,'PanelFirmware::sendMessage()'],['../class_panel_monitor.html#a27ca34feded6db78aaef2d639bdd5513',1,'PanelMonitor::sendMessage()'],['../class_panel_plot.html#a70f0aa8db465bc607ec4bbf0aa89d5b8',1,'PanelPlot::sendMessage()'],['../class_panel_route.html#ab214932b80e9fd25cea8d0918bd6c596',1,'PanelRoute::sendMessage()']]],
   ['setconnection',['setConnection',['../class_menu_connect.html#ae5bef033d8053396a82f3744288efe60',1,'MenuConnect']]],
   ['setconnectionstate',['setConnectionState',['../class_menu_connect.html#a9ad318f0ed14fe68647aad10cdb4940f',1,'MenuConnect']]],
   ['setupconfiglist',['setupConfigList',['../class_panel_config.html#a8d1c4ca3eec3ab7c5e52bf40fcc053b5',1,'PanelConfig']]],
