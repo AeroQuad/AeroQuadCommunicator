@@ -7,8 +7,7 @@ var NAVTREE =
       [ "Design", "index.html#design_sec", [
         [ "High Level Architecture Diagram", "index.html#architecture", null ],
         [ "Panel Class Diagram", "index.html#panelClass", null ],
-        [ "Communication Class Diagram", "index.html#communicationClass", null ],
-        [ "Communication Sequence Diagram", "index.html#communicationSequence", null ]
+        [ "Communication Class Diagram", "index.html#communicationClass", null ]
       ] ],
       [ "How to Add New Panels", "index.html#addPanel_sec", null ]
     ] ],
@@ -40,7 +39,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "class_panel_route.html#a86d49d473b31b0505e22249b18c2f05f",
-"struct_panel_plot_1_1plot.html#a4e7059ee648e5d5f35e6517fccdf9b13"
+"struct_panel_plot_1_1plot.html#a856d4d43fa609f85dcb2e8d77cc95e6b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

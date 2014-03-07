@@ -1,6 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"struct_panel_plot_1_1plot.html#a4e7059ee648e5d5f35e6517fccdf9b13":[2,0,9,0,0],
 "struct_panel_plot_1_1plot.html#a856d4d43fa609f85dcb2e8d77cc95e6b":[2,0,9,0,2],
 "struct_panel_plot_1_1plot.html#aae882c78417f324c7cbf95dd84f96a69":[2,0,9,0,3],
 "struct_panel_plot_1_1plot.html#ab090d833340fa04208f63c53ba903a36":[2,0,9,0,1],

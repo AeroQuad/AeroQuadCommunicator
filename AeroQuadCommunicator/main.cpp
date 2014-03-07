@@ -1,7 +1,7 @@
 /*! \mainpage Developer's Documentation
  *
  * \section installation_sec Installation
- * 1. Download the source code from GitHub: https://github.com/Carancho/AeroQuadCommunicator.git
+ * 1. Download the source code from GitHub: https://github.com/AeroQuad/AeroQuadCommunicator.git
  * 2. Install Qt (Source originally compiled with v5.2): http://qt-project.org/downloads
  *  * Select the Qt version which includes MinGW
  *  * The instructions below will assume you have a basic knowledge of Qt
@@ -19,6 +19,9 @@
  *   * panel_route.xml
  *   * position.png
  *   * InitialRoute.xml
+ *   * dfu-util.exe
+ *   * AeroQuad32Production.bin
+ *   * prod_image_256k.bin
  *  * Extract the data.zip file found under ./AeroQuadCommunicator/marble into ./AeroQuadCommunicator/Release/data
  *  * Create another folder in ./AeroQuadCommunicator/Release/Release and place libmarblewidget.dll inside
  *   * libmarblewidget.dll is found inside ./AeroQuadCommunicator/marble
