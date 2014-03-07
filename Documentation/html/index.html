@@ -108,12 +108,17 @@ Installation</h1>
 <li>Download the source code from GitHub: <a href="https://github.com/Carancho/AeroQuadCommunicator.git">https://github.com/Carancho/AeroQuadCommunicator.git</a></li>
 <li>Install Qt (Source originally compiled with v5.2): <a href="http://qt-project.org/downloads">http://qt-project.org/downloads</a><ul>
 <li>Select the Qt version which includes MinGW</li>
+<li>The instructions below will assume you have a basic knowledge of Qt</li>
+<li>Check out this tutorial if you are new to Qt: <a href="http://qt-project.org/doc/qtcreator-3.0/creator-writing-program.html">http://qt-project.org/doc/qtcreator-3.0/creator-writing-program.html</a></li>
 </ul>
 </li>
 <li>Open the AeroQuadCommunicator.pro project file.</li>
 <li>Qt will ask you to configure your project.<ul>
 <li>Deselect the Debug checkbox</li>
-<li>Select Browse for the Release folder and create a new folder called "Release"</li>
+<li>Select Browse for the Release folder, create a new folder called "Release", then choose the Select Folder button <div class="image">
+<img src="CreateReleaseFolder.png" alt="CreateReleaseFolder.png"/>
+</div>
+</li>
 <li>Select Configure Project</li>
 </ul>
 </li>
@@ -126,7 +131,7 @@ Installation</h1>
 <li>InitialRoute.xml</li>
 </ul>
 </li>
-<li>Extract the data.zip file found under ./AeroQuadCommunicator/marble into the ./AeroQuadCommunicator/Release/data</li>
+<li>Extract the data.zip file found under ./AeroQuadCommunicator/marble into ./AeroQuadCommunicator/Release/data</li>
 <li>Create another folder in ./AeroQuadCommunicator/Release/Release and place libmarblewidget.dll inside<ul>
 <li>libmarblewidget.dll is found inside ./AeroQuadCommunicator/marble</li>
 </ul>
@@ -184,23 +189,63 @@ How to Add New Panels</h1>
 <li>The new files will now appear under Headers, Sources and Forms in the Projects pane.</li>
 </ol>
 </li>
-<li>Update the newly created .h and .cpp files with required class properties and methods<ol type="a">
-<li>Add the following to the header file:<ol type="i">
-<li>Addition 1</li>
-<li>Addition 2</li>
-</ol>
-</li>
-<li>Add the following to the source file:<ol type="i">
-<li>Addition 1</li>
-<li>Addition 2</li>
-</ol>
-</li>
+<li>Update the newly created .h and .cpp files with required class properties and methods. You can also look at <a class="el" href="panel__example_8h.html">panel_example.h</a> and <a class="el" href="panel__example_8cpp.html">panel_example.cpp</a> for an example in code.<ol type="a">
+<li>Insert the following code into the new .h file: <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;QMap&gt;</span></div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">bool</span> connectState;</div>
+<div class="line">    QMap&lt;QString, QString&gt; configuration;</div>
+<div class="line">    <span class="keywordtype">void</span> sendMessage(QString message) {emit messageOut(message.toUtf8());}</div>
+<div class="line"></div>
+<div class="line"><span class="keyword">public</span> slots:</div>
+<div class="line">    <span class="keywordtype">void</span> initialize(QMap&lt;QString, QString&gt; config);</div>
+<div class="line">    <span class="keywordtype">void</span> updateConnectionState(<span class="keywordtype">bool</span> state) {connectState = state;}</div>
+<div class="line">    <span class="keywordtype">void</span> parseMessage(QByteArray);</div>
+<div class="line"></div>
+<div class="line">signals:</div>
+<div class="line">    <span class="keywordtype">void</span> initializePanel(QMap&lt;QString, QString&gt;);</div>
+<div class="line">    <span class="keywordtype">void</span> messageIn(QByteArray);</div>
+<div class="line">    <span class="keywordtype">void</span> messageOut(QByteArray);</div>
+<div class="line">    <span class="keywordtype">void</span> panelStatus(QString);</div>
+<div class="line">    <span class="keywordtype">void</span> connectionState(<span class="keywordtype">bool</span>);</div>
+<div class="line">    <span class="keywordtype">void</span> getConnectionState();</div>
+</div><!-- fragment --></li>
+<li>Insert the following code into the new .cpp's constructor: <div class="fragment"><div class="line">connect(<span class="keyword">this</span>, SIGNAL(initializePanel(QMap&lt;QString,QString&gt;)), <span class="keyword">this</span>, SLOT(initialize(QMap&lt;QString,QString&gt;)));</div>
+<div class="line">connect(<span class="keyword">this</span>, SIGNAL(messageIn(QByteArray)), <span class="keyword">this</span>, SLOT(parseMessage(QByteArray)));</div>
+<div class="line">connect(<span class="keyword">this</span>, SIGNAL(connectionState(<span class="keywordtype">bool</span>)), <span class="keyword">this</span>, SLOT(updateConnectionState(<span class="keywordtype">bool</span>)));</div>
+</div><!-- fragment --></li>
+<li>Insert the following code at the bottom of the panel's .cpp file: <div class="fragment"><div class="line"><span class="keywordtype">void</span> ReplaceWithPanelClassName::initialize(QMap&lt;QString, QString&gt; config)</div>
+<div class="line">{</div>
+<div class="line">    configuration = config;</div>
+<div class="line">    emit getConnectionState();</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">void</span> ReplaceWithPanelClassName::parseMessage(QByteArray data)</div>
+<div class="line">{</div>
+<div class="line">    QString incomingMessage = data;</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Add code below to do something with incomingMessage.</span></div>
+<div class="line">    ui-&gt;exampleResponse-&gt;setText(incomingMessage); <span class="comment">// this is an example line</span></div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
 </ol>
 </li>
 <li>Update <a class="el" href="communicator_8cpp.html">communicator.cpp</a> to use new widget<ol type="a">
-<li>Add header file</li>
-<li>Update <a class="el" href="class_communicator.html#aba21e3ef2b32a3e34be770f5a475b90c">Communicator::initToolBar()</a></li>
-<li>Update <a class="el" href="class_communicator.html#aab0e5e1b6660544d90c9a4114608d96e">Communicator::loadPanel()</a> </li>
+<li>Include your custom panel's header file at the top of <a class="el" href="communicator_8cpp.html">communicator.cpp</a></li>
+<li>Update <a class="el" href="class_communicator.html#aba21e3ef2b32a3e34be770f5a475b90c">Communicator::initToolBar()</a>, this adds a new menu icon in the tool bar<ol type="i">
+<li>To add a graphical icon, you will need to add the graphics to the resources file: communicator.qrc</li>
+<li>Edit communicator.ui by adding a new Action in the Action Editor<ol type="A">
+<li>Define the Object Name, use this to add a new connect() statement in <a class="el" href="class_communicator.html#aba21e3ef2b32a3e34be770f5a475b90c">Communicator::initToolBar()</a></li>
+<li>When defining signalMapper-&gt;setMapping(), choose a string to refer to your new panel</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Update <a class="el" href="class_communicator.html#aab0e5e1b6660544d90c9a4114608d96e">Communicator::loadPanel()</a><ol type="i">
+<li>Use the string you defined from step 3B to call your new panel: <div class="fragment"><div class="line"><span class="keywordflow">else</span> <span class="keywordflow">if</span> (panelName == <span class="stringliteral">&quot;Test&quot;</span>)</div>
+<div class="line">  panel = <span class="keyword">new</span> <a class="code" href="class_panel_example.html">PanelExample</a>;</div>
+</div><!-- fragment --> </li>
+</ol>
+</li>
 </ol>
 </li>
 </ol>
@@ -209,7 +254,7 @@ How to Add New Panels</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:43 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

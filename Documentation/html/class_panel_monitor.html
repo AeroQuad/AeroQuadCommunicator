@@ -181,7 +181,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:acce1c1f033b6ab6c0568aea8463d51ab"><td class="memItemLeft" align="right" valign="top">Ui::PanelMonitor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a></td></tr>
 <tr class="separator:acce1c1f033b6ab6c0568aea8463d51ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="panel__monitor_8h_source.html#l00011">11</a> of file <a class="el" href="panel__monitor_8h_source.html">panel_monitor.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ac12337de5cf116205aa92b789aaa1be7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -204,6 +207,29 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8cpp_source.html#l00004">4</a> of file <a class="el" href="panel__monitor_8cpp_source.html">panel_monitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;                                          :</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    QWidget(parent),</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>(<span class="keyword">new</span> Ui::PanelMonitor)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;setReadOnly(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;setMaximumBlockCount(1024);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;setWordWrapMode(QTextOption::NoWrap);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    connect(<a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;commandLine, SIGNAL(returnPressed()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">on_sendButton_clicked</a>()));</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_monitor.html#a707aa4e2e9065f020c544e013775cb57">initializePanel</a>(QMap&lt;QString,QString&gt;)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_monitor.html#a1f82d5d273fdf74d6cdf349c4e5c99b4">initialize</a>(QMap&lt;QString,QString&gt;)));</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_monitor.html#a7b6b57cd32c9172dc32629a23fb81a1c">messageIn</a>(QByteArray)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_monitor.html#a4112ef5eb2356daa4a8987dcca7da7ef">parseMessage</a>(QByteArray)));</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_monitor.html#ab1b9eef3d45f70736b38020e667f404d">connectionState</a>(<span class="keywordtype">bool</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_monitor.html#ab554d3cb0b46b168dcce0ef1d977cc2f">updateConnectionState</a>(<span class="keywordtype">bool</span>)));</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<div class="ttc" id="class_panel_monitor_html_ab554d3cb0b46b168dcce0ef1d977cc2f"><div class="ttname"><a href="class_panel_monitor.html#ab554d3cb0b46b168dcce0ef1d977cc2f">PanelMonitor::updateConnectionState</a></div><div class="ttdeci">void updateConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00049">panel_monitor.cpp:49</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_acce1c1f033b6ab6c0568aea8463d51ab"><div class="ttname"><a href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">PanelMonitor::ui</a></div><div class="ttdeci">Ui::PanelMonitor * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00040">panel_monitor.h:40</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_ab1b9eef3d45f70736b38020e667f404d"><div class="ttname"><a href="class_panel_monitor.html#ab1b9eef3d45f70736b38020e667f404d">PanelMonitor::connectionState</a></div><div class="ttdeci">void connectionState(bool)</div></div>
+<div class="ttc" id="class_panel_monitor_html_a707aa4e2e9065f020c544e013775cb57"><div class="ttname"><a href="class_panel_monitor.html#a707aa4e2e9065f020c544e013775cb57">PanelMonitor::initializePanel</a></div><div class="ttdeci">void initializePanel(QMap&lt; QString, QString &gt;)</div></div>
+<div class="ttc" id="class_panel_monitor_html_a4112ef5eb2356daa4a8987dcca7da7ef"><div class="ttname"><a href="class_panel_monitor.html#a4112ef5eb2356daa4a8987dcca7da7ef">PanelMonitor::parseMessage</a></div><div class="ttdeci">void parseMessage(QByteArray)</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00029">panel_monitor.cpp:29</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a7b6b57cd32c9172dc32629a23fb81a1c"><div class="ttname"><a href="class_panel_monitor.html#a7b6b57cd32c9172dc32629a23fb81a1c">PanelMonitor::messageIn</a></div><div class="ttdeci">void messageIn(QByteArray)</div></div>
+<div class="ttc" id="class_panel_monitor_html_a1f82d5d273fdf74d6cdf349c4e5c99b4"><div class="ttname"><a href="class_panel_monitor.html#a1f82d5d273fdf74d6cdf349c4e5c99b4">PanelMonitor::initialize</a></div><div class="ttdeci">void initialize(QMap&lt; QString, QString &gt; config)</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00023">panel_monitor.cpp:23</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a9a6a7e6187d2f9e261c99f2667e0ae31"><div class="ttname"><a href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">PanelMonitor::on_sendButton_clicked</a></div><div class="ttdeci">void on_sendButton_clicked()</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00035">panel_monitor.cpp:35</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aaf573a704cf7225707ac3900c7918bfe"></a>
@@ -219,6 +245,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8cpp_source.html#l00018">18</a> of file <a class="el" href="panel__monitor_8cpp_source.html">panel_monitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
+<div class="ttc" id="class_panel_monitor_html_acce1c1f033b6ab6c0568aea8463d51ab"><div class="ttname"><a href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">PanelMonitor::ui</a></div><div class="ttdeci">Ui::PanelMonitor * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00040">panel_monitor.h:40</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -291,6 +323,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8cpp_source.html#l00023">23</a> of file <a class="el" href="panel__monitor_8cpp_source.html">panel_monitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_panel_monitor.html#ac80041809c2708810bd269dd947295dd">configuration</a> = config;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    emit <a class="code" href="class_panel_monitor.html#a1fe4e855f0376cee5806eeab43980c07">getConnectionState</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<div class="ttc" id="class_panel_monitor_html_a1fe4e855f0376cee5806eeab43980c07"><div class="ttname"><a href="class_panel_monitor.html#a1fe4e855f0376cee5806eeab43980c07">PanelMonitor::getConnectionState</a></div><div class="ttdeci">void getConnectionState()</div></div>
+<div class="ttc" id="class_panel_monitor_html_ac80041809c2708810bd269dd947295dd"><div class="ttname"><a href="class_panel_monitor.html#ac80041809c2708810bd269dd947295dd">PanelMonitor::configuration</a></div><div class="ttdeci">QMap&lt; QString, QString &gt; configuration</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00019">panel_monitor.h:19</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a707aa4e2e9065f020c544e013775cb57"></a>
@@ -386,6 +426,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8cpp_source.html#l00044">44</a> of file <a class="el" href="panel__monitor_8cpp_source.html">panel_monitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;clear();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="ttc" id="class_panel_monitor_html_acce1c1f033b6ab6c0568aea8463d51ab"><div class="ttname"><a href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">PanelMonitor::ui</a></div><div class="ttdeci">Ui::PanelMonitor * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00040">panel_monitor.h:40</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a9a6a7e6187d2f9e261c99f2667e0ae31"></a>
@@ -409,6 +455,17 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8cpp_source.html#l00035">35</a> of file <a class="el" href="panel__monitor_8cpp_source.html">panel_monitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    QByteArray message;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    message.append(<a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;commandLine-&gt;text());</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_panel_monitor.html#a27ca34feded6db78aaef2d639bdd5513">sendMessage</a>(message);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;commandLine-&gt;clear();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;commandLine-&gt;setFocus();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<div class="ttc" id="class_panel_monitor_html_acce1c1f033b6ab6c0568aea8463d51ab"><div class="ttname"><a href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">PanelMonitor::ui</a></div><div class="ttdeci">Ui::PanelMonitor * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00040">panel_monitor.h:40</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a27ca34feded6db78aaef2d639bdd5513"><div class="ttname"><a href="class_panel_monitor.html#a27ca34feded6db78aaef2d639bdd5513">PanelMonitor::sendMessage</a></div><div class="ttdeci">void sendMessage(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00020">panel_monitor.h:20</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a72bb2d2323099d0e43d8c97d531c9dc0"></a>
@@ -457,6 +514,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8cpp_source.html#l00029">29</a> of file <a class="el" href="panel__monitor_8cpp_source.html">panel_monitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;insertPlainText(data);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;ensureCursorVisible();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="ttc" id="class_panel_monitor_html_acce1c1f033b6ab6c0568aea8463d51ab"><div class="ttname"><a href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">PanelMonitor::ui</a></div><div class="ttdeci">Ui::PanelMonitor * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00040">panel_monitor.h:40</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a27ca34feded6db78aaef2d639bdd5513"></a>
@@ -481,6 +545,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8h_source.html#l00020">20</a> of file <a class="el" href="panel__monitor_8h_source.html">panel_monitor.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{emit <a class="code" href="class_panel_monitor.html#ad2dc388e9c043a8310e7a8221a431ee5">messageOut</a>(message.toUtf8());}</div>
+<div class="ttc" id="class_panel_monitor_html_ad2dc388e9c043a8310e7a8221a431ee5"><div class="ttname"><a href="class_panel_monitor.html#ad2dc388e9c043a8310e7a8221a431ee5">PanelMonitor::messageOut</a></div><div class="ttdeci">void messageOut(QByteArray)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ab554d3cb0b46b168dcce0ef1d977cc2f"></a>
@@ -505,6 +573,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8cpp_source.html#l00049">49</a> of file <a class="el" href="panel__monitor_8cpp_source.html">panel_monitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">connectState</a> = state;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;sendButton-&gt;setEnabled(<a class="code" href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">connectState</a>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;clearButton-&gt;setEnabled(<a class="code" href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">connectState</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="ttc" id="class_panel_monitor_html_acce1c1f033b6ab6c0568aea8463d51ab"><div class="ttname"><a href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">PanelMonitor::ui</a></div><div class="ttdeci">Ui::PanelMonitor * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00040">panel_monitor.h:40</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a89bcec786d708417dddf6bb4d2315099"><div class="ttname"><a href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">PanelMonitor::connectState</a></div><div class="ttdeci">bool connectState</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00018">panel_monitor.h:18</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -518,6 +595,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8h_source.html#l00019">19</a> of file <a class="el" href="panel__monitor_8h_source.html">panel_monitor.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a89bcec786d708417dddf6bb4d2315099"></a>
@@ -529,6 +608,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="panel__monitor_8h_source.html#l00018">18</a> of file <a class="el" href="panel__monitor_8h_source.html">panel_monitor.h</a>.</p>
 
 </div>
 </div>
@@ -550,11 +631,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__monitor_8h_source.html#l00040">40</a> of file <a class="el" href="panel__monitor_8h_source.html">panel_monitor.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/monitor/<a class="el" href="panel__monitor_8h_source.html">panel_monitor.h</a></li>
-<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/monitor/<a class="el" href="panel__monitor_8cpp.html">panel_monitor.cpp</a></li>
+<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/monitor/<a class="el" href="panel__monitor_8cpp_source.html">panel_monitor.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -562,7 +645,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_panel_monitor.html">PanelMonitor</a></li>
-    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:43 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

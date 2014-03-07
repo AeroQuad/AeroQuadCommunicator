@@ -113,7 +113,9 @@ $(document).ready(function(){initNavTree('main_8cpp.html','');});
 <div class="textblock"><code>#include &lt;QApplication&gt;</code><br/>
 <code>#include &quot;<a class="el" href="communicator_8h_source.html">communicator.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="patched_web_view_style_8h_source.html">utilities\patchedWebViewStyle.h</a>&quot;</code><br/>
-</div><table class="memberdecls">
+</div>
+<p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
@@ -144,6 +146,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00127">127</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    QApplication a(argc, argv);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    QCoreApplication::setOrganizationName(<span class="stringliteral">&quot;AeroQuad&quot;</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    QCoreApplication::setOrganizationDomain(<span class="stringliteral">&quot;AeroQuad.com&quot;</span>);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    QCoreApplication::setApplicationName(<span class="stringliteral">&quot;Communicator&quot;</span>);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="class_communicator.html">Communicator</a> w;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="comment">// Patch Checkbox &amp; Radio Button Bugs</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    QApplication::setStyle( <span class="keyword">new</span> <a class="code" href="class_patched_web_view_style.html">PatchedWebViewStyle</a>() );</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    w.show();</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordflow">return</span> a.exec();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
+<div class="ttc" id="class_communicator_html"><div class="ttname"><a href="class_communicator.html">Communicator</a></div><div class="ttdef"><b>Definition:</b> <a href="communicator_8h_source.html#l00016">communicator.h:16</a></div></div>
+<div class="ttc" id="class_patched_web_view_style_html"><div class="ttname"><a href="class_patched_web_view_style.html">PatchedWebViewStyle</a></div><div class="ttdef"><b>Definition:</b> <a href="patched_web_view_style_8h_source.html#l00008">patchedWebViewStyle.h:8</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
@@ -152,7 +170,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_ead29842ed5e7583567412f9bbf2108f.html">AeroQuadCommunicator</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Thu Mar 6 2014 01:00:54 for AeroQuad Communicator by
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:42 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

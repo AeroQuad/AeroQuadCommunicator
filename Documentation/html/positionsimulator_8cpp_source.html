@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>AeroQuad Communucator: Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/route/positionsimulator.cpp Source File</title>
+<title>AeroQuad Communicator: Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/route/positionsimulator.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,8 +30,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AeroQuad(300).png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">AeroQuad Communucator
-   &#160;<span id="projectnumber">0.1</span>
+   <div id="projectname">AeroQuad Communicator
+   &#160;<span id="projectnumber">v0.1</span>
    </div>
    <div id="projectbrief">Graphical configuration tool for the AeroQuad Flight Control Board</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,6 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -92,7 +94,7 @@ $(document).ready(function(){initNavTree('positionsimulator_8cpp_source.html',''
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,73 +108,90 @@ $(document).ready(function(){initNavTree('positionsimulator_8cpp_source.html',''
 <div class="title">positionsimulator.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// This simulates position reported in radians based on start point, bearing and speed</span></div>
+<a href="positionsimulator_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// This simulates position reported in radians based on start point, bearing and speed</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Equations were taken from: http://www.movable-type.co.uk/scripts/latlong.html</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;positionsimulator.h&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="positionsimulator_8h.html">positionsimulator.h</a>&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using namespace </span>Marble;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;PositionSimulator::PositionSimulator(QObject *parent) :</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_position_simulator.html#a5edf01247254b854ea085fc7fc86d7c7">    8</a></span>&#160;<a class="code" href="class_position_simulator.html#a5edf01247254b854ea085fc7fc86d7c7">PositionSimulator::PositionSimulator</a>(QObject *parent) :</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    QObject(parent)</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    R = 6378100 ; <span class="comment">// meters</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    alt = 12192; <span class="comment">// meters or 40,000 feet</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    currentPosition.setLatitude(33.9425, GeoDataCoordinates::Degree);   <span class="comment">// coordianates of LAX</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    currentPosition.setLongitude(118.4081, GeoDataCoordinates::Degree);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    currentPosition.setAltitude(alt);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    timer = <span class="keyword">new</span> QTimer(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    connect(timer, SIGNAL(timeout()), <span class="keyword">this</span>, SLOT(updatePosition()));</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="class_position_simulator.html#ac315a701ca59b3c8d0dbc4c3fb5d422f">R</a> = 6378100 ; <span class="comment">// meters</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="class_position_simulator.html#a6b9f855bd3a133f0a7cc3a8c1c219897">alt</a> = 12192; <span class="comment">// meters or 40,000 feet</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>.setLatitude(33.9425, GeoDataCoordinates::Degree);   <span class="comment">// coordianates of LAX</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>.setLongitude(118.4081, GeoDataCoordinates::Degree);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>.setAltitude(<a class="code" href="class_position_simulator.html#a6b9f855bd3a133f0a7cc3a8c1c219897">alt</a>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">timer</a> = <span class="keyword">new</span> QTimer(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    connect(<a class="code" href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">timer</a>, SIGNAL(timeout()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_position_simulator.html#a7293316068901bb8157a9e40c9f21377">updatePosition</a>()));</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> PositionSimulator::initialize(GeoDataCoordinates startPositionDeg, <span class="keywordtype">double</span> headingDeg, <span class="keywordtype">double</span> speedKnots, <span class="keywordtype">int</span> intervalMsec)</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_position_simulator.html#acb24b02e8ac849d6e02153e4a3c62f95">   20</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_position_simulator.html#acb24b02e8ac849d6e02153e4a3c62f95">PositionSimulator::initialize</a>(GeoDataCoordinates startPositionDeg, <span class="keywordtype">double</span> headingDeg, <span class="keywordtype">double</span> speedKnots, <span class="keywordtype">int</span> intervalMsec)</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    currentPosition.setLatitude(startPositionDeg.latitude());</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    currentPosition.setLongitude(startPositionDeg.longitude());</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    brng = headingDeg * DEG2RAD; <span class="comment">// convert to radians</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>.setLatitude(startPositionDeg.latitude());</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>.setLongitude(startPositionDeg.longitude());</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_position_simulator.html#ad5f033cf6633edcf7f88c200317de6c8">brng</a> = headingDeg * <a class="code" href="positionsimulator_8h.html#af7e8592d0a634bd3642e9fd508ea8022">DEG2RAD</a>; <span class="comment">// convert to radians</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Calculate distance based on units of speed and update interval</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    metersPerSec = speedKnots * KNOT2MPS; <span class="comment">// convert to meters/sec</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    d = metersPerSec * (<span class="keywordtype">long</span> double)(intervalMsec/1000.0); <span class="comment">// calclate meters travelled during interval</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    timer-&gt;start(intervalMsec);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_position_simulator.html#aaf6372c4c703d8a4e410af24d585a59b">metersPerSec</a> = speedKnots * <a class="code" href="positionsimulator_8h.html#a7d45c9da1e04f8abd7d9ab591548d58b">KNOT2MPS</a>; <span class="comment">// convert to meters/sec</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_position_simulator.html#a217e2788a212f1971c9f72ff8a176abf">d</a> = <a class="code" href="class_position_simulator.html#aaf6372c4c703d8a4e410af24d585a59b">metersPerSec</a> * (<span class="keywordtype">long</span> double)(intervalMsec/1000.0); <span class="comment">// calclate meters travelled during interval</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">timer</a>-&gt;start(intervalMsec);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;GeoDataCoordinates PositionSimulator::updatePosition()</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_position_simulator.html#a7293316068901bb8157a9e40c9f21377">   31</a></span>&#160;GeoDataCoordinates <a class="code" href="class_position_simulator.html#a7293316068901bb8157a9e40c9f21377">PositionSimulator::updatePosition</a>()</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">double</span> lat1 = currentPosition.latitude(GeoDataCoordinates::Radian);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">double</span> lon1 = currentPosition.longitude(GeoDataCoordinates::Radian);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">double</span> lat2 = asin(sin(lat1)*cos(d/R) + cos(lat1)*sin(d/R)*cos(brng));</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">double</span> lon2 = lon1 + atan2(sin(brng)*sin(d/R)*cos(lat1), cos(d/R)-sin(lat1)*sin(lat2));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">double</span> lat1 = <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>.latitude(GeoDataCoordinates::Radian);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">double</span> lon1 = <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>.longitude(GeoDataCoordinates::Radian);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">double</span> lat2 = asin(sin(lat1)*cos(<a class="code" href="class_position_simulator.html#a217e2788a212f1971c9f72ff8a176abf">d</a>/<a class="code" href="class_position_simulator.html#ac315a701ca59b3c8d0dbc4c3fb5d422f">R</a>) + cos(lat1)*sin(<a class="code" href="class_position_simulator.html#a217e2788a212f1971c9f72ff8a176abf">d</a>/<a class="code" href="class_position_simulator.html#ac315a701ca59b3c8d0dbc4c3fb5d422f">R</a>)*cos(<a class="code" href="class_position_simulator.html#ad5f033cf6633edcf7f88c200317de6c8">brng</a>));</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">double</span> lon2 = lon1 + atan2(sin(<a class="code" href="class_position_simulator.html#ad5f033cf6633edcf7f88c200317de6c8">brng</a>)*sin(<a class="code" href="class_position_simulator.html#a217e2788a212f1971c9f72ff8a176abf">d</a>/<a class="code" href="class_position_simulator.html#ac315a701ca59b3c8d0dbc4c3fb5d422f">R</a>)*cos(lat1), cos(<a class="code" href="class_position_simulator.html#a217e2788a212f1971c9f72ff8a176abf">d</a>/<a class="code" href="class_position_simulator.html#ac315a701ca59b3c8d0dbc4c3fb5d422f">R</a>)-sin(lat1)*sin(lat2));</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    currentPosition.setLatitude(lat2, GeoDataCoordinates::Radian);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    currentPosition.setLongitude(lon2, GeoDataCoordinates::Radian);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    emit position(currentPosition);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> currentPosition;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>.setLatitude(lat2, GeoDataCoordinates::Radian);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>.setLongitude(lon2, GeoDataCoordinates::Radian);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    emit <a class="code" href="class_position_simulator.html#a0946b2a0a199f3ecdbd408f262ecdaee">position</a>(<a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> PositionSimulator::updateHeading(<span class="keywordtype">double</span> heading)</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_position_simulator.html#a867ec372476b4b70cfe6486e310778b9">   44</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_position_simulator.html#a867ec372476b4b70cfe6486e310778b9">PositionSimulator::updateHeading</a>(<span class="keywordtype">double</span> heading)</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    timer-&gt;stop();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    initialize(currentPosition, heading, metersPerSec/KNOT2MPS, timer-&gt;interval());</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">timer</a>-&gt;stop();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_position_simulator.html#acb24b02e8ac849d6e02153e4a3c62f95">initialize</a>(<a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>, heading, <a class="code" href="class_position_simulator.html#aaf6372c4c703d8a4e410af24d585a59b">metersPerSec</a>/<a class="code" href="positionsimulator_8h.html#a7d45c9da1e04f8abd7d9ab591548d58b">KNOT2MPS</a>, <a class="code" href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">timer</a>-&gt;interval());</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> PositionSimulator::updateSpeed(<span class="keywordtype">double</span> speedKnots)</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_position_simulator.html#a9762c1655c77bacf684524c92d6aea04">   50</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_position_simulator.html#a9762c1655c77bacf684524c92d6aea04">PositionSimulator::updateSpeed</a>(<span class="keywordtype">double</span> speedKnots)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    timer-&gt;stop();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    initialize(currentPosition, brng/DEG2RAD, speedKnots, timer-&gt;interval());</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">timer</a>-&gt;stop();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_position_simulator.html#acb24b02e8ac849d6e02153e4a3c62f95">initialize</a>(<a class="code" href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">currentPosition</a>, <a class="code" href="class_position_simulator.html#ad5f033cf6633edcf7f88c200317de6c8">brng</a>/<a class="code" href="positionsimulator_8h.html#af7e8592d0a634bd3642e9fd508ea8022">DEG2RAD</a>, speedKnots, <a class="code" href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">timer</a>-&gt;interval());</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;PositionSimulator::~PositionSimulator()</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_position_simulator.html#a554f47dae33cbb44ec3429497ad5864f">   56</a></span>&#160;<a class="code" href="class_position_simulator.html#a554f47dae33cbb44ec3429497ad5864f">PositionSimulator::~PositionSimulator</a>()</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    timer-&gt;stop();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">delete</span> timer;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">timer</a>-&gt;stop();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">timer</a>;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="ttc" id="class_position_simulator_html_a217e2788a212f1971c9f72ff8a176abf"><div class="ttname"><a href="class_position_simulator.html#a217e2788a212f1971c9f72ff8a176abf">PositionSimulator::d</a></div><div class="ttdeci">long double d</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8h_source.html#l00032">positionsimulator.h:32</a></div></div>
+<div class="ttc" id="class_position_simulator_html_a867ec372476b4b70cfe6486e310778b9"><div class="ttname"><a href="class_position_simulator.html#a867ec372476b4b70cfe6486e310778b9">PositionSimulator::updateHeading</a></div><div class="ttdeci">void updateHeading(double headingDeg)</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8cpp_source.html#l00044">positionsimulator.cpp:44</a></div></div>
+<div class="ttc" id="class_position_simulator_html_ad5f033cf6633edcf7f88c200317de6c8"><div class="ttname"><a href="class_position_simulator.html#ad5f033cf6633edcf7f88c200317de6c8">PositionSimulator::brng</a></div><div class="ttdeci">long double brng</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8h_source.html#l00031">positionsimulator.h:31</a></div></div>
+<div class="ttc" id="class_position_simulator_html_acb24b02e8ac849d6e02153e4a3c62f95"><div class="ttname"><a href="class_position_simulator.html#acb24b02e8ac849d6e02153e4a3c62f95">PositionSimulator::initialize</a></div><div class="ttdeci">void initialize(Marble::GeoDataCoordinates startPositionDeg, double headingDeg, double speedKnots, int intervalMsec)</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8cpp_source.html#l00020">positionsimulator.cpp:20</a></div></div>
+<div class="ttc" id="positionsimulator_8h_html_af7e8592d0a634bd3642e9fd508ea8022"><div class="ttname"><a href="positionsimulator_8h.html#af7e8592d0a634bd3642e9fd508ea8022">DEG2RAD</a></div><div class="ttdeci">#define DEG2RAD</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8h_source.html#l00009">positionsimulator.h:9</a></div></div>
+<div class="ttc" id="class_position_simulator_html_a0946b2a0a199f3ecdbd408f262ecdaee"><div class="ttname"><a href="class_position_simulator.html#a0946b2a0a199f3ecdbd408f262ecdaee">PositionSimulator::position</a></div><div class="ttdeci">void position(Marble::GeoDataCoordinates)</div></div>
+<div class="ttc" id="class_position_simulator_html_a6b9f855bd3a133f0a7cc3a8c1c219897"><div class="ttname"><a href="class_position_simulator.html#a6b9f855bd3a133f0a7cc3a8c1c219897">PositionSimulator::alt</a></div><div class="ttdeci">long double alt</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8h_source.html#l00034">positionsimulator.h:34</a></div></div>
+<div class="ttc" id="class_position_simulator_html_aaf6372c4c703d8a4e410af24d585a59b"><div class="ttname"><a href="class_position_simulator.html#aaf6372c4c703d8a4e410af24d585a59b">PositionSimulator::metersPerSec</a></div><div class="ttdeci">long double metersPerSec</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8h_source.html#l00035">positionsimulator.h:35</a></div></div>
+<div class="ttc" id="class_position_simulator_html_ac315a701ca59b3c8d0dbc4c3fb5d422f"><div class="ttname"><a href="class_position_simulator.html#ac315a701ca59b3c8d0dbc4c3fb5d422f">PositionSimulator::R</a></div><div class="ttdeci">long double R</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8h_source.html#l00033">positionsimulator.h:33</a></div></div>
+<div class="ttc" id="class_position_simulator_html_a5edf01247254b854ea085fc7fc86d7c7"><div class="ttname"><a href="class_position_simulator.html#a5edf01247254b854ea085fc7fc86d7c7">PositionSimulator::PositionSimulator</a></div><div class="ttdeci">PositionSimulator(QObject *parent=0)</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8cpp_source.html#l00008">positionsimulator.cpp:8</a></div></div>
+<div class="ttc" id="class_position_simulator_html_a2986d2814aebcb89ae31c60f4f07b6ce"><div class="ttname"><a href="class_position_simulator.html#a2986d2814aebcb89ae31c60f4f07b6ce">PositionSimulator::currentPosition</a></div><div class="ttdeci">Marble::GeoDataCoordinates currentPosition</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8h_source.html#l00029">positionsimulator.h:29</a></div></div>
+<div class="ttc" id="class_position_simulator_html_a9762c1655c77bacf684524c92d6aea04"><div class="ttname"><a href="class_position_simulator.html#a9762c1655c77bacf684524c92d6aea04">PositionSimulator::updateSpeed</a></div><div class="ttdeci">void updateSpeed(double speedKnots)</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8cpp_source.html#l00050">positionsimulator.cpp:50</a></div></div>
+<div class="ttc" id="class_position_simulator_html_a7293316068901bb8157a9e40c9f21377"><div class="ttname"><a href="class_position_simulator.html#a7293316068901bb8157a9e40c9f21377">PositionSimulator::updatePosition</a></div><div class="ttdeci">Marble::GeoDataCoordinates updatePosition()</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8cpp_source.html#l00031">positionsimulator.cpp:31</a></div></div>
+<div class="ttc" id="positionsimulator_8h_html_a7d45c9da1e04f8abd7d9ab591548d58b"><div class="ttname"><a href="positionsimulator_8h.html#a7d45c9da1e04f8abd7d9ab591548d58b">KNOT2MPS</a></div><div class="ttdeci">#define KNOT2MPS</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8h_source.html#l00010">positionsimulator.h:10</a></div></div>
+<div class="ttc" id="class_position_simulator_html_a42fd0c1582f1a690d2162a1decc8fa38"><div class="ttname"><a href="class_position_simulator.html#a42fd0c1582f1a690d2162a1decc8fa38">PositionSimulator::timer</a></div><div class="ttdeci">QTimer * timer</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8h_source.html#l00030">positionsimulator.h:30</a></div></div>
+<div class="ttc" id="class_position_simulator_html_a554f47dae33cbb44ec3429497ad5864f"><div class="ttname"><a href="class_position_simulator.html#a554f47dae33cbb44ec3429497ad5864f">PositionSimulator::~PositionSimulator</a></div><div class="ttdeci">~PositionSimulator()</div><div class="ttdef"><b>Definition:</b> <a href="positionsimulator_8cpp_source.html#l00056">positionsimulator.cpp:56</a></div></div>
+<div class="ttc" id="positionsimulator_8h_html"><div class="ttname"><a href="positionsimulator_8h.html">positionsimulator.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_ead29842ed5e7583567412f9bbf2108f.html">AeroQuadCommunicator</a></li><li class="navelem"><a class="el" href="dir_d0ad9d8b5049107d08fae70e7ac21e52.html">panel</a></li><li class="navelem"><a class="el" href="dir_ea3f63349c7ef6ee2f2afc89ac486770.html">route</a></li><li class="navelem"><b>positionsimulator.cpp</b></li>
-    <li class="footer">Generated on Sun Feb 9 2014 21:21:33 for AeroQuad Communucator by
+    <li class="navelem"><a class="el" href="dir_ead29842ed5e7583567412f9bbf2108f.html">AeroQuadCommunicator</a></li><li class="navelem"><a class="el" href="dir_d0ad9d8b5049107d08fae70e7ac21e52.html">panel</a></li><li class="navelem"><a class="el" href="dir_ea3f63349c7ef6ee2f2afc89ac486770.html">route</a></li><li class="navelem"><a class="el" href="positionsimulator_8cpp.html">positionsimulator.cpp</a></li>
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:42 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

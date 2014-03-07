@@ -129,7 +129,10 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:aaed71eb816f789d6e549b7457f4193ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_patched_web_view_style.html#aaed71eb816f789d6e549b7457f4193ed">drawControl</a> (ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const </td></tr>
 <tr class="separator:aaed71eb816f789d6e549b7457f4193ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="patched_web_view_style_8h_source.html#l00008">8</a> of file <a class="el" href="patched_web_view_style_8h_source.html">patchedWebViewStyle.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aaed71eb816f789d6e549b7457f4193ed"></a>
 <div class="memitem">
 <div class="memproto">
@@ -174,6 +177,14 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="patched_web_view_style_8h_source.html#l00010">10</a> of file <a class="el" href="patched_web_view_style_8h_source.html">patchedWebViewStyle.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span>( element == QStyle::CE_CheckBox ||</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            element == QStyle::CE_RadioButton )</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            option-&gt;styleObject-&gt;setProperty( <span class="stringliteral">&quot;_q_no_animation&quot;</span>, <span class="keyword">true</span> );</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        QProxyStyle::drawControl( element, option, painter, widget );</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -185,7 +196,7 @@ Private Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_patched_web_view_style.html">PatchedWebViewStyle</a></li>
-    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:43 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

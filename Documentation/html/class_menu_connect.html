@@ -243,6 +243,8 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines a panel that establishes communication to the AQ board. </p>
+
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00020">20</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4665a8872a6d16d50bf91ab551b5b54d"></a>
 <div class="memitem">
@@ -267,13 +269,74 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor that initializes communication to AQ board. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">commIn</td><td>- Class used for communication to AQ board. </td></tr>
-  </table>
-  </dd>
-</dl>
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00005">5</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;                                        :</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    QWidget (parent),</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>(<span class="keyword">new</span> Ui::MenuConnect)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_menu_connect.html#a45c10f58f754581ba34893551d627b4e">initializePanel</a>(QMap&lt;QString,QString&gt;)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_menu_connect.html#aa4580214a00fa5c3c5a7f9e0a2f6e76c">initialize</a>(QMap&lt;QString,QString&gt;)));</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_menu_connect.html#ae42e28c6775dfb1b31e7d446ae9e4af5">messageIn</a>(QByteArray)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_menu_connect.html#a9e732c6a3fd13e67a1a558517f313c5f">parseMessage</a>(QByteArray)));</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_menu_connect.html#a43d4fce292b88e6116e4cde4a04b7de8">connectionState</a>(<span class="keywordtype">bool</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_menu_connect.html#ab1457269f95d79ba7eee0b88b362438f">updateConnectionState</a>(<span class="keywordtype">bool</span>)));</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;addItems(<a class="code" href="class_menu_connect.html#a34f49c0d2ba80c0c8012de0fb3602319">getCommPorts</a>());</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;insertSeparator(2);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;addItems(<a class="code" href="class_menu_connect.html#a192f6342d490ff4795e9bd27b4ffa932">getBaudRates</a>());</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_menu_connect.html#a2b52194019575ed09708bd23c744721a">storedPort</a> = <a class="code" href="class_menu_connect.html#ae2dbdb8b55310577790e3ef9256074c7">settings</a>.value(<span class="stringliteral">&quot;SerialCom/port&quot;</span>, <span class="stringliteral">&quot;Select com port...&quot;</span>).toString();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">int</span> indexPort = <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;findText(<a class="code" href="class_menu_connect.html#a2b52194019575ed09708bd23c744721a">storedPort</a>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    indexPort = (indexPort &lt; 0) ? 0 : indexPort;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;setCurrentIndex(indexPort);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    QString storedBaud = <a class="code" href="class_menu_connect.html#ae2dbdb8b55310577790e3ef9256074c7">settings</a>.value(<span class="stringliteral">&quot;SerialCom/baud&quot;</span>, <span class="stringliteral">&quot;Select baud rate...&quot;</span>).toString();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    storedBaud = (storedBaud == <span class="stringliteral">&quot;&quot;</span>) ? <span class="stringliteral">&quot;115200&quot;</span> : storedBaud;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">int</span> indexBaud = <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;findText(storedBaud);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">if</span> (indexBaud &gt;= 0)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;setCurrentIndex(indexBaud);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;insertItem(1, storedBaud);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;setCurrentIndex(1);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;insertSeparator(1);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">scene</a> = <span class="keyword">new</span> QGraphicsScene();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Should read these in from file</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_menu_connect.html#aa9b9c655ea06c7f8931bacd324451113">connectionTest</a> = <span class="stringliteral">&quot;!&quot;</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_menu_connect.html#a0f537f676ae4542a109b61c75191050d">connectionStop</a> = <span class="stringliteral">&quot;X&quot;</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_menu_connect.html#aa56686c9c18d98d3f8b9db374b262f33">configRequest</a> = <span class="stringliteral">&quot;#&quot;</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_menu_connect.html#a4a0bc4abb1e371c6c2d600b88e4f947f">compatibleVersion</a> = 3.2;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Quad +&quot;</span>] =   <span class="stringliteral">&quot;:/flightConfigs/resources/Quad+.png&quot;</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Quad X&quot;</span>] =   <span class="stringliteral">&quot;:/flightConfigs/resources/QuadX.png&quot;</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Quad Y4&quot;</span>] =  <span class="stringliteral">&quot;:/flightConfigs/resources/Tri.png&quot;</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Tri&quot;</span>] =      <span class="stringliteral">&quot;:/flightConfigs/resources/Tri.png&quot;</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Hex +&quot;</span>] =    <span class="stringliteral">&quot;:/flightConfigs/resources/Hexa+.png&quot;</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Hex X&quot;</span>] =    <span class="stringliteral">&quot;:/flightConfigs/resources/HexaX.png&quot;</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Hex Y6&quot;</span>] =   <span class="stringliteral">&quot;:/flightConfigs/resources/Y6.png&quot;</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Octo X8&quot;</span>] =  <span class="stringliteral">&quot;:/flightConfigs/resources/QuadX.png&quot;</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Octo X&quot;</span>] =   <span class="stringliteral">&quot;:/flightConfigs/resources/OctoX.png&quot;</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Octo +&quot;</span>] =   <span class="stringliteral">&quot;:/flightConfigs/resources/Octo+.png&quot;</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">flightConfigs</a>[<span class="stringliteral">&quot;Rover&quot;</span>] =    <span class="stringliteral">&quot;:/flightConfigs/resources/QuadX.png&quot;</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_aa4580214a00fa5c3c5a7f9e0a2f6e76c"><div class="ttname"><a href="class_menu_connect.html#aa4580214a00fa5c3c5a7f9e0a2f6e76c">MenuConnect::initialize</a></div><div class="ttdeci">void initialize(QMap&lt; QString, QString &gt; config)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00054">menu_connect.cpp:54</a></div></div>
+<div class="ttc" id="class_menu_connect_html_ab1457269f95d79ba7eee0b88b362438f"><div class="ttname"><a href="class_menu_connect.html#ab1457269f95d79ba7eee0b88b362438f">MenuConnect::updateConnectionState</a></div><div class="ttdeci">void updateConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00173">menu_connect.cpp:173</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a43d4fce292b88e6116e4cde4a04b7de8"><div class="ttname"><a href="class_menu_connect.html#a43d4fce292b88e6116e4cde4a04b7de8">MenuConnect::connectionState</a></div><div class="ttdeci">void connectionState(bool)</div></div>
+<div class="ttc" id="class_menu_connect_html_a192f6342d490ff4795e9bd27b4ffa932"><div class="ttname"><a href="class_menu_connect.html#a192f6342d490ff4795e9bd27b4ffa932">MenuConnect::getBaudRates</a></div><div class="ttdeci">QStringList getBaudRates()</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00109">menu_connect.cpp:109</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a2b52194019575ed09708bd23c744721a"><div class="ttname"><a href="class_menu_connect.html#a2b52194019575ed09708bd23c744721a">MenuConnect::storedPort</a></div><div class="ttdeci">QString storedPort</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00038">menu_connect.h:38</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a0f537f676ae4542a109b61c75191050d"><div class="ttname"><a href="class_menu_connect.html#a0f537f676ae4542a109b61c75191050d">MenuConnect::connectionStop</a></div><div class="ttdeci">QByteArray connectionStop</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00042">menu_connect.h:42</a></div></div>
+<div class="ttc" id="class_menu_connect_html_aa56686c9c18d98d3f8b9db374b262f33"><div class="ttname"><a href="class_menu_connect.html#aa56686c9c18d98d3f8b9db374b262f33">MenuConnect::configRequest</a></div><div class="ttdeci">QByteArray configRequest</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00043">menu_connect.h:43</a></div></div>
+<div class="ttc" id="class_menu_connect_html_ae42e28c6775dfb1b31e7d446ae9e4af5"><div class="ttname"><a href="class_menu_connect.html#ae42e28c6775dfb1b31e7d446ae9e4af5">MenuConnect::messageIn</a></div><div class="ttdeci">void messageIn(QByteArray)</div></div>
+<div class="ttc" id="class_menu_connect_html_aa9b9c655ea06c7f8931bacd324451113"><div class="ttname"><a href="class_menu_connect.html#aa9b9c655ea06c7f8931bacd324451113">MenuConnect::connectionTest</a></div><div class="ttdeci">QByteArray connectionTest</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00041">menu_connect.h:41</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a4a0bc4abb1e371c6c2d600b88e4f947f"><div class="ttname"><a href="class_menu_connect.html#a4a0bc4abb1e371c6c2d600b88e4f947f">MenuConnect::compatibleVersion</a></div><div class="ttdeci">double compatibleVersion</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00044">menu_connect.h:44</a></div></div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+<div class="ttc" id="class_menu_connect_html_aae116456fc709e16e6f87f951f499fd1"><div class="ttname"><a href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">MenuConnect::scene</a></div><div class="ttdeci">QGraphicsScene * scene</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00078">menu_connect.h:78</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a9e732c6a3fd13e67a1a558517f313c5f"><div class="ttname"><a href="class_menu_connect.html#a9e732c6a3fd13e67a1a558517f313c5f">MenuConnect::parseMessage</a></div><div class="ttdeci">void parseMessage(QByteArray)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00179">menu_connect.cpp:179</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a34f49c0d2ba80c0c8012de0fb3602319"><div class="ttname"><a href="class_menu_connect.html#a34f49c0d2ba80c0c8012de0fb3602319">MenuConnect::getCommPorts</a></div><div class="ttdeci">QStringList getCommPorts()</div><div class="ttdoc"> </div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00090">menu_connect.cpp:90</a></div></div>
+<div class="ttc" id="class_menu_connect_html_ae2dbdb8b55310577790e3ef9256074c7"><div class="ttname"><a href="class_menu_connect.html#ae2dbdb8b55310577790e3ef9256074c7">MenuConnect::settings</a></div><div class="ttdeci">QSettings settings</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00037">menu_connect.h:37</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a297267e53f09afdd313635043238edb1"><div class="ttname"><a href="class_menu_connect.html#a297267e53f09afdd313635043238edb1">MenuConnect::flightConfigs</a></div><div class="ttdeci">QMap&lt; QString, QString &gt; flightConfigs</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00076">menu_connect.h:76</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a45c10f58f754581ba34893551d627b4e"><div class="ttname"><a href="class_menu_connect.html#a45c10f58f754581ba34893551d627b4e">MenuConnect::initializePanel</a></div><div class="ttdeci">void initializePanel(QMap&lt; QString, QString &gt;)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="abb17f5bd2a09783190bedcfca906358f"></a>
@@ -289,6 +352,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00085">85</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;{</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -313,6 +382,17 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00133">133</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;{</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    emit <a class="code" href="class_menu_connect.html#a05b4b9fbf190ac927df58518c7a660a2">panelStatus</a>(<span class="stringliteral">&quot;Attempting autoconnect...&quot;</span>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_menu_connect.html#a2b52194019575ed09708bd23c744721a">storedPort</a> == <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;currentText())</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <a class="code" href="class_menu_connect.html#a0524bda15235b39aa7151c581eed1900">on_connectPushButton_clicked</a>();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_a05b4b9fbf190ac927df58518c7a660a2"><div class="ttname"><a href="class_menu_connect.html#a05b4b9fbf190ac927df58518c7a660a2">MenuConnect::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+<div class="ttc" id="class_menu_connect_html_a0524bda15235b39aa7151c581eed1900"><div class="ttname"><a href="class_menu_connect.html#a0524bda15235b39aa7151c581eed1900">MenuConnect::on_connectPushButton_clicked</a></div><div class="ttdeci">void on_connectPushButton_clicked()</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00140">menu_connect.cpp:140</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a2b52194019575ed09708bd23c744721a"><div class="ttname"><a href="class_menu_connect.html#a2b52194019575ed09708bd23c744721a">MenuConnect::storedPort</a></div><div class="ttdeci">QString storedPort</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00038">menu_connect.h:38</a></div></div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ae43cc4102ef4963a1f099480250c78eb"></a>
@@ -375,6 +455,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00109">109</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;{</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    QStringList baudRates;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    baudRates &lt;&lt; <span class="stringliteral">&quot;Select baud rate...&quot;</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;1200&quot;</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;9600&quot;</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;19200&quot;</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;38400&quot;</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;57600&quot;</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;115200&quot;</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">return</span> baudRates;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a34f49c0d2ba80c0c8012de0fb3602319"></a>
@@ -393,6 +486,25 @@ Private Attributes</h2></td></tr>
 <p><hr/>
  </p>
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00090">90</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;{</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    QStringList ports;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    ports &lt;&lt; <span class="stringliteral">&quot;Select com port...&quot;</span> &lt;&lt; <span class="stringliteral">&quot;Refresh List&quot;</span>; <span class="comment">//&lt;&lt; &quot;Autoconnect&quot;;</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">foreach</span> (<span class="keyword">const</span> QSerialPortInfo &amp;info, QSerialPortInfo::availablePorts()) {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="comment">// Keep this parsing of port info for future use</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        QStringList list;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        list &lt;&lt; info.portName()</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;             &lt;&lt; info.description()</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;             &lt;&lt; info.manufacturer()</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;             &lt;&lt; info.systemLocation()</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;             &lt;&lt; (info.vendorIdentifier() ? QString::number(info.vendorIdentifier(), 16) : QString())</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;             &lt;&lt; (info.productIdentifier() ? QString::number(info.productIdentifier(), 16) : QString());</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        ports &lt;&lt; info.portName();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">return</span> ports;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aac0447b0f2e14a2b12501e8adf383780"></a>
@@ -440,6 +552,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00054">54</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_menu_connect.html#a7ab4d8161be1afabaf525d07f4f7e3c2">configuration</a> = config;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    emit <a class="code" href="class_menu_connect.html#aac0447b0f2e14a2b12501e8adf383780">getConnectionState</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_menu_connect.html#a7e9bd2e37ee68ee6dc45111e41c06f23">on_refresh_clicked</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_aac0447b0f2e14a2b12501e8adf383780"><div class="ttname"><a href="class_menu_connect.html#aac0447b0f2e14a2b12501e8adf383780">MenuConnect::getConnectionState</a></div><div class="ttdeci">void getConnectionState()</div></div>
+<div class="ttc" id="class_menu_connect_html_a7ab4d8161be1afabaf525d07f4f7e3c2"><div class="ttname"><a href="class_menu_connect.html#a7ab4d8161be1afabaf525d07f4f7e3c2">MenuConnect::configuration</a></div><div class="ttdeci">QMap&lt; QString, QString &gt; configuration</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00032">menu_connect.h:32</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a7e9bd2e37ee68ee6dc45111e41c06f23"><div class="ttname"><a href="class_menu_connect.html#a7e9bd2e37ee68ee6dc45111e41c06f23">MenuConnect::on_refresh_clicked</a></div><div class="ttdeci">void on_refresh_clicked()</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00225">menu_connect.cpp:225</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a45c10f58f754581ba34893551d627b4e"></a>
@@ -535,6 +657,26 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00140">140</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;{</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <a class="code" href="class_menu_connect.html#ae2dbdb8b55310577790e3ef9256074c7">settings</a>.setValue(<span class="stringliteral">&quot;SerialCom/port&quot;</span>, <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;currentText());</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <a class="code" href="class_menu_connect.html#ae2dbdb8b55310577790e3ef9256074c7">settings</a>.setValue(<span class="stringliteral">&quot;SerialCom/baud&quot;</span>, <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;currentText());</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    QString connectString = <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;currentText() + <span class="stringliteral">&quot;;&quot;</span> + <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;currentText();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    emit <a class="code" href="class_menu_connect.html#a144aa17e539cdccd9338427a7e9c6769">openConnection</a>(connectString);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <a class="code" href="class_menu_connect.html#a4957bac7fb68b58068fee3585ef006dd">sendMessage</a>(<a class="code" href="class_menu_connect.html#aa9b9c655ea06c7f8931bacd324451113">connectionTest</a>);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <a class="code" href="class_menu_connect.html#ab78c77a915443268e0de000090dd2c82">messageType</a> = <a class="code" href="class_menu_connect.html#aa9b9c655ea06c7f8931bacd324451113">connectionTest</a>;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="class_menu_connect.html#a9ad318f0ed14fe68647aad10cdb4940f">setConnectionState</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="comment">// Now wait for connectionResponse() signal</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_aa9b9c655ea06c7f8931bacd324451113"><div class="ttname"><a href="class_menu_connect.html#aa9b9c655ea06c7f8931bacd324451113">MenuConnect::connectionTest</a></div><div class="ttdeci">QByteArray connectionTest</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00041">menu_connect.h:41</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a9ad318f0ed14fe68647aad10cdb4940f"><div class="ttname"><a href="class_menu_connect.html#a9ad318f0ed14fe68647aad10cdb4940f">MenuConnect::setConnectionState</a></div><div class="ttdeci">void setConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00153">menu_connect.cpp:153</a></div></div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a4957bac7fb68b58068fee3585ef006dd"><div class="ttname"><a href="class_menu_connect.html#a4957bac7fb68b58068fee3585ef006dd">MenuConnect::sendMessage</a></div><div class="ttdeci">void sendMessage(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00033">menu_connect.h:33</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a144aa17e539cdccd9338427a7e9c6769"><div class="ttname"><a href="class_menu_connect.html#a144aa17e539cdccd9338427a7e9c6769">MenuConnect::openConnection</a></div><div class="ttdeci">void openConnection(QString)</div></div>
+<div class="ttc" id="class_menu_connect_html_ab78c77a915443268e0de000090dd2c82"><div class="ttname"><a href="class_menu_connect.html#ab78c77a915443268e0de000090dd2c82">MenuConnect::messageType</a></div><div class="ttdeci">QByteArray messageType</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00073">menu_connect.h:73</a></div></div>
+<div class="ttc" id="class_menu_connect_html_ae2dbdb8b55310577790e3ef9256074c7"><div class="ttname"><a href="class_menu_connect.html#ae2dbdb8b55310577790e3ef9256074c7">MenuConnect::settings</a></div><div class="ttdeci">QSettings settings</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00037">menu_connect.h:37</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a1894ebcbaa26f150b87bd04bac7a59fe"></a>
@@ -558,6 +700,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00218">218</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;{</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    emit <a class="code" href="class_menu_connect.html#ae43cc4102ef4963a1f099480250c78eb">closeConnection</a>();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    emit <a class="code" href="class_menu_connect.html#aac0447b0f2e14a2b12501e8adf383780">getConnectionState</a>();</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;configList-&gt;clear();</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_aac0447b0f2e14a2b12501e8adf383780"><div class="ttname"><a href="class_menu_connect.html#aac0447b0f2e14a2b12501e8adf383780">MenuConnect::getConnectionState</a></div><div class="ttdeci">void getConnectionState()</div></div>
+<div class="ttc" id="class_menu_connect_html_ae43cc4102ef4963a1f099480250c78eb"><div class="ttname"><a href="class_menu_connect.html#ae43cc4102ef4963a1f099480250c78eb">MenuConnect::closeConnection</a></div><div class="ttdeci">void closeConnection()</div></div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aa44b7d5ab381a8e2611c80cb257b19d7"></a>
@@ -582,6 +734,19 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00122">122</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">if</span> (arg1 == <span class="stringliteral">&quot;Refresh List&quot;</span>)</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;clear();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;addItems(<a class="code" href="class_menu_connect.html#a34f49c0d2ba80c0c8012de0fb3602319">getCommPorts</a>());</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;insertSeparator(2);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;setCurrentIndex(0);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a34f49c0d2ba80c0c8012de0fb3602319"><div class="ttname"><a href="class_menu_connect.html#a34f49c0d2ba80c0c8012de0fb3602319">MenuConnect::getCommPorts</a></div><div class="ttdeci">QStringList getCommPorts()</div><div class="ttdoc"> </div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00090">menu_connect.cpp:90</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a7e9bd2e37ee68ee6dc45111e41c06f23"></a>
@@ -605,6 +770,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00225">225</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;{</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <a class="code" href="class_menu_connect.html#a4957bac7fb68b58068fee3585ef006dd">sendMessage</a>(<a class="code" href="class_menu_connect.html#aa56686c9c18d98d3f8b9db374b262f33">configRequest</a>);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="class_menu_connect.html#ab78c77a915443268e0de000090dd2c82">messageType</a> = <a class="code" href="class_menu_connect.html#aa56686c9c18d98d3f8b9db374b262f33">configRequest</a>;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_aa56686c9c18d98d3f8b9db374b262f33"><div class="ttname"><a href="class_menu_connect.html#aa56686c9c18d98d3f8b9db374b262f33">MenuConnect::configRequest</a></div><div class="ttdeci">QByteArray configRequest</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00043">menu_connect.h:43</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a4957bac7fb68b58068fee3585ef006dd"><div class="ttname"><a href="class_menu_connect.html#a4957bac7fb68b58068fee3585ef006dd">MenuConnect::sendMessage</a></div><div class="ttdeci">void sendMessage(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00033">menu_connect.h:33</a></div></div>
+<div class="ttc" id="class_menu_connect_html_ab78c77a915443268e0de000090dd2c82"><div class="ttname"><a href="class_menu_connect.html#ab78c77a915443268e0de000090dd2c82">MenuConnect::messageType</a></div><div class="ttdeci">QByteArray messageType</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00073">menu_connect.h:73</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a144aa17e539cdccd9338427a7e9c6769"></a>
@@ -677,6 +851,59 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00179">179</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;{</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_menu_connect.html#ab78c77a915443268e0de000090dd2c82">messageType</a> == <a class="code" href="class_menu_connect.html#aa9b9c655ea06c7f8931bacd324451113">connectionTest</a>)</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    {</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        QString version = dataIn;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">if</span> (version.toDouble() &gt;= <a class="code" href="class_menu_connect.html#a4a0bc4abb1e371c6c2d600b88e4f947f">compatibleVersion</a>)</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <a class="code" href="class_menu_connect.html#a9ad318f0ed14fe68647aad10cdb4940f">setConnectionState</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            emit <a class="code" href="class_menu_connect.html#a05b4b9fbf190ac927df58518c7a660a2">panelStatus</a>(<span class="stringliteral">&quot;Connected to AeroQuad Flight Software v&quot;</span> + version);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <a class="code" href="class_menu_connect.html#a4957bac7fb68b58068fee3585ef006dd">sendMessage</a>(<a class="code" href="class_menu_connect.html#aa56686c9c18d98d3f8b9db374b262f33">configRequest</a>);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            <a class="code" href="class_menu_connect.html#ab78c77a915443268e0de000090dd2c82">messageType</a> = <a class="code" href="class_menu_connect.html#aa56686c9c18d98d3f8b9db374b262f33">configRequest</a>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <a class="code" href="class_menu_connect.html#a7666d8bbec276f34757bcae9d00b5487">retry</a> = 0;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            <a class="code" href="class_menu_connect.html#a1894ebcbaa26f150b87bd04bac7a59fe">on_disconnectPushButton_clicked</a>();</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_menu_connect.html#ab78c77a915443268e0de000090dd2c82">messageType</a> == <a class="code" href="class_menu_connect.html#aa56686c9c18d98d3f8b9db374b262f33">configRequest</a>)</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    {</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;configList-&gt;clear();</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        QString configData = dataIn;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        QStringList configItems = configData.split(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="keywordtype">int</span> count = configItems[0].toInt() + 1;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        configItems.removeFirst();</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordflow">if</span> ((count == configItems.size()))</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;configList-&gt;addItems(configItems);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> index=0; index&lt;configItems.size()-1; index++)</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                QStringList configItem = configItems[index].split(<span class="stringliteral">&quot;:&quot;</span>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                <a class="code" href="class_menu_connect.html#a7ab4d8161be1afabaf525d07f4f7e3c2">configuration</a>[configItem[0]] = configItem[1].trimmed();</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            }</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <a class="code" href="class_menu_connect.html#a25464f028b18b3c94e0428f3f037631c">configPix</a> = QPixmap(<a class="code" href="class_menu_connect.html#a7ab4d8161be1afabaf525d07f4f7e3c2">configuration</a>[<span class="stringliteral">&quot;Flight Config&quot;</span>]);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            QResizeEvent *event;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <a class="code" href="class_menu_connect.html#aaf60924672c3d8ead0c810c1f0856660">resizeEvent</a>(event);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            emit <a class="code" href="class_menu_connect.html#aeadce2008f10ee940e5f357ca8621c3a">writeConfig</a>(<a class="code" href="class_menu_connect.html#a7ab4d8161be1afabaf525d07f4f7e3c2">configuration</a>);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    }</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_a05b4b9fbf190ac927df58518c7a660a2"><div class="ttname"><a href="class_menu_connect.html#a05b4b9fbf190ac927df58518c7a660a2">MenuConnect::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+<div class="ttc" id="class_menu_connect_html_a1894ebcbaa26f150b87bd04bac7a59fe"><div class="ttname"><a href="class_menu_connect.html#a1894ebcbaa26f150b87bd04bac7a59fe">MenuConnect::on_disconnectPushButton_clicked</a></div><div class="ttdeci">void on_disconnectPushButton_clicked()</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00218">menu_connect.cpp:218</a></div></div>
+<div class="ttc" id="class_menu_connect_html_aaf60924672c3d8ead0c810c1f0856660"><div class="ttname"><a href="class_menu_connect.html#aaf60924672c3d8ead0c810c1f0856660">MenuConnect::resizeEvent</a></div><div class="ttdeci">void resizeEvent(QResizeEvent *)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00072">menu_connect.cpp:72</a></div></div>
+<div class="ttc" id="class_menu_connect_html_aeadce2008f10ee940e5f357ca8621c3a"><div class="ttname"><a href="class_menu_connect.html#aeadce2008f10ee940e5f357ca8621c3a">MenuConnect::writeConfig</a></div><div class="ttdeci">void writeConfig(QMap&lt; QString, QString &gt;)</div></div>
+<div class="ttc" id="class_menu_connect_html_aa56686c9c18d98d3f8b9db374b262f33"><div class="ttname"><a href="class_menu_connect.html#aa56686c9c18d98d3f8b9db374b262f33">MenuConnect::configRequest</a></div><div class="ttdeci">QByteArray configRequest</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00043">menu_connect.h:43</a></div></div>
+<div class="ttc" id="class_menu_connect_html_aa9b9c655ea06c7f8931bacd324451113"><div class="ttname"><a href="class_menu_connect.html#aa9b9c655ea06c7f8931bacd324451113">MenuConnect::connectionTest</a></div><div class="ttdeci">QByteArray connectionTest</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00041">menu_connect.h:41</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a25464f028b18b3c94e0428f3f037631c"><div class="ttname"><a href="class_menu_connect.html#a25464f028b18b3c94e0428f3f037631c">MenuConnect::configPix</a></div><div class="ttdeci">QPixmap configPix</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00075">menu_connect.h:75</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a9ad318f0ed14fe68647aad10cdb4940f"><div class="ttname"><a href="class_menu_connect.html#a9ad318f0ed14fe68647aad10cdb4940f">MenuConnect::setConnectionState</a></div><div class="ttdeci">void setConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00153">menu_connect.cpp:153</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a4a0bc4abb1e371c6c2d600b88e4f947f"><div class="ttname"><a href="class_menu_connect.html#a4a0bc4abb1e371c6c2d600b88e4f947f">MenuConnect::compatibleVersion</a></div><div class="ttdeci">double compatibleVersion</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00044">menu_connect.h:44</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a7ab4d8161be1afabaf525d07f4f7e3c2"><div class="ttname"><a href="class_menu_connect.html#a7ab4d8161be1afabaf525d07f4f7e3c2">MenuConnect::configuration</a></div><div class="ttdeci">QMap&lt; QString, QString &gt; configuration</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00032">menu_connect.h:32</a></div></div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a4957bac7fb68b58068fee3585ef006dd"><div class="ttname"><a href="class_menu_connect.html#a4957bac7fb68b58068fee3585ef006dd">MenuConnect::sendMessage</a></div><div class="ttdeci">void sendMessage(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00033">menu_connect.h:33</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a7666d8bbec276f34757bcae9d00b5487"><div class="ttname"><a href="class_menu_connect.html#a7666d8bbec276f34757bcae9d00b5487">MenuConnect::retry</a></div><div class="ttdeci">int retry</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00074">menu_connect.h:74</a></div></div>
+<div class="ttc" id="class_menu_connect_html_ab78c77a915443268e0de000090dd2c82"><div class="ttname"><a href="class_menu_connect.html#ab78c77a915443268e0de000090dd2c82">MenuConnect::messageType</a></div><div class="ttdeci">QByteArray messageType</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00073">menu_connect.h:73</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aaf60924672c3d8ead0c810c1f0856660"></a>
@@ -701,6 +928,22 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00072">72</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">int</span> width = <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;graphicsView-&gt;width()-25;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> height = <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;graphicsView-&gt;height()-25;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">int</span> size = (width &gt; height) ? height : width;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">scene</a> = <span class="keyword">new</span> QGraphicsScene();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_menu_connect.html#a25464f028b18b3c94e0428f3f037631c">configPix</a>.isNull())</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="class_menu_connect.html#a25464f028b18b3c94e0428f3f037631c">configPix</a> = QPixmap(<span class="stringliteral">&quot;:/images/resources/AeroQuadLogo3.png&quot;</span>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    QPixmap scaledLogo = <a class="code" href="class_menu_connect.html#a25464f028b18b3c94e0428f3f037631c">configPix</a>.scaled(size, size, Qt::KeepAspectRatio);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">scene</a>-&gt;addPixmap(scaledLogo);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;graphicsView-&gt;setScene(<a class="code" href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">scene</a>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_a25464f028b18b3c94e0428f3f037631c"><div class="ttname"><a href="class_menu_connect.html#a25464f028b18b3c94e0428f3f037631c">MenuConnect::configPix</a></div><div class="ttdeci">QPixmap configPix</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00075">menu_connect.h:75</a></div></div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+<div class="ttc" id="class_menu_connect_html_aae116456fc709e16e6f87f951f499fd1"><div class="ttname"><a href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">MenuConnect::scene</a></div><div class="ttdeci">QGraphicsScene * scene</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00078">menu_connect.h:78</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a4957bac7fb68b58068fee3585ef006dd"></a>
@@ -725,6 +968,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00033">33</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{emit <a class="code" href="class_menu_connect.html#a87234485a3d46db020a6d98f188b4150">messageOut</a>(message.toUtf8());}</div>
+<div class="ttc" id="class_menu_connect_html_a87234485a3d46db020a6d98f188b4150"><div class="ttname"><a href="class_menu_connect.html#a87234485a3d46db020a6d98f188b4150">MenuConnect::messageOut</a></div><div class="ttdeci">void messageOut(QByteArray)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ae5bef033d8053396a82f3744288efe60"></a>
@@ -773,6 +1020,28 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00153">153</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;{</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">if</span> (state)</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;connectPushButton-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;disconnectPushButton-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;baudComboBox-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;portComboBox-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;connectPushButton-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;disconnectPushButton-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        emit <a class="code" href="class_menu_connect.html#a05b4b9fbf190ac927df58518c7a660a2">panelStatus</a>(<span class="stringliteral">&quot;Not connected to AeroQuad Flight Control Board&quot;</span>);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    }</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_a05b4b9fbf190ac927df58518c7a660a2"><div class="ttname"><a href="class_menu_connect.html#a05b4b9fbf190ac927df58518c7a660a2">MenuConnect::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aadda661d3bf1cc830fa96762c7f43205"></a>
@@ -797,6 +1066,19 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00061">61</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Load default graphics on screen</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">int</span> width = <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;graphicsView-&gt;width()-25;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">scene</a> = <span class="keyword">new</span> QGraphicsScene();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    QPixmap logo(<span class="stringliteral">&quot;:/images/resources/AeroQuadLogo3.png&quot;</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    QPixmap scaledLogo = logo.scaled(width, width, Qt::KeepAspectRatio);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">scene</a>-&gt;addPixmap(scaledLogo);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">ui</a>-&gt;graphicsView-&gt;setScene(<a class="code" href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">scene</a>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_afeb9e6361e120299c71d420303cf30fe"><div class="ttname"><a href="class_menu_connect.html#afeb9e6361e120299c71d420303cf30fe">MenuConnect::ui</a></div><div class="ttdeci">Ui::MenuConnect * ui</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00072">menu_connect.h:72</a></div></div>
+<div class="ttc" id="class_menu_connect_html_aae116456fc709e16e6f87f951f499fd1"><div class="ttname"><a href="class_menu_connect.html#aae116456fc709e16e6f87f951f499fd1">MenuConnect::scene</a></div><div class="ttdeci">QGraphicsScene * scene</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00078">menu_connect.h:78</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ab1457269f95d79ba7eee0b88b362438f"></a>
@@ -821,6 +1103,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8cpp_source.html#l00173">173</a> of file <a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;{</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <a class="code" href="class_menu_connect.html#a19d585195b6106754cfda0971e0dee95">connectState</a> = state;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <a class="code" href="class_menu_connect.html#a9ad318f0ed14fe68647aad10cdb4940f">setConnectionState</a>(<a class="code" href="class_menu_connect.html#a19d585195b6106754cfda0971e0dee95">connectState</a>);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;}</div>
+<div class="ttc" id="class_menu_connect_html_a9ad318f0ed14fe68647aad10cdb4940f"><div class="ttname"><a href="class_menu_connect.html#a9ad318f0ed14fe68647aad10cdb4940f">MenuConnect::setConnectionState</a></div><div class="ttdeci">void setConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8cpp_source.html#l00153">menu_connect.cpp:153</a></div></div>
+<div class="ttc" id="class_menu_connect_html_a19d585195b6106754cfda0971e0dee95"><div class="ttname"><a href="class_menu_connect.html#a19d585195b6106754cfda0971e0dee95">MenuConnect::connectState</a></div><div class="ttdeci">bool connectState</div><div class="ttdoc"> </div><div class="ttdef"><b>Definition:</b> <a href="menu__connect_8h_source.html#l00031">menu_connect.h:31</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aeadce2008f10ee940e5f357ca8621c3a"></a>
@@ -858,6 +1148,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00044">44</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a25464f028b18b3c94e0428f3f037631c"></a>
@@ -878,6 +1170,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00075">75</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="aa56686c9c18d98d3f8b9db374b262f33"></a>
@@ -889,6 +1183,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00043">43</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
 
 </div>
 </div>
@@ -902,6 +1198,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00032">32</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a0f537f676ae4542a109b61c75191050d"></a>
@@ -914,6 +1212,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00042">42</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="aa9b9c655ea06c7f8931bacd324451113"></a>
@@ -925,6 +1225,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00041">41</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
 
 </div>
 </div>
@@ -940,6 +1242,8 @@ Private Attributes</h2></td></tr>
 
 <p><hr/>
  </p>
+
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00031">31</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
 
 </div>
 </div>
@@ -961,6 +1265,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00077">77</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a297267e53f09afdd313635043238edb1"></a>
@@ -980,6 +1286,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00076">76</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
 
 </div>
 </div>
@@ -1001,6 +1309,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00073">73</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a7666d8bbec276f34757bcae9d00b5487"></a>
@@ -1020,6 +1330,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00074">74</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
 
 </div>
 </div>
@@ -1041,6 +1353,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00078">78</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="ae2dbdb8b55310577790e3ef9256074c7"></a>
@@ -1053,6 +1367,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00037">37</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a2b52194019575ed09708bd23c744721a"></a>
@@ -1064,6 +1380,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00038">38</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
 
 </div>
 </div>
@@ -1085,11 +1403,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="menu__connect_8h_source.html#l00072">72</a> of file <a class="el" href="menu__connect_8h_source.html">menu_connect.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/connect/<a class="el" href="menu__connect_8h_source.html">menu_connect.h</a></li>
-<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/connect/<a class="el" href="menu__connect_8cpp.html">menu_connect.cpp</a></li>
+<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/connect/<a class="el" href="menu__connect_8cpp_source.html">menu_connect.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -1097,7 +1417,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_menu_connect.html">MenuConnect</a></li>
-    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:43 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

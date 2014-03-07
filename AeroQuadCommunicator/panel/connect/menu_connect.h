@@ -24,7 +24,6 @@ class MenuConnect : public QWidget
 public:
     /**
      * @brief Constructor that initializes communication to AQ board.
-     * @param commIn - Class used for communication to AQ board.
      */
     explicit MenuConnect(QWidget *parent = 0);
     ~MenuConnect();

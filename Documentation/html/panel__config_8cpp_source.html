@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>AeroQuad Communucator: Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/config/panel_config.cpp Source File</title>
+<title>AeroQuad Communicator: Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/config/panel_config.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,8 +30,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AeroQuad(300).png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">AeroQuad Communucator
-   &#160;<span id="projectnumber">0.1</span>
+   <div id="projectname">AeroQuad Communicator
+   &#160;<span id="projectnumber">v0.1</span>
    </div>
    <div id="projectbrief">Graphical configuration tool for the AeroQuad Flight Control Board</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,6 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -92,7 +94,7 @@ $(document).ready(function(){initNavTree('panel__config_8cpp_source.html','');})
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,196 +108,233 @@ $(document).ready(function(){initNavTree('panel__config_8cpp_source.html','');})
 <div class="title">panel_config.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;panel_config.h&quot;</span></div>
+<a href="panel__config_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="panel__config_8h.html">panel_config.h</a>&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;ui_panel_config.h&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;PanelConfig::PanelConfig(QWidget *parent) :</div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="class_panel_config.html#a3eb61bb8a5d723daaae6b15f6384377b">    4</a></span>&#160;<a class="code" href="class_panel_config.html#a3eb61bb8a5d723daaae6b15f6384377b">PanelConfig::PanelConfig</a>(QWidget *parent) :</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    QWidget(parent),</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    ui(new Ui::<a class="code" href="class_panel_config.html">PanelConfig</a>)</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    ui-&gt;setupUi(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    initialize(<span class="stringliteral">&quot;panel_config.xml&quot;</span>);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    setupConfigList();</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    setupTableHeader();</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    selectConfig(0);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    connect(ui-&gt;configList, SIGNAL(currentRowChanged(<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(selectConfig(<span class="keywordtype">int</span>)));</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    connect(ui-&gt;configTable, SIGNAL(cellClicked(<span class="keywordtype">int</span>,<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(selectDescription(<span class="keywordtype">int</span>,<span class="keywordtype">int</span>)));</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(messageIn(QByteArray)), <span class="keyword">this</span>, SLOT(updateConfig(QByteArray)));</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;PanelConfig::~PanelConfig()</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">delete</span> ui;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> PanelConfig::initialize(QString filename)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">// Open XML configuration file</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    QFile* file = <span class="keyword">new</span> QFile(filename);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">if</span> (!file-&gt;open(QIODevice::ReadOnly | QIODevice::Text))</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        QMessageBox::critical(<span class="keyword">this</span>, <span class="stringliteral">&quot;AeroQuad Communicator&quot;</span>, <span class="stringliteral">&quot;Unable to find configuration file:\n&quot;</span> + QCoreApplication::applicationDirPath() + <span class="stringliteral">&quot;/panel_config.xml&quot;</span>, QMessageBox::Ok);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        file-&gt;close();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// Read XML file and populate data storage</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    panelConfig.clear();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    QXmlStreamReader xml(file);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">while</span> (!xml.atEnd() &amp;&amp; !xml.hasError())</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        xml.readNext();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">if</span> (xml.isStartElement() &amp;&amp; (xml.name() == <span class="stringliteral">&quot;ConfigType&quot;</span>))</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            configuration configItem;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            configItem.configName = xml.attributes().value(<span class="stringliteral">&quot;Name&quot;</span>).toString();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            xml.readNextStartElement();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">while</span>(!(xml.tokenType() == QXmlStreamReader::EndElement &amp;&amp; xml.name() == <span class="stringliteral">&quot;ConfigType&quot;</span>))</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordflow">if</span>(xml.tokenType() == QXmlStreamReader::StartElement)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;Requirement&quot;</span>)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                        configItem.requirement = xml.readElementText();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;Command&quot;</span>)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                        configItem.command = xml.readElementText();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;Telemetry&quot;</span>)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                        configItem.telemetry = xml.readElementText();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;UpdateEEPROM&quot;</span>)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                        configItem.updateEEPROM = xml.readElementText();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;Parameter&quot;</span>)</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        QXmlStreamAttributes parameterAttributes = xml.attributes();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        parameter parameterItem;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                        parameterItem.name = parameterAttributes.value(<span class="stringliteral">&quot;Name&quot;</span>).toString();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        parameterItem.value = xml.readElementText();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        parameterItem.description = parameterAttributes.value(<span class="stringliteral">&quot;Description&quot;</span>).toString();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        configItem.parameters.append(parameterItem);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                xml.readNextStartElement();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            panelConfig.append(configItem);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">if</span> (xml.hasError())</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        QMessageBox::warning(NULL,<span class="stringliteral">&quot;Error&quot;</span>,xml.errorString(),QMessageBox::Ok);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    file-&gt;close();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    defaultPanelConfig = panelConfig;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> PanelConfig::setupConfigList()</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> index=0; index &lt; panelConfig.size(); index++)</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        ui-&gt;configList-&gt;addItem(panelConfig[index].configName);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    ui-&gt;configList-&gt;setMaximumWidth(ui-&gt;configList-&gt;sizeHintForColumn(0)+25);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    ui-&gt;configList-&gt;setCurrentRow(0);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    connect(<a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configList, SIGNAL(currentRowChanged(<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_config.html#a150c70890753e6cb676b64bea1d840ad">selectConfig</a>(<span class="keywordtype">int</span>)));</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    connect(<a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable, SIGNAL(cellClicked(<span class="keywordtype">int</span>,<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_config.html#a23f5d237d9e7a41304505e5355966e12">selectDescription</a>(<span class="keywordtype">int</span>,<span class="keywordtype">int</span>)));</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_config.html#ac1098a57883dffb8db3d9f16fc8b552e">initializePanel</a>(QMap&lt;QString,QString&gt;)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_config.html#a0cbc371765f74ff9f93da68edeb3cf98">initialize</a>(QMap&lt;QString,QString&gt;)));</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_config.html#ae17c7da1ee3540ceb34602efd30d47a5">messageIn</a>(QByteArray)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_config.html#a69847cd76f9834cd757c04f848eb0648">parseMessage</a>(QByteArray)));</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_config.html#ad6cbf24da2c4bc9ff0f6d53f734a937c">connectionState</a>(<span class="keywordtype">bool</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_config.html#a004e9a32d3698d9209b636e4567ccfe9">updateConnectionState</a>(<span class="keywordtype">bool</span>)));</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_panel_config.html#a37b8c4af923b574509d3a39190a19810">   17</a></span>&#160;<a class="code" href="class_panel_config.html#a37b8c4af923b574509d3a39190a19810">PanelConfig::~PanelConfig</a>()</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_panel_config.html#a0cbc371765f74ff9f93da68edeb3cf98">   22</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#a0cbc371765f74ff9f93da68edeb3cf98">PanelConfig::initialize</a>(QMap&lt;QString, QString&gt; config)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_panel_config.html#aec7d7f5406393113cc7edff267655a71">configuration</a> = config;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    emit <a class="code" href="class_panel_config.html#a5396794a5d83a5f85b8924f1c5b84225">getConnectionState</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_panel_config.html#acdfef2432419ce8213933f424a19d2c1">readXML</a>(<span class="stringliteral">&quot;panel_config.xml&quot;</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_panel_config.html#a8d1c4ca3eec3ab7c5e52bf40fcc053b5">setupConfigList</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_panel_config.html#abd4acb61d6e672e7ac0bd9d70d6992af">setupTableHeader</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_panel_config.html#a150c70890753e6cb676b64bea1d840ad">selectConfig</a>(0);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_panel_config.html#acdfef2432419ce8213933f424a19d2c1">   32</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#acdfef2432419ce8213933f424a19d2c1">PanelConfig::readXML</a>(QString filename)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// Open XML configuration file</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    QFile* file = <span class="keyword">new</span> QFile(filename);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">if</span> (!file-&gt;open(QIODevice::ReadOnly | QIODevice::Text))</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        QMessageBox::critical(<span class="keyword">this</span>, <span class="stringliteral">&quot;AeroQuad Communicator&quot;</span>, <span class="stringliteral">&quot;Unable to find configuration file:\n&quot;</span> + QCoreApplication::applicationDirPath() + <span class="stringliteral">&quot;/panel_config.xml&quot;</span>, QMessageBox::Ok);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        file-&gt;close();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// Read XML file and populate data storage</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>.clear();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    QXmlStreamReader xml(file);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">while</span> (!xml.atEnd() &amp;&amp; !xml.hasError())</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        xml.readNext();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span> (xml.isStartElement() &amp;&amp; (xml.name() == <span class="stringliteral">&quot;ConfigType&quot;</span>))</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="struct_panel_config_1_1cfg.html">cfg</a> configItem;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            configItem.<a class="code" href="struct_panel_config_1_1cfg.html#a686442fba1e0aafdf4d02a2db839ba0f">configName</a> = xml.attributes().value(<span class="stringliteral">&quot;Name&quot;</span>).toString();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            xml.readNextStartElement();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keywordflow">while</span>(!(xml.tokenType() == QXmlStreamReader::EndElement &amp;&amp; xml.name() == <span class="stringliteral">&quot;ConfigType&quot;</span>))</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keywordflow">if</span>(xml.tokenType() == QXmlStreamReader::StartElement)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;Requirement&quot;</span>)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        configItem.<a class="code" href="struct_panel_config_1_1cfg.html#a4c696362e05d27b7e14d492268cc37fc">requirement</a> = xml.readElementText();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;Command&quot;</span>)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        configItem.<a class="code" href="struct_panel_config_1_1cfg.html#a1a8745e1737dea4f71a1bc3e4a101f53">command</a> = xml.readElementText();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;Telemetry&quot;</span>)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        configItem.<a class="code" href="struct_panel_config_1_1cfg.html#a90200bb905663cdcd3003401555bb202">telemetry</a> = xml.readElementText();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;UpdateEEPROM&quot;</span>)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        configItem.<a class="code" href="struct_panel_config_1_1cfg.html#a87aeab5411971031a218eb477d578827">updateEEPROM</a> = xml.readElementText();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    <span class="keywordflow">if</span>(xml.name() == <span class="stringliteral">&quot;Parameter&quot;</span>)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        QXmlStreamAttributes parameterAttributes = xml.attributes();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                        <a class="code" href="struct_panel_config_1_1parameter.html">parameter</a> parameterItem;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                        parameterItem.<a class="code" href="struct_panel_config_1_1parameter.html#aedf0c63aac5e91c30bd31ea1a4563e8b">name</a> = parameterAttributes.value(<span class="stringliteral">&quot;Name&quot;</span>).toString();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                        parameterItem.<a class="code" href="struct_panel_config_1_1parameter.html#a4f56731d4b7a3eed808c8c980ad25aca">value</a> = xml.readElementText();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        parameterItem.<a class="code" href="struct_panel_config_1_1parameter.html#a78f634acc4325654d1581b5ae87064eb">description</a> = parameterAttributes.value(<span class="stringliteral">&quot;Description&quot;</span>).toString();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                        configItem.<a class="code" href="struct_panel_config_1_1cfg.html#ada4b45fa2d2b3dacebddf50e7101ce7d">parameters</a>.append(parameterItem);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                xml.readNextStartElement();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>.append(configItem);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span> (xml.hasError())</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        QMessageBox::warning(NULL,<span class="stringliteral">&quot;Error&quot;</span>,xml.errorString(),QMessageBox::Ok);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    file-&gt;close();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="class_panel_config.html#ace194ae7d02b21f50e0ed5ce384aa433">defaultPanelConfig</a> = <a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> PanelConfig::setupTableHeader()</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="class_panel_config.html#a8d1c4ca3eec3ab7c5e52bf40fcc053b5">   89</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#a8d1c4ca3eec3ab7c5e52bf40fcc053b5">PanelConfig::setupConfigList</a>()</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    ui-&gt;configTable-&gt;horizontalHeader()-&gt;setSectionResizeMode(0, QHeaderView::Stretch);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    ui-&gt;configTable-&gt;setAlternatingRowColors(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    QFont font = ui-&gt;configTable-&gt;horizontalHeader()-&gt;font();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    font.setBold(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    ui-&gt;configTable-&gt;horizontalHeader()-&gt;setFont(font);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    QTableWidgetItem *header0 = <span class="keyword">new</span> QTableWidgetItem(<span class="stringliteral">&quot;Parameter&quot;</span>);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    ui-&gt;configTable-&gt;setHorizontalHeaderItem(0, header0);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    ui-&gt;configTable-&gt;horizontalHeader()-&gt;setDefaultAlignment(Qt::AlignLeft);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    QTableWidgetItem *header1 = <span class="keyword">new</span> QTableWidgetItem(<span class="stringliteral">&quot;Value&quot;</span>);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    ui-&gt;configTable-&gt;setHorizontalHeaderItem(1, header1);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    ui-&gt;configTable-&gt;verticalHeader()-&gt;setVisible(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keywordtype">void</span> PanelConfig::selectConfig(<span class="keywordtype">int</span> index)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    ui-&gt;configTable-&gt;clear();</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    setupTableHeader();</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    ui-&gt;configTable-&gt;setRowCount(panelConfig[index].parameters.size());</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    currentPanel = index;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    updateParameterValues();</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    ui-&gt;configTable-&gt;selectRow(0);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    selectDescription(0, 0);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    QByteArray message(panelConfig[index].telemetry.toUtf8());</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    emit messageOut(message);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordtype">void</span> PanelConfig::selectDescription(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> col)</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    ui-&gt;configDescription-&gt;clear();</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    ui-&gt;configDescription-&gt;append(panelConfig[currentPanel].parameters[row].description);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keywordtype">void</span> PanelConfig::updateConfig(QByteArray incoming)</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    QString message = incoming;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="comment">// This init needs to be done because needed SLOTS/SIGNALS are connected after new panel is instantiated</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">if</span> (message == <span class="stringliteral">&quot;initialize&quot;</span>)</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        selectConfig(0);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    message.chop(2); <span class="comment">// remove CR/LF</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    QStringList parameters = message.split(<span class="stringliteral">&quot;,&quot;</span>);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordflow">if</span> (parameters[parameters.size()-1] == <span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        parameters.removeLast();</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> index=0; index&lt;panelConfig[currentPanel].parameters.size(); index++)</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">if</span> (index &lt; parameters.size()) <span class="comment">// Protect if incoming message is incorrect size</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            panelConfig[currentPanel].parameters[index].value = parameters[index];</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    updateParameterValues();</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keywordtype">void</span> PanelConfig::updateParameterValues()</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;{</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> paramIndex=0; paramIndex&lt;panelConfig[currentPanel].parameters.size(); paramIndex++)</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    {</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        QTableWidgetItem *name = <span class="keyword">new</span> QTableWidgetItem(panelConfig[currentPanel].parameters[paramIndex].name);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        name-&gt;setFlags(name-&gt;flags() ^ Qt::ItemIsEditable);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        ui-&gt;configTable-&gt;setItem(paramIndex, 0, name);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        QDoubleSpinBox *parameterInput = <span class="keyword">new</span> QDoubleSpinBox;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        parameterInput-&gt;setMaximum(9999);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        parameterInput-&gt;setMinimum(-9999);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        parameterInput-&gt;setDecimals(2);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        parameterInput-&gt;setValue(panelConfig[currentPanel].parameters[paramIndex].value.toDouble());</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        parameterInput-&gt;setAlignment(Qt::AlignRight);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        ui-&gt;configTable-&gt;setCellWidget(paramIndex, 1, parameterInput);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;}</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keywordtype">void</span> PanelConfig::on_defaultButton_clicked()</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;{</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    QMessageBox::StandardButton response = QMessageBox::question(<span class="keyword">this</span>, <span class="stringliteral">&quot;AeroQuad Communicator&quot;</span>, <span class="stringliteral">&quot;Are you sure you want to revert all values for &quot;</span> + panelConfig[currentPanel].configName + <span class="stringliteral">&quot; to their default values?&quot;</span>);</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">if</span> (response == QMessageBox::Yes)</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> index=0; index&lt;defaultPanelConfig[currentPanel].parameters.size(); index++)</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        {</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            panelConfig[currentPanel].parameters = defaultPanelConfig[currentPanel].parameters;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            updateParameterValues();</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="keywordtype">void</span> PanelConfig::on_uploadButton_clicked()</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;{</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    QString command = panelConfig[currentPanel].command;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    QDoubleSpinBox *cellValue;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> index=0; index&lt;ui-&gt;configTable-&gt;rowCount(); index++)</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    {</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        cellValue = qobject_cast&lt;QDoubleSpinBox*&gt;(ui-&gt;configTable-&gt;cellWidget(index, 1));</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        command += QString::number(cellValue-&gt;value()) + <span class="stringliteral">&quot;;&quot;</span>; <span class="comment">// convert this way so extra zeros aren&#39;t included</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    }</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    emit messageOut(command.toUtf8());</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    emit messageOut(panelConfig[currentPanel].telemetry.toUtf8());</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    emit messageOut(panelConfig[currentPanel].updateEEPROM.toUtf8());</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;}</div>
-<div class="ttc" id="class_panel_config_html"><div class="ttname"><a href="class_panel_config.html">PanelConfig</a></div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00017">panel_config.h:17</a></div></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> index=0; index &lt; <a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>.size(); index++)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configList-&gt;addItem(<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[index].configName);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configList-&gt;setMaximumWidth(<a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configList-&gt;sizeHintForColumn(0)+25);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configList-&gt;setCurrentRow(0);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="class_panel_config.html#abd4acb61d6e672e7ac0bd9d70d6992af">   97</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#abd4acb61d6e672e7ac0bd9d70d6992af">PanelConfig::setupTableHeader</a>()</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;horizontalHeader()-&gt;setSectionResizeMode(0, QHeaderView::Stretch);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;setAlternatingRowColors(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    QFont font = <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;horizontalHeader()-&gt;font();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    font.setBold(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;horizontalHeader()-&gt;setFont(font);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    QTableWidgetItem *header0 = <span class="keyword">new</span> QTableWidgetItem(<span class="stringliteral">&quot;Parameter&quot;</span>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;setHorizontalHeaderItem(0, header0);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;horizontalHeader()-&gt;setDefaultAlignment(Qt::AlignLeft);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    QTableWidgetItem *header1 = <span class="keyword">new</span> QTableWidgetItem(<span class="stringliteral">&quot;Value&quot;</span>);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;setHorizontalHeaderItem(1, header1);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;verticalHeader()-&gt;setVisible(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="class_panel_config.html#a150c70890753e6cb676b64bea1d840ad">  112</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#a150c70890753e6cb676b64bea1d840ad">PanelConfig::selectConfig</a>(<span class="keywordtype">int</span> index)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;clear();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="class_panel_config.html#abd4acb61d6e672e7ac0bd9d70d6992af">setupTableHeader</a>();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;setRowCount(<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[index].parameters.size());</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a> = index;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="class_panel_config.html#a4461a27d96795253bf09bf0527ed12b4">updateParameterValues</a>();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;selectRow(0);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="class_panel_config.html#a23f5d237d9e7a41304505e5355966e12">selectDescription</a>(0, 0);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    QByteArray message(<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[index].telemetry.toUtf8());</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <a class="code" href="class_panel_config.html#ae9f1915cc4794c6e5c9a661c65ef1532">sendMessage</a>(message);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="class_panel_config.html#a23f5d237d9e7a41304505e5355966e12">  125</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#a23f5d237d9e7a41304505e5355966e12">PanelConfig::selectDescription</a>(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> col)</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;{</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configDescription-&gt;clear();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configDescription-&gt;append(<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].parameters[row].description);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="class_panel_config.html#a69847cd76f9834cd757c04f848eb0648">  131</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#a69847cd76f9834cd757c04f848eb0648">PanelConfig::parseMessage</a>(QByteArray incoming)</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;{</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    QString message = incoming;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    message.chop(2); <span class="comment">// remove CR/LF</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    QStringList parameters = message.split(<span class="stringliteral">&quot;,&quot;</span>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">if</span> (parameters[parameters.size()-1] == <span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        parameters.removeLast();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> index=0; index&lt;<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].parameters.size(); index++)</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">if</span> (index &lt; parameters.size()) <span class="comment">// Protect if incoming message is incorrect size</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].parameters[index].value = parameters[index];</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="class_panel_config.html#a4461a27d96795253bf09bf0527ed12b4">updateParameterValues</a>();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;}</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="class_panel_config.html#a4461a27d96795253bf09bf0527ed12b4">  144</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#a4461a27d96795253bf09bf0527ed12b4">PanelConfig::updateParameterValues</a>()</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;{</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> paramIndex=0; paramIndex&lt;<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].parameters.size(); paramIndex++)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        QTableWidgetItem *name = <span class="keyword">new</span> QTableWidgetItem(<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].parameters[paramIndex].name);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        name-&gt;setFlags(name-&gt;flags() ^ Qt::ItemIsEditable);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;setItem(paramIndex, 0, name);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        QDoubleSpinBox *parameterInput = <span class="keyword">new</span> QDoubleSpinBox;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        parameterInput-&gt;setMaximum(9999);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        parameterInput-&gt;setMinimum(-9999);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        parameterInput-&gt;setDecimals(2);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        parameterInput-&gt;setValue(<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].parameters[paramIndex].value.toDouble());</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        parameterInput-&gt;setAlignment(Qt::AlignRight);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;setCellWidget(paramIndex, 1, parameterInput);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    }</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="class_panel_config.html#aacc23b2e4d046f297a555aa612934ac3">  161</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#aacc23b2e4d046f297a555aa612934ac3">PanelConfig::on_defaultButton_clicked</a>()</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;{</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    QMessageBox::StandardButton response = QMessageBox::question(<span class="keyword">this</span>, <span class="stringliteral">&quot;AeroQuad Communicator&quot;</span>, <span class="stringliteral">&quot;Are you sure you want to revert all values for &quot;</span> + <a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].configName + <span class="stringliteral">&quot; to their default values?&quot;</span>);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">if</span> (response == QMessageBox::Yes)</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> index=0; index&lt;<a class="code" href="class_panel_config.html#ace194ae7d02b21f50e0ed5ce384aa433">defaultPanelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].parameters.size(); index++)</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].parameters = <a class="code" href="class_panel_config.html#ace194ae7d02b21f50e0ed5ce384aa433">defaultPanelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].parameters;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <a class="code" href="class_panel_config.html#a4461a27d96795253bf09bf0527ed12b4">updateParameterValues</a>();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="class_panel_config.html#a29dab415315348ee6be8acac80e5150e">  172</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_config.html#a29dab415315348ee6be8acac80e5150e">PanelConfig::on_uploadButton_clicked</a>()</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;{</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    QString command = <a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].command;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    QDoubleSpinBox *cellValue;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> index=0; index&lt;<a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;rowCount(); index++)</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        cellValue = qobject_cast&lt;QDoubleSpinBox*&gt;(<a class="code" href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">ui</a>-&gt;configTable-&gt;cellWidget(index, 1));</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        command += QString::number(cellValue-&gt;value()) + <span class="stringliteral">&quot;;&quot;</span>; <span class="comment">// convert this way so extra zeros aren&#39;t included</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <a class="code" href="class_panel_config.html#ae9f1915cc4794c6e5c9a661c65ef1532">sendMessage</a>(command.toUtf8());</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <a class="code" href="class_panel_config.html#ae9f1915cc4794c6e5c9a661c65ef1532">sendMessage</a>(<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].telemetry.toUtf8());</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <a class="code" href="class_panel_config.html#ae9f1915cc4794c6e5c9a661c65ef1532">sendMessage</a>(<a class="code" href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">panelConfig</a>[<a class="code" href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">currentPanel</a>].updateEEPROM.toUtf8());</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;}</div>
+<div class="ttc" id="class_panel_config_html_ad6cbf24da2c4bc9ff0f6d53f734a937c"><div class="ttname"><a href="class_panel_config.html#ad6cbf24da2c4bc9ff0f6d53f734a937c">PanelConfig::connectionState</a></div><div class="ttdeci">void connectionState(bool)</div></div>
+<div class="ttc" id="class_panel_config_html_a0cbc371765f74ff9f93da68edeb3cf98"><div class="ttname"><a href="class_panel_config.html#a0cbc371765f74ff9f93da68edeb3cf98">PanelConfig::initialize</a></div><div class="ttdeci">void initialize(QMap&lt; QString, QString &gt; config)</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00022">panel_config.cpp:22</a></div></div>
+<div class="ttc" id="class_panel_config_html_a150c70890753e6cb676b64bea1d840ad"><div class="ttname"><a href="class_panel_config.html#a150c70890753e6cb676b64bea1d840ad">PanelConfig::selectConfig</a></div><div class="ttdeci">void selectConfig(int index)</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00112">panel_config.cpp:112</a></div></div>
+<div class="ttc" id="class_panel_config_html_a3eb61bb8a5d723daaae6b15f6384377b"><div class="ttname"><a href="class_panel_config.html#a3eb61bb8a5d723daaae6b15f6384377b">PanelConfig::PanelConfig</a></div><div class="ttdeci">PanelConfig(QWidget *parent=0)</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00004">panel_config.cpp:4</a></div></div>
+<div class="ttc" id="class_panel_config_html_a29dab415315348ee6be8acac80e5150e"><div class="ttname"><a href="class_panel_config.html#a29dab415315348ee6be8acac80e5150e">PanelConfig::on_uploadButton_clicked</a></div><div class="ttdeci">void on_uploadButton_clicked()</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00172">panel_config.cpp:172</a></div></div>
+<div class="ttc" id="class_panel_config_html_a5396794a5d83a5f85b8924f1c5b84225"><div class="ttname"><a href="class_panel_config.html#a5396794a5d83a5f85b8924f1c5b84225">PanelConfig::getConnectionState</a></div><div class="ttdeci">void getConnectionState()</div></div>
+<div class="ttc" id="class_panel_config_html_a515d83c926e99da44aefb7b61e601a58"><div class="ttname"><a href="class_panel_config.html#a515d83c926e99da44aefb7b61e601a58">PanelConfig::ui</a></div><div class="ttdeci">Ui::PanelConfig * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00049">panel_config.h:49</a></div></div>
+<div class="ttc" id="class_panel_config_html"><div class="ttname"><a href="class_panel_config.html">PanelConfig</a></div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00018">panel_config.h:18</a></div></div>
+<div class="ttc" id="class_panel_config_html_abd4acb61d6e672e7ac0bd9d70d6992af"><div class="ttname"><a href="class_panel_config.html#abd4acb61d6e672e7ac0bd9d70d6992af">PanelConfig::setupTableHeader</a></div><div class="ttdeci">void setupTableHeader()</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00097">panel_config.cpp:97</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1cfg_html_a90200bb905663cdcd3003401555bb202"><div class="ttname"><a href="struct_panel_config_1_1cfg.html#a90200bb905663cdcd3003401555bb202">PanelConfig::cfg::telemetry</a></div><div class="ttdeci">QString telemetry</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00061">panel_config.h:61</a></div></div>
+<div class="ttc" id="class_panel_config_html_a004e9a32d3698d9209b636e4567ccfe9"><div class="ttname"><a href="class_panel_config.html#a004e9a32d3698d9209b636e4567ccfe9">PanelConfig::updateConnectionState</a></div><div class="ttdeci">void updateConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00033">panel_config.h:33</a></div></div>
+<div class="ttc" id="class_panel_config_html_a23f5d237d9e7a41304505e5355966e12"><div class="ttname"><a href="class_panel_config.html#a23f5d237d9e7a41304505e5355966e12">PanelConfig::selectDescription</a></div><div class="ttdeci">void selectDescription(int row, int col)</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00125">panel_config.cpp:125</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1parameter_html"><div class="ttname"><a href="struct_panel_config_1_1parameter.html">PanelConfig::parameter</a></div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00050">panel_config.h:50</a></div></div>
+<div class="ttc" id="class_panel_config_html_a37b8c4af923b574509d3a39190a19810"><div class="ttname"><a href="class_panel_config.html#a37b8c4af923b574509d3a39190a19810">PanelConfig::~PanelConfig</a></div><div class="ttdeci">~PanelConfig()</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00017">panel_config.cpp:17</a></div></div>
+<div class="ttc" id="class_panel_config_html_ae9f1915cc4794c6e5c9a661c65ef1532"><div class="ttname"><a href="class_panel_config.html#ae9f1915cc4794c6e5c9a661c65ef1532">PanelConfig::sendMessage</a></div><div class="ttdeci">void sendMessage(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00027">panel_config.h:27</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1cfg_html"><div class="ttname"><a href="struct_panel_config_1_1cfg.html">PanelConfig::cfg</a></div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00056">panel_config.h:56</a></div></div>
+<div class="ttc" id="class_panel_config_html_ae17c7da1ee3540ceb34602efd30d47a5"><div class="ttname"><a href="class_panel_config.html#ae17c7da1ee3540ceb34602efd30d47a5">PanelConfig::messageIn</a></div><div class="ttdeci">void messageIn(QByteArray)</div></div>
+<div class="ttc" id="class_panel_config_html_a8d1c4ca3eec3ab7c5e52bf40fcc053b5"><div class="ttname"><a href="class_panel_config.html#a8d1c4ca3eec3ab7c5e52bf40fcc053b5">PanelConfig::setupConfigList</a></div><div class="ttdeci">void setupConfigList()</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00089">panel_config.cpp:89</a></div></div>
+<div class="ttc" id="class_panel_config_html_ab175c2041cf90363eceea1a57c518297"><div class="ttname"><a href="class_panel_config.html#ab175c2041cf90363eceea1a57c518297">PanelConfig::currentPanel</a></div><div class="ttdeci">int currentPanel</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00067">panel_config.h:67</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1cfg_html_ada4b45fa2d2b3dacebddf50e7101ce7d"><div class="ttname"><a href="struct_panel_config_1_1cfg.html#ada4b45fa2d2b3dacebddf50e7101ce7d">PanelConfig::cfg::parameters</a></div><div class="ttdeci">QVector&lt; parameter &gt; parameters</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00063">panel_config.h:63</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1cfg_html_a87aeab5411971031a218eb477d578827"><div class="ttname"><a href="struct_panel_config_1_1cfg.html#a87aeab5411971031a218eb477d578827">PanelConfig::cfg::updateEEPROM</a></div><div class="ttdeci">QString updateEEPROM</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00062">panel_config.h:62</a></div></div>
+<div class="ttc" id="class_panel_config_html_aec7d7f5406393113cc7edff267655a71"><div class="ttname"><a href="class_panel_config.html#aec7d7f5406393113cc7edff267655a71">PanelConfig::configuration</a></div><div class="ttdeci">QMap&lt; QString, QString &gt; configuration</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00026">panel_config.h:26</a></div></div>
+<div class="ttc" id="class_panel_config_html_a4461a27d96795253bf09bf0527ed12b4"><div class="ttname"><a href="class_panel_config.html#a4461a27d96795253bf09bf0527ed12b4">PanelConfig::updateParameterValues</a></div><div class="ttdeci">void updateParameterValues()</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00144">panel_config.cpp:144</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1cfg_html_a1a8745e1737dea4f71a1bc3e4a101f53"><div class="ttname"><a href="struct_panel_config_1_1cfg.html#a1a8745e1737dea4f71a1bc3e4a101f53">PanelConfig::cfg::command</a></div><div class="ttdeci">QString command</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00060">panel_config.h:60</a></div></div>
+<div class="ttc" id="class_panel_config_html_ac1098a57883dffb8db3d9f16fc8b552e"><div class="ttname"><a href="class_panel_config.html#ac1098a57883dffb8db3d9f16fc8b552e">PanelConfig::initializePanel</a></div><div class="ttdeci">void initializePanel(QMap&lt; QString, QString &gt;)</div></div>
+<div class="ttc" id="struct_panel_config_1_1cfg_html_a4c696362e05d27b7e14d492268cc37fc"><div class="ttname"><a href="struct_panel_config_1_1cfg.html#a4c696362e05d27b7e14d492268cc37fc">PanelConfig::cfg::requirement</a></div><div class="ttdeci">QString requirement</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00059">panel_config.h:59</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1parameter_html_a78f634acc4325654d1581b5ae87064eb"><div class="ttname"><a href="struct_panel_config_1_1parameter.html#a78f634acc4325654d1581b5ae87064eb">PanelConfig::parameter::description</a></div><div class="ttdeci">QString description</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00054">panel_config.h:54</a></div></div>
+<div class="ttc" id="class_panel_config_html_ace194ae7d02b21f50e0ed5ce384aa433"><div class="ttname"><a href="class_panel_config.html#ace194ae7d02b21f50e0ed5ce384aa433">PanelConfig::defaultPanelConfig</a></div><div class="ttdeci">QVector&lt; cfg &gt; defaultPanelConfig</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00066">panel_config.h:66</a></div></div>
+<div class="ttc" id="panel__config_8h_html"><div class="ttname"><a href="panel__config_8h.html">panel_config.h</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1parameter_html_aedf0c63aac5e91c30bd31ea1a4563e8b"><div class="ttname"><a href="struct_panel_config_1_1parameter.html#aedf0c63aac5e91c30bd31ea1a4563e8b">PanelConfig::parameter::name</a></div><div class="ttdeci">QString name</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00052">panel_config.h:52</a></div></div>
+<div class="ttc" id="class_panel_config_html_ad7d56e1e117b3d041226fed37dbb55ce"><div class="ttname"><a href="class_panel_config.html#ad7d56e1e117b3d041226fed37dbb55ce">PanelConfig::panelConfig</a></div><div class="ttdeci">QVector&lt; cfg &gt; panelConfig</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00065">panel_config.h:65</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1parameter_html_a4f56731d4b7a3eed808c8c980ad25aca"><div class="ttname"><a href="struct_panel_config_1_1parameter.html#a4f56731d4b7a3eed808c8c980ad25aca">PanelConfig::parameter::value</a></div><div class="ttdeci">QString value</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00053">panel_config.h:53</a></div></div>
+<div class="ttc" id="class_panel_config_html_aacc23b2e4d046f297a555aa612934ac3"><div class="ttname"><a href="class_panel_config.html#aacc23b2e4d046f297a555aa612934ac3">PanelConfig::on_defaultButton_clicked</a></div><div class="ttdeci">void on_defaultButton_clicked()</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00161">panel_config.cpp:161</a></div></div>
+<div class="ttc" id="struct_panel_config_1_1cfg_html_a686442fba1e0aafdf4d02a2db839ba0f"><div class="ttname"><a href="struct_panel_config_1_1cfg.html#a686442fba1e0aafdf4d02a2db839ba0f">PanelConfig::cfg::configName</a></div><div class="ttdeci">QString configName</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8h_source.html#l00058">panel_config.h:58</a></div></div>
+<div class="ttc" id="class_panel_config_html_a69847cd76f9834cd757c04f848eb0648"><div class="ttname"><a href="class_panel_config.html#a69847cd76f9834cd757c04f848eb0648">PanelConfig::parseMessage</a></div><div class="ttdeci">void parseMessage(QByteArray)</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00131">panel_config.cpp:131</a></div></div>
+<div class="ttc" id="class_panel_config_html_acdfef2432419ce8213933f424a19d2c1"><div class="ttname"><a href="class_panel_config.html#acdfef2432419ce8213933f424a19d2c1">PanelConfig::readXML</a></div><div class="ttdeci">void readXML(QString filename)</div><div class="ttdef"><b>Definition:</b> <a href="panel__config_8cpp_source.html#l00032">panel_config.cpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_ead29842ed5e7583567412f9bbf2108f.html">AeroQuadCommunicator</a></li><li class="navelem"><a class="el" href="dir_d0ad9d8b5049107d08fae70e7ac21e52.html">panel</a></li><li class="navelem"><a class="el" href="dir_c9b98a0162145e7fdcf95be4883ade78.html">config</a></li><li class="navelem"><b>panel_config.cpp</b></li>
-    <li class="footer">Generated on Sun Feb 9 2014 21:21:33 for AeroQuad Communucator by
+    <li class="navelem"><a class="el" href="dir_ead29842ed5e7583567412f9bbf2108f.html">AeroQuadCommunicator</a></li><li class="navelem"><a class="el" href="dir_d0ad9d8b5049107d08fae70e7ac21e52.html">panel</a></li><li class="navelem"><a class="el" href="dir_c9b98a0162145e7fdcf95be4883ade78.html">config</a></li><li class="navelem"><a class="el" href="panel__config_8cpp.html">panel_config.cpp</a></li>
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:42 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

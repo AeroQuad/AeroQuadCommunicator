@@ -159,7 +159,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a155f4916f7de24647aea73a52dbdd17d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vehicle.html#a155f4916f7de24647aea73a52dbdd17d">trailState</a></td></tr>
 <tr class="separator:a155f4916f7de24647aea73a52dbdd17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="vehicle_8h_source.html#l00015">15</a> of file <a class="el" href="vehicle_8h_source.html">vehicle.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ac267ef237a6290cba61ae6b1caa2c259"></a>
 <div class="memitem">
 <div class="memproto">
@@ -198,6 +201,38 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="vehicle_8cpp_source.html#l00005">5</a> of file <a class="el" href="vehicle_8cpp_source.html">vehicle.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="class_vehicle.html#a47c0e3c348959d3acd95dde500e86511">vehicle</a> = <span class="keyword">new</span> GeoDataPlacemark(vehicleName);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_vehicle.html#a819bff6916be56d918a89766969e0b7d">styleVehicle</a> = <span class="keyword">new</span> GeoDataStyle;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    GeoDataIconStyle iconVehicle;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="class_vehicle.html#af722f8df9d9cf13f1809f4ebb5a52ed6">imageVehicle</a>.load(QDir::currentPath() + <span class="stringliteral">&quot;/&quot;</span> + filename);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    iconVehicle.setIcon(<a class="code" href="class_vehicle.html#af722f8df9d9cf13f1809f4ebb5a52ed6">imageVehicle</a>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_vehicle.html#a47c0e3c348959d3acd95dde500e86511">vehicle</a>-&gt;setStyle(<a class="code" href="class_vehicle.html#a819bff6916be56d918a89766969e0b7d">styleVehicle</a>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_vehicle.html#a819bff6916be56d918a89766969e0b7d">styleVehicle</a>-&gt;setIconStyle(iconVehicle);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_vehicle.html#a8604e102c75b0997df781b8b6b6fca70">display</a> = geoDocument;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_vehicle.html#a8604e102c75b0997df781b8b6b6fca70">display</a>-&gt;append(<a class="code" href="class_vehicle.html#a47c0e3c348959d3acd95dde500e86511">vehicle</a>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_vehicle.html#a00320fd0c9a951bb6ee0a814a03e0b03">trail</a> = <span class="keyword">new</span> GeoDataPlacemark;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_vehicle.html#a66ce1caa02c24608dbfe6427f447e0b0">trailData</a> = <span class="keyword">new</span> GeoDataLineString(Marble::Tessellate);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_vehicle.html#a00320fd0c9a951bb6ee0a814a03e0b03">trail</a>-&gt;setGeometry(<a class="code" href="class_vehicle.html#a66ce1caa02c24608dbfe6427f447e0b0">trailData</a>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    GeoDataStyle *styleTrail = <span class="keyword">new</span> GeoDataStyle;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    GeoDataLineStyle lineStyle(QColor(<span class="stringliteral">&quot;blue&quot;</span>));</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    lineStyle.setWidth(5);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    styleTrail-&gt;setLineStyle(lineStyle);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_vehicle.html#a00320fd0c9a951bb6ee0a814a03e0b03">trail</a>-&gt;setStyle(styleTrail);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_vehicle.html#aa8a35695af17c1bb3d5e6b5a89b7f481">enableTrail</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_vehicle.html#a8604e102c75b0997df781b8b6b6fca70">display</a>-&gt;append(<a class="code" href="class_vehicle.html#a00320fd0c9a951bb6ee0a814a03e0b03">trail</a>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="ttc" id="class_vehicle_html_aa8a35695af17c1bb3d5e6b5a89b7f481"><div class="ttname"><a href="class_vehicle.html#aa8a35695af17c1bb3d5e6b5a89b7f481">Vehicle::enableTrail</a></div><div class="ttdeci">void enableTrail(bool state, int length=10000)</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8cpp_source.html#l00051">vehicle.cpp:51</a></div></div>
+<div class="ttc" id="class_vehicle_html_a819bff6916be56d918a89766969e0b7d"><div class="ttname"><a href="class_vehicle.html#a819bff6916be56d918a89766969e0b7d">Vehicle::styleVehicle</a></div><div class="ttdeci">Marble::GeoDataStyle * styleVehicle</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00030">vehicle.h:30</a></div></div>
+<div class="ttc" id="class_vehicle_html_af722f8df9d9cf13f1809f4ebb5a52ed6"><div class="ttname"><a href="class_vehicle.html#af722f8df9d9cf13f1809f4ebb5a52ed6">Vehicle::imageVehicle</a></div><div class="ttdeci">QImage imageVehicle</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00035">vehicle.h:35</a></div></div>
+<div class="ttc" id="class_vehicle_html_a66ce1caa02c24608dbfe6427f447e0b0"><div class="ttname"><a href="class_vehicle.html#a66ce1caa02c24608dbfe6427f447e0b0">Vehicle::trailData</a></div><div class="ttdeci">Marble::GeoDataLineString * trailData</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00032">vehicle.h:32</a></div></div>
+<div class="ttc" id="class_vehicle_html_a47c0e3c348959d3acd95dde500e86511"><div class="ttname"><a href="class_vehicle.html#a47c0e3c348959d3acd95dde500e86511">Vehicle::vehicle</a></div><div class="ttdeci">Marble::GeoDataPlacemark * vehicle</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00029">vehicle.h:29</a></div></div>
+<div class="ttc" id="class_vehicle_html_a00320fd0c9a951bb6ee0a814a03e0b03"><div class="ttname"><a href="class_vehicle.html#a00320fd0c9a951bb6ee0a814a03e0b03">Vehicle::trail</a></div><div class="ttdeci">Marble::GeoDataPlacemark * trail</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00031">vehicle.h:31</a></div></div>
+<div class="ttc" id="class_vehicle_html_a8604e102c75b0997df781b8b6b6fca70"><div class="ttname"><a href="class_vehicle.html#a8604e102c75b0997df781b8b6b6fca70">Vehicle::display</a></div><div class="ttdeci">Marble::GeoDataDocument * display</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00034">vehicle.h:34</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -233,6 +268,23 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="vehicle_8cpp_source.html#l00051">51</a> of file <a class="el" href="vehicle_8cpp_source.html">vehicle.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">if</span> (state)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_vehicle.html#a155f4916f7de24647aea73a52dbdd17d">trailState</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="class_vehicle.html#a0d4d6e992eee591b68d30293b2f987e4">trailLength</a> = length;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="class_vehicle.html#a155f4916f7de24647aea73a52dbdd17d">trailState</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="class_vehicle.html#a66ce1caa02c24608dbfe6427f447e0b0">trailData</a>-&gt;clear();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="ttc" id="class_vehicle_html_a0d4d6e992eee591b68d30293b2f987e4"><div class="ttname"><a href="class_vehicle.html#a0d4d6e992eee591b68d30293b2f987e4">Vehicle::trailLength</a></div><div class="ttdeci">int trailLength</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00033">vehicle.h:33</a></div></div>
+<div class="ttc" id="class_vehicle_html_a66ce1caa02c24608dbfe6427f447e0b0"><div class="ttname"><a href="class_vehicle.html#a66ce1caa02c24608dbfe6427f447e0b0">Vehicle::trailData</a></div><div class="ttdeci">Marble::GeoDataLineString * trailData</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00032">vehicle.h:32</a></div></div>
+<div class="ttc" id="class_vehicle_html_a155f4916f7de24647aea73a52dbdd17d"><div class="ttname"><a href="class_vehicle.html#a155f4916f7de24647aea73a52dbdd17d">Vehicle::trailState</a></div><div class="ttdeci">bool trailState</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00036">vehicle.h:36</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a0c3f8fe66c659edc4ef5ab656f49f99e"></a>
@@ -257,6 +309,18 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="vehicle_8cpp_source.html#l00041">41</a> of file <a class="el" href="vehicle_8cpp_source.html">vehicle.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    QTransform rotateVehicle;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    rotateVehicle.rotate(heading);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    QImage rotatedVehicle(<a class="code" href="class_vehicle.html#af722f8df9d9cf13f1809f4ebb5a52ed6">imageVehicle</a>.transformed(rotateVehicle));</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    GeoDataIconStyle iconVehicle;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    iconVehicle.setIcon(rotatedVehicle);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_vehicle.html#a819bff6916be56d918a89766969e0b7d">styleVehicle</a>-&gt;setIconStyle(iconVehicle);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="ttc" id="class_vehicle_html_a819bff6916be56d918a89766969e0b7d"><div class="ttname"><a href="class_vehicle.html#a819bff6916be56d918a89766969e0b7d">Vehicle::styleVehicle</a></div><div class="ttdeci">Marble::GeoDataStyle * styleVehicle</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00030">vehicle.h:30</a></div></div>
+<div class="ttc" id="class_vehicle_html_af722f8df9d9cf13f1809f4ebb5a52ed6"><div class="ttname"><a href="class_vehicle.html#af722f8df9d9cf13f1809f4ebb5a52ed6">Vehicle::imageVehicle</a></div><div class="ttdeci">QImage imageVehicle</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00035">vehicle.h:35</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a3e6742c0c92f5bbfb248728c734787cd"></a>
@@ -281,6 +345,21 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="vehicle_8cpp_source.html#l00030">30</a> of file <a class="el" href="vehicle_8cpp_source.html">vehicle.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_vehicle.html#a47c0e3c348959d3acd95dde500e86511">vehicle</a>-&gt;setCoordinate(position);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_vehicle.html#a155f4916f7de24647aea73a52dbdd17d">trailState</a>)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="class_vehicle.html#a66ce1caa02c24608dbfe6427f447e0b0">trailData</a>-&gt;append(position);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_vehicle.html#a66ce1caa02c24608dbfe6427f447e0b0">trailData</a>-&gt;size() &gt; <a class="code" href="class_vehicle.html#a0d4d6e992eee591b68d30293b2f987e4">trailLength</a>)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <a class="code" href="class_vehicle.html#a66ce1caa02c24608dbfe6427f447e0b0">trailData</a>-&gt;remove(0);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="ttc" id="class_vehicle_html_a0d4d6e992eee591b68d30293b2f987e4"><div class="ttname"><a href="class_vehicle.html#a0d4d6e992eee591b68d30293b2f987e4">Vehicle::trailLength</a></div><div class="ttdeci">int trailLength</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00033">vehicle.h:33</a></div></div>
+<div class="ttc" id="class_vehicle_html_a66ce1caa02c24608dbfe6427f447e0b0"><div class="ttname"><a href="class_vehicle.html#a66ce1caa02c24608dbfe6427f447e0b0">Vehicle::trailData</a></div><div class="ttdeci">Marble::GeoDataLineString * trailData</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00032">vehicle.h:32</a></div></div>
+<div class="ttc" id="class_vehicle_html_a155f4916f7de24647aea73a52dbdd17d"><div class="ttname"><a href="class_vehicle.html#a155f4916f7de24647aea73a52dbdd17d">Vehicle::trailState</a></div><div class="ttdeci">bool trailState</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00036">vehicle.h:36</a></div></div>
+<div class="ttc" id="class_vehicle_html_a47c0e3c348959d3acd95dde500e86511"><div class="ttname"><a href="class_vehicle.html#a47c0e3c348959d3acd95dde500e86511">Vehicle::vehicle</a></div><div class="ttdeci">Marble::GeoDataPlacemark * vehicle</div><div class="ttdef"><b>Definition:</b> <a href="vehicle_8h_source.html#l00029">vehicle.h:29</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -302,6 +381,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="vehicle_8h_source.html#l00034">34</a> of file <a class="el" href="vehicle_8h_source.html">vehicle.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="af722f8df9d9cf13f1809f4ebb5a52ed6"></a>
@@ -321,6 +402,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="vehicle_8h_source.html#l00035">35</a> of file <a class="el" href="vehicle_8h_source.html">vehicle.h</a>.</p>
 
 </div>
 </div>
@@ -342,6 +425,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="vehicle_8h_source.html#l00030">30</a> of file <a class="el" href="vehicle_8h_source.html">vehicle.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a00320fd0c9a951bb6ee0a814a03e0b03"></a>
@@ -361,6 +446,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="vehicle_8h_source.html#l00031">31</a> of file <a class="el" href="vehicle_8h_source.html">vehicle.h</a>.</p>
 
 </div>
 </div>
@@ -382,6 +469,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="vehicle_8h_source.html#l00032">32</a> of file <a class="el" href="vehicle_8h_source.html">vehicle.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a0d4d6e992eee591b68d30293b2f987e4"></a>
@@ -401,6 +490,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="vehicle_8h_source.html#l00033">33</a> of file <a class="el" href="vehicle_8h_source.html">vehicle.h</a>.</p>
 
 </div>
 </div>
@@ -422,6 +513,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="vehicle_8h_source.html#l00036">36</a> of file <a class="el" href="vehicle_8h_source.html">vehicle.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a47c0e3c348959d3acd95dde500e86511"></a>
@@ -442,11 +535,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="vehicle_8h_source.html#l00029">29</a> of file <a class="el" href="vehicle_8h_source.html">vehicle.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/route/<a class="el" href="vehicle_8h_source.html">vehicle.h</a></li>
-<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/route/<a class="el" href="vehicle_8cpp.html">vehicle.cpp</a></li>
+<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/route/<a class="el" href="vehicle_8cpp_source.html">vehicle.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -454,7 +549,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_vehicle.html">Vehicle</a></li>
-    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:43 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

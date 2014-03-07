@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>AeroQuad Communucator: Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/monitor/panel_monitor.cpp Source File</title>
+<title>AeroQuad Communicator: Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/monitor/panel_monitor.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,8 +30,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AeroQuad(300).png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">AeroQuad Communucator
-   &#160;<span id="projectnumber">0.1</span>
+   <div id="projectname">AeroQuad Communicator
+   &#160;<span id="projectnumber">v0.1</span>
    </div>
    <div id="projectbrief">Graphical configuration tool for the AeroQuad Flight Control Board</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,6 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -92,7 +94,7 @@ $(document).ready(function(){initNavTree('panel__monitor_8cpp_source.html','');}
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,53 +108,84 @@ $(document).ready(function(){initNavTree('panel__monitor_8cpp_source.html','');}
 <div class="title">panel_monitor.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;panel_monitor.h&quot;</span></div>
+<a href="panel__monitor_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="panel__monitor_8h.html">panel_monitor.h</a>&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;ui_panel_monitor.h&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;PanelMonitor::PanelMonitor(QWidget *parent) :</div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#ac12337de5cf116205aa92b789aaa1be7">    4</a></span>&#160;<a class="code" href="class_panel_monitor.html#ac12337de5cf116205aa92b789aaa1be7">PanelMonitor::PanelMonitor</a>(QWidget *parent) :</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    QWidget(parent),</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    ui(new Ui::<a class="code" href="class_panel_monitor.html">PanelMonitor</a>)</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    ui-&gt;setupUi(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    ui-&gt;console-&gt;setReadOnly(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    ui-&gt;console-&gt;setMaximumBlockCount(1024);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    ui-&gt;console-&gt;setWordWrapMode(QTextOption::NoWrap);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(messageIn(QByteArray)), <span class="keyword">this</span>, SLOT(displayCommData(QByteArray)));</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    connect(ui-&gt;commandLine, SIGNAL(returnPressed()), <span class="keyword">this</span>, SLOT(on_sendButton_clicked()));</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;PanelMonitor::~PanelMonitor()</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">delete</span> ui;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> PanelMonitor::displayCommData(QByteArray data)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ui-&gt;console-&gt;insertPlainText(data);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    ui-&gt;console-&gt;ensureCursorVisible();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> PanelMonitor::on_sendButton_clicked()</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    QByteArray message;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    message.append(ui-&gt;commandLine-&gt;text());</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    emit messageOut(message);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    ui-&gt;commandLine-&gt;clear();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    ui-&gt;commandLine-&gt;setFocus();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> PanelMonitor::on_clearButton_clicked()</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    ui-&gt;console-&gt;clear();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
-<div class="ttc" id="class_panel_monitor_html"><div class="ttname"><a href="class_panel_monitor.html">PanelMonitor</a></div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00010">panel_monitor.h:10</a></div></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;setReadOnly(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;setMaximumBlockCount(1024);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;setWordWrapMode(QTextOption::NoWrap);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    connect(<a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;commandLine, SIGNAL(returnPressed()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">on_sendButton_clicked</a>()));</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_monitor.html#a707aa4e2e9065f020c544e013775cb57">initializePanel</a>(QMap&lt;QString,QString&gt;)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_monitor.html#a1f82d5d273fdf74d6cdf349c4e5c99b4">initialize</a>(QMap&lt;QString,QString&gt;)));</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_monitor.html#a7b6b57cd32c9172dc32629a23fb81a1c">messageIn</a>(QByteArray)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_monitor.html#a4112ef5eb2356daa4a8987dcca7da7ef">parseMessage</a>(QByteArray)));</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_monitor.html#ab1b9eef3d45f70736b38020e667f404d">connectionState</a>(<span class="keywordtype">bool</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_monitor.html#ab554d3cb0b46b168dcce0ef1d977cc2f">updateConnectionState</a>(<span class="keywordtype">bool</span>)));</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#aaf573a704cf7225707ac3900c7918bfe">   18</a></span>&#160;<a class="code" href="class_panel_monitor.html#aaf573a704cf7225707ac3900c7918bfe">PanelMonitor::~PanelMonitor</a>()</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#a1f82d5d273fdf74d6cdf349c4e5c99b4">   23</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a1f82d5d273fdf74d6cdf349c4e5c99b4">PanelMonitor::initialize</a>(QMap&lt;QString, QString&gt; config)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_panel_monitor.html#ac80041809c2708810bd269dd947295dd">configuration</a> = config;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    emit <a class="code" href="class_panel_monitor.html#a1fe4e855f0376cee5806eeab43980c07">getConnectionState</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#a4112ef5eb2356daa4a8987dcca7da7ef">   29</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a4112ef5eb2356daa4a8987dcca7da7ef">PanelMonitor::parseMessage</a>(QByteArray data)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;insertPlainText(data);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;ensureCursorVisible();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">   35</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">PanelMonitor::on_sendButton_clicked</a>()</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    QByteArray message;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    message.append(<a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;commandLine-&gt;text());</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_panel_monitor.html#a27ca34feded6db78aaef2d639bdd5513">sendMessage</a>(message);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;commandLine-&gt;clear();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;commandLine-&gt;setFocus();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#a9b7c7046dc81259340a3ef9ac339e756">   44</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#a9b7c7046dc81259340a3ef9ac339e756">PanelMonitor::on_clearButton_clicked</a>()</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;console-&gt;clear();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_panel_monitor.html#ab554d3cb0b46b168dcce0ef1d977cc2f">   49</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_panel_monitor.html#ab554d3cb0b46b168dcce0ef1d977cc2f">PanelMonitor::updateConnectionState</a>(<span class="keywordtype">bool</span> state)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">connectState</a> = state;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;sendButton-&gt;setEnabled(<a class="code" href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">connectState</a>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">ui</a>-&gt;clearButton-&gt;setEnabled(<a class="code" href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">connectState</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="ttc" id="class_panel_monitor_html_ab554d3cb0b46b168dcce0ef1d977cc2f"><div class="ttname"><a href="class_panel_monitor.html#ab554d3cb0b46b168dcce0ef1d977cc2f">PanelMonitor::updateConnectionState</a></div><div class="ttdeci">void updateConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00049">panel_monitor.cpp:49</a></div></div>
+<div class="ttc" id="class_panel_monitor_html"><div class="ttname"><a href="class_panel_monitor.html">PanelMonitor</a></div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00011">panel_monitor.h:11</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_acce1c1f033b6ab6c0568aea8463d51ab"><div class="ttname"><a href="class_panel_monitor.html#acce1c1f033b6ab6c0568aea8463d51ab">PanelMonitor::ui</a></div><div class="ttdeci">Ui::PanelMonitor * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00040">panel_monitor.h:40</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a89bcec786d708417dddf6bb4d2315099"><div class="ttname"><a href="class_panel_monitor.html#a89bcec786d708417dddf6bb4d2315099">PanelMonitor::connectState</a></div><div class="ttdeci">bool connectState</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00018">panel_monitor.h:18</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_ab1b9eef3d45f70736b38020e667f404d"><div class="ttname"><a href="class_panel_monitor.html#ab1b9eef3d45f70736b38020e667f404d">PanelMonitor::connectionState</a></div><div class="ttdeci">void connectionState(bool)</div></div>
+<div class="ttc" id="class_panel_monitor_html_aaf573a704cf7225707ac3900c7918bfe"><div class="ttname"><a href="class_panel_monitor.html#aaf573a704cf7225707ac3900c7918bfe">PanelMonitor::~PanelMonitor</a></div><div class="ttdeci">~PanelMonitor()</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00018">panel_monitor.cpp:18</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a707aa4e2e9065f020c544e013775cb57"><div class="ttname"><a href="class_panel_monitor.html#a707aa4e2e9065f020c544e013775cb57">PanelMonitor::initializePanel</a></div><div class="ttdeci">void initializePanel(QMap&lt; QString, QString &gt;)</div></div>
+<div class="ttc" id="panel__monitor_8h_html"><div class="ttname"><a href="panel__monitor_8h.html">panel_monitor.h</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a1fe4e855f0376cee5806eeab43980c07"><div class="ttname"><a href="class_panel_monitor.html#a1fe4e855f0376cee5806eeab43980c07">PanelMonitor::getConnectionState</a></div><div class="ttdeci">void getConnectionState()</div></div>
+<div class="ttc" id="class_panel_monitor_html_a4112ef5eb2356daa4a8987dcca7da7ef"><div class="ttname"><a href="class_panel_monitor.html#a4112ef5eb2356daa4a8987dcca7da7ef">PanelMonitor::parseMessage</a></div><div class="ttdeci">void parseMessage(QByteArray)</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00029">panel_monitor.cpp:29</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a9b7c7046dc81259340a3ef9ac339e756"><div class="ttname"><a href="class_panel_monitor.html#a9b7c7046dc81259340a3ef9ac339e756">PanelMonitor::on_clearButton_clicked</a></div><div class="ttdeci">void on_clearButton_clicked()</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00044">panel_monitor.cpp:44</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a7b6b57cd32c9172dc32629a23fb81a1c"><div class="ttname"><a href="class_panel_monitor.html#a7b6b57cd32c9172dc32629a23fb81a1c">PanelMonitor::messageIn</a></div><div class="ttdeci">void messageIn(QByteArray)</div></div>
+<div class="ttc" id="class_panel_monitor_html_a27ca34feded6db78aaef2d639bdd5513"><div class="ttname"><a href="class_panel_monitor.html#a27ca34feded6db78aaef2d639bdd5513">PanelMonitor::sendMessage</a></div><div class="ttdeci">void sendMessage(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00020">panel_monitor.h:20</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_ac80041809c2708810bd269dd947295dd"><div class="ttname"><a href="class_panel_monitor.html#ac80041809c2708810bd269dd947295dd">PanelMonitor::configuration</a></div><div class="ttdeci">QMap&lt; QString, QString &gt; configuration</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8h_source.html#l00019">panel_monitor.h:19</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a1f82d5d273fdf74d6cdf349c4e5c99b4"><div class="ttname"><a href="class_panel_monitor.html#a1f82d5d273fdf74d6cdf349c4e5c99b4">PanelMonitor::initialize</a></div><div class="ttdeci">void initialize(QMap&lt; QString, QString &gt; config)</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00023">panel_monitor.cpp:23</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_ac12337de5cf116205aa92b789aaa1be7"><div class="ttname"><a href="class_panel_monitor.html#ac12337de5cf116205aa92b789aaa1be7">PanelMonitor::PanelMonitor</a></div><div class="ttdeci">PanelMonitor(QWidget *parent=0)</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00004">panel_monitor.cpp:4</a></div></div>
+<div class="ttc" id="class_panel_monitor_html_a9a6a7e6187d2f9e261c99f2667e0ae31"><div class="ttname"><a href="class_panel_monitor.html#a9a6a7e6187d2f9e261c99f2667e0ae31">PanelMonitor::on_sendButton_clicked</a></div><div class="ttdeci">void on_sendButton_clicked()</div><div class="ttdef"><b>Definition:</b> <a href="panel__monitor_8cpp_source.html#l00035">panel_monitor.cpp:35</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_ead29842ed5e7583567412f9bbf2108f.html">AeroQuadCommunicator</a></li><li class="navelem"><a class="el" href="dir_d0ad9d8b5049107d08fae70e7ac21e52.html">panel</a></li><li class="navelem"><a class="el" href="dir_b3928167845ecdad06ad5c7140a0f771.html">monitor</a></li><li class="navelem"><b>panel_monitor.cpp</b></li>
-    <li class="footer">Generated on Sun Feb 9 2014 21:21:33 for AeroQuad Communucator by
+    <li class="navelem"><a class="el" href="dir_ead29842ed5e7583567412f9bbf2108f.html">AeroQuadCommunicator</a></li><li class="navelem"><a class="el" href="dir_d0ad9d8b5049107d08fae70e7ac21e52.html">panel</a></li><li class="navelem"><a class="el" href="dir_b3928167845ecdad06ad5c7140a0f771.html">monitor</a></li><li class="navelem"><a class="el" href="panel__monitor_8cpp.html">panel_monitor.cpp</a></li>
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:42 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

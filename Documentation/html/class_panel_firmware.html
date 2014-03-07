@@ -211,7 +211,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a2acf4ea332b9b2c937b4b884f49f8c39"><td class="memItemLeft" align="right" valign="top">QNetworkAccessManager&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_firmware.html#a2acf4ea332b9b2c937b4b884f49f8c39">networkManager</a></td></tr>
 <tr class="separator:a2acf4ea332b9b2c937b4b884f49f8c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="panel__firmware_8h_source.html#l00026">26</a> of file <a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a17b5961388eb6277c4ab36e69a057d06"></a>
 <div class="memitem">
 <div class="memproto">
@@ -234,6 +237,46 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00004">4</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;                                            :</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    QWidget(parent),</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>(<span class="keyword">new</span> Ui::PanelFirmware)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="class_panel_firmware.html#aaba3e0d718f0a8fe3c1d1d72a9597d5e">scroll</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a> = <span class="keyword">new</span> QProcess(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_firmware.html#ad50df0890d0d1cb38061c8f36482f56c">initializePanel</a>(QMap&lt;QString,QString&gt;)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_firmware.html#aa49bea1c0544d754a9ed593df0feac24">initialize</a>(QMap&lt;QString,QString&gt;)));</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_firmware.html#a6a937cfa1274d72aff538727b0ef8f2b">messageIn</a>(QByteArray)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_firmware.html#a99fd3d614c3145ad2eaf4142244261be">parseMessage</a>(QByteArray)));</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_firmware.html#a440a13b242f2337c83d5486adedd317b">connectionState</a>(<span class="keywordtype">bool</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_firmware.html#abee35eb79c23a75e06426f20d8ffddac">updateConnectionState</a>(<span class="keywordtype">bool</span>)));</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    connect(<a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>, SIGNAL(readyReadStandardOutput()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_firmware.html#ac1f0ec02f5abb700b1fc49d4247c87aa">printConsole</a>()));</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    connect(<a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>, SIGNAL(readyReadStandardError()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_firmware.html#a819233c201769050f6dabaa9c5b55aa4">printErrors</a>()));</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    connect(<a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;webView-&gt;page(), SIGNAL(loadStarted()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_firmware.html#a28cfcca4680526537869af350192af75">startFirmwareUpload</a>()));</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    connect(<a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;webView-&gt;page(), SIGNAL(loadProgress(<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_firmware.html#a938e9f48484c25c81feadb69ddc26f46">scrollToBottom</a>(<span class="keywordtype">int</span>)));</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    connect(<a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;webView-&gt;page(), SIGNAL(loadFinished(<span class="keywordtype">bool</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_firmware.html#a56dd06a71798838c74cbcb2f693e60ba">downloadFirmware</a>(<span class="keywordtype">bool</span>)));</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    connect(&amp;<a class="code" href="class_panel_firmware.html#a2acf4ea332b9b2c937b4b884f49f8c39">networkManager</a>, SIGNAL(finished(QNetworkReply *)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_firmware.html#a462fd3dfca754b478573dcafd57519de">firmwareDownloaded</a>(QNetworkReply*)));</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    QFont consoleFont = <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;console-&gt;font();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    consoleFont.setPointSize(12);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;console-&gt;setFont(consoleFont);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;console-&gt;append(<span class="stringliteral">&quot;To return the board it&#39;s default factory configuration, select the Bootloader button.  To upload existing firmware, select the Firmware button.\n\nTo create and upload new firmware, complete the selections below.  You will need to be connected to the internet for this feature.&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_ad50df0890d0d1cb38061c8f36482f56c"><div class="ttname"><a href="class_panel_firmware.html#ad50df0890d0d1cb38061c8f36482f56c">PanelFirmware::initializePanel</a></div><div class="ttdeci">void initializePanel(QMap&lt; QString, QString &gt;)</div></div>
+<div class="ttc" id="class_panel_firmware_html_a56dd06a71798838c74cbcb2f693e60ba"><div class="ttname"><a href="class_panel_firmware.html#a56dd06a71798838c74cbcb2f693e60ba">PanelFirmware::downloadFirmware</a></div><div class="ttdeci">void downloadFirmware(bool)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00115">panel_firmware.cpp:115</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_aaba3e0d718f0a8fe3c1d1d72a9597d5e"><div class="ttname"><a href="class_panel_firmware.html#aaba3e0d718f0a8fe3c1d1d72a9597d5e">PanelFirmware::scroll</a></div><div class="ttdeci">bool scroll</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00065">panel_firmware.h:65</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a859878237b15ff06781fd77fa87d50e4"><div class="ttname"><a href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">PanelFirmware::ui</a></div><div class="ttdeci">Ui::PanelFirmware * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00062">panel_firmware.h:62</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_ac1f0ec02f5abb700b1fc49d4247c87aa"><div class="ttname"><a href="class_panel_firmware.html#ac1f0ec02f5abb700b1fc49d4247c87aa">PanelFirmware::printConsole</a></div><div class="ttdeci">void printConsole()</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00097">panel_firmware.cpp:97</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a440a13b242f2337c83d5486adedd317b"><div class="ttname"><a href="class_panel_firmware.html#a440a13b242f2337c83d5486adedd317b">PanelFirmware::connectionState</a></div><div class="ttdeci">void connectionState(bool)</div></div>
+<div class="ttc" id="class_panel_firmware_html_a938e9f48484c25c81feadb69ddc26f46"><div class="ttname"><a href="class_panel_firmware.html#a938e9f48484c25c81feadb69ddc26f46">PanelFirmware::scrollToBottom</a></div><div class="ttdeci">void scrollToBottom(int)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00175">panel_firmware.cpp:175</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a5b1a780ac3d391d9a2d31a532a5b7548"><div class="ttname"><a href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">PanelFirmware::upload</a></div><div class="ttdeci">QProcess * upload</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00063">panel_firmware.h:63</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a2acf4ea332b9b2c937b4b884f49f8c39"><div class="ttname"><a href="class_panel_firmware.html#a2acf4ea332b9b2c937b4b884f49f8c39">PanelFirmware::networkManager</a></div><div class="ttdeci">QNetworkAccessManager networkManager</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00066">panel_firmware.h:66</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a28cfcca4680526537869af350192af75"><div class="ttname"><a href="class_panel_firmware.html#a28cfcca4680526537869af350192af75">PanelFirmware::startFirmwareUpload</a></div><div class="ttdeci">void startFirmwareUpload()</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00141">panel_firmware.cpp:141</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_aa49bea1c0544d754a9ed593df0feac24"><div class="ttname"><a href="class_panel_firmware.html#aa49bea1c0544d754a9ed593df0feac24">PanelFirmware::initialize</a></div><div class="ttdeci">void initialize(QMap&lt; QString, QString &gt; config)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00032">panel_firmware.cpp:32</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a6a937cfa1274d72aff538727b0ef8f2b"><div class="ttname"><a href="class_panel_firmware.html#a6a937cfa1274d72aff538727b0ef8f2b">PanelFirmware::messageIn</a></div><div class="ttdeci">void messageIn(QByteArray)</div></div>
+<div class="ttc" id="class_panel_firmware_html_a819233c201769050f6dabaa9c5b55aa4"><div class="ttname"><a href="class_panel_firmware.html#a819233c201769050f6dabaa9c5b55aa4">PanelFirmware::printErrors</a></div><div class="ttdeci">void printErrors()</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00106">panel_firmware.cpp:106</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_abee35eb79c23a75e06426f20d8ffddac"><div class="ttname"><a href="class_panel_firmware.html#abee35eb79c23a75e06426f20d8ffddac">PanelFirmware::updateConnectionState</a></div><div class="ttdeci">void updateConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00039">panel_firmware.h:39</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a462fd3dfca754b478573dcafd57519de"><div class="ttname"><a href="class_panel_firmware.html#a462fd3dfca754b478573dcafd57519de">PanelFirmware::firmwareDownloaded</a></div><div class="ttdeci">void firmwareDownloaded(QNetworkReply *reply)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00147">panel_firmware.cpp:147</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a99fd3d614c3145ad2eaf4142244261be"><div class="ttname"><a href="class_panel_firmware.html#a99fd3d614c3145ad2eaf4142244261be">PanelFirmware::parseMessage</a></div><div class="ttdeci">void parseMessage(QByteArray)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00038">panel_firmware.cpp:38</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ab319b579911abe6bb0731cbafef4c1eb"></a>
@@ -249,6 +292,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00027">27</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_a859878237b15ff06781fd77fa87d50e4"><div class="ttname"><a href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">PanelFirmware::ui</a></div><div class="ttdeci">Ui::PanelFirmware * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00062">panel_firmware.h:62</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -320,6 +369,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00215">215</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;{</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    QMessageBox complete;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    complete.setModal(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    complete.setText(<span class="stringliteral">&quot;To complete the upload process, disconnect the USB cable, then disconnect BOOT0 from 3.3V.\n\nYou will now be able to communicate with your board using USB only.&quot;</span>);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    complete.exec();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a56dd06a71798838c74cbcb2f693e60ba"></a>
@@ -344,6 +401,34 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00115">115</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    QString fileRef;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    QWebElementCollection elements = <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;webView-&gt;page()-&gt;mainFrame()-&gt;findAllElements(<span class="stringliteral">&quot;a&quot;</span>);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">foreach</span> (QWebElement element, elements) {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        QStringList fileCheck = element.toPlainText().split(<span class="stringliteral">&quot;.&quot;</span>);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">if</span> (fileCheck[0] == <span class="stringliteral">&quot;AeroQuad32&quot;</span>)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            QStringList fileRefCheck = element.toOuterXml().split(<span class="charliteral">&#39;&quot;&#39;</span>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            fileRef = fileRefCheck[1];</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">if</span> (fileRef == <span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(<span class="stringliteral">&quot;Select desired flight configuration options.&quot;</span>);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(<span class="stringliteral">&quot;Firmware compiled, please wait as it is being uploaded to the flight control board...&quot;</span>);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        QUrl firmwareUrl(<span class="stringliteral">&quot;http://aeroquad.hautio.net&quot;</span>+fileRef);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        QNetworkRequest request(firmwareUrl);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <a class="code" href="class_panel_firmware.html#a2acf4ea332b9b2c937b4b884f49f8c39">networkManager</a>.get(request);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_a859878237b15ff06781fd77fa87d50e4"><div class="ttname"><a href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">PanelFirmware::ui</a></div><div class="ttdeci">Ui::PanelFirmware * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00062">panel_firmware.h:62</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a2acf4ea332b9b2c937b4b884f49f8c39"><div class="ttname"><a href="class_panel_firmware.html#a2acf4ea332b9b2c937b4b884f49f8c39">PanelFirmware::networkManager</a></div><div class="ttdeci">QNetworkAccessManager networkManager</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00066">panel_firmware.h:66</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_af249ca1b2cc12a9c73e3f34c0566efd2"><div class="ttname"><a href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">PanelFirmware::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a462fd3dfca754b478573dcafd57519de"></a>
@@ -368,6 +453,39 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00147">147</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;{</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    QSettings settings;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    QString path = settings.value(<span class="stringliteral">&quot;firmwarePath&quot;</span>, QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)+<span class="stringliteral">&quot;/AeroQuad32Firmware.bin&quot;</span>).toString();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    QString fileName = QFileDialog::getSaveFileName(<span class="keyword">this</span>, <span class="stringliteral">&quot;Select location to save firmware.&quot;</span>, path, <span class="stringliteral">&quot;Firmware (*.bin)&quot;</span>);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    QFile file(fileName);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordflow">if</span> (file.open(QIODevice::WriteOnly))</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        file.write(reply-&gt;readAll());</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        file.flush();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(<span class="stringliteral">&quot;Firmware downloaded...&quot;</span>);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        settings.setValue(<span class="stringliteral">&quot;firmwarePath&quot;</span>, fileName);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        settings.sync();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        emit <a class="code" href="class_panel_firmware.html#a372aa60e16f5a4d1860cce1c26a29567">closeConnection</a>();</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <a class="code" href="class_panel_firmware.html#aa8e0b0f270bfd68fefb657eea63f42a8">programmingMode</a>(<span class="stringliteral">&quot;Com3&quot;</span>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;start(<span class="stringliteral">&quot;dfu-util.exe -l --reset --device 0483:df11 --alt 0 --dfuse-address 0x08010000 --download &quot;</span> + fileName);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <a class="code" href="class_panel_firmware.html#af70cb7217f97fc9eb7d673784d94c7da">waitForConsole</a>(<span class="stringliteral">&quot;Uploading flight software&quot;</span>);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        QMessageBox complete;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        complete.setModal(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        complete.setText(<span class="stringliteral">&quot;Firmware upload complete.  Press the reset button or disconnect the USB cable to restart the board.&quot;</span>);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        complete.exec();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(<span class="stringliteral">&quot;Firmware download not successful.&quot;</span>);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    file.close();</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    reply-&gt;deleteLater();</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_aa8e0b0f270bfd68fefb657eea63f42a8"><div class="ttname"><a href="class_panel_firmware.html#aa8e0b0f270bfd68fefb657eea63f42a8">PanelFirmware::programmingMode</a></div><div class="ttdeci">void programmingMode(QString port)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00205">panel_firmware.cpp:205</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a372aa60e16f5a4d1860cce1c26a29567"><div class="ttname"><a href="class_panel_firmware.html#a372aa60e16f5a4d1860cce1c26a29567">PanelFirmware::closeConnection</a></div><div class="ttdeci">void closeConnection()</div></div>
+<div class="ttc" id="class_panel_firmware_html_af70cb7217f97fc9eb7d673784d94c7da"><div class="ttname"><a href="class_panel_firmware.html#af70cb7217f97fc9eb7d673784d94c7da">PanelFirmware::waitForConsole</a></div><div class="ttdeci">void waitForConsole(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00044">panel_firmware.cpp:44</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a5b1a780ac3d391d9a2d31a532a5b7548"><div class="ttname"><a href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">PanelFirmware::upload</a></div><div class="ttdeci">QProcess * upload</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00063">panel_firmware.h:63</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_af249ca1b2cc12a9c73e3f34c0566efd2"><div class="ttname"><a href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">PanelFirmware::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a9bff56342395dae4d9b4ca028317a0a5"></a>
@@ -415,6 +533,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00032">32</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_panel_firmware.html#aa74a693f0b0f21990266c584e0088ff5">configuration</a> = config;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    emit <a class="code" href="class_panel_firmware.html#a9bff56342395dae4d9b4ca028317a0a5">getConnectionState</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_a9bff56342395dae4d9b4ca028317a0a5"><div class="ttname"><a href="class_panel_firmware.html#a9bff56342395dae4d9b4ca028317a0a5">PanelFirmware::getConnectionState</a></div><div class="ttdeci">void getConnectionState()</div></div>
+<div class="ttc" id="class_panel_firmware_html_aa74a693f0b0f21990266c584e0088ff5"><div class="ttname"><a href="class_panel_firmware.html#aa74a693f0b0f21990266c584e0088ff5">PanelFirmware::configuration</a></div><div class="ttdeci">QMap&lt; QString, QString &gt; configuration</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00034">panel_firmware.h:34</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ad50df0890d0d1cb38061c8f36482f56c"></a>
@@ -510,6 +636,39 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00069">69</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    QMessageBox message;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    message.setText(<span class="stringliteral">&quot;Disconnect the USB cable from the board, connect BOOT0 to 3.3V, then re-connect the USB cable to place the board into programming mode.&quot;</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    message.setInformativeText(<span class="stringliteral">&quot;In addition to loading the bootloader, the default flight software will be loaded.\n\nPlease note, re-loading the bootloader is only need if you cannot communicate with your board using USB.  If you simply want update the flight software on your board, please select the Firmware button instead.\n\nDuring the upload process, the application may appear to be unresponsive.  Please be patient while the bootloader and firmware are loaded.&quot;</span>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    message.setIconPixmap(QPixmap(<span class="stringliteral">&quot;:/images/resources/AQ32v2.jpg&quot;</span>));</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    message.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    message.setDefaultButton(QMessageBox::Ok);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">int</span> response = message.exec();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (response==QMessageBox::Ok)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        emit <a class="code" href="class_panel_firmware.html#a372aa60e16f5a4d1860cce1c26a29567">closeConnection</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;console-&gt;clear();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;start(<span class="stringliteral">&quot;dfu-util.exe -l --reset --device 0483:df11 --alt 0 --dfuse-address 0x08000000 --download prod_image_256k.bin&quot;</span>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="class_panel_firmware.html#af70cb7217f97fc9eb7d673784d94c7da">waitForConsole</a>(<span class="stringliteral">&quot;Uploading bootloader&quot;</span>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;start(<span class="stringliteral">&quot;dfu-util.exe -l --reset --device 0483:df11 --alt 0 --dfuse-address 0x08010000 --download AeroQuad32Production.bin&quot;</span>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <a class="code" href="class_panel_firmware.html#af70cb7217f97fc9eb7d673784d94c7da">waitForConsole</a>(<span class="stringliteral">&quot;Uploading flight software&quot;</span>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(<span class="stringliteral">&quot;Bootloader and flight software upload complete.&quot;</span>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        QMessageBox complete;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        complete.setModal(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        complete.setText(<span class="stringliteral">&quot;To complete the upload process, disconnect the USB cable, then disconnect BOOT0 from 3.3V.\n\nYou will now be able to communicate with your board using USB only.&quot;</span>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        complete.exec();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_a859878237b15ff06781fd77fa87d50e4"><div class="ttname"><a href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">PanelFirmware::ui</a></div><div class="ttdeci">Ui::PanelFirmware * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00062">panel_firmware.h:62</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a372aa60e16f5a4d1860cce1c26a29567"><div class="ttname"><a href="class_panel_firmware.html#a372aa60e16f5a4d1860cce1c26a29567">PanelFirmware::closeConnection</a></div><div class="ttdeci">void closeConnection()</div></div>
+<div class="ttc" id="class_panel_firmware_html_af70cb7217f97fc9eb7d673784d94c7da"><div class="ttname"><a href="class_panel_firmware.html#af70cb7217f97fc9eb7d673784d94c7da">PanelFirmware::waitForConsole</a></div><div class="ttdeci">void waitForConsole(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00044">panel_firmware.cpp:44</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a5b1a780ac3d391d9a2d31a532a5b7548"><div class="ttname"><a href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">PanelFirmware::upload</a></div><div class="ttdeci">QProcess * upload</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00063">panel_firmware.h:63</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_af249ca1b2cc12a9c73e3f34c0566efd2"><div class="ttname"><a href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">PanelFirmware::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aeca94bf31c7b57804e3e0179de5f00c1"></a>
@@ -533,6 +692,35 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00183">183</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;{</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;console-&gt;clear();</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    QSettings settings;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    QString path = settings.value(<span class="stringliteral">&quot;firmwarePath&quot;</span>, QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)+<span class="stringliteral">&quot;/AeroQuad32Firmware.bin&quot;</span>).toString();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    QString fileName = QFileDialog::getOpenFileName(<span class="keyword">this</span>, <span class="stringliteral">&quot;Select location to load firmware.&quot;</span>, path, <span class="stringliteral">&quot;Firmware (*.bin)&quot;</span>);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordflow">if</span> (fileName != <span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    {</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(<span class="stringliteral">&quot;Uploading firmware...&quot;</span>);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        settings.setValue(<span class="stringliteral">&quot;firmwarePath&quot;</span>, fileName);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        settings.sync();</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        emit <a class="code" href="class_panel_firmware.html#a372aa60e16f5a4d1860cce1c26a29567">closeConnection</a>();</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <a class="code" href="class_panel_firmware.html#aa8e0b0f270bfd68fefb657eea63f42a8">programmingMode</a>(<span class="stringliteral">&quot;Com3&quot;</span>);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;start(<span class="stringliteral">&quot;dfu-util.exe -l --reset --device 0483:df11 --alt 0 --dfuse-address 0x08010000 --download \&quot;&quot;</span> + fileName + <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <a class="code" href="class_panel_firmware.html#af70cb7217f97fc9eb7d673784d94c7da">waitForConsole</a>(<span class="stringliteral">&quot;Uploading flight software&quot;</span>);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <a class="code" href="class_panel_firmware.html#afb757b84eaee9cf89b5152e060a3d516">displayCompleteMessage</a>();</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(<span class="stringliteral">&quot;Firmware upload not successful.&quot;</span>);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_afb757b84eaee9cf89b5152e060a3d516"><div class="ttname"><a href="class_panel_firmware.html#afb757b84eaee9cf89b5152e060a3d516">PanelFirmware::displayCompleteMessage</a></div><div class="ttdeci">void displayCompleteMessage()</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00215">panel_firmware.cpp:215</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_aa8e0b0f270bfd68fefb657eea63f42a8"><div class="ttname"><a href="class_panel_firmware.html#aa8e0b0f270bfd68fefb657eea63f42a8">PanelFirmware::programmingMode</a></div><div class="ttdeci">void programmingMode(QString port)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00205">panel_firmware.cpp:205</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a859878237b15ff06781fd77fa87d50e4"><div class="ttname"><a href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">PanelFirmware::ui</a></div><div class="ttdeci">Ui::PanelFirmware * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00062">panel_firmware.h:62</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a372aa60e16f5a4d1860cce1c26a29567"><div class="ttname"><a href="class_panel_firmware.html#a372aa60e16f5a4d1860cce1c26a29567">PanelFirmware::closeConnection</a></div><div class="ttdeci">void closeConnection()</div></div>
+<div class="ttc" id="class_panel_firmware_html_af70cb7217f97fc9eb7d673784d94c7da"><div class="ttname"><a href="class_panel_firmware.html#af70cb7217f97fc9eb7d673784d94c7da">PanelFirmware::waitForConsole</a></div><div class="ttdeci">void waitForConsole(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8cpp_source.html#l00044">panel_firmware.cpp:44</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a5b1a780ac3d391d9a2d31a532a5b7548"><div class="ttname"><a href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">PanelFirmware::upload</a></div><div class="ttdeci">QProcess * upload</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00063">panel_firmware.h:63</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_af249ca1b2cc12a9c73e3f34c0566efd2"><div class="ttname"><a href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">PanelFirmware::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="af249ca1b2cc12a9c73e3f34c0566efd2"></a>
@@ -581,6 +769,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00038">38</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    QString incomingMessage = data;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Add any code to process incoming message</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ac1f0ec02f5abb700b1fc49d4247c87aa"></a>
@@ -604,6 +798,17 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00097">97</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    QString data = QString(<a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;readAllStandardOutput());</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">if</span> (data == <span class="stringliteral">&quot;.&quot;</span>)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;console-&gt;append(data);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_a859878237b15ff06781fd77fa87d50e4"><div class="ttname"><a href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">PanelFirmware::ui</a></div><div class="ttdeci">Ui::PanelFirmware * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00062">panel_firmware.h:62</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a5b1a780ac3d391d9a2d31a532a5b7548"><div class="ttname"><a href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">PanelFirmware::upload</a></div><div class="ttdeci">QProcess * upload</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00063">panel_firmware.h:63</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a819233c201769050f6dabaa9c5b55aa4"></a>
@@ -627,6 +832,17 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00106">106</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    QString data = QString(<a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;readAllStandardError());</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">if</span> (data.contains(<span class="stringliteral">&quot;No valid DFU&quot;</span>) || data.contains(<span class="stringliteral">&quot;Warning:File&quot;</span>) || data.contains(<span class="stringliteral">&quot;can&#39;t detach&quot;</span>))</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;     <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;console-&gt;append(data);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_a859878237b15ff06781fd77fa87d50e4"><div class="ttname"><a href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">PanelFirmware::ui</a></div><div class="ttdeci">Ui::PanelFirmware * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00062">panel_firmware.h:62</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a5b1a780ac3d391d9a2d31a532a5b7548"><div class="ttname"><a href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">PanelFirmware::upload</a></div><div class="ttdeci">QProcess * upload</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00063">panel_firmware.h:63</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aa8e0b0f270bfd68fefb657eea63f42a8"></a>
@@ -651,6 +867,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00205">205</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;{</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;execute(<span class="stringliteral">&quot;cmd /c mode &quot;</span> + port + <span class="stringliteral">&quot;:DTR=off&quot;</span>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;execute(<span class="stringliteral">&quot;cmd /c mode &quot;</span> + port + <span class="stringliteral">&quot;:DTR=on&quot;</span>);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;execute(<span class="stringliteral">&quot;cmd /c mode &quot;</span> + port + <span class="stringliteral">&quot;:DTR=off&quot;</span>);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;execute(<span class="stringliteral">&quot;cmd /c echo 1EAF &gt;&quot;</span> + port + <span class="stringliteral">&quot;:&quot;</span>);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    QThread::msleep(3000);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_a5b1a780ac3d391d9a2d31a532a5b7548"><div class="ttname"><a href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">PanelFirmware::upload</a></div><div class="ttdeci">QProcess * upload</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00063">panel_firmware.h:63</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a938e9f48484c25c81feadb69ddc26f46"></a>
@@ -675,6 +901,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00175">175</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;{</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;webView-&gt;page()-&gt;findText(<span class="stringliteral">&quot;getting source&quot;</span>))</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <a class="code" href="class_panel_firmware.html#aaba3e0d718f0a8fe3c1d1d72a9597d5e">scroll</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_panel_firmware.html#aaba3e0d718f0a8fe3c1d1d72a9597d5e">scroll</a>)</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;webView-&gt;page()-&gt;mainFrame()-&gt;setScrollBarValue(Qt::Vertical, <a class="code" href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">ui</a>-&gt;webView-&gt;page()-&gt;mainFrame()-&gt;scrollBarMaximum(Qt::Vertical));</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_aaba3e0d718f0a8fe3c1d1d72a9597d5e"><div class="ttname"><a href="class_panel_firmware.html#aaba3e0d718f0a8fe3c1d1d72a9597d5e">PanelFirmware::scroll</a></div><div class="ttdeci">bool scroll</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00065">panel_firmware.h:65</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_a859878237b15ff06781fd77fa87d50e4"><div class="ttname"><a href="class_panel_firmware.html#a859878237b15ff06781fd77fa87d50e4">PanelFirmware::ui</a></div><div class="ttdeci">Ui::PanelFirmware * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00062">panel_firmware.h:62</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aa017d4d802594bf8f4fe599ca90dbe08"></a>
@@ -699,6 +935,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8h_source.html#l00035">35</a> of file <a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{emit <a class="code" href="class_panel_firmware.html#a1543f29e7663661baf7199af7eb4b988">messageOut</a>(message.toUtf8());}</div>
+<div class="ttc" id="class_panel_firmware_html_a1543f29e7663661baf7199af7eb4b988"><div class="ttname"><a href="class_panel_firmware.html#a1543f29e7663661baf7199af7eb4b988">PanelFirmware::messageOut</a></div><div class="ttdeci">void messageOut(QByteArray)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a28cfcca4680526537869af350192af75"></a>
@@ -722,6 +962,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00141">141</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;{</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="class_panel_firmware.html#aaba3e0d718f0a8fe3c1d1d72a9597d5e">scroll</a>)</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(<span class="stringliteral">&quot;Please wait, firmware compilation may take a few minutes...&quot;</span>);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_aaba3e0d718f0a8fe3c1d1d72a9597d5e"><div class="ttname"><a href="class_panel_firmware.html#aaba3e0d718f0a8fe3c1d1d72a9597d5e">PanelFirmware::scroll</a></div><div class="ttdeci">bool scroll</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00065">panel_firmware.h:65</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_af249ca1b2cc12a9c73e3f34c0566efd2"><div class="ttname"><a href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">PanelFirmware::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="abee35eb79c23a75e06426f20d8ffddac"></a>
@@ -746,6 +994,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8h_source.html#l00039">39</a> of file <a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{<a class="code" href="class_panel_firmware.html#a77253c3e3736cf620efad38f7202a2e5">connectState</a> = state;}</div>
+<div class="ttc" id="class_panel_firmware_html_a77253c3e3736cf620efad38f7202a2e5"><div class="ttname"><a href="class_panel_firmware.html#a77253c3e3736cf620efad38f7202a2e5">PanelFirmware::connectState</a></div><div class="ttdeci">bool connectState</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00033">panel_firmware.h:33</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="af70cb7217f97fc9eb7d673784d94c7da"></a>
@@ -770,6 +1022,33 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8cpp_source.html#l00044">44</a> of file <a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">bool</span> status = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">int</span> delay = 250;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">int</span> timeout = 0;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    QString progress = <span class="stringliteral">&quot; . &quot;</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">while</span> (status)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        status = !<a class="code" href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">upload</a>-&gt;waitForFinished(delay);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span> (timeout &gt; 60000)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(<span class="stringliteral">&quot;Error uploading to board...&quot;</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            status = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            progress += <span class="stringliteral">&quot;. &quot;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            emit <a class="code" href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">panelStatus</a>(message + progress);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            timeout += delay;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">if</span> (progress.size() &gt; 100)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                progress = <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="ttc" id="class_panel_firmware_html_a5b1a780ac3d391d9a2d31a532a5b7548"><div class="ttname"><a href="class_panel_firmware.html#a5b1a780ac3d391d9a2d31a532a5b7548">PanelFirmware::upload</a></div><div class="ttdeci">QProcess * upload</div><div class="ttdef"><b>Definition:</b> <a href="panel__firmware_8h_source.html#l00063">panel_firmware.h:63</a></div></div>
+<div class="ttc" id="class_panel_firmware_html_af249ca1b2cc12a9c73e3f34c0566efd2"><div class="ttname"><a href="class_panel_firmware.html#af249ca1b2cc12a9c73e3f34c0566efd2">PanelFirmware::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -783,6 +1062,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8h_source.html#l00034">34</a> of file <a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a77253c3e3736cf620efad38f7202a2e5"></a>
@@ -794,6 +1075,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="panel__firmware_8h_source.html#l00033">33</a> of file <a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a>.</p>
 
 </div>
 </div>
@@ -815,6 +1098,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8h_source.html#l00066">66</a> of file <a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="aaba3e0d718f0a8fe3c1d1d72a9597d5e"></a>
@@ -834,6 +1119,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="panel__firmware_8h_source.html#l00065">65</a> of file <a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a>.</p>
 
 </div>
 </div>
@@ -855,6 +1142,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8h_source.html#l00062">62</a> of file <a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a5b1a780ac3d391d9a2d31a532a5b7548"></a>
@@ -875,11 +1164,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__firmware_8h_source.html#l00063">63</a> of file <a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/firmware/<a class="el" href="panel__firmware_8h_source.html">panel_firmware.h</a></li>
-<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/firmware/<a class="el" href="panel__firmware_8cpp.html">panel_firmware.cpp</a></li>
+<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/firmware/<a class="el" href="panel__firmware_8cpp_source.html">panel_firmware.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -887,7 +1178,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_panel_firmware.html">PanelFirmware</a></li>
-    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:43 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

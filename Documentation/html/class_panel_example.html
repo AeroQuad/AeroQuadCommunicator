@@ -181,7 +181,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:af5b726d4c5a1f8192e0054b960bde158"><td class="memItemLeft" align="right" valign="top">Ui::PanelExample *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a></td></tr>
 <tr class="separator:af5b726d4c5a1f8192e0054b960bde158"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="panel__example_8h_source.html#l00015">15</a> of file <a class="el" href="panel__example_8h_source.html">panel_example.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3b82859134b1dc9036150bf8d0e58fce"></a>
 <div class="memitem">
 <div class="memproto">
@@ -207,6 +210,24 @@ Private Attributes</h2></td></tr>
 <p> Add the following lines below to your custom panel class</p>
 <hr/>
 
+<p>Definition at line <a class="el" href="panel__example_8cpp_source.html#l00005">5</a> of file <a class="el" href="panel__example_8cpp_source.html">panel_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;                                          :</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    QWidget(parent),</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>(<span class="keyword">new</span> Ui::PanelExample)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_example.html#a43b33461eb03d03a81d5d0cc48fc1014">initializePanel</a>(QMap&lt;QString,QString&gt;)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_example.html#ae9bc2530457d3487e8491ca7442497e3">initialize</a>(QMap&lt;QString,QString&gt;)));</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_example.html#a14092b13ad8e0ee0c391b70ca386fa3c">messageIn</a>(QByteArray)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_example.html#a1c93bccaea318f5b7b70025c8e218bed">parseMessage</a>(QByteArray)));</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_panel_example.html#a066069136010854070ce5c44ab6c0892">connectionState</a>(<span class="keywordtype">bool</span>)), <span class="keyword">this</span>, SLOT(<a class="code" href="class_panel_example.html#a9ca81913b66080c47b7337320466296b">updateConnectionState</a>(<span class="keywordtype">bool</span>)));</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<div class="ttc" id="class_panel_example_html_a43b33461eb03d03a81d5d0cc48fc1014"><div class="ttname"><a href="class_panel_example.html#a43b33461eb03d03a81d5d0cc48fc1014">PanelExample::initializePanel</a></div><div class="ttdeci">void initializePanel(QMap&lt; QString, QString &gt;)</div></div>
+<div class="ttc" id="class_panel_example_html_ae9bc2530457d3487e8491ca7442497e3"><div class="ttname"><a href="class_panel_example.html#ae9bc2530457d3487e8491ca7442497e3">PanelExample::initialize</a></div><div class="ttdeci">void initialize(QMap&lt; QString, QString &gt; config)</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8cpp_source.html#l00026">panel_example.cpp:26</a></div></div>
+<div class="ttc" id="class_panel_example_html_a1c93bccaea318f5b7b70025c8e218bed"><div class="ttname"><a href="class_panel_example.html#a1c93bccaea318f5b7b70025c8e218bed">PanelExample::parseMessage</a></div><div class="ttdeci">void parseMessage(QByteArray)</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8cpp_source.html#l00047">panel_example.cpp:47</a></div></div>
+<div class="ttc" id="class_panel_example_html_a9ca81913b66080c47b7337320466296b"><div class="ttname"><a href="class_panel_example.html#a9ca81913b66080c47b7337320466296b">PanelExample::updateConnectionState</a></div><div class="ttdeci">void updateConnectionState(bool state)</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8h_source.html#l00035">panel_example.h:35</a></div></div>
+<div class="ttc" id="class_panel_example_html_af5b726d4c5a1f8192e0054b960bde158"><div class="ttname"><a href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">PanelExample::ui</a></div><div class="ttdeci">Ui::PanelExample * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8h_source.html#l00024">panel_example.h:24</a></div></div>
+<div class="ttc" id="class_panel_example_html_a14092b13ad8e0ee0c391b70ca386fa3c"><div class="ttname"><a href="class_panel_example.html#a14092b13ad8e0ee0c391b70ca386fa3c">PanelExample::messageIn</a></div><div class="ttdeci">void messageIn(QByteArray)</div></div>
+<div class="ttc" id="class_panel_example_html_a066069136010854070ce5c44ab6c0892"><div class="ttname"><a href="class_panel_example.html#a066069136010854070ce5c44ab6c0892">PanelExample::connectionState</a></div><div class="ttdeci">void connectionState(bool)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ae729f01ac2c5098770c6a2d01c90dd1e"></a>
@@ -222,6 +243,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__example_8cpp_source.html#l00018">18</a> of file <a class="el" href="panel__example_8cpp_source.html">panel_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
+<div class="ttc" id="class_panel_example_html_af5b726d4c5a1f8192e0054b960bde158"><div class="ttname"><a href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">PanelExample::ui</a></div><div class="ttdeci">Ui::PanelExample * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8h_source.html#l00024">panel_example.h:24</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -296,6 +323,30 @@ Private Attributes</h2></td></tr>
 <hr/>
 <p> Add the following lines below to your custom panel class Make sure to change <a class="el" href="class_panel_example.html">PanelExample</a> to the class name of your custom panel </p>
 
+<p>Definition at line <a class="el" href="panel__example_8cpp_source.html#l00026">26</a> of file <a class="el" href="panel__example_8cpp_source.html">panel_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_panel_example.html#a0ce9c8bedbe9c0bb8a8720f4bce51578">configuration</a> = config;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    emit <a class="code" href="class_panel_example.html#a644ab3d0675ac0b10c8aa5160b94f7ef">getConnectionState</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// Add any additional initialization steps to perform here.</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// Remove these lines when copying to another custom panel</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">int</span> rowCount = <a class="code" href="class_panel_example.html#a0ce9c8bedbe9c0bb8a8720f4bce51578">configuration</a>.size();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>-&gt;config-&gt;setRowCount(rowCount);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>-&gt;config-&gt;setColumnCount(2);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>-&gt;config-&gt;setHorizontalHeaderItem(0, <span class="keyword">new</span> QTableWidgetItem(<span class="stringliteral">&quot;Config Type&quot;</span>));</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>-&gt;config-&gt;setHorizontalHeaderItem(1, <span class="keyword">new</span> QTableWidgetItem(<span class="stringliteral">&quot;Value&quot;</span>));</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    QStringList type = <a class="code" href="class_panel_example.html#a0ce9c8bedbe9c0bb8a8720f4bce51578">configuration</a>.keys();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    QStringList value = <a class="code" href="class_panel_example.html#a0ce9c8bedbe9c0bb8a8720f4bce51578">configuration</a>.values();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> row=0; row&lt;rowCount; row++)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>-&gt;config-&gt;setItem(row, 0, <span class="keyword">new</span> QTableWidgetItem(type.at(row)));</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>-&gt;config-&gt;setItem(row, 1, <span class="keyword">new</span> QTableWidgetItem(value.at(row)));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+<div class="ttc" id="class_panel_example_html_af5b726d4c5a1f8192e0054b960bde158"><div class="ttname"><a href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">PanelExample::ui</a></div><div class="ttdeci">Ui::PanelExample * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8h_source.html#l00024">panel_example.h:24</a></div></div>
+<div class="ttc" id="class_panel_example_html_a644ab3d0675ac0b10c8aa5160b94f7ef"><div class="ttname"><a href="class_panel_example.html#a644ab3d0675ac0b10c8aa5160b94f7ef">PanelExample::getConnectionState</a></div><div class="ttdeci">void getConnectionState()</div></div>
+<div class="ttc" id="class_panel_example_html_a0ce9c8bedbe9c0bb8a8720f4bce51578"><div class="ttname"><a href="class_panel_example.html#a0ce9c8bedbe9c0bb8a8720f4bce51578">PanelExample::configuration</a></div><div class="ttdeci">QMap&lt; QString, QString &gt; configuration</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8h_source.html#l00030">panel_example.h:30</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a43b33461eb03d03a81d5d0cc48fc1014"></a>
@@ -394,6 +445,13 @@ Private Attributes</h2></td></tr>
 <p><hr/>
  </p>
 
+<p>Definition at line <a class="el" href="panel__example_8cpp_source.html#l00066">66</a> of file <a class="el" href="panel__example_8cpp_source.html">panel_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Example of how to send message to the Communication class</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="class_panel_example.html#a3112359e9e31c1559fe4b7ae6478d782">sendMessage</a>(<span class="stringliteral">&quot;!&quot;</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="ttc" id="class_panel_example_html_a3112359e9e31c1559fe4b7ae6478d782"><div class="ttname"><a href="class_panel_example.html#a3112359e9e31c1559fe4b7ae6478d782">PanelExample::sendMessage</a></div><div class="ttdeci">void sendMessage(QString message)</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8h_source.html#l00031">panel_example.h:31</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a55557a92593a9dcee4fd2f1844c4fe37"></a>
@@ -442,6 +500,25 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__example_8cpp_source.html#l00047">47</a> of file <a class="el" href="panel__example_8cpp_source.html">panel_example.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    QString incomingMessage = data;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Replace the following line as required in your custom panel</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">ui</a>-&gt;exampleResponse-&gt;setText(incomingMessage);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// Example of how to show message on status panel of GUI</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    emit <a class="code" href="class_panel_example.html#a55557a92593a9dcee4fd2f1844c4fe37">panelStatus</a>(<span class="stringliteral">&quot;Flight software version &quot;</span> + incomingMessage);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// If you need an example of how to parse multiple telemetry requests,</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// look at panel_route.h and panel_route.cpp</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// If you need an example of how to parse telemetry continuously,</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// Look at panel_plot.h and panel_plot.cpp</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<div class="ttc" id="class_panel_example_html_af5b726d4c5a1f8192e0054b960bde158"><div class="ttname"><a href="class_panel_example.html#af5b726d4c5a1f8192e0054b960bde158">PanelExample::ui</a></div><div class="ttdeci">Ui::PanelExample * ui</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8h_source.html#l00024">panel_example.h:24</a></div></div>
+<div class="ttc" id="class_panel_example_html_a55557a92593a9dcee4fd2f1844c4fe37"><div class="ttname"><a href="class_panel_example.html#a55557a92593a9dcee4fd2f1844c4fe37">PanelExample::panelStatus</a></div><div class="ttdeci">void panelStatus(QString)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a3112359e9e31c1559fe4b7ae6478d782"></a>
@@ -466,6 +543,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__example_8h_source.html#l00031">31</a> of file <a class="el" href="panel__example_8h_source.html">panel_example.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{emit <a class="code" href="class_panel_example.html#a239c2e1ad4abe364a7f4650266f59e36">messageOut</a>(message.toUtf8());}</div>
+<div class="ttc" id="class_panel_example_html_a239c2e1ad4abe364a7f4650266f59e36"><div class="ttname"><a href="class_panel_example.html#a239c2e1ad4abe364a7f4650266f59e36">PanelExample::messageOut</a></div><div class="ttdeci">void messageOut(QByteArray)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a9ca81913b66080c47b7337320466296b"></a>
@@ -490,6 +571,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__example_8h_source.html#l00035">35</a> of file <a class="el" href="panel__example_8h_source.html">panel_example.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{<a class="code" href="class_panel_example.html#afeb003382a1346dd5d3fceb98ca5fc4c">connectState</a> = state;}</div>
+<div class="ttc" id="class_panel_example_html_afeb003382a1346dd5d3fceb98ca5fc4c"><div class="ttname"><a href="class_panel_example.html#afeb003382a1346dd5d3fceb98ca5fc4c">PanelExample::connectState</a></div><div class="ttdeci">bool connectState</div><div class="ttdef"><b>Definition:</b> <a href="panel__example_8h_source.html#l00029">panel_example.h:29</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -502,6 +587,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="panel__example_8h_source.html#l00030">30</a> of file <a class="el" href="panel__example_8h_source.html">panel_example.h</a>.</p>
 
 </div>
 </div>
@@ -516,6 +603,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <hr/>
 <p> Add the following lines below to your custom panel class </p>
+
+<p>Definition at line <a class="el" href="panel__example_8h_source.html#l00029">29</a> of file <a class="el" href="panel__example_8h_source.html">panel_example.h</a>.</p>
 
 </div>
 </div>
@@ -537,11 +626,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="panel__example_8h_source.html#l00024">24</a> of file <a class="el" href="panel__example_8h_source.html">panel_example.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/example/<a class="el" href="panel__example_8h_source.html">panel_example.h</a></li>
-<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/example/<a class="el" href="panel__example_8cpp.html">panel_example.cpp</a></li>
+<li>Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/example/<a class="el" href="panel__example_8cpp_source.html">panel_example.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -549,7 +640,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_panel_example.html">PanelExample</a></li>
-    <li class="footer">Generated on Thu Mar 6 2014 01:00:55 for AeroQuad Communicator by
+    <li class="footer">Generated on Fri Mar 7 2014 00:45:43 for AeroQuad Communicator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
