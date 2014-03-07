@@ -1,9 +1,0 @@
-digraph "Graphical Class Hierarchy"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="QAbstractItemModel",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="Marble::GeoDataTreeModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_marble_1_1_geo_data_tree_model.html",tooltip="The representation of GeoData in a model This class represents all available data given by kml-data f..."];
-}

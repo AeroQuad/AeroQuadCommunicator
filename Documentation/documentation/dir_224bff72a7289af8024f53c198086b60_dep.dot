@@ -1,9 +1,0 @@
-digraph "Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/panel/connect" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_d0ad9d8b5049107d08fae70e7ac21e52 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="panel" fontname="Helvetica", fontsize="10", URL="dir_d0ad9d8b5049107d08fae70e7ac21e52.html"]
-  dir_224bff72a7289af8024f53c198086b60 [shape=box, label="connect", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_224bff72a7289af8024f53c198086b60.html"];
-  }
-}

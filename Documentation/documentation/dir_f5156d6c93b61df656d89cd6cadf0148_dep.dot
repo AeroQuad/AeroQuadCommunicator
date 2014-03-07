@@ -1,9 +1,0 @@
-digraph "Z:/Development/AeroQuadCommunicator/AeroQuadCommunicator/utilities" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_ead29842ed5e7583567412f9bbf2108f {
-    graph [ bgcolor="#ddddee", pencolor="black", label="AeroQuadCommunicator" fontname="Helvetica", fontsize="10", URL="dir_ead29842ed5e7583567412f9bbf2108f.html"]
-  dir_f5156d6c93b61df656d89cd6cadf0148 [shape=box, label="utilities", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_f5156d6c93b61df656d89cd6cadf0148.html"];
-  }
-}
