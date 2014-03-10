@@ -41,6 +41,9 @@
    </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="iconSize">
     <size>
      <width>40</width>
@@ -54,17 +57,16 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionConnect"/>
    <addaction name="separator"/>
    <addaction name="actionRoute"/>
    <addaction name="actionSetup"/>
-   <addaction name="actionPlots"/>
-   <addaction name="separator"/>
+   <addaction name="actionCalibrate"/>
    <addaction name="actionFirmware"/>
+   <addaction name="actionPlots"/>
    <addaction name="actionTerminal"/>
-   <addaction name="actionTest"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="autoFillBackground">

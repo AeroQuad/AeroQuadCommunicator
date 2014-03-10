@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     #panel/route/positionsimulator.cpp \
     panel/route/route.cpp \
     panel/route/vehicle.cpp \
-    panel/example/panel_example.cpp
+    panel/example/panel_example.cpp \
+    panel/calibration/panel_calibrate.cpp
 
 HEADERS  += communicator.h \
     panel/config/panel_config.h \
@@ -41,7 +42,8 @@ HEADERS  += communicator.h \
     #panel/route/positionsimulator.h \
     panel/route/route.h \
     panel/route/vehicle.h \
-    panel/example/panel_example.h
+    panel/example/panel_example.h \
+    panel/calibration/panel_calibrate.h
 
 FORMS    += communicator.ui \
     panel/config/panel_config.ui \
@@ -50,7 +52,8 @@ FORMS    += communicator.ui \
     panel/monitor/panel_monitor.ui \
     panel/plot/panel_plot.ui \
     panel/route/panel_route.ui \
-    panel/example/panel_example.ui
+    panel/example/panel_example.ui \
+    panel/calibration/panel_calibrate.ui
 
 RESOURCES += \
     commuicator.qrc \

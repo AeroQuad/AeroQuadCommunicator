@@ -49,15 +49,18 @@ void CommunicationSerial::open(QString connectionSettings)
 
 void CommunicationSerial::write(const QByteArray &data)
 {
-    if (serial->write(data) < 0)
+    if (isConnected)
     {
-        emit errorMessage(serial->errorString());
-        serial->close();
-        isConnected = false;
-        emit connectionState(isConnected);
+        if (serial->write(data)<0)
+        {
+            emit errorMessage(serial->errorString());
+            serial->close();
+            isConnected = false;
+            emit connectionState(isConnected);
+        }
+//      else
+//          qDebug() << data;
     }
-//    else
-//        qDebug() << data;
 }
 
 QByteArray CommunicationSerial::read()

@@ -39,6 +39,13 @@
         <file>resources/download.png</file>
         <file>resources/debug.png</file>
         <file>resources/motor.png</file>
+        <file>resources/calibrate.png</file>
+        <file>resources/speedControlCal.png</file>
+        <file>resources/xmitCal.png</file>
+        <file>resources/transmitterCal.png</file>
+        <file>resources/magCal.png</file>
+        <file>resources/accelCal.png</file>
+        <file>resources/cancel.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

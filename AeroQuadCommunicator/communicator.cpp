@@ -8,8 +8,9 @@
 #include "panel/firmware/panel_firmware.h"
 #include "panel/route/panel_route.h"
 
-/// Add custom panel headers here
-#include "panel/example/panel_example.h"
+// Add custom panel headers here
+//#include "panel/example/panel_example.h"
+#include "panel/calibration/panel_calibrate.h"
 
 Communicator::Communicator(QWidget *parent) :
     QMainWindow(parent),
@@ -63,9 +64,9 @@ void Communicator::initToolBar()
     connect(ui->actionTerminal,     SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionPlots,        SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionFirmware,     SIGNAL(triggered()), signalMapper, SLOT(map()));
-    connect(ui->actionTest,         SIGNAL(triggered()), signalMapper, SLOT(map()));
+    //connect(ui->actionTest,         SIGNAL(triggered()), signalMapper, SLOT(map()));
 
-    signalMapper->setMapping(ui->actionTest,        "Test");
+
     signalMapper->setMapping(ui->actionConnect,     "Connect");
     signalMapper->setMapping(ui->actionStatus,      "Status");
     signalMapper->setMapping(ui->actionRoute,       "Route");
@@ -74,6 +75,7 @@ void Communicator::initToolBar()
     signalMapper->setMapping(ui->actionTerminal,    "Terminal");
     signalMapper->setMapping(ui->actionPlots,       "Plots");
     signalMapper->setMapping(ui->actionFirmware,    "Firmware");
+    //signalMapper->setMapping(ui->actionTest,        "Test");
     connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(loadPanel(QString))) ;
 }
 
@@ -105,8 +107,11 @@ void Communicator::loadPanel(QString panelName)
         panel = new PanelConfig;
     else if (panelName == "Route")
         panel = new PanelRoute;
-    else if (panelName == "Test")
-        panel = new PanelExample;
+    else if (panelName == "Calibrate")
+        panel = new PanelCalibrate;
+
+//    else if (panelName == "Test")
+//        panel = new PanelExample;
 
     connect(this, SIGNAL(initializePanel(QMap<QString,QString>)), panel, SIGNAL(initializePanel(QMap<QString,QString>)));
     connect(comm, SIGNAL(readData(QByteArray)), panel, SIGNAL(messageIn(QByteArray)));
