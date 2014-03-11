@@ -44,7 +44,7 @@ qradialgradient(
        <widget class="QToolButton" name="accelCal">
         <property name="minimumSize">
          <size>
-          <width>150</width>
+          <width>125</width>
           <height>100</height>
          </size>
         </property>
@@ -88,7 +88,7 @@ Calibration</string>
        <widget class="QToolButton" name="xmitCal">
         <property name="minimumSize">
          <size>
-          <width>150</width>
+          <width>125</width>
           <height>100</height>
          </size>
         </property>
@@ -136,7 +136,7 @@ Calibration</string>
        <widget class="QToolButton" name="magCal">
         <property name="minimumSize">
          <size>
-          <width>150</width>
+          <width>125</width>
           <height>100</height>
          </size>
         </property>
@@ -171,7 +171,7 @@ Calibration</string>
        <widget class="QToolButton" name="escCal">
         <property name="minimumSize">
          <size>
-          <width>150</width>
+          <width>125</width>
           <height>100</height>
          </size>
         </property>
@@ -206,7 +206,7 @@ Calibration</string>
        <widget class="QToolButton" name="initEEPROM">
         <property name="minimumSize">
          <size>
-          <width>150</width>
+          <width>125</width>
           <height>100</height>
          </size>
         </property>

@@ -54,7 +54,6 @@ private slots:
     void on_accelCal_clicked();
     void on_cancel_clicked();
     void on_next_clicked();
-
     void on_initEEPROM_clicked();
 
 private:
@@ -73,6 +72,7 @@ private:
     QVector<float> workingAccelY;
     QVector<float> workingAccelZ;
     bool storeAccelData(QString incomingData);
+    float calculateAccelScaleFactor(float input1, float input2);
 
 };
 

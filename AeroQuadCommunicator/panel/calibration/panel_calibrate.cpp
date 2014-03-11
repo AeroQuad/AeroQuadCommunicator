@@ -81,13 +81,18 @@ void PanelCalibrate::parseMessage(QByteArray data)
             calDisplay->setText("<Insert Picture Here>\n\nPlace the AeroQuad on a flat surface.");
         break;
     case ACCEL_FINISH:
-        if (storeAccelData(incomingMessage))
-            nextMessage = ACCEL_FINISH;
-        else
+       // if (storeAccelData(incomingMessage))
+       //     nextMessage = ACCEL_FINISH;
+       // else
         {
             calDisplay->setText("The accelerometer calibration is finished!");
             nextMessage = ACCEL_WAIT;
-            qDebug() << "Go to accel calculation";
+            float xAccelScaleFactor = calculateAccelScaleFactor(accelX.at(5), accelX.at(4));
+            float yAccelScaleFactor = calculateAccelScaleFactor(accelY.at(3), accelY.at(2));
+            float zAccelScaleFactor = calculateAccelScaleFactor(accelZ.at(0), accelZ.at(1));
+            sendMessage("J");
+            sendMessage("K" + QString::number(xAccelScaleFactor) + ";0;" + QString::number(yAccelScaleFactor) + ";0;" + QString::number(zAccelScaleFactor) + ";0;");
+            sendMessage("W");
             ui->userConfirm->hide();
         }
         break;
@@ -97,12 +102,23 @@ void PanelCalibrate::parseMessage(QByteArray data)
 void PanelCalibrate::on_accelCal_clicked()
 {
     ui->userConfirm->show();
+    accelX.clear();
+    accelY.clear();
+    accelZ.clear();
     calDisplay->setText("<Insert Picture Here>\n\nPlace the AeroQuad on a flat surface.");
     calibrationType = CALTYPE_ACCEL;
     sendMessage("l");
     nextMessage = ACCEL_WAIT;
     ui->next->setEnabled(true);
     ui->cancel->setEnabled(true);
+}
+
+float PanelCalibrate::calculateAccelScaleFactor(float input1, float input2)
+{
+    float m = (input2 - input1) / 19.613;
+    float accelBias = input2 - (m * 9.0865);
+    float biased = input2 - accelBias;
+    return 9.8065 / biased;
 }
 
 void PanelCalibrate::on_cancel_clicked()
