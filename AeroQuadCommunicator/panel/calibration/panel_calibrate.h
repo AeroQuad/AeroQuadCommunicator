@@ -6,6 +6,7 @@
 #include <QWizard>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QProgressBar>
 
 #define WAIT -1
 
@@ -21,6 +22,10 @@
 #define ACCEL_UP 4
 #define ACCEL_DOWN 5
 #define ACCEL_FINISH 6
+
+#define MAG_WAIT 7
+#define MAG_ACQUIRE 8
+#define MAG_FINISH 9
 
 namespace Ui {
 class PanelCalibrate;
@@ -55,6 +60,7 @@ private slots:
     void on_cancel_clicked();
     void on_next_clicked();
     void on_initEEPROM_clicked();
+    void on_magCal_clicked();
 
 private:
     //enum accelCalStates {Wait, Start, Upright, UpsideDown, LeftDown, RightDown, NoseUp, NoseDown, Finish};
@@ -63,6 +69,8 @@ private:
     int simCounter;
     QVBoxLayout *calLayout;
     QLabel *calDisplay;
+    QProgressBar *displayMinMagX;
+    QProgressBar *displayMaxMagX;
     int nextMessage;
     int calibrationType;
     QVector<float> accelX;
@@ -71,6 +79,12 @@ private:
     QVector<float> workingAccelX;
     QVector<float> workingAccelY;
     QVector<float> workingAccelZ;
+    float minMagX;
+    float maxMagX;
+    float minMagY;
+    float maxMagY;
+    float minMagZ;
+    float maxMagZ;
     bool storeAccelData(QString incomingData);
     float calculateAccelScaleFactor(float input1, float input2);
 

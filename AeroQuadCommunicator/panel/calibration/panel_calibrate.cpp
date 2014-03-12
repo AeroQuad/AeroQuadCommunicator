@@ -23,6 +23,20 @@ PanelCalibrate::PanelCalibrate(QWidget *parent) :
     ui->next->setEnabled(false);
     ui->cancel->setEnabled(false);
     ui->calProgress->setValue(0);
+
+    displayMaxMagX = new QProgressBar;
+    displayMaxMagX->setMaximum(800);
+    displayMaxMagX->setMinimum(-800);
+    displayMaxMagX->setFormat("%v");
+    displayMaxMagX->setStyleSheet("font:36pt; color:white;");
+    displayMaxMagX->setMinimumWidth(500);
+
+    displayMinMagX = new QProgressBar;
+    displayMinMagX->setMaximum(800);
+    displayMinMagX->setMinimum(-800);
+    displayMinMagX->setFormat("%v");
+    displayMinMagX->setStyleSheet("font:36pt; color:white;");
+    displayMinMagX->setMinimumWidth(500);
 }
 
 PanelCalibrate::~PanelCalibrate()
@@ -81,21 +95,51 @@ void PanelCalibrate::parseMessage(QByteArray data)
             calDisplay->setText("<Insert Picture Here>\n\nPlace the AeroQuad on a flat surface.");
         break;
     case ACCEL_FINISH:
-       // if (storeAccelData(incomingMessage))
-       //     nextMessage = ACCEL_FINISH;
-       // else
-        {
-            calDisplay->setText("The accelerometer calibration is finished!");
-            nextMessage = ACCEL_WAIT;
-            float xAccelScaleFactor = calculateAccelScaleFactor(accelX.at(5), accelX.at(4));
-            float yAccelScaleFactor = calculateAccelScaleFactor(accelY.at(3), accelY.at(2));
-            float zAccelScaleFactor = calculateAccelScaleFactor(accelZ.at(0), accelZ.at(1));
-            sendMessage("J");
-            sendMessage("K" + QString::number(xAccelScaleFactor) + ";0;" + QString::number(yAccelScaleFactor) + ";0;" + QString::number(zAccelScaleFactor) + ";0;");
-            sendMessage("W");
-            ui->userConfirm->hide();
-        }
+    {
+        calDisplay->setText("The accelerometer calibration is finished!");
+        nextMessage = ACCEL_WAIT;
+        float xAccelScaleFactor = calculateAccelScaleFactor(accelX.at(5), accelX.at(4));
+        float yAccelScaleFactor = calculateAccelScaleFactor(accelY.at(3), accelY.at(2));
+        float zAccelScaleFactor = calculateAccelScaleFactor(accelZ.at(0), accelZ.at(1));
+        sendMessage("J");
+        sendMessage("K" + QString::number(xAccelScaleFactor) + ";0;" + QString::number(yAccelScaleFactor) + ";0;" + QString::number(zAccelScaleFactor) + ";0;");
+        sendMessage("W");
+        ui->userConfirm->hide();
+
         break;
+    }
+    case MAG_WAIT:
+        // Wait until user hits NEXT button to start calibraiton
+        break;
+    case MAG_ACQUIRE:
+    {
+        QStringList parseData = incomingMessage.split(',');
+        minMagX = qMin(minMagX, parseData.at(0).toFloat());
+        maxMagX = qMax(maxMagX, parseData.at(0).toFloat());
+        minMagY = qMin(minMagY, parseData.at(1).toFloat());
+        maxMagY = qMax(maxMagY, parseData.at(1).toFloat());
+        minMagZ = qMin(minMagZ, parseData.at(2).toFloat());
+        maxMagZ = qMax(maxMagZ, parseData.at(2).toFloat());
+        qDebug() << minMagX << maxMagX << minMagY << maxMagY << minMagZ << maxMagZ;
+        displayMinMagX->setValue(minMagX);
+        displayMaxMagX->setValue(maxMagX);
+        break;
+    }
+    case MAG_FINISH:
+    {
+        QString magBiasX = QString::number((minMagX + maxMagX) / 2.0);
+        QString magBiasY = QString::number((minMagY + maxMagY) / 2.0);
+        QString magBiasZ = QString::number((minMagZ + maxMagZ) / 2.0);
+        sendMessage("M" + magBiasX +";" + magBiasY + ";" + magBiasZ + ";");
+        qDebug() << "M" + magBiasX +";" + magBiasY + ";" + magBiasZ + ";";
+        calDisplay->setText("The magnetometer calibration is finished!");
+        ui->userConfirm->hide();
+        displayMinMagX->setValue(0);
+        displayMinMagX->hide();
+        displayMaxMagX->setValue(0);
+        displayMaxMagX->hide();
+        break;
+    }
     }
 }
 
@@ -111,6 +155,7 @@ void PanelCalibrate::on_accelCal_clicked()
     nextMessage = ACCEL_WAIT;
     ui->next->setEnabled(true);
     ui->cancel->setEnabled(true);
+    ui->calProgress->show();
 }
 
 float PanelCalibrate::calculateAccelScaleFactor(float input1, float input2)
@@ -139,6 +184,13 @@ void PanelCalibrate::on_next_clicked()
         sendMessage("l");
         break;
     case CALTYPE_MAG:
+        nextMessage++;
+        calDisplay->setText("Rotate the AeroQuad on each axis to\ncalibrate the magnetometer.");
+        calLayout->addWidget(displayMinMagX, 0, Qt::AlignCenter);
+        calLayout->addWidget(displayMaxMagX, 0, Qt::AlignCenter);
+        //ui->next->setEnabled(false);
+        sendMessage("j");
+        break;
         break;
     case CALTYPE_XMIT:
         break;
@@ -188,4 +240,23 @@ void PanelCalibrate::on_initEEPROM_clicked()
     }
     else
         calDisplay->setText("EEPROM has not been modified.");
+}
+
+void PanelCalibrate::on_magCal_clicked()
+{
+    ui->userConfirm->show();
+
+    calDisplay->setText("Rotate the AeroQuad on each axis to\ncalibrate the magnetometer.\nPress Next to begin.");
+    calibrationType = CALTYPE_MAG;
+    sendMessage("j");
+    nextMessage = MAG_WAIT;
+    ui->next->setEnabled(true);
+    ui->cancel->setEnabled(true);
+    ui->calProgress->hide();
+    minMagX = 1000000;
+    maxMagX = -1000000;
+    minMagY = 1000000;
+    maxMagY = -1000000;
+    minMagZ = 1000000;
+    maxMagZ = -1000000;
 }
