@@ -199,6 +199,7 @@ void MenuConnect::parseMessage(QByteArray dataIn)
         QStringList configItems = configData.split("\n");
         int count = configItems[0].toInt() + 1;
         configItems.removeFirst();
+        qDebug() << count << configItems.size();
         if ((count == configItems.size()))
         {
             ui->configList->addItems(configItems);

@@ -63,14 +63,7 @@ private slots:
     void on_magCal_clicked();
 
 private:
-    //enum accelCalStates {Wait, Start, Upright, UpsideDown, LeftDown, RightDown, NoseUp, NoseDown, Finish};
-    //accelCalStates accelCalState;
     Ui::PanelCalibrate *ui;
-    int simCounter;
-    QVBoxLayout *calLayout;
-    QLabel *calDisplay;
-    QProgressBar *displayMinMagX;
-    QProgressBar *displayMaxMagX;
     int nextMessage;
     int calibrationType;
     QVector<float> accelX;

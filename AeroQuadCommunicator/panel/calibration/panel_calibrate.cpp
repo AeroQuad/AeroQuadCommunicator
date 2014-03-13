@@ -14,29 +14,11 @@ PanelCalibrate::PanelCalibrate(QWidget *parent) :
     connect(this, SIGNAL(connectionState(bool)), this, SLOT(updateConnectionState(bool)));
 
     ui->userConfirm->hide();
-    calDisplay = new QLabel;
-    calDisplay->setStyleSheet("font:36pt; color:white;");
-    calLayout = new QVBoxLayout();
-    calLayout->addWidget(calDisplay, 0, Qt::AlignCenter);
-    ui->calScreen->setLayout(calLayout);
-    calDisplay->setText("Select a calibration to perform.");
+    ui->calPanel->setCurrentIndex(0);
+    ui->displayInstructions->setText("Select a calibration to perform.");
     ui->next->setEnabled(false);
     ui->cancel->setEnabled(false);
     ui->calProgress->setValue(0);
-
-    displayMaxMagX = new QProgressBar;
-    displayMaxMagX->setMaximum(800);
-    displayMaxMagX->setMinimum(-800);
-    displayMaxMagX->setFormat("%v");
-    displayMaxMagX->setStyleSheet("font:36pt; color:white;");
-    displayMaxMagX->setMinimumWidth(500);
-
-    displayMinMagX = new QProgressBar;
-    displayMinMagX->setMaximum(800);
-    displayMinMagX->setMinimum(-800);
-    displayMinMagX->setFormat("%v");
-    displayMinMagX->setStyleSheet("font:36pt; color:white;");
-    displayMinMagX->setMinimumWidth(500);
 }
 
 PanelCalibrate::~PanelCalibrate()
@@ -62,41 +44,42 @@ void PanelCalibrate::parseMessage(QByteArray data)
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_RIGHTSIDEUP;
         else
-            calDisplay->setText("<Insert Picture Here>\n\nPlace the AeroQuad upside down\non a flat surface.");
+            ui->accelInstructions->setText("Place the AeroQuad upside down on a flat surface.");
         break;
     case ACCEL_UPSIDEDOWN:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_UPSIDEDOWN;
         else
-            calDisplay->setText("<Insert Picture Here>\n\nPoint the left side down.");
+            ui->accelInstructions->setText("Point the left side down.");
         break;
     case ACCEL_LEFT:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_LEFT;
         else
-            calDisplay->setText("<Insert Picture Here>\n\nPoint the right side down.");
+            ui->accelInstructions->setText("Point the right side down.");
         break;
     case ACCEL_RIGHT:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_RIGHT;
         else
-            calDisplay->setText("<Insert Picture Here>\n\nPoint the nose up.");
+            ui->accelInstructions->setText("Point the nose up.");
         break;
     case ACCEL_UP:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_UP;
         else
-            calDisplay->setText("<Insert Picture Here>\n\nPoint the nose down.");
+            ui->accelInstructions->setText("Point the nose down.");
         break;
     case ACCEL_DOWN:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_DOWN;
         else
-            calDisplay->setText("<Insert Picture Here>\n\nPlace the AeroQuad on a flat surface.");
+            ui->accelInstructions->setText("Return the AeroQuad to a flat surface.");
         break;
     case ACCEL_FINISH:
     {
-        calDisplay->setText("The accelerometer calibration is finished!");
+        ui->calPanel->setCurrentIndex(0);
+        ui->displayInstructions->setText("The accelerometer calibration is finished!");
         nextMessage = ACCEL_WAIT;
         float xAccelScaleFactor = calculateAccelScaleFactor(accelX.at(5), accelX.at(4));
         float yAccelScaleFactor = calculateAccelScaleFactor(accelY.at(3), accelY.at(2));
@@ -120,9 +103,15 @@ void PanelCalibrate::parseMessage(QByteArray data)
         maxMagY = qMax(maxMagY, parseData.at(1).toFloat());
         minMagZ = qMin(minMagZ, parseData.at(2).toFloat());
         maxMagZ = qMax(maxMagZ, parseData.at(2).toFloat());
-        qDebug() << minMagX << maxMagX << minMagY << maxMagY << minMagZ << maxMagZ;
-        displayMinMagX->setValue(minMagX);
-        displayMaxMagX->setValue(maxMagX);
+        ui->xAxisMinus->setValue(abs(minMagX));
+        ui->xAxisPlus->setValue(maxMagX);
+        ui->yAxisMinus->setValue(abs(minMagY));
+        ui->yAxisPlus->setValue(maxMagY);
+        ui->zAxisMinus->setValue(abs(minMagZ));
+        ui->zAxisPlus->setValue(maxMagZ);
+        ui->xAxisValue->setText(parseData.at(0));
+        ui->yAxisValue->setText(parseData.at(1));
+        ui->zAxisValue->setText(parseData.at(2).trimmed());
         break;
     }
     case MAG_FINISH:
@@ -131,13 +120,10 @@ void PanelCalibrate::parseMessage(QByteArray data)
         QString magBiasY = QString::number((minMagY + maxMagY) / 2.0);
         QString magBiasZ = QString::number((minMagZ + maxMagZ) / 2.0);
         sendMessage("M" + magBiasX +";" + magBiasY + ";" + magBiasZ + ";");
-        qDebug() << "M" + magBiasX +";" + magBiasY + ";" + magBiasZ + ";";
-        calDisplay->setText("The magnetometer calibration is finished!");
+        //qDebug() << "M" + magBiasX +";" + magBiasY + ";" + magBiasZ + ";";
+        ui->calPanel->setCurrentIndex(0);
+        ui->displayInstructions->setText("The magnetometer calibration is finished!");
         ui->userConfirm->hide();
-        displayMinMagX->setValue(0);
-        displayMinMagX->hide();
-        displayMaxMagX->setValue(0);
-        displayMaxMagX->hide();
         break;
     }
     }
@@ -145,11 +131,12 @@ void PanelCalibrate::parseMessage(QByteArray data)
 
 void PanelCalibrate::on_accelCal_clicked()
 {
+    ui->calPanel->setCurrentIndex(1);
     ui->userConfirm->show();
     accelX.clear();
     accelY.clear();
     accelZ.clear();
-    calDisplay->setText("<Insert Picture Here>\n\nPlace the AeroQuad on a flat surface.");
+    ui->accelInstructions->setText("Place the AeroQuad on a flat surface.");
     calibrationType = CALTYPE_ACCEL;
     sendMessage("l");
     nextMessage = ACCEL_WAIT;
@@ -169,7 +156,8 @@ float PanelCalibrate::calculateAccelScaleFactor(float input1, float input2)
 void PanelCalibrate::on_cancel_clicked()
 {
     ui->userConfirm->hide();
-    calDisplay->setText("Calibration has been cancelled.");
+    ui->calPanel->setCurrentIndex(0);
+    ui->displayInstructions->setText("Calibration has been cancelled.");
     sendMessage("X");
     nextMessage = WAIT;
 }
@@ -184,13 +172,7 @@ void PanelCalibrate::on_next_clicked()
         sendMessage("l");
         break;
     case CALTYPE_MAG:
-        nextMessage++;
-        calDisplay->setText("Rotate the AeroQuad on each axis to\ncalibrate the magnetometer.");
-        calLayout->addWidget(displayMinMagX, 0, Qt::AlignCenter);
-        calLayout->addWidget(displayMaxMagX, 0, Qt::AlignCenter);
-        //ui->next->setEnabled(false);
-        sendMessage("j");
-        break;
+        nextMessage =  MAG_FINISH;
         break;
     case CALTYPE_XMIT:
         break;
@@ -204,8 +186,8 @@ bool PanelCalibrate::storeAccelData(QString incomingMessage)
     workingAccelY.append(parseData.at(1).toFloat());
     workingAccelZ.append(parseData.at(2).toFloat());
     int count = workingAccelX.size();
-    ui->calProgress->setValue(count);
-    if (count > 100)
+    ui->calProgress->setValue(count*2);
+    if (count > 50)
     {
         float sumX = 0;
         float sumY = 0;
@@ -231,25 +213,27 @@ bool PanelCalibrate::storeAccelData(QString incomingMessage)
 
 void PanelCalibrate::on_initEEPROM_clicked()
 {
+    ui->calPanel->setCurrentIndex(0);
+    ui->displayInstructions->setText("");
     int response = QMessageBox::critical(this, "AeroQuad Communicator", "Are you sure you wish to initialize the EEPROM?  You will need to perform all board calibrations after this operation.", QMessageBox::Yes | QMessageBox::No);
     if (response == QMessageBox::Yes)
     {
         sendMessage("I");
         sendMessage("W");
-        calDisplay->setText("EEPROM has been initialized.");
+        ui->displayInstructions->setText("EEPROM has been initialized.");
     }
     else
-        calDisplay->setText("EEPROM has not been modified.");
+        ui->displayInstructions->setText("EEPROM has not been modified.");
 }
 
 void PanelCalibrate::on_magCal_clicked()
 {
+    ui->calPanel->setCurrentIndex(2);
     ui->userConfirm->show();
-
-    calDisplay->setText("Rotate the AeroQuad on each axis to\ncalibrate the magnetometer.\nPress Next to begin.");
+    ui->magInstructions->setText("Rotate the AeroQuad to determine the max/min value for each axis of the magnetometer.");
     calibrationType = CALTYPE_MAG;
     sendMessage("j");
-    nextMessage = MAG_WAIT;
+    nextMessage = MAG_ACQUIRE;
     ui->next->setEnabled(true);
     ui->cancel->setEnabled(true);
     ui->calProgress->hide();
@@ -259,4 +243,13 @@ void PanelCalibrate::on_magCal_clicked()
     maxMagY = -1000000;
     minMagZ = 1000000;
     maxMagZ = -1000000;
+    ui->xAxisMinus->setValue(0);
+    ui->xAxisPlus->setValue(0);
+    ui->yAxisMinus->setValue(0);
+    ui->yAxisPlus->setValue(0);
+    ui->zAxisMinus->setValue(0);
+    ui->zAxisPlus->setValue(0);
+    ui->xAxisValue->setText("0");
+    ui->yAxisValue->setText("0");
+    ui->zAxisValue->setText("0");
 }
