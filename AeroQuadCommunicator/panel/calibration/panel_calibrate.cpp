@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QLabel>
 #include <QMessageBox>
+#include <QGraphicsPixmapItem>
 
 PanelCalibrate::PanelCalibrate(QWidget *parent) :
     QWidget(parent),
@@ -19,6 +20,25 @@ PanelCalibrate::PanelCalibrate(QWidget *parent) :
     ui->next->setEnabled(false);
     ui->cancel->setEnabled(false);
     ui->calProgress->setValue(0);
+
+    QImage image(":/images/resources/TxCalDial.png");
+    QGraphicsPixmapItem *leftDial = new QGraphicsPixmapItem(QPixmap::fromImage(image));
+    leftScene = new QGraphicsScene;
+    leftScene->addItem(leftDial);
+    leftStick = new QGraphicsEllipseItem;
+    leftStick->setBrush(QBrush(QColor(Qt::blue),Qt::SolidPattern));
+    leftStick->setRect(75, 75, 30, 30);
+    leftScene->addItem(leftStick);
+    ui->leftStick->setScene(leftScene);
+
+    QGraphicsPixmapItem *rightDial = new QGraphicsPixmapItem(QPixmap::fromImage(image));
+    rightScene = new QGraphicsScene;
+    rightScene->addItem(rightDial);
+    rightStick = new QGraphicsEllipseItem;
+    rightStick->setBrush(QBrush(QColor(Qt::blue),Qt::SolidPattern));
+    rightStick->setRect(75, 75, 30, 30);
+    rightScene->addItem(rightStick);
+    ui->rightStick->setScene(rightScene);
 }
 
 PanelCalibrate::~PanelCalibrate()
@@ -252,4 +272,27 @@ void PanelCalibrate::on_magCal_clicked()
     ui->xAxisValue->setText("0");
     ui->yAxisValue->setText("0");
     ui->zAxisValue->setText("0");
+}
+
+void PanelCalibrate::on_xmitCal_clicked()
+{
+    ui->calPanel->setCurrentIndex(3);
+    ui->userConfirm->show();
+    ui->next->setEnabled(true);
+    ui->cancel->setEnabled(true);
+    ui->calProgress->hide();
+}
+
+void PanelCalibrate::on_escCal_clicked()
+{
+    ui->calPanel->setCurrentIndex(4);
+    ui->userConfirm->show();
+    ui->next->setEnabled(true);
+    ui->cancel->setEnabled(true);
+    ui->calProgress->hide();
+}
+
+void PanelCalibrate::on_horizontalSlider_valueChanged(int value)
+{
+
 }

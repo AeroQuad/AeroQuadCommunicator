@@ -46,6 +46,7 @@
         <file>resources/magCal.png</file>
         <file>resources/accelCal.png</file>
         <file>resources/cancel.png</file>
+        <file>resources/TxCalDial.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

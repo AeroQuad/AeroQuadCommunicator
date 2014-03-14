@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QProgressBar>
+#include <QGraphicsScene>
 
 #define WAIT -1
 
@@ -62,6 +63,12 @@ private slots:
     void on_initEEPROM_clicked();
     void on_magCal_clicked();
 
+    void on_xmitCal_clicked();
+
+    void on_escCal_clicked();
+
+    void on_horizontalSlider_valueChanged(int value);
+
 private:
     Ui::PanelCalibrate *ui;
     int nextMessage;
@@ -80,7 +87,10 @@ private:
     float maxMagZ;
     bool storeAccelData(QString incomingData);
     float calculateAccelScaleFactor(float input1, float input2);
-
+    QGraphicsScene *leftScene;
+    QGraphicsScene *rightScene;
+    QGraphicsEllipseItem *leftStick;
+    QGraphicsEllipseItem *rightStick;
 };
 
 #endif // PANEL_CALIBRATE_H
