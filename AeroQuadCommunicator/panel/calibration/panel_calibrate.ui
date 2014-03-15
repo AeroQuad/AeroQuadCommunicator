@@ -90,49 +90,35 @@ qradialgradient(
          <number>4</number>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="1" column="2">
-          <widget class="QToolButton" name="next">
+         <item row="1" column="0">
+          <widget class="QProgressBar" name="calProgress">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>40</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>14</pointsize>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 255);</string>
+            <string notr="true">color: white;</string>
            </property>
-           <property name="text">
-            <string>Next</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../../commuicator.qrc">
-             <normaloff>:/images/resources/rightArrow.png</normaloff>:/images/resources/rightArrow.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>50</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextBesideIcon</enum>
+           <property name="value">
+            <number>24</number>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
+         <item row="1" column="4">
+          <widget class="QToolButton" name="cancel">
+           <property name="minimumSize">
             <size>
-             <width>495</width>
-             <height>20</height>
+             <width>120</width>
+             <height>0</height>
             </size>
            </property>
-          </spacer>
-         </item>
-         <item row="1" column="3">
-          <widget class="QToolButton" name="cancel">
            <property name="font">
             <font>
              <pointsize>14</pointsize>
@@ -159,12 +145,25 @@ qradialgradient(
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QProgressBar" name="calProgress">
+         <item row="1" column="1">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>495</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="2">
+          <widget class="QToolButton" name="next">
            <property name="minimumSize">
             <size>
-             <width>250</width>
-             <height>40</height>
+             <width>120</width>
+             <height>0</height>
             </size>
            </property>
            <property name="font">
@@ -173,10 +172,57 @@ qradialgradient(
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: white;</string>
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
-           <property name="value">
-            <number>24</number>
+           <property name="text">
+            <string>Next</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../../commuicator.qrc">
+             <normaloff>:/images/resources/rightArrow.png</normaloff>:/images/resources/rightArrow.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QToolButton" name="done">
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="text">
+            <string>Done</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../../commuicator.qrc">
+             <normaloff>:/images/resources/done.png</normaloff>:/images/resources/done.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
          </item>
@@ -848,7 +894,38 @@ Calibration</string>
         </widget>
         <widget class="QWidget" name="xmit">
          <layout class="QGridLayout" name="gridLayout_8">
-          <item row="8" column="0">
+          <item row="4" column="3" colspan="2">
+           <widget class="QGraphicsView" name="rightStick">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
            <widget class="QLabel" name="ch8Label">
             <property name="font">
              <font>
@@ -866,8 +943,26 @@ Calibration</string>
             </property>
            </widget>
           </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="ch7Label">
+            <property name="font">
+             <font>
+              <pointsize>18</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
+            </property>
+            <property name="text">
+             <string>AUX2</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
           <item row="7" column="1" colspan="4">
-           <widget class="QProgressBar" name="ch7Value">
+           <widget class="QProgressBar" name="ch5Value">
             <property name="font">
              <font>
               <pointsize>18</pointsize>
@@ -877,10 +972,10 @@ Calibration</string>
              <string notr="true">color: white;</string>
             </property>
             <property name="minimum">
-             <number>950</number>
+             <number>1000</number>
             </property>
             <property name="maximum">
-             <number>2050</number>
+             <number>2000</number>
             </property>
             <property name="value">
              <number>1500</number>
@@ -893,7 +988,91 @@ Calibration</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="7" column="0">
+           <widget class="QLabel" name="ch5Label">
+            <property name="font">
+             <font>
+              <pointsize>18</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
+            </property>
+            <property name="text">
+             <string>Mode</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="6">
+           <widget class="QLabel" name="xmitInstructions">
+            <property name="font">
+             <font>
+              <pointsize>24</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
+            </property>
+            <property name="text">
+             <string>Transmitter Calibration</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1" colspan="4">
+           <widget class="QProgressBar" name="ch7Value">
+            <property name="font">
+             <font>
+              <pointsize>18</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: white;</string>
+            </property>
+            <property name="minimum">
+             <number>1000</number>
+            </property>
+            <property name="maximum">
+             <number>2000</number>
+            </property>
+            <property name="value">
+             <number>1500</number>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="format">
+             <string>%v</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="ch6Label">
+            <property name="font">
+             <font>
+              <pointsize>18</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
+            </property>
+            <property name="text">
+             <string>AUX1</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
            <widget class="QGraphicsView" name="leftStick">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -921,63 +1100,21 @@ Calibration</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1" colspan="4">
-           <widget class="QProgressBar" name="ch5Value">
-            <property name="font">
-             <font>
-              <pointsize>18</pointsize>
-             </font>
+          <item row="11" column="0">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="styleSheet">
-             <string notr="true">color: white;</string>
-            </property>
-            <property name="minimum">
-             <number>950</number>
-            </property>
-            <property name="maximum">
-             <number>2050</number>
-            </property>
-            <property name="value">
-             <number>1500</number>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="format">
-             <string>%v</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="3" colspan="2">
-           <widget class="QGraphicsView" name="rightStick">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>200</width>
-              <height>200</height>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>200</height>
-             </size>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-           </widget>
+           </spacer>
           </item>
-          <item row="2" column="1">
-           <spacer name="verticalSpacer_9">
+          <item row="12" column="1">
+           <spacer name="verticalSpacer_7">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
@@ -989,66 +1126,7 @@ Calibration</string>
             </property>
            </spacer>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="ch5Label">
-            <property name="font">
-             <font>
-              <pointsize>18</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color:white;</string>
-            </property>
-            <property name="text">
-             <string>Mode</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="ch7Label">
-            <property name="font">
-             <font>
-              <pointsize>18</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color:white;</string>
-            </property>
-            <property name="text">
-             <string>AUX2</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="6">
-           <widget class="QLabel" name="xmitInstructions">
-            <property name="font">
-             <font>
-              <pointsize>24</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color:white;</string>
-            </property>
-            <property name="text">
-             <string>Move each transmitter stick to each of it's four corners, then flip all switches to measure the max and min value of each channel.
-
-Press Next when finished.</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1" colspan="4">
+          <item row="10" column="1" colspan="4">
            <widget class="QProgressBar" name="ch8Value">
             <property name="font">
              <font>
@@ -1059,10 +1137,10 @@ Press Next when finished.</string>
              <string notr="true">color: white;</string>
             </property>
             <property name="minimum">
-             <number>950</number>
+             <number>1000</number>
             </property>
             <property name="maximum">
-             <number>2050</number>
+             <number>2000</number>
             </property>
             <property name="value">
              <number>1500</number>
@@ -1075,7 +1153,20 @@ Press Next when finished.</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="1" colspan="4">
+          <item row="11" column="4">
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="8" column="1" colspan="4">
            <widget class="QProgressBar" name="ch6Value">
             <property name="font">
              <font>
@@ -1086,10 +1177,10 @@ Press Next when finished.</string>
              <string notr="true">color: white;</string>
             </property>
             <property name="minimum">
-             <number>950</number>
+             <number>1000</number>
             </property>
             <property name="maximum">
-             <number>2050</number>
+             <number>2000</number>
             </property>
             <property name="value">
              <number>1500</number>
@@ -1102,23 +1193,57 @@ Press Next when finished.</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="ch6Label">
-            <property name="font">
-             <font>
-              <pointsize>18</pointsize>
-             </font>
+          <item row="11" column="2">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="styleSheet">
-             <string notr="true">color:white;</string>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
             </property>
-            <property name="text">
-             <string>AUX1</string>
+           </spacer>
+          </item>
+          <item row="6" column="1">
+           <spacer name="verticalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
             </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
             </property>
-           </widget>
+           </spacer>
+          </item>
+          <item row="4" column="5">
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="11" column="1">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item row="0" column="2">
            <spacer name="verticalSpacer_6">
@@ -1133,8 +1258,8 @@ Press Next when finished.</string>
             </property>
            </spacer>
           </item>
-          <item row="4" column="1">
-           <spacer name="verticalSpacer_8">
+          <item row="2" column="1">
+           <spacer name="verticalSpacer_9">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
@@ -1146,21 +1271,80 @@ Press Next when finished.</string>
             </property>
            </spacer>
           </item>
-          <item row="10" column="1">
-           <spacer name="verticalSpacer_7">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
+          <item row="5" column="1">
+           <widget class="QLabel" name="yawLabel">
+            <property name="font">
+             <font>
+              <pointsize>18</pointsize>
+             </font>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
             </property>
-           </spacer>
+            <property name="text">
+             <string>Yaw: 1500</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
           </item>
-          <item row="9" column="1">
-           <spacer name="horizontalSpacer_2">
+          <item row="3" column="1">
+           <widget class="QLabel" name="throttleLabel">
+            <property name="font">
+             <font>
+              <pointsize>18</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
+            </property>
+            <property name="text">
+             <string>Throttle: 1500</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="QLabel" name="pitchLabel">
+            <property name="font">
+             <font>
+              <pointsize>18</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
+            </property>
+            <property name="text">
+             <string>Pitch: 1500</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="4">
+           <widget class="QLabel" name="rollLabel">
+            <property name="font">
+             <font>
+              <pointsize>18</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;</string>
+            </property>
+            <property name="text">
+             <string>Roll: 1500</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <spacer name="horizontalSpacer_8">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1172,59 +1356,7 @@ Press Next when finished.</string>
             </property>
            </spacer>
           </item>
-          <item row="9" column="2">
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="9" column="0">
-           <spacer name="horizontalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="9" column="4">
-           <spacer name="horizontalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="3" column="5">
-           <spacer name="horizontalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="9" column="5">
+          <item row="3" column="2">
            <spacer name="horizontalSpacer_7">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -1236,25 +1368,6 @@ Press Next when finished.</string>
              </size>
             </property>
            </spacer>
-          </item>
-          <item row="10" column="4">
-           <widget class="QSlider" name="horizontalSlider">
-            <property name="minimum">
-             <number>1000</number>
-            </property>
-            <property name="maximum">
-             <number>2000</number>
-            </property>
-            <property name="singleStep">
-             <number>10</number>
-            </property>
-            <property name="value">
-             <number>1500</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>

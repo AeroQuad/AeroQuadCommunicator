@@ -47,6 +47,7 @@
         <file>resources/accelCal.png</file>
         <file>resources/cancel.png</file>
         <file>resources/TxCalDial.png</file>
+        <file>resources/done.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

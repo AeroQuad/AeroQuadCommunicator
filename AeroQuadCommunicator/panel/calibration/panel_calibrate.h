@@ -28,6 +28,20 @@
 #define MAG_ACQUIRE 8
 #define MAG_FINISH 9
 
+#define XMIT_WAIT 10
+#define XMIT_ACQUIRE 11
+#define XMIT_FINISH 12
+
+#define XMIT_CHANNEL_COUNT 8
+#define ROLL 0
+#define PITCH 1
+#define YAW 2
+#define THROTTLE 3
+#define AUX1 4
+#define AUX2 5
+#define AUX3 6
+#define AUX4 7
+
 namespace Ui {
 class PanelCalibrate;
 }
@@ -62,12 +76,9 @@ private slots:
     void on_next_clicked();
     void on_initEEPROM_clicked();
     void on_magCal_clicked();
-
     void on_xmitCal_clicked();
-
     void on_escCal_clicked();
-
-    void on_horizontalSlider_valueChanged(int value);
+    void on_done_clicked();
 
 private:
     Ui::PanelCalibrate *ui;
@@ -91,6 +102,13 @@ private:
     QGraphicsScene *rightScene;
     QGraphicsEllipseItem *leftStick;
     QGraphicsEllipseItem *rightStick;
+    float posThrottle;
+    float posYaw;
+    float posPitch;
+    float posRoll;
+    QVector<float> minXmit;
+    QVector<float> maxXmit;
+    float map(float x,  float in_min,  float in_max,  float out_min,  float out_max);
 };
 
 #endif // PANEL_CALIBRATE_H

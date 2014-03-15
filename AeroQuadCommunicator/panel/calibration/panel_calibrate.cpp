@@ -27,18 +27,20 @@ PanelCalibrate::PanelCalibrate(QWidget *parent) :
     leftScene->addItem(leftDial);
     leftStick = new QGraphicsEllipseItem;
     leftStick->setBrush(QBrush(QColor(Qt::blue),Qt::SolidPattern));
-    leftStick->setRect(75, 75, 30, 30);
+    leftStick->setRect(75, 75, 50, 50);
     leftScene->addItem(leftStick);
     ui->leftStick->setScene(leftScene);
+    ui->leftStick->fitInView(leftDial);
 
     QGraphicsPixmapItem *rightDial = new QGraphicsPixmapItem(QPixmap::fromImage(image));
     rightScene = new QGraphicsScene;
     rightScene->addItem(rightDial);
     rightStick = new QGraphicsEllipseItem;
     rightStick->setBrush(QBrush(QColor(Qt::blue),Qt::SolidPattern));
-    rightStick->setRect(75, 75, 30, 30);
+    rightStick->setRect(75, 75, 50, 50);
     rightScene->addItem(rightStick);
     ui->rightStick->setScene(rightScene);
+    ui->rightStick->fitInView(rightDial);
 }
 
 PanelCalibrate::~PanelCalibrate()
@@ -111,9 +113,6 @@ void PanelCalibrate::parseMessage(QByteArray data)
 
         break;
     }
-    case MAG_WAIT:
-        // Wait until user hits NEXT button to start calibraiton
-        break;
     case MAG_ACQUIRE:
     {
         QStringList parseData = incomingMessage.split(',');
@@ -140,37 +139,61 @@ void PanelCalibrate::parseMessage(QByteArray data)
         QString magBiasY = QString::number((minMagY + maxMagY) / 2.0);
         QString magBiasZ = QString::number((minMagZ + maxMagZ) / 2.0);
         sendMessage("M" + magBiasX +";" + magBiasY + ";" + magBiasZ + ";");
+        sendMessage("W");
         //qDebug() << "M" + magBiasX +";" + magBiasY + ";" + magBiasZ + ";";
         ui->calPanel->setCurrentIndex(0);
         ui->displayInstructions->setText("The magnetometer calibration is finished!");
         ui->userConfirm->hide();
         break;
     }
+    case XMIT_WAIT:
+        ui->xmitInstructions->setText("Verify each channel is centered.  Move each transmitter stick to each of it's four corners, then flip all switches to measure the max and min value of each channel.");
+        nextMessage = XMIT_ACQUIRE;
+        break;
+    case XMIT_ACQUIRE:
+    {
+        QStringList parseData = incomingMessage.split(',');
+        for (int index=0; index<XMIT_CHANNEL_COUNT; index++)
+        {
+            minXmit[index] = qMin(minXmit.at(index), parseData.at(index).toFloat());
+            maxXmit[index] = qMax(maxXmit.at(index), parseData.at(index).toFloat());
+        }
+        ui->throttleLabel->setText("Throttle: " + parseData.at(THROTTLE));
+        ui->pitchLabel->setText("Pitch: " + parseData.at(PITCH));
+        ui->rollLabel->setText("Roll: " + parseData.at(ROLL));
+        ui->yawLabel->setText("Yaw: " + parseData.at(YAW));
+
+        int throttlePos = map(parseData.at(THROTTLE).toFloat(), 1000.0, 2000.0, 55.0, -75.0);
+        int yawPos = map(parseData.at(YAW).toFloat(), 1000.0, 2000.0, -75.0, 55.0);
+        int pitchPos = map(parseData.at(PITCH).toFloat(), 1000.0, 2000.0, 55.0, -75.0);
+        int rollPos = map(parseData.at(ROLL).toFloat(), 1000.0, 2000.0, -75.0, 55.0);
+        leftStick->setPos(yawPos, throttlePos);
+        rightStick->setPos(rollPos, pitchPos);
+        ui->ch5Value->setValue(parseData.at(AUX1).toInt());
+        ui->ch6Value->setValue(parseData.at(AUX2).toInt());
+        ui->ch7Value->setValue(parseData.at(AUX3).toInt());
+        ui->ch8Value->setValue(parseData.at(AUX4).toInt());
+        break;
     }
-}
-
-void PanelCalibrate::on_accelCal_clicked()
-{
-    ui->calPanel->setCurrentIndex(1);
-    ui->userConfirm->show();
-    accelX.clear();
-    accelY.clear();
-    accelZ.clear();
-    ui->accelInstructions->setText("Place the AeroQuad on a flat surface.");
-    calibrationType = CALTYPE_ACCEL;
-    sendMessage("l");
-    nextMessage = ACCEL_WAIT;
-    ui->next->setEnabled(true);
-    ui->cancel->setEnabled(true);
-    ui->calProgress->show();
-}
-
-float PanelCalibrate::calculateAccelScaleFactor(float input1, float input2)
-{
-    float m = (input2 - input1) / 19.613;
-    float accelBias = input2 - (m * 9.0865);
-    float biased = input2 - accelBias;
-    return 9.8065 / biased;
+    case XMIT_FINISH:
+    {
+        QVector<float> scaleFactor;
+        QVector<float> offset;
+        for (int index=0; index<XMIT_CHANNEL_COUNT; index++)
+        {
+            scaleFactor.append(1000.0/(maxXmit.at(index)-minXmit.at(index)));
+            offset.append(1000.0-(minXmit.at(index)*(1000/(maxXmit.at(index)-minXmit.at(index)))));
+            sendMessage("G" + QString::number(index) + ";" + QString::number(scaleFactor.at(index)) + ";");
+            sendMessage("H" + QString::number(index) + ";" + QString::number(offset.at(index)) + ";");
+        }
+        sendMessage("W");
+        ui->userConfirm->hide();
+        ui->xmitInstructions->setText("Transmitter calibration is finished!");
+        sendMessage("t");
+        nextMessage = XMIT_ACQUIRE;
+        break;
+    }
+    }
 }
 
 void PanelCalibrate::on_cancel_clicked()
@@ -191,12 +214,70 @@ void PanelCalibrate::on_next_clicked()
         ui->next->setEnabled(false);
         sendMessage("l");
         break;
+    }
+}
+
+void PanelCalibrate::on_done_clicked()
+{
+    switch(calibrationType)
+    {
     case CALTYPE_MAG:
-        nextMessage =  MAG_FINISH;
+        nextMessage = MAG_FINISH;
         break;
     case CALTYPE_XMIT:
+        nextMessage = XMIT_FINISH;
         break;
     }
+}
+
+// ***************************************************************
+// ********************** EEPROM Calibration *********************
+// ***************************************************************
+
+void PanelCalibrate::on_initEEPROM_clicked()
+{
+    ui->calPanel->setCurrentIndex(0);
+    ui->displayInstructions->setText("");
+    ui->userConfirm->hide();
+    int response = QMessageBox::critical(this, "AeroQuad Communicator", "Are you sure you wish to initialize the EEPROM?  You will need to perform all board calibrations after this operation.", QMessageBox::Yes | QMessageBox::No);
+    if (response == QMessageBox::Yes)
+    {
+        sendMessage("I");
+        sendMessage("W");
+        ui->displayInstructions->setText("EEPROM has been initialized.");
+    }
+    else
+        ui->displayInstructions->setText("EEPROM has not been modified.");
+}
+
+// ***************************************************************
+// ********************** Accel Calibration **********************
+// ***************************************************************
+
+void PanelCalibrate::on_accelCal_clicked()
+{
+    ui->calPanel->setCurrentIndex(1);
+    ui->userConfirm->show();
+    accelX.clear();
+    accelY.clear();
+    accelZ.clear();
+    ui->accelInstructions->setText("Place the AeroQuad on a flat surface.");
+    calibrationType = CALTYPE_ACCEL;
+    sendMessage("l");
+    nextMessage = ACCEL_WAIT;
+    ui->next->setEnabled(true);
+    ui->cancel->setEnabled(true);
+    ui->calProgress->show();
+    ui->done->hide();
+    ui->next->show();
+}
+
+float PanelCalibrate::calculateAccelScaleFactor(float input1, float input2)
+{
+    float m = (input2 - input1) / 19.613;
+    float accelBias = input2 - (m * 9.0865);
+    float biased = input2 - accelBias;
+    return 9.8065 / biased;
 }
 
 bool PanelCalibrate::storeAccelData(QString incomingMessage)
@@ -231,20 +312,9 @@ bool PanelCalibrate::storeAccelData(QString incomingMessage)
     return true;
 }
 
-void PanelCalibrate::on_initEEPROM_clicked()
-{
-    ui->calPanel->setCurrentIndex(0);
-    ui->displayInstructions->setText("");
-    int response = QMessageBox::critical(this, "AeroQuad Communicator", "Are you sure you wish to initialize the EEPROM?  You will need to perform all board calibrations after this operation.", QMessageBox::Yes | QMessageBox::No);
-    if (response == QMessageBox::Yes)
-    {
-        sendMessage("I");
-        sendMessage("W");
-        ui->displayInstructions->setText("EEPROM has been initialized.");
-    }
-    else
-        ui->displayInstructions->setText("EEPROM has not been modified.");
-}
+// ***************************************************************
+// *********************** Mag Calibration ***********************
+// ***************************************************************
 
 void PanelCalibrate::on_magCal_clicked()
 {
@@ -257,6 +327,8 @@ void PanelCalibrate::on_magCal_clicked()
     ui->next->setEnabled(true);
     ui->cancel->setEnabled(true);
     ui->calProgress->hide();
+    ui->done->show();
+    ui->next->hide();
     minMagX = 1000000;
     maxMagX = -1000000;
     minMagY = 1000000;
@@ -274,6 +346,10 @@ void PanelCalibrate::on_magCal_clicked()
     ui->zAxisValue->setText("0");
 }
 
+// ***************************************************************
+// ******************* Transmitter Calibration *******************
+// ***************************************************************
+
 void PanelCalibrate::on_xmitCal_clicked()
 {
     ui->calPanel->setCurrentIndex(3);
@@ -281,7 +357,40 @@ void PanelCalibrate::on_xmitCal_clicked()
     ui->next->setEnabled(true);
     ui->cancel->setEnabled(true);
     ui->calProgress->hide();
+    ui->done->show();
+    ui->next->hide();
+    ui->xmitInstructions->setText("Removing previous calibration factors...");
+    for (int index=0; index<XMIT_CHANNEL_COUNT; index++)
+    {
+         sendMessage("G" + QString::number(index) + ";1;");
+         sendMessage("H" + QString::number(index) + ";0;");
+         minXmit.append(2000);
+         maxXmit.append(1000);
+    }
+    sendMessage("t");
+    calibrationType = CALTYPE_XMIT;
+    nextMessage = XMIT_WAIT;
 }
+
+float PanelCalibrate::map(float x, float in_min, float in_max, float out_min, float out_max)
+{
+    float value = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    if (out_max > out_min)
+    {
+        if (value > out_max) value = out_max;
+        if (value < out_min) value = out_min;
+    }
+    else
+    {
+        if (value < out_max) value = out_max;
+        if (value > out_min) value = out_min;
+    }
+    return value;
+}
+
+// ***************************************************************
+// *********************** ESC Calibration ***********************
+// ***************************************************************
 
 void PanelCalibrate::on_escCal_clicked()
 {
@@ -290,9 +399,6 @@ void PanelCalibrate::on_escCal_clicked()
     ui->next->setEnabled(true);
     ui->cancel->setEnabled(true);
     ui->calProgress->hide();
-}
-
-void PanelCalibrate::on_horizontalSlider_valueChanged(int value)
-{
-
+    ui->done->hide();
+    ui->next->show();
 }
