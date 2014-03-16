@@ -63,4 +63,5 @@
         <file>resources/Tri.png</file>
         <file>resources/Y6.png</file>
     </qresource>
+    <qresource prefix="/movie"/>
 </RCC>

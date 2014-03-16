@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QGraphicsPixmapItem>
+#include <QThread>
 
 PanelCalibrate::PanelCalibrate(QWidget *parent) :
     QWidget(parent),
@@ -41,6 +42,10 @@ PanelCalibrate::PanelCalibrate(QWidget *parent) :
     rightScene->addItem(rightStick);
     ui->rightStick->setScene(rightScene);
     ui->rightStick->fitInView(rightDial);
+
+    countdownTimer = new QTimer();
+    countdownTimer->setInterval(1000);
+    connect(countdownTimer, SIGNAL(timeout()), this, SLOT(countdownCheck()));
 }
 
 PanelCalibrate::~PanelCalibrate()
@@ -110,7 +115,6 @@ void PanelCalibrate::parseMessage(QByteArray data)
         sendMessage("K" + QString::number(xAccelScaleFactor) + ";0;" + QString::number(yAccelScaleFactor) + ";0;" + QString::number(zAccelScaleFactor) + ";0;");
         sendMessage("W");
         ui->userConfirm->hide();
-
         break;
     }
     case MAG_ACQUIRE:
@@ -188,7 +192,7 @@ void PanelCalibrate::parseMessage(QByteArray data)
         }
         sendMessage("W");
         ui->userConfirm->hide();
-        ui->xmitInstructions->setText("Transmitter calibration is finished!");
+        ui->xmitInstructions->setText("The transmitter calibration is finished!");
         sendMessage("t");
         nextMessage = XMIT_ACQUIRE;
         break;
@@ -214,6 +218,58 @@ void PanelCalibrate::on_next_clicked()
         ui->next->setEnabled(false);
         sendMessage("l");
         break;
+    case CALTYPE_ESC:
+        switch(nextMessage)
+        {
+        case ESC_START:
+            ui->escInstructions->setText("When the counter reaches zero, apply battery power to the motors and ESC's.\n\n\nPress NEXT to begin the countdown.");
+            ui->escAdjust->show();
+            sendMessage("2123.45;");
+            break;
+        case ESC_COUNTDOWN:
+            ui->escAdjust->hide();
+            ui->escInstructions->setText("");
+            ui->countdown->setText("  Get Ready!  ");
+            countdownTimer->start();
+            ui->countdown->show();
+            ui->userConfirm->hide();
+            break;
+        case ESC_POWER_ON:
+            ui->escInstructions->setFont(QFont("MS Shell Dlg 2", 35));
+            ui->escInstructions->setAlignment(Qt::AlignHCenter);
+            ui->escInstructions->setText("Connect battery power to the AeroQuad!");
+            ui->countdown->hide();
+            ui->userConfirm->hide();
+            if (ui->powerOnDelayValue->value() == 0)
+                sendMessage("1123.45;");
+            break;
+        case ESC_THROTTLE_COMMANDS:
+            if (ui->powerOnDelayValue->value() > 0)
+            {
+                QThread::sleep(ui->powerOnDelayValue->value());
+                sendMessage("1123.45;");
+            }
+            ui->escInstructions->setFont(QFont("MS Shell Dlg 2", 24));
+            ui->escInstructions->setText("High throttle command being sent.\n\nListen for two beeps from the ESC's.");
+            ui->escInstructions->repaint();
+            QThread::sleep(2);
+            ui->escInstructions->setText("Low throttle command being sent.\n\nListen for 4 beeps from the ESC's");
+            ui->escInstructions->repaint();
+            ui->calDisplay->repaint();
+            sendMessage("2123.45;");
+            QThread::sleep(4);
+            ui->escInstructions->setText("Verify each motor is spinning at the same rate.\n\nIf not, adjust the Power On Delay value and perform the calibration again.");
+            sendMessage("3123.45;1050;");
+            ui->motorPowerAdjust->show();
+            countdownTimer->stop();
+            ui->next->hide();
+            ui->cancel->hide();
+            ui->done->show();
+            ui->userConfirm->show();
+            break;
+        }
+        nextMessage++;
+        break;
     }
 }
 
@@ -226,6 +282,15 @@ void PanelCalibrate::on_done_clicked()
         break;
     case CALTYPE_XMIT:
         nextMessage = XMIT_FINISH;
+        break;
+    case CALTYPE_ESC:
+        sendMessage("4123.45;");
+        nextMessage = ESC_FINISH;
+        ui->motorPowerAdjust->hide();
+        ui->userConfirm->hide();
+        ui->escInstructions->setFont(QFont("MS Shell Dlg 2", 35));
+        ui->escInstructions->setAlignment(Qt::AlignHCenter);
+        ui->escInstructions->setText("The ESC calibration is finished!\n\nDisconnect battery power before continuing.");
         break;
     }
 }
@@ -401,4 +466,50 @@ void PanelCalibrate::on_escCal_clicked()
     ui->calProgress->hide();
     ui->done->hide();
     ui->next->show();
+    ui->countdown->hide();
+    ui->escAdjust->hide();
+    ui->motorPowerAdjust->hide();
+    ui->escInstructions->setFont(QFont("MS Shell Dlg 2", 24));
+    ui->escInstructions->setText("Warning!  Before starting the ESC Calibration, remove the propellers for safety considerations.\n\nIf this calibration is performed incorrectly with the propellers on, it could result in property damage and personal injury, as this next step in the calibration sends a high throttle command to the ESCs.\n\nDisconnect battery power to the AeroQuad NOW before the start of this calibration.\n\nLeave USB power On to the AeroQuad.");
+    ui->escInstructions->setAlignment(Qt::AlignLeft);
+    calibrationType = CALTYPE_ESC;
+    nextMessage = ESC_START;
+    countdown = 5;
+}
+
+void PanelCalibrate::countdownCheck()
+{
+    ui->countdown->setText(QString::number(countdown));
+    if (countdown == 0)
+        on_next_clicked();
+    if (countdown == -1)
+    {
+        // delay extra 3 seconds for ESC power up
+        on_next_clicked();
+        countdownTimer->stop();
+    }
+    countdown--;
+}
+
+void PanelCalibrate::on_motorPower_valueChanged(int value)
+{
+    ui->motorPowerValue->setText(QString::number(value));
+    if (nextMessage >= ESC_THROTTLE_COMMANDS)
+        sendMessage("3123.45;" + QString::number(value) +";");
+}
+
+void PanelCalibrate::on_decrement_clicked()
+{
+    int value = ui->motorPower->value() - 1;
+    if (value < 1000) value = 1000;
+    ui->motorPower->setValue(value);
+    on_motorPower_valueChanged(value);
+}
+
+void PanelCalibrate::on_increment_clicked()
+{
+    int value = ui->motorPower->value() + 1;
+    if (value > 2000) value = 2000;
+    ui->motorPower->setValue(value);
+    on_motorPower_valueChanged(value);
 }

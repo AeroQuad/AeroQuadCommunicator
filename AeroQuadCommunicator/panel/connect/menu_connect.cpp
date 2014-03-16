@@ -144,6 +144,7 @@ void MenuConnect::on_connectPushButton_clicked()
     QString connectString = ui->portComboBox->currentText() + ";" + ui->baudComboBox->currentText();
 
     emit openConnection(connectString);
+    sendMessage(connectionStop);
     sendMessage(connectionTest);
     messageType = connectionTest;
     setConnectionState(false);
@@ -178,9 +179,12 @@ void MenuConnect::updateConnectionState(bool state)
 
 void MenuConnect::parseMessage(QByteArray dataIn)
 {
+    qDebug() << messageType;
     if (messageType == connectionTest)
     {
         QString version = dataIn;
+        version.chop(1);
+        version.trimmed();
         if (version.toDouble() >= compatibleVersion)
         {
             setConnectionState(true);
@@ -190,7 +194,12 @@ void MenuConnect::parseMessage(QByteArray dataIn)
             retry = 0;
         }
         else
-            on_disconnectPushButton_clicked();
+        {
+            emit panelStatus("Detected software version is v" + version +".  Flight software v" + QString::number(compatibleVersion) + " or greater is required.");
+            // emit closeConnection(); -> This crashes for some reason, comment out for now and remember to fix.
+            emit getConnectionState();
+            ui->configList->clear();
+        }
     }
     if (messageType == configRequest)
     {
@@ -199,7 +208,6 @@ void MenuConnect::parseMessage(QByteArray dataIn)
         QStringList configItems = configData.split("\n");
         int count = configItems[0].toInt() + 1;
         configItems.removeFirst();
-        qDebug() << count << configItems.size();
         if ((count == configItems.size()))
         {
             ui->configList->addItems(configItems);

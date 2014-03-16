@@ -8,12 +8,14 @@
 #include <QLabel>
 #include <QProgressBar>
 #include <QGraphicsScene>
+#include <QTimer>
 
 #define WAIT -1
 
 #define CALTYPE_ACCEL 0
 #define CALTYPE_MAG 1
 #define CALTYPE_XMIT 2
+#define CALTYPE_ESC 3
 
 #define ACCEL_WAIT -1
 #define ACCEL_RIGHTSIDEUP 0
@@ -31,6 +33,16 @@
 #define XMIT_WAIT 10
 #define XMIT_ACQUIRE 11
 #define XMIT_FINISH 12
+
+#define ESC_START 13
+#define ESC_COUNTDOWN 14
+#define ESC_POWER_ON 15
+#define ESC_THROTTLE_COMMANDS 16
+
+#define ESC_HIGH_THROTTLE 16
+#define ESC_LOW_THROTTLE 17
+#define ESC_MOTOR_TEST 18
+#define ESC_FINISH 19
 
 #define XMIT_CHANNEL_COUNT 8
 #define ROLL 0
@@ -61,6 +73,7 @@ public slots:
     void initialize(QMap<QString, QString> config);
     void updateConnectionState(bool state) {connectState = state;}
     void parseMessage(QByteArray);
+    void countdownCheck();
 
 signals:
     void initializePanel(QMap<QString, QString>);
@@ -79,6 +92,12 @@ private slots:
     void on_xmitCal_clicked();
     void on_escCal_clicked();
     void on_done_clicked();
+
+    void on_motorPower_valueChanged(int value);
+
+    void on_decrement_clicked();
+
+    void on_increment_clicked();
 
 private:
     Ui::PanelCalibrate *ui;
@@ -108,6 +127,8 @@ private:
     float posRoll;
     QVector<float> minXmit;
     QVector<float> maxXmit;
+    QTimer *countdownTimer;
+    int countdown;
     float map(float x,  float in_min,  float in_max,  float out_min,  float out_max);
 };
 
