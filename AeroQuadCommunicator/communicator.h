@@ -7,7 +7,7 @@
 #include <QResizeEvent>
 #include <QDebug>
 #include <QMap>
-#include "communication\communication_serial.h"
+#include "communication/communication_serial.h"
 
 namespace Ui {
 class Communicator;
