@@ -48,6 +48,12 @@
         <file>resources/cancel.png</file>
         <file>resources/TxCalDial.png</file>
         <file>resources/done.png</file>
+        <file>resources/rightSide.png</file>
+        <file>resources/noseDown.png</file>
+        <file>resources/leftSide.png</file>
+        <file>resources/noseUp.png</file>
+        <file>resources/upsideDown.png</file>
+        <file>resources/rightSideUp.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

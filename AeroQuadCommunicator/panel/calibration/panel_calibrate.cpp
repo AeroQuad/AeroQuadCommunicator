@@ -71,37 +71,67 @@ void PanelCalibrate::parseMessage(QByteArray data)
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_RIGHTSIDEUP;
         else
-            ui->accelInstructions->setText("Place the AeroQuad upside down on a flat surface.");
+        {
+            ui->accelInstructions->setText("Place the AeroQuad upside down on a level surface.");
+            QPixmap aqImage(":/images/resources/upsideDown.png");
+            QPixmap scaledImage = aqImage.scaled(750, 750, Qt::KeepAspectRatio);
+            ui->accelPicture->setPixmap(scaledImage);
+        }
         break;
     case ACCEL_UPSIDEDOWN:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_UPSIDEDOWN;
         else
+        {
             ui->accelInstructions->setText("Point the left side down.");
+            QPixmap aqImage(":/images/resources/leftSide.png");
+            QPixmap scaledImage = aqImage.scaled(750, 750, Qt::KeepAspectRatio);
+            ui->accelPicture->setPixmap(scaledImage);
+        }
         break;
     case ACCEL_LEFT:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_LEFT;
         else
+        {
             ui->accelInstructions->setText("Point the right side down.");
+            QPixmap aqImage(":/images/resources/rightSide.png");
+            QPixmap scaledImage = aqImage.scaled(750, 750, Qt::KeepAspectRatio);
+            ui->accelPicture->setPixmap(scaledImage);
+        }
         break;
     case ACCEL_RIGHT:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_RIGHT;
         else
+        {
             ui->accelInstructions->setText("Point the nose up.");
+            QPixmap aqImage(":/images/resources/noseUp.png");
+            QPixmap scaledImage = aqImage.scaled(750, 750, Qt::KeepAspectRatio);
+            ui->accelPicture->setPixmap(scaledImage);
+        }
         break;
     case ACCEL_UP:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_UP;
         else
+        {
             ui->accelInstructions->setText("Point the nose down.");
+            QPixmap aqImage(":/images/resources/noseDown.png");
+            QPixmap scaledImage = aqImage.scaled(750, 750, Qt::KeepAspectRatio);
+            ui->accelPicture->setPixmap(scaledImage);
+        }
         break;
     case ACCEL_DOWN:
         if (storeAccelData(incomingMessage))
             nextMessage = ACCEL_DOWN;
         else
-            ui->accelInstructions->setText("Return the AeroQuad to a flat surface.");
+        {
+            ui->accelInstructions->setText("Return the AeroQuad to a level and upright position.");
+            QPixmap aqImage(":/images/resources/rightSideUp.png");
+            QPixmap scaledImage = aqImage.scaled(750, 750, Qt::KeepAspectRatio);
+            ui->accelPicture->setPixmap(scaledImage);
+        }
         break;
     case ACCEL_FINISH:
     {
@@ -237,7 +267,7 @@ void PanelCalibrate::on_next_clicked()
         case ESC_POWER_ON:
             ui->escInstructions->setFont(QFont("MS Shell Dlg 2", 35));
             ui->escInstructions->setAlignment(Qt::AlignHCenter);
-            ui->escInstructions->setText("Connect battery power to the AeroQuad!");
+            ui->escInstructions->setText("Connect battery power\nto the AeroQuad!");
             ui->countdown->hide();
             ui->userConfirm->hide();
             if (ui->powerOnDelayValue->value() == 0)
@@ -250,15 +280,17 @@ void PanelCalibrate::on_next_clicked()
                 sendMessage("1123.45;");
             }
             ui->escInstructions->setFont(QFont("MS Shell Dlg 2", 24));
-            ui->escInstructions->setText("High throttle command being sent.\n\nListen for two beeps from the ESC's.");
+            ui->escInstructions->setText("High throttle command being sent.\nListen for two beeps from the ESC's.");
             ui->escInstructions->repaint();
+//            ui->calDisplay->repaint();
+//            ui->frame->repaint();
             QThread::sleep(2);
-            ui->escInstructions->setText("Low throttle command being sent.\n\nListen for 4 beeps from the ESC's");
+            ui->escInstructions->setText("Low throttle command being sent.\nListen for 4 beeps from the ESC's");
             ui->escInstructions->repaint();
-            ui->calDisplay->repaint();
+//            ui->calDisplay->repaint();
             sendMessage("2123.45;");
             QThread::sleep(4);
-            ui->escInstructions->setText("Verify each motor is spinning at the same rate.\n\nIf not, adjust the Power On Delay value and perform the calibration again.");
+            ui->escInstructions->setText("Verify each motor is spinning at the same rate.  If not, adjust the Power On Delay value and perform the calibration again.");
             sendMessage("3123.45;1050;");
             ui->motorPowerAdjust->show();
             countdownTimer->stop();
@@ -326,7 +358,7 @@ void PanelCalibrate::on_accelCal_clicked()
     accelX.clear();
     accelY.clear();
     accelZ.clear();
-    ui->accelInstructions->setText("Place the AeroQuad on a flat surface.");
+    ui->accelInstructions->setText("Place the AeroQuad on a level surface.");
     calibrationType = CALTYPE_ACCEL;
     sendMessage("l");
     nextMessage = ACCEL_WAIT;
@@ -335,6 +367,10 @@ void PanelCalibrate::on_accelCal_clicked()
     ui->calProgress->show();
     ui->done->hide();
     ui->next->show();
+    QPixmap aqImage(":/images/resources/rightSideUp.png");
+    QPixmap scaledImage = aqImage.scaled(750, 750, Qt::KeepAspectRatio);
+    ui->accelPicture->setPixmap(scaledImage);
+    ui->calProgress->setValue(0);
 }
 
 float PanelCalibrate::calculateAccelScaleFactor(float input1, float input2)
