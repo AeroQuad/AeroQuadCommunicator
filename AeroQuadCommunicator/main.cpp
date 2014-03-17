@@ -122,7 +122,7 @@
 
 #include <QApplication>
 #include "communicator.h"
-#include "utilities\patchedWebViewStyle.h"
+#include "utilities/patchedWebViewStyle.h"
 
 int main(int argc, char *argv[])
 {
