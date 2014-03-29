@@ -7,6 +7,7 @@
 #include "panel/config/panel_config.h"
 #include "panel/firmware/panel_firmware.h"
 #include "panel/route/panel_route.h"
+#include "panel/motorcommand/panel_motorcommand.h"
 
 // Add custom panel headers here
 //#include "panel/example/panel_example.h"
@@ -64,6 +65,7 @@ void Communicator::initToolBar()
     connect(ui->actionTerminal,     SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionPlots,        SIGNAL(triggered()), signalMapper, SLOT(map()));
     connect(ui->actionFirmware,     SIGNAL(triggered()), signalMapper, SLOT(map()));
+    connect(ui->actionMotors,       SIGNAL(triggered()), signalMapper, SLOT(map()));
     //connect(ui->actionTest,         SIGNAL(triggered()), signalMapper, SLOT(map()));
 
 
@@ -75,6 +77,7 @@ void Communicator::initToolBar()
     signalMapper->setMapping(ui->actionTerminal,    "Terminal");
     signalMapper->setMapping(ui->actionPlots,       "Plots");
     signalMapper->setMapping(ui->actionFirmware,    "Firmware");
+    signalMapper->setMapping(ui->actionMotors,      "Motors");
     //signalMapper->setMapping(ui->actionTest,        "Test");
     connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(loadPanel(QString))) ;
 }
@@ -109,6 +112,8 @@ void Communicator::loadPanel(QString panelName)
         panel = new PanelRoute;
     else if (panelName == "Calibrate")
         panel = new PanelCalibrate;
+    else if (panelName == "Motors")
+        panel = new PanelMotorCommand;
 
 //    else if (panelName == "Test")
 //        panel = new PanelExample;

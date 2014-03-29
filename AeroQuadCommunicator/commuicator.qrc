@@ -9,7 +9,6 @@
         <file>resources/AQState.svg</file>
         <file>resources/AQTerminal.svg</file>
         <file>resources/AQPlot.svg</file>
-        <file>resources/background.png</file>
         <file>resources/AQ.png</file>
         <file>resources/AQGlobe.svg</file>
         <file>resources/AQConection.png</file>
@@ -54,6 +53,9 @@
         <file>resources/noseUp.png</file>
         <file>resources/upsideDown.png</file>
         <file>resources/rightSideUp.png</file>
+        <file>resources/CW.png</file>
+        <file>resources/CCW.png</file>
+        <file>resources/AQ32Sticker.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>
