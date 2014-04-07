@@ -8,6 +8,7 @@
 #include "panel/firmware/panel_firmware.h"
 #include "panel/route/panel_route.h"
 #include "panel/motorcommand/panel_motorcommand.h"
+#include "panel/status/panel_status.h"
 
 // Add custom panel headers here
 //#include "panel/example/panel_example.h"
@@ -114,7 +115,8 @@ void Communicator::loadPanel(QString panelName)
         panel = new PanelCalibrate;
     else if (panelName == "Motors")
         panel = new PanelMotorCommand;
-
+    else if (panelName == "Status")
+        panel = new PanelStatus;
 //    else if (panelName == "Test")
 //        panel = new PanelExample;
 

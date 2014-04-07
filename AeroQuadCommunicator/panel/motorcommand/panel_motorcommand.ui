@@ -4963,7 +4963,7 @@ border-image:none;</string>
             </property>
             <property name="minimumSize">
              <size>
-              <width>625</width>
+              <width>640</width>
               <height>625</height>
              </size>
             </property>

@@ -92,11 +92,8 @@ private slots:
     void on_xmitCal_clicked();
     void on_escCal_clicked();
     void on_done_clicked();
-
     void on_motorPower_valueChanged(int value);
-
     void on_decrement_clicked();
-
     void on_increment_clicked();
 
 private:

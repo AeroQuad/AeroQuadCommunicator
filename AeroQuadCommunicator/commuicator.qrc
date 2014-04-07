@@ -56,6 +56,10 @@
         <file>resources/CW.png</file>
         <file>resources/CCW.png</file>
         <file>resources/AQ32Sticker.png</file>
+        <file>resources/artificialHorizonCompass.png</file>
+        <file>resources/artificialHorizonCompassBackGround.png</file>
+        <file>resources/artificialHorizonDial.png</file>
+        <file>resources/artificialHorizonBackGround.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

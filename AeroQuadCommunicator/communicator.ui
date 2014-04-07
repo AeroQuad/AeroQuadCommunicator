@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1200</width>
     <height>775</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
+    <width>1175</width>
     <height>775</height>
    </size>
   </property>
@@ -35,7 +35,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>1200</width>
      <height>21</height>
     </rect>
    </property>
@@ -61,11 +61,14 @@
    </attribute>
    <addaction name="actionConnect"/>
    <addaction name="separator"/>
+   <addaction name="actionStatus"/>
    <addaction name="actionRoute"/>
+   <addaction name="separator"/>
    <addaction name="actionSetup"/>
-   <addaction name="actionCalibrate"/>
    <addaction name="actionMotors"/>
+   <addaction name="actionCalibrate"/>
    <addaction name="actionFirmware"/>
+   <addaction name="separator"/>
    <addaction name="actionPlots"/>
    <addaction name="actionTerminal"/>
   </widget>
