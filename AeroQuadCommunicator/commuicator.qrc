@@ -60,6 +60,9 @@
         <file>resources/artificialHorizonCompassBackGround.png</file>
         <file>resources/artificialHorizonDial.png</file>
         <file>resources/artificialHorizonBackGround.png</file>
+        <file>resources/recall.png</file>
+        <file>resources/restoreSavedCal.png</file>
+        <file>resources/restoreDefaultCal.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>resources/AeroQuadIcon.ico</file>

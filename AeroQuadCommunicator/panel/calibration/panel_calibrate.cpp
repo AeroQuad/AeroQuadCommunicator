@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QGraphicsPixmapItem>
 #include <QThread>
+#include <QFile>
+#include <QTextStream>
 
 PanelCalibrate::PanelCalibrate(QWidget *parent) :
     QWidget(parent),
@@ -548,4 +550,31 @@ void PanelCalibrate::on_increment_clicked()
     if (value > 2000) value = 2000;
     ui->motorPower->setValue(value);
     on_motorPower_valueChanged(value);
+}
+
+void PanelCalibrate::on_recallCalibration_clicked()
+{
+    ui->calPanel->setCurrentIndex(5);
+}
+
+void PanelCalibrate::on_defaultCal_clicked()
+{
+    QFile file("DefaultCalibration.txt");
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream in(&file);
+        while(!in.atEnd())
+        {
+            QString command = in.readLine();
+            if (!command.isEmpty())
+            {
+                sendMessage(command);
+                QThread::msleep(100);
+            }
+        }
+        QMessageBox::information(this, "AeroQuad Communicator", "Default calibrations restored.", QMessageBox::Ok);
+    }
+    else
+        QMessageBox::critical(this, "AeroQuad Communicator", "Default calibrtions not restored.", QMessageBox::Ok);
+    file.close();
 }

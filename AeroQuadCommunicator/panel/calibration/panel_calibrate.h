@@ -96,6 +96,10 @@ private slots:
     void on_decrement_clicked();
     void on_increment_clicked();
 
+    void on_recallCalibration_clicked();
+
+    void on_defaultCal_clicked();
+
 private:
     Ui::PanelCalibrate *ui;
     int nextMessage;

@@ -5,6 +5,8 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QGraphicsEllipseItem>
+#include <QGraphicsTextItem>
+#include <QMap>
 
 namespace Ui {
 class PanelStatus;
@@ -17,11 +19,24 @@ class PanelStatus : public QWidget
 public:
     explicit PanelStatus(QWidget *parent = 0);
     ~PanelStatus();
+    bool connectState;
+    QMap<QString, QString> configuration;
+    void sendMessage(QString message) {emit messageOut(message.toUtf8());}
+
+public slots:
+    void initialize(QMap<QString, QString> config);
+    void updateConnectionState(bool state) {connectState = state;}
+    void parseMessage(QByteArray);
+
+signals:
+    void initializePanel(QMap<QString, QString>);
+    void messageIn(QByteArray);
+    void messageOut(QByteArray);
+    void panelStatus(QString);
+    void connectionState(bool);
+    void getConnectionState();
 
 private slots:
-    void on_simRoll_valueChanged(int value);
-    void on_simPitch_valueChanged(int value);
-    void on_simHeading_valueChanged(int value);
 
 private:
     Ui::PanelStatus *ui;
@@ -34,6 +49,7 @@ private:
     QGraphicsScene *rightScene;
     QGraphicsEllipseItem *leftStick;
     QGraphicsEllipseItem *rightStick;
+    QGraphicsTextItem *altitudeText;
     float roll;
     float pitch;
     float posThrottle;
