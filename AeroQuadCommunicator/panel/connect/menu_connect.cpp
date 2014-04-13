@@ -216,7 +216,7 @@ void MenuConnect::parseMessage(QByteArray dataIn)
                 QStringList configItem = configItems[index].split(":");
                 configuration[configItem[0]] = configItem[1].trimmed();
             }
-            configPix = QPixmap(configuration["Flight Config"]);
+            configPix = QPixmap(flightConfigs[configuration["Flight Config"]]);
             QResizeEvent *event;
             resizeEvent(event);
             emit writeConfig(configuration);
