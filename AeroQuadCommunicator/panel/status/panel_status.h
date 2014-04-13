@@ -7,6 +7,7 @@
 #include <QGraphicsEllipseItem>
 #include <QGraphicsTextItem>
 #include <QMap>
+#include <QLabel>
 
 namespace Ui {
 class PanelStatus;
@@ -22,6 +23,7 @@ public:
     bool connectState;
     QMap<QString, QString> configuration;
     void sendMessage(QString message) {emit messageOut(message.toUtf8());}
+
 
 public slots:
     void initialize(QMap<QString, QString> config);
@@ -50,15 +52,30 @@ private:
     QGraphicsEllipseItem *leftStick;
     QGraphicsEllipseItem *rightStick;
     QGraphicsTextItem *altitudeText;
+    QGraphicsTextItem *batteryText;
+    QGraphicsTextItem *pitchText;
+    QGraphicsTextItem *rollText;
     float roll;
     float pitch;
     float posThrottle;
     float posYaw;
     float posPitch;
     float posRoll;
+    int motorArmed;
+    int altitudeHold;
+    int motorCount;
+    QString flightConfig;
+    QList<int> motorPower;
+    QList<float> receiverChannel;
+    float batteryPower;
+    int flightMode;
+
 
     float scale(float value, float inputMin, float inputMax, float outputMin, float outputMax);
     void movePitchRoll(float rollAngle, float pitchAngle);
+    void updateButton(QLabel *button, QString text, QString color);
+    void updateMotors();
+    void updateSticks();
 };
 
 #endif // PANEL_STATUS_H
