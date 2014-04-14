@@ -61,6 +61,8 @@ private:
     float posYaw;
     float posPitch;
     float posRoll;
+    float altitude;
+    float heading;
     int motorArmed;
     int altitudeHold;
     int motorCount;
@@ -76,6 +78,8 @@ private:
     void updateButton(QLabel *button, QString text, QString color);
     void updateMotors();
     void updateSticks();
+    void updateButtons();
+    void updateTextStatus();
 };
 
 #endif // PANEL_STATUS_H

@@ -58,8 +58,8 @@ void CommunicationSerial::write(const QByteArray &data)
             isConnected = false;
             emit connectionState(isConnected);
         }
-      else
-          qDebug() << data;
+//      else
+//          qDebug() << data;
     }
 }
 

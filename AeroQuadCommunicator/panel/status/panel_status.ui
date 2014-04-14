@@ -50,7 +50,7 @@ qradialgradient(
          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="QuadPlus">
          <layout class="QGridLayout" name="gridLayout_2">
@@ -4740,7 +4740,7 @@ border-image:none;</string>
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
-             <widget class="QProgressBar" name="octoPlus1Motor_6">
+             <widget class="QProgressBar" name="octoX5Motor">
               <property name="geometry">
                <rect>
                 <x>60</x>
@@ -4881,7 +4881,7 @@ border-image:none;</string>
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
-             <widget class="QProgressBar" name="octoPlus1Motor_2">
+             <widget class="QProgressBar" name="octoX1Motor">
               <property name="geometry">
                <rect>
                 <x>60</x>
@@ -5022,7 +5022,7 @@ border-image:none;</string>
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
-             <widget class="QProgressBar" name="octoPlus1Motor_5">
+             <widget class="QProgressBar" name="octoX4Motor">
               <property name="geometry">
                <rect>
                 <x>80</x>
@@ -5163,7 +5163,7 @@ border-image:none;</string>
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
-             <widget class="QProgressBar" name="octoPlus1Motor_8">
+             <widget class="QProgressBar" name="octoX7Motor">
               <property name="geometry">
                <rect>
                 <x>60</x>
@@ -5345,7 +5345,7 @@ border-image:none;</string>
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
-             <widget class="QProgressBar" name="octoPlus1Motor_4">
+             <widget class="QProgressBar" name="octoX3Motor">
               <property name="geometry">
                <rect>
                 <x>60</x>
@@ -5486,7 +5486,7 @@ border-image:none;</string>
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
-             <widget class="QProgressBar" name="octoPlus1Motor_3">
+             <widget class="QProgressBar" name="octoX2Motor">
               <property name="geometry">
                <rect>
                 <x>80</x>
@@ -5627,7 +5627,7 @@ border-image:none;</string>
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
-             <widget class="QProgressBar" name="octoPlus1Motor_9">
+             <widget class="QProgressBar" name="octoX8Motor">
               <property name="geometry">
                <rect>
                 <x>80</x>
@@ -5768,7 +5768,7 @@ border-image:none;</string>
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
-             <widget class="QProgressBar" name="octoPlus1Motor_7">
+             <widget class="QProgressBar" name="octoX6Motor">
               <property name="geometry">
                <rect>
                 <x>80</x>

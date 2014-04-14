@@ -45,7 +45,8 @@ PanelStatus::PanelStatus(QWidget *parent) :
     aiScene->addItem(aiCompassBackground);
     aiScene->addItem(aiCompass);
     ui->artificialHorizon->setScene(aiScene);
-
+    //ui->artificialHorizon->setFocusPolicy(Qt::NoFocus);
+    ui->artificialHorizon->setSceneRect(49, 560, 400, 280); //406, 282
     altitudeText = aiScene->addText("Altitude:");
     altitudeText->setDefaultTextColor(Qt::white);
     QString fontFamily = altitudeText->font().family();
@@ -58,7 +59,8 @@ PanelStatus::PanelStatus(QWidget *parent) :
     rollText = aiScene->addText("Roll:");
     rollText->setDefaultTextColor(Qt::white);
     rollText->setFont(QFont(fontFamily, 12));
-    rollText->setPos(50, 580);    pitchText = aiScene->addText("Pitch:");
+    rollText->setPos(50, 580);
+    pitchText = aiScene->addText("Pitch:");
     pitchText->setDefaultTextColor(Qt::white);
     pitchText->setFont(QFont(fontFamily, 12));
     pitchText->setPos(50, 560);
@@ -111,6 +113,28 @@ void PanelStatus::initialize(QMap<QString, QString> config)
     emit getConnectionState();
     motorCount = configuration["Motors"].toInt();
     flightConfig = configuration["Flight Config"];
+    if (flightConfig == "Quad +")
+        ui->flightConfigSelect->setCurrentIndex(0);
+    if (flightConfig == "Quad X")
+        ui->flightConfigSelect->setCurrentIndex(1);
+    if (flightConfig == "Hex +")
+        ui->flightConfigSelect->setCurrentIndex(2);
+    if (flightConfig == "Hex X")
+        ui->flightConfigSelect->setCurrentIndex(3);
+    if (flightConfig == "Octo +")
+        ui->flightConfigSelect->setCurrentIndex(4);
+    if (flightConfig == "Octo X")
+        ui->flightConfigSelect->setCurrentIndex(5);
+    if (flightConfig == "Hex Y6")
+        ui->flightConfigSelect->setCurrentIndex(6);
+//    if (flightConfig == "Octo X8")
+//        ui->flightConfigSelect->setCurrentIndex();
+//    if (flightConfig == "Quad Y4")
+//        ui->flightConfigSelect->setCurrentIndex();
+//    if (flightConfig == "Tri")
+//        ui->flightConfigSelect->setCurrentIndex();
+//    if (flightConfig == "Rover")
+//        ui->flightConfigSelect->setCurrentIndex();
     sendMessage("s");
 }
 void PanelStatus::parseMessage(QByteArray data)
@@ -118,40 +142,26 @@ void PanelStatus::parseMessage(QByteArray data)
     QString incomingMessage = data;
     QStringList status = incomingMessage.split(',');
     if (status.size() != 25)
-        return;
+        return; // Don't process if expected message size not received
     motorArmed = status.at(0).toInt();
-    if (motorArmed)
-        updateButton(ui->motorState, "Motors\nArmed", "green");
-    else
-        updateButton(ui->motorState, "Motors\nNot Armed", "grey");
     roll = status.at(1).toFloat() * Rad2Deg;
-    rollText->setPlainText("Roll: " + QString::number(roll, 'f', 1));
     pitch = status.at(2).toFloat() * Rad2Deg;
-    pitchText->setPlainText("Pitch: " + QString::number(pitch, 'f', 1));
-    movePitchRoll(roll, pitch);
-    float heading = status.at(3).toFloat() * Rad2Deg;
-    aiCompass->setRotation(-heading);\
-    QString alt = status.at(4);
-    alt.chop(1);
-    altitudeText->setPlainText("Altitude: " + alt);
+    heading = status.at(3).toFloat() * Rad2Deg;
+    altitude = status.at(4).toFloat();
     altitudeHold = status.at(5).toInt();
-    if (altitudeHold)
-        updateButton(ui->altHoldState, "Altitude Hold\nOn", "green");
-    else
-        updateButton(ui->altHoldState, "Altitude Hold\nOff", "grey");
     for (int index=6; index<14; index++)
         receiverChannel[index-6] = status.at(index).toFloat();
-    updateSticks();
     for (int index=14; index<22; index++)
         motorPower[index-14] = status.at(index).toInt();
-    updateMotors();
     batteryPower = status.at(22).toFloat();
-    batteryText->setPlainText("Battery: " + QString::number(batteryPower, 'f', 1));
     flightMode = status.at(23).toInt();
-    if (flightMode)
-        updateButton(ui->attitudeState, "Stable Mode", "steelblue");
-    else
-        updateButton(ui->attitudeState, "Acrobatic Mode", "green");
+
+    aiCompass->setRotation(-heading);\
+    movePitchRoll(roll, pitch);
+    updateSticks();
+    updateMotors();
+    updateButtons();
+    updateTextStatus();
 }
 
 float PanelStatus::scale(float value, float inputMin, float inputMax, float outputMin, float outputMax)
@@ -187,11 +197,120 @@ void PanelStatus::updateMotors()
         ui->QuadX4Motor->setValue(motorPower.at(3));
         ui->QuadX4Value->setText(QString::number(motorPower.at(3)));
     }
+    if (flightConfig == "Quad +")
+    {
+        ui->QuadPlus1Motor->setValue(motorPower.at(0));
+        ui->QuadPlus1Value->setText(QString::number(motorPower.at(0)));
+        ui->QuadPlus2Motor->setValue(motorPower.at(1));
+        ui->QuadPlus2Value->setText(QString::number(motorPower.at(1)));
+        ui->QuadPlus3Motor->setValue(motorPower.at(2));
+        ui->QuadPlus3Value->setText(QString::number(motorPower.at(2)));
+        ui->QuadPlus4Motor->setValue(motorPower.at(3));
+        ui->QuadPlus4Value->setText(QString::number(motorPower.at(3)));
+    }
+    if (flightConfig == "Quad Y4")
+    {
+
+    }
+    if (flightConfig == "Tri")
+    {
+
+    }
+    if (flightConfig == "Hex +")
+    {
+        ui->HexPlus1Motor->setValue(motorPower.at(0));
+        ui->HexPlus1Value->setText(QString::number(motorPower.at(0)));
+        ui->HexPlus2Motor->setValue(motorPower.at(1));
+        ui->HexPlus2Value->setText(QString::number(motorPower.at(1)));
+        ui->HexPlus3Motor->setValue(motorPower.at(2));
+        ui->HexPlus3Value->setText(QString::number(motorPower.at(2)));
+        ui->HexPlus4Motor->setValue(motorPower.at(3));
+        ui->HexPlus4Value->setText(QString::number(motorPower.at(3)));
+        ui->HexPlus5Motor->setValue(motorPower.at(4));
+        ui->HexPlus5Value->setText(QString::number(motorPower.at(4)));
+        ui->HexPlus6Motor->setValue(motorPower.at(5));
+        ui->HexPlus6Value->setText(QString::number(motorPower.at(5)));
+    }
+    if (flightConfig == "Hex X")
+    {
+        ui->HexX1Motor->setValue(motorPower.at(0));
+        ui->HexX1Value->setText(QString::number(motorPower.at(0)));
+        ui->HexX2Motor->setValue(motorPower.at(1));
+        ui->HexX2Value->setText(QString::number(motorPower.at(1)));
+        ui->HexX3Motor->setValue(motorPower.at(2));
+        ui->HexX4Value->setText(QString::number(motorPower.at(2)));
+        ui->HexX4Motor->setValue(motorPower.at(3));
+        ui->HexX4Value->setText(QString::number(motorPower.at(3)));
+        ui->HexX5Motor->setValue(motorPower.at(4));
+        ui->HexX5Value->setText(QString::number(motorPower.at(4)));
+        ui->HexX6Motor->setValue(motorPower.at(5));
+        ui->HexX6Value->setText(QString::number(motorPower.at(5)));
+    }
+    if (flightConfig == "Hex Y6")
+    {
+        ui->Y61Motor->setValue(motorPower.at(0));
+        ui->Y61Value->setText(QString::number(motorPower.at(0)));
+        ui->Y62Motor->setValue(motorPower.at(1));
+        ui->Y62Value->setText(QString::number(motorPower.at(1)));
+        ui->Y63Motor->setValue(motorPower.at(2));
+        ui->Y64Value->setText(QString::number(motorPower.at(2)));
+        ui->Y64Motor->setValue(motorPower.at(3));
+        ui->Y64Value->setText(QString::number(motorPower.at(3)));
+        ui->Y65Motor->setValue(motorPower.at(4));
+        ui->Y65Value->setText(QString::number(motorPower.at(4)));
+        ui->Y66Motor->setValue(motorPower.at(5));
+        ui->Y66Value->setText(QString::number(motorPower.at(5)));
+    }
+    if (flightConfig == "Octo X8")
+    {
+
+    }
+    if (flightConfig == "Octo X")
+    {
+        ui->octoX1Motor->setValue(motorPower.at(0));
+        ui->octoX1Value->setText(QString::number(motorPower.at(0)));
+        ui->octoX2Motor->setValue(motorPower.at(1));
+        ui->octoX2Value->setText(QString::number(motorPower.at(1)));
+        ui->octoX3Motor->setValue(motorPower.at(2));
+        ui->octoX4Value->setText(QString::number(motorPower.at(2)));
+        ui->octoX4Motor->setValue(motorPower.at(3));
+        ui->octoX4Value->setText(QString::number(motorPower.at(3)));
+        ui->octoX5Motor->setValue(motorPower.at(4));
+        ui->octoX5Value->setText(QString::number(motorPower.at(4)));
+        ui->octoX6Motor->setValue(motorPower.at(5));
+        ui->octoX6Value->setText(QString::number(motorPower.at(5)));
+        ui->octoX7Motor->setValue(motorPower.at(6));
+        ui->octoX7Value->setText(QString::number(motorPower.at(6)));
+        ui->octoX8Motor->setValue(motorPower.at(7));
+        ui->octoX8Value->setText(QString::number(motorPower.at(7)));
+    }
+    if (flightConfig == "Octo +")
+    {
+        ui->octoPlus1Motor->setValue(motorPower.at(0));
+        ui->octoPlus1Value->setText(QString::number(motorPower.at(0)));
+        ui->octoPlus2Motor->setValue(motorPower.at(1));
+        ui->octoPlus2Value->setText(QString::number(motorPower.at(1)));
+        ui->octoPlus3Motor->setValue(motorPower.at(2));
+        ui->octoPlus4Value->setText(QString::number(motorPower.at(2)));
+        ui->octoPlus4Motor->setValue(motorPower.at(3));
+        ui->octoPlus4Value->setText(QString::number(motorPower.at(3)));
+        ui->octoPlus5Motor->setValue(motorPower.at(4));
+        ui->octoPlus5Value->setText(QString::number(motorPower.at(4)));
+        ui->octoPlus6Motor->setValue(motorPower.at(5));
+        ui->octoPlus6Value->setText(QString::number(motorPower.at(5)));
+        ui->octoPlus7Motor->setValue(motorPower.at(6));
+        ui->octoPlus7Value->setText(QString::number(motorPower.at(6)));
+        ui->octoPlus8Motor->setValue(motorPower.at(7));
+        ui->octoPlus8Value->setText(QString::number(motorPower.at(7)));
+    }
+    if (flightConfig == "Rover")
+    {
+
+    }
 }
 
 void PanelStatus::updateSticks()
 {
-    qDebug() << "throttle" << receiverChannel.at(ThrottleChannel);
     int throttlePos = scale(receiverChannel.at(ThrottleChannel), 1000.0, 2000.0, 55.0, -75.0);
     int yawPos = scale(receiverChannel.at(YawChannel), 1000.0, 2000.0, -75.0, 55.0);
     int pitchPos = scale(receiverChannel.at(PitchChannel), 1000.0, 2000.0, 55.0, -75.0);
@@ -200,26 +319,28 @@ void PanelStatus::updateSticks()
     rightStick->setPos(rollPos, pitchPos);
 }
 
-//SERIAL_PRINT("Flight Config: ");
-//#if defined(quadPlusConfig)
-//  SERIAL_PRINTLN("Quad +");
-//#elif defined(quadXConfig)
-//  SERIAL_PRINTLN("Quad X");
-//#elif defined (quadY4Config)
-//  SERIAL_PRINTLN("Quad Y4");
-//#elif defined (triConfig)
-//  SERIAL_PRINTLN("Tri");
-//#elif defined(hexPlusConfig)
-//  SERIAL_PRINTLN("Hex +");
-//#elif defined(hexXConfig)
-//  SERIAL_PRINTLN("Hex X");
-//#elif defined(hexY6Config)
-//  SERIAL_PRINTLN("Hex Y6");
-//#elif defined(octoX8Config)
-//  SERIAL_PRINTLN("Octo X8");
-//#elif defined(octoXConfig)
-//  SERIAL_PRINTLN("Octo X");
-//#elif defined(octoPlusConfig)
-//  SERIAL_PRINTLN("Octo +");
-//#elif defined(roverConfig)
-//  SERIAL_PRINTLN("Rover");
+void PanelStatus::updateButtons()
+{
+    if (altitudeHold)
+        updateButton(ui->altHoldState, "Altitude Hold\nOn", "green");
+    else
+        updateButton(ui->altHoldState, "Altitude Hold\nOff", "grey");
+    if (motorArmed)
+        updateButton(ui->motorState, "Motors\nArmed", "green");
+    else
+        updateButton(ui->motorState, "Motors\nNot Armed", "grey");
+    if (flightMode)
+        updateButton(ui->attitudeState, "Stable Mode", "steelblue");
+    else
+        updateButton(ui->attitudeState, "Acrobatic Mode", "green");
+}
+
+void PanelStatus::updateTextStatus()
+{
+    rollText->setPlainText("Roll: " + QString::number(roll, 'f', 1));
+    pitchText->setPlainText("Pitch: " + QString::number(pitch, 'f', 1));
+    altitudeText->setPlainText("Altitude: " + QString::number(altitude, 'f', 1));
+    batteryText->setPlainText("Battery: " + QString::number(batteryPower, 'f', 1));
+}
+
+

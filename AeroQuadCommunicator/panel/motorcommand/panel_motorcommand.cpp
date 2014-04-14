@@ -61,7 +61,6 @@ void PanelMotorCommand::commandMotors()
     QString command = "5123.45;";
     for (int index=0; index<motorValue.size(); index++)
         command += QString::number(motorValue.at(index)) + ";";
-    qDebug() << command;
     sendMessage(command);
 }
 
