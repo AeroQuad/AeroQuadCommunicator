@@ -22,6 +22,9 @@ void Route::loadRoute()
 {
     QSettings settings;
     QString routePath = settings.value("lastRouteFile", "InitialRoute.xml").toString();
+    QFile checkFile(routePath);
+    if (!checkFile.exists())
+        routePath = "InitialRoute.xml";
     loadRoute(routePath);
 }
 

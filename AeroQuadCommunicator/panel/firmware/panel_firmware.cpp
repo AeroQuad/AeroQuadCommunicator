@@ -205,8 +205,11 @@ void PanelFirmware::on_firmware_clicked()
 void PanelFirmware::programmingMode(QString port)
 {
     upload->execute("cmd /c mode " + port + ":DTR=off");
+    QThread::msleep(500);
     upload->execute("cmd /c mode " + port + ":DTR=on");
+    QThread::msleep(500);
     upload->execute("cmd /c mode " + port + ":DTR=off");
+    QThread::msleep(500);
     upload->execute("cmd /c echo 1EAF >" + port + ":");
     QThread::msleep(3000);
 }

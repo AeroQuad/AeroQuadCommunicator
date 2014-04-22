@@ -40,10 +40,16 @@ PanelRoute::PanelRoute(QWidget *parent) :
     connect(this, SIGNAL(connectionState(bool)), this, SLOT(updateConnectionState(bool)));
 
     readXML("panel_route.xml");
+    QString execdir = QCoreApplication::applicationDirPath();
+    QDir folder = QDir(execdir.append(QDir::separator()).append("data"));
+    MarbleDirs::setMarbleDataPath(folder.absolutePath());
+    QString dataPath = MarbleDirs::marbleDataPath();
+    qDebug() << dataPath;
+    //QMessageBox::critical(this, "Debug", dataPath, QMessageBox::Ok);
+
     ui->map->setMapThemeId(mapConfig);
-    ui->map->setProjection(Marble::Mercator);
-    //ui->map->setProjection(Marble::Spherical);
-    ui->map->setMapThemeId(mapConfig);
+    ui->map->setProjection(Marble::Spherical);
+    //ui->map->setProjection(Marble::Mercator);
 
     float startLat = settings.value("startLat").toFloat();
     float startLon = settings.value("startLon").toFloat();
